@@ -6,8 +6,8 @@ const WalkingCat = () => {
   const [direction, setDirection] = useState({ x: 1, y: 1 });
   const [facingLeft, setFacingLeft] = useState(false);
   const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight
+    width: window.innerWidth * 0.75,
+    height: window.innerHeight * 0.75
   });
 
   const SPRITE_WIDTH = 32;
@@ -17,7 +17,7 @@ const WalkingCat = () => {
   const MOVEMENT_SPEED = 3;
   const DIRECTION_CHANGE_INTERVAL = 4000;
   const SPRITE_ROW = 5;
-  const SCALE_FACTOR = 3;
+  const SCALE_FACTOR = 5;
 
   
   useEffect(() => {
@@ -98,9 +98,9 @@ const WalkingCat = () => {
     transform: 'translate(-50%, -50%)',
     width: '75%',
     height: '75%',
-    border: '2px solid #eee', // Optional: makes the boundary visible
-    overflow: 'hidden', // Ensures cat doesn't visually overflow
-    backgroundColor: 'rgba(255, 255, 255, 0.1)' // Optional: subtle background
+    border: '2px solid #eee',
+    overflow: 'hidden',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)'
   };
 
   const spriteStyles = {
@@ -123,7 +123,6 @@ const WalkingCat = () => {
         <div style={spriteStyles} />
       </div>
       <div className="fixed bottom-4 right-4 bg-white/80 px-3 py-1 rounded-full text-sm text-gray-600 z-50">
-        Position: ({Math.round(position.x)}, {Math.round(position.y)})
       </div>
     </>
   );
