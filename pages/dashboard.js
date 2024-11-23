@@ -5,397 +5,12 @@ import {
   ResponsiveContainer
 } from 'recharts';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import expensesData from '@/data/expenses.json';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
 
 const ExpenseDashboard = () => {
-  const data = {
-   "expenses": [
-      {
-        "expense_id": "EXP-001",
-        "category": "Rent",
-        "date": "2024-04-01",
-        "due_date": "2024-05-01",
-        "amount": 1500,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 30,
-        "description": "Monthly apartment rent"
-      },
-
-      {
-        "expense_id": "EXP-002",
-        "category": "Groceries",
-        "date": "2024-04-05",
-        "due_date": "2024-04-05",
-        "amount": 350,
-        "status": "Paid",
-        "payment_date": "2024-04-05",
-        "overdue_days": 0,
-        "description": "Weekly groceries shopping"
-      },
-      {
-        "expense_id": "EXP-003",
-        "category": "Utilities",
-        "date": "2024-04-10",
-        "due_date": "2024-05-01",
-        "amount": 200,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 30,
-        "description": "Electricity & water bill"
-      },
-      {
-        "expense_id": "EXP-004",
-        "category": "Transportation",
-        "date": "2024-03-20",
-        "due_date": "2024-04-01",
-        "amount": 100,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 60,
-        "description": "Monthly bus & train pass"
-      },
-      {
-        "expense_id": "EXP-005",
-        "category": "Health Insurance",
-        "date": "2024-05-01",
-        "due_date": "2024-06-01",
-        "amount": 300,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 15,
-        "description": "Monthly health insurance"
-      },
-      {
-        "expense_id": "EXP-006",
-        "category": "Internet & Phone",
-        "date": "2024-04-15",
-        "due_date": "2024-05-15",
-        "amount": 75,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 20,
-        "description": "Internet and mobile plan"
-      },
-      {
-        "expense_id": "EXP-007",
-        "category": "Dining Out",
-        "date": "2024-04-20",
-        "due_date": "2024-04-20",
-        "amount": 120,
-        "status": "Paid",
-        "payment_date": "2024-04-20",
-        "overdue_days": 0,
-        "description": "Dinner with friends"
-      },
-      {
-        "expense_id": "EXP-008",
-        "category": "Gym Membership",
-        "date": "2024-04-01",
-        "due_date": "2024-05-01",
-        "amount": 50,
-        "status": "Paid",
-        "payment_date": "2024-04-30",
-        "overdue_days": 0,
-        "description": "Monthly gym membership"
-      },
-      {
-        "expense_id": "EXP-009",
-        "category": "Entertainment",
-        "date": "2024-05-10",
-        "due_date": "2024-06-10",
-        "amount": 100,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 15,
-        "description": "Movie streaming subscription"
-      },
-      {
-        "expense_id": "EXP-010",
-        "category": "Credit Card Bill",
-        "date": "2024-03-10",
-        "due_date": "2024-04-10",
-        "amount": 500,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 55,
-        "description": "Monthly credit card payment"
-      },
-      {
-        "expense_id": "EXP-011",
-        "category": "Childcare",
-        "date": "2024-04-05",
-        "due_date": "2024-04-05",
-        "amount": 400,
-        "status": "Paid",
-        "payment_date": "2024-04-05",
-        "overdue_days": 0,
-        "description": "Daycare expenses for children"
-      },
-      {
-        "expense_id": "EXP-012",
-        "category": "Travel",
-        "date": "2024-04-15",
-        "due_date": "2024-05-15",
-        "amount": 800,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 20,
-        "description": "Family trip expenses"
-      },
-      {
-        "expense_id": "EXP-013",
-        "category": "Subscriptions",
-        "date": "2024-04-10",
-        "due_date": "2024-05-10",
-        "amount": 30,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 25,
-        "description": "Monthly software subscription"
-      },
-      {
-        "expense_id": "EXP-014",
-        "category": "Personal Care",
-        "date": "2024-04-20",
-        "due_date": "2024-04-20",
-        "amount": 60,
-        "status": "Paid",
-        "payment_date": "2024-04-20",
-        "overdue_days": 0,
-        "description": "Haircut and grooming"
-      },
-      {
-        "expense_id": "EXP-015",
-        "category": "Education",
-        "date": "2024-04-01",
-        "due_date": "2024-05-01",
-        "amount": 1200,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 30,
-        "description": "Online course payment"
-      },
-      {
-        "expense_id": "EXP-016",
-        "category": "Medical Expenses",
-        "date": "2024-03-25",
-        "due_date": "2024-04-25",
-        "amount": 300,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 40,
-        "description": "Doctor visit and prescription"
-      },
-      {
-        "expense_id": "EXP-017",
-        "category": "Clothing",
-        "date": "2024-04-05",
-        "due_date": "2024-04-05",
-        "amount": 200,
-        "status": "Paid",
-        "payment_date": "2024-04-05",
-        "overdue_days": 0,
-        "description": "Spring clothing shopping"
-      },
-      {
-        "expense_id": "EXP-018",
-        "category": "Pet Care",
-        "date": "2024-04-15",
-        "due_date": "2024-04-20",
-        "amount": 100,
-        "status": "Paid",
-        "payment_date": "2024-04-19",
-        "overdue_days": 0,
-        "description": "Pet food and grooming"
-      },
-      {
-        "expense_id": "EXP-019",
-        "category": "Home Maintenance",
-        "date": "2024-05-01",
-        "due_date": "2024-06-01",
-        "amount": 250,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 15,
-        "description": "Repairs and maintenance supplies"
-      },
-      {
-        "expense_id": "EXP-020",
-        "category": "Loan Payment",
-        "date": "2024-03-10",
-        "due_date": "2024-04-10",
-        "amount": 600,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 55,
-        "description": "Personal loan installment"
-      },
-      {
-        "expense_id": "EXP-021",
-        "category": "Fitness Equipment",
-        "date": "2024-05-10",
-        "due_date": "2024-06-10",
-        "amount": 150,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 15,
-        "description": "Purchase of home fitness equipment"
-      },
-      {
-        "expense_id": "EXP-022",
-        "category": "Gifts",
-        "date": "2024-04-30",
-        "due_date": "2024-05-15",
-        "amount": 100,
-        "status": "Paid",
-        "payment_date": "2024-05-10",
-        "overdue_days": 0,
-        "description": "Birthday gift for a friend"
-      },
-      {
-        "expense_id": "EXP-023",
-        "category": "Charity Donation",
-        "date": "2024-04-15",
-        "due_date": "2024-04-15",
-        "amount": 50,
-        "status": "Paid",
-        "payment_date": "2024-04-15",
-        "overdue_days": 0,
-        "description": "Donation to local charity"
-      },
-      {
-        "expense_id": "EXP-024",
-        "category": "Mortgage",
-        "date": "2024-04-01",
-        "due_date": "2024-05-01",
-        "amount": 2000,
-        "status": "Unpaid",
-        "payment_date": null,
-        "overdue_days": 30,
-        "description": "Monthly mortgage payment"
-      }
-    ],
-
-    "payments": [
-    {
-      "payment_id": "PAY-001",
-      "expense_id": "EXP-002",
-      "payment_amount": 350,
-      "payment_method": "Credit Card",
-      "payment_date": "2024-04-05"
-    },
-    {
-      "payment_id": "PAY-002",
-      "expense_id": "EXP-007",
-      "payment_amount": 120,
-      "payment_method": "Cash",
-      "payment_date": "2024-04-20"
-    },
-    {
-      "payment_id": "PAY-003",
-      "expense_id": "EXP-008",
-      "payment_amount": 50,
-      "payment_method": "Bank Transfer",
-      "payment_date": "2024-04-30"
-    }
-  ],
-  "expense_aging": [
-    {
-      "category": "Rent",
-      "current": 0,
-      "one_30_days": 0,
-      "thirtyone_60_days": 1500,
-      "sixtyone_90_days": 0,
-      "ninetyplus_days": 0,
-      "total_amount": 1500
-    },
-    {
-      "category": "Utilities",
-      "current": 0,
-      "one_30_days": 200,
-      "thirtyone_60_days": 0,
-      "sixtyone_90_days": 0,
-      "ninetyplus_days": 0,
-      "total_amount": 200
-    },
-    {
-      "category": "Transportation",
-      "current": 0,
-      "one_30_days": 0,
-      "thirtyone_60_days": 100,
-      "sixtyone_90_days": 0,
-      "ninetyplus_days": 0,
-      "total_amount": 100
-    },
-    {
-      "category": "Health Insurance",
-      "current": 300,
-      "one_30_days": 0,
-      "thirtyone_60_days": 0,
-      "sixtyone_90_days": 0,
-      "ninetyplus_days": 0,
-      "total_amount": 300
-    },
-    {
-      "category": "Internet & Phone",
-      "current": 0,
-      "one_30_days": 75,
-      "thirtyone_60_days": 0,
-      "sixtyone_90_days": 0,
-      "ninetyplus_days": 0,
-      "total_amount": 75
-    },
-    {
-      "category": "Credit Card Bill",
-      "current": 0,
-      "one_30_days": 0,
-      "thirtyone_60_days": 0,
-      "sixtyone_90_days": 500,
-      "ninetyplus_days": 0,
-      "total_amount": 500
-    }
-  ],
-  "budget": [
-    {
-      "category": "Rent",
-      "monthly_budget": 1500,
-      "spent_amount": 1500,
-      "remaining_budget": 0
-    },
-    {
-      "category": "Groceries",
-      "monthly_budget": 400,
-      "spent_amount": 350,
-      "remaining_budget": 50
-    },
-    {
-      "category": "Utilities",
-      "monthly_budget": 250,
-      "spent_amount": 200,
-      "remaining_budget": 50
-    },
-    {
-      "category": "Transportation",
-      "monthly_budget": 150,
-      "spent_amount": 100,
-      "remaining_budget": 50
-    },
-    {
-      "category": "Health Insurance",
-      "monthly_budget": 300,
-      "spent_amount": 300,
-      "remaining_budget": 0
-    },
-    {
-      "category": "Internet & Phone",
-      "monthly_budget": 100,
-      "spent_amount": 75,
-      "remaining_budget": 25
-    }
-  ]
-  };
+    const data = expensesData;
 
   // Process data for unpaid expenses
   const unpaidExpenses = data.expenses
@@ -449,151 +64,330 @@ const ExpenseDashboard = () => {
       overdueDays: exp.overdue_days
     }))
     .sort((a, b) => b.overdueDays - a.overdueDays);
-
-  return (
-    <div className="p-4 space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    
+      return (
+        <div className="pt-10 px-40 space-y-10 bg-gray-300 text-center">
+            <h1 className="text-4xl">Financial Analysis</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white">
         {/* Unpaid Expenses Section */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Unpaid Expenses by Category</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={unpaidExpenses}
-                  layout="vertical"
-                  margin={{ top: 5, right: 30, left: 80, bottom: 5 }}
+<Card>
+  <CardHeader>
+    <CardTitle className="text-center">Unpaid Expenses by Category</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <div className="h-96">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={unpaidExpenses}
+          layout="vertical"
+          margin={{ top: 20, right: 60, left: 20, bottom: 20 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis 
+            type="number"
+            tickFormatter={(value) => `$${value.toLocaleString()}`}
+          />
+          <YAxis 
+            dataKey="category" 
+            type="category"
+            width={110}
+            tick={{ 
+              fontSize: 12,
+              width: 110,
+              textOverflow: 'ellipsis',
+              wordWrap: 'break-word'
+            }}
+            interval={0}
+            tickFormatter={(value) => {
+              return value.replace(/ /g, '\u00A0');
+            }}
+          />
+          <Tooltip 
+            formatter={(value) => [`$${value.toLocaleString()}`, 'Amount']}
+          />
+          <Bar 
+            dataKey="amount" 
+            fill="#0088FE"
+            label={{ 
+              position: 'right',
+              formatter: (value) => `$${value.toLocaleString()}`,
+              fontSize: 12
+            }}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+    <div className="h-96 mt-8">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={unpaidExpenses}
+            dataKey="amount"
+            nameKey="category"
+            cx="50%"
+            cy="45%"
+            outerRadius={130}
+            label={({
+              cx,
+              cy,
+              midAngle,
+              innerRadius,
+              outerRadius,
+              value,
+              index
+            }) => {
+              const RADIAN = Math.PI / 180;
+              const radius = 25 + innerRadius + (outerRadius - innerRadius);
+              const x = cx + radius * Math.cos(-midAngle * RADIAN);
+              const y = cy + radius * Math.sin(-midAngle * RADIAN);
+              return (
+                <text
+                  x={x}
+                  y={y}
+                  fill="#000"
+                  textAnchor={x > cx ? 'start' : 'end'}
+                  dominantBaseline="central"
+                  fontSize={12}
                 >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis type="number" />
-                  <YAxis dataKey="category" type="category" />
-                  <Tooltip />
-                  <Bar dataKey="amount" fill="#0088FE" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="h-64 mt-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={unpaidExpenses}
-                    dataKey="amount"
-                    nameKey="category"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    label
-                  >
-                    {unpaidExpenses.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
+                  {`${unpaidExpenses[index].category} ($${value.toLocaleString()})`}
+                </text>
+              );
+            }}
+          >
+            {unpaidExpenses.map((entry, index) => (
+              <Cell 
+                key={`cell-${index}`} 
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+          <Legend 
+            layout="horizontal"
+            align="center"
+            verticalAlign="bottom"
+            wrapperStyle={{ 
+              fontSize: '12px',
+              paddingTop: '20px'
+            }}
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  </CardContent>
+</Card>
 
-        {/* Paid Expenses Section */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Paid Expenses by Category</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={paidExpenses}
-                  layout="vertical"
-                  margin={{ top: 5, right: 30, left: 80, bottom: 5 }}
+{/* Paid Expenses Section */}
+<Card>
+  <CardHeader>
+    <CardTitle className="text-center">Paid Expenses by Category</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <div className="h-96">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={paidExpenses}
+          layout="vertical"
+          margin={{ top: 20, right: 60, left: 20, bottom: 20 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis 
+            type="number"
+            tickFormatter={(value) => `$${value.toLocaleString()}`}
+          />
+          <YAxis 
+            dataKey="category" 
+            type="category"
+            width={110}
+            tick={{ 
+              fontSize: 12,
+              width: 110,
+              textOverflow: 'ellipsis',
+              wordWrap: 'break-word'
+            }}
+            interval={0}
+            tickFormatter={(value) => {
+              return value.replace(/ /g, '\u00A0');
+            }}
+          />
+          <Tooltip 
+            formatter={(value) => [`$${value.toLocaleString()}`, 'Amount']}
+          />
+          <Bar 
+            dataKey="amount" 
+            fill="#00C49F"
+            label={{ 
+              position: 'right',
+              formatter: (value) => `$${value.toLocaleString()}`,
+              fontSize: 12
+            }}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+    <div className="h-96 mt-8">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={paidExpenses}
+            dataKey="amount"
+            nameKey="category"
+            cx="50%"
+            cy="45%"
+            outerRadius={130}
+            label={({
+              cx,
+              cy,
+              midAngle,
+              innerRadius,
+              outerRadius,
+              value,
+              index
+            }) => {
+              const RADIAN = Math.PI / 180;
+              const radius = 25 + innerRadius + (outerRadius - innerRadius);
+              const x = cx + radius * Math.cos(-midAngle * RADIAN);
+              const y = cy + radius * Math.sin(-midAngle * RADIAN);
+              return (
+                <text
+                  x={x}
+                  y={y}
+                  fill="#000"
+                  textAnchor={x > cx ? 'start' : 'end'}
+                  dominantBaseline="central"
+                  fontSize={12}
                 >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis type="number" />
-                  <YAxis dataKey="category" type="category" />
-                  <Tooltip />
-                  <Bar dataKey="amount" fill="#00C49F" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="h-64 mt-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={paidExpenses}
-                    dataKey="amount"
-                    nameKey="category"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    label
-                  >
-                    {paidExpenses.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+                  {`${paidExpenses[index].category} ($${value.toLocaleString()})`}
+                </text>
+              );
+            }}
+          >
+            {paidExpenses.map((entry, index) => (
+              <Cell 
+                key={`cell-${index}`} 
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+          <Legend 
+            layout="horizontal"
+            align="center"
+            verticalAlign="bottom"
+            wrapperStyle={{ 
+              fontSize: '12px',
+              paddingTop: '20px'
+            }}
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  </CardContent>
+</Card>
+</div>
 
-      {/* Paid vs Unpaid Comparison */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Paid vs Unpaid Expenses</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                data={comparisonData}
-                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="paid" fill="#00C49F" name="Paid" />
-                <Bar dataKey="unpaid" fill="#FF8042" name="Unpaid" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </CardContent>
-      </Card>
+     {/* Paid vs Unpaid Comparison */}
+<Card className="bg-white">
+  <CardHeader>
+    <CardTitle className="text-center">Paid vs Unpaid Expenses</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <div className="h-[32rem]">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart margin={{ top: 20, right: 100, bottom: 60, left: 100 }}>
+          <Pie
+            data={[
+              { name: 'Paid', value: paidTotal },
+              { name: 'Unpaid', value: unpaidTotal }
+            ]}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="45%"
+            outerRadius={150}
+            label={({
+              cx,
+              cy,
+              midAngle,
+              innerRadius,
+              outerRadius,
+              value,
+              percent,
+              name
+            }) => {
+              const RADIAN = Math.PI / 180;
+              const radius = 35 + innerRadius + (outerRadius - innerRadius);
+              const x = cx + radius * Math.cos(-midAngle * RADIAN);
+              const y = cy + radius * Math.sin(-midAngle * RADIAN);
+              return (
+                <text
+                  x={x}
+                  y={y}
+                  fill="#000"
+                  textAnchor={x > cx ? 'start' : 'end'}
+                  dominantBaseline="central"
+                  fontSize={14}
+                >
+                  {`${name}: $${value.toLocaleString()} (${(percent * 100).toFixed(1)}%)`}
+                </text>
+              );
+            }}
+          >
+            {[
+              { name: 'Paid', value: paidTotal, color: '#00C49F' },
+              { name: 'Unpaid', value: unpaidTotal, color: '#FF8042' }
+            ].map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.color} />
+            ))}
+          </Pie>
+          <Tooltip 
+            formatter={(value) => [`$${value.toLocaleString()}`, 'Amount']}
+            percentFormatter={(value) => `${value.toFixed(1)}%`}
+          />
+          <Legend 
+            layout="horizontal"
+            align="center"
+            verticalAlign="bottom"
+            wrapperStyle={{ 
+              fontSize: '14px',
+              paddingTop: '20px',
+              paddingBottom: '20px'
+            }}
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  </CardContent>
+</Card>
 
       {/* Aging Details */}
-      <Card>
+      <Card className="bg-white">
         <CardHeader>
-          <CardTitle>Aging Details</CardTitle>
+          <CardTitle className="text-center">Aging Details</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full border-collapse">
               <thead>
-                <tr className="border-b">
-                  <th className="p-2 text-left">ID</th>
-                  <th className="p-2 text-left">Category</th>
-                  <th className="p-2 text-left">Amount</th>
-                  <th className="p-2 text-left">Due Date</th>
-                  <th className="p-2 text-left">Days Till Payment</th>
+                <tr className="bg-gray-300">
+                  <th className="p-4 text-center font-semibold border-b">ID</th>
+                  <th className="p-4 text-center font-semibold border-b">Category</th>
+                  <th className="p-4 text-center font-semibold border-b">Amount</th>
+                  <th className="p-4 text-center font-semibold border-b">Due Date</th>
+                  <th className="p-4 text-center font-semibold border-b">Days Till Payment</th>
                 </tr>
               </thead>
               <tbody>
-                {agingDetails.map((item) => (
-                  <tr key={item.id} className="border-b">
-                    <td className="p-2">{item.id}</td>
-                    <td className="p-2">{item.category}</td>
-                    <td className="p-2">${item.amount.toLocaleString()}</td>
-                    <td className="p-2">{item.dueDate}</td>
-                    <td className="p-2">{item.overdueDays}</td>
+                {agingDetails.map((item, index) => (
+                  <tr 
+                    key={item.id} 
+                    className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                  >
+                    <td className="p-4 text-center border-b">{item.id}</td>
+                    <td className="p-4 text-center border-b">{item.category}</td>
+                    <td className="p-4 text-center border-b">${item.amount.toLocaleString()}</td>
+                    <td className="p-4 text-center border-b">{item.dueDate}</td>
+                    <td className="p-4 text-center border-b">{item.overdueDays}</td>
                   </tr>
                 ))}
               </tbody>
@@ -603,30 +397,33 @@ const ExpenseDashboard = () => {
       </Card>
 
       {/* Expense Details */}
-      <Card>
+      <Card className="bg-white">
         <CardHeader>
-          <CardTitle>Expense Details</CardTitle>
+          <CardTitle className="text-center">Expense Details</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent >
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full border-collapse">
               <thead>
-                <tr className="border-b">
-                  <th className="p-2 text-left">ID</th>
-                  <th className="p-2 text-left">Category</th>
-                  <th className="p-2 text-left">Amount</th>
-                  <th className="p-2 text-left">Status</th>
-                  <th className="p-2 text-left">Description</th>
+                <tr className="bg-gray-300">
+                  <th className="p-4 text-center font-semibold border-b">ID</th>
+                  <th className="p-4 text-centerfont-semibold border-b">Category</th>
+                  <th className="p-4 text-center font-semibold border-b">Amount</th>
+                  <th className="p-4 text-center font-semibold border-b">Status</th>
+                  <th className="p-4 text-center font-semibold border-b">Description</th>
                 </tr>
               </thead>
               <tbody>
-                {data.expenses.map((expense) => (
-                  <tr key={expense.expense_id} className="border-b">
-                    <td className="p-2">{expense.expense_id}</td>
-                    <td className="p-2">{expense.category}</td>
-                    <td className="p-2">${expense.amount.toLocaleString()}</td>
-                    <td className="p-2">{expense.status}</td>
-                    <td className="p-2">{expense.description}</td>
+                {data.expenses.map((expense, index) => (
+                  <tr 
+                    key={expense.expense_id} 
+                    className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                  >
+                    <td className="p-4 text-center border-b">{expense.expense_id}</td>
+                    <td className="p-4 text-center border-b">{expense.category}</td>
+                    <td className="p-4 text-center border-b">${expense.amount.toLocaleString()}</td>
+                    <td className="p-4 text-center border-b">{expense.status}</td>
+                    <td className="p-4 text-center border-b">{expense.description}</td>
                   </tr>
                 ))}
               </tbody>
