@@ -137,7 +137,7 @@
          "category": "Subscriptions",
          "date": "2024-04-10",
          "due_date": "2024-05-10",
-         "amount": 100,
+         "amount": 30,
          "status": "Unpaid",
          "payment_date": null,
          "overdue_days": 25,
@@ -222,7 +222,7 @@
        },
        {
          "expense_id": "EXP-021",
-         "category": "Fitness",
+         "category": "Fitness Equipment",
          "date": "2024-05-10",
          "due_date": "2024-06-10",
          "amount": 150,
@@ -234,7 +234,7 @@
        {
          "expense_id": "EXP-022",
          "category": "Gifts",
-         "date": "2024-11-24",
+         "date": "2024-04-30",
          "due_date": "2024-05-15",
          "amount": 100,
          "status": "Paid",
@@ -263,50 +263,6 @@
          "payment_date": null,
          "overdue_days": 30,
          "description": "Monthly mortgage payment"
-       },
-       {
-         "expense_id": "EXP-025",
-         "category": "Transportation",
-         "date": "2024-11-24",
-         "due_date": "2024-11-24",
-         "amount": 80,
-         "status": "Paid",
-         "payment_date": "2024-11-24",
-         "overdue_days": 0,
-         "description": "Petrol refill"
-       },
-       {
-         "expense_id": "EXP-026",
-         "category": "Food",
-         "date": "2024-11-24",
-         "due_date": "2024-11-24",
-         "amount": 45,
-         "status": "Paid",
-         "payment_date": "2024-11-24",
-         "overdue_days": 0,
-         "description": "Lunch and dinner expenses"
-       },
-       {
-         "expense_id": "EXP-027",
-         "category": "Investment",
-         "date": "2024-11-24",
-         "due_date": "2024-11-24",
-         "amount": 1000,
-         "status": "Paid",
-         "payment_date": "2024-11-24",
-         "overdue_days": 0,
-         "description": "Fixed deposit investment"
-       },
-       {
-         "expense_id": "EXP-028",
-         "category": "Groceries",
-         "date": "2024-11-24",
-         "due_date": "2024-11-24",
-         "amount": 120,
-         "status": "Paid",
-         "payment_date": "2024-11-24",
-         "overdue_days": 0,
-         "description": "Weekly grocery shopping"
        }
      ],
  
@@ -421,22 +377,10 @@
        "remaining_budget": 0
      },
      {
-       "category": "Data & Phone",
+       "category": "Internet & Phone",
        "monthly_budget": 100,
        "spent_amount": 75,
        "remaining_budget": 25
-     },
-     {
-       "category": "Investment",
-       "monthly_budget": 1000,
-       "spent_amount": 1000,
-       "remaining_budget": 0
-     },
-     {
-       "category": "Food",
-       "monthly_budget": 300,
-       "spent_amount": 165,
-       "remaining_budget": 135
      }
    ]
 }
