@@ -64,100 +64,227 @@ const ExpenseDashboard = () => {
       overdueDays: exp.overdue_days
     }))
     .sort((a, b) => b.overdueDays - a.overdueDays);
-
-  return (
-    <div className="p-4 space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    
+      return (
+        <div className="pt-10 px-40 space-y-10 bg-gray-300 text-center">
+            <h1 className="text-4xl">Financial Analysis</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white">
         {/* Unpaid Expenses Section */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Unpaid Expenses by Category</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={unpaidExpenses}
-                  layout="vertical"
-                  margin={{ top: 5, right: 30, left: 80, bottom: 5 }}
+<Card>
+  <CardHeader>
+    <CardTitle className="text-center">Unpaid Expenses by Category</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <div className="h-96">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={unpaidExpenses}
+          layout="vertical"
+          margin={{ top: 20, right: 60, left: 20, bottom: 20 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis 
+            type="number"
+            tickFormatter={(value) => `$${value.toLocaleString()}`}
+          />
+          <YAxis 
+            dataKey="category" 
+            type="category"
+            width={110}
+            tick={{ 
+              fontSize: 12,
+              width: 110,
+              textOverflow: 'ellipsis',
+              wordWrap: 'break-word'
+            }}
+            interval={0}
+            tickFormatter={(value) => {
+              return value.replace(/ /g, '\u00A0');
+            }}
+          />
+          <Tooltip 
+            formatter={(value) => [`$${value.toLocaleString()}`, 'Amount']}
+          />
+          <Bar 
+            dataKey="amount" 
+            fill="#0088FE"
+            label={{ 
+              position: 'right',
+              formatter: (value) => `$${value.toLocaleString()}`,
+              fontSize: 12
+            }}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+    <div className="h-96 mt-8">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={unpaidExpenses}
+            dataKey="amount"
+            nameKey="category"
+            cx="50%"
+            cy="45%"
+            outerRadius={130}
+            label={({
+              cx,
+              cy,
+              midAngle,
+              innerRadius,
+              outerRadius,
+              value,
+              index
+            }) => {
+              const RADIAN = Math.PI / 180;
+              const radius = 25 + innerRadius + (outerRadius - innerRadius);
+              const x = cx + radius * Math.cos(-midAngle * RADIAN);
+              const y = cy + radius * Math.sin(-midAngle * RADIAN);
+              return (
+                <text
+                  x={x}
+                  y={y}
+                  fill="#000"
+                  textAnchor={x > cx ? 'start' : 'end'}
+                  dominantBaseline="central"
+                  fontSize={12}
                 >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis type="number" />
-                  <YAxis dataKey="category" type="category" />
-                  <Tooltip />
-                  <Bar dataKey="amount" fill="#0088FE" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="h-64 mt-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={unpaidExpenses}
-                    dataKey="amount"
-                    nameKey="category"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    label
-                  >
-                    {unpaidExpenses.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
+                  {`${unpaidExpenses[index].category} ($${value.toLocaleString()})`}
+                </text>
+              );
+            }}
+          >
+            {unpaidExpenses.map((entry, index) => (
+              <Cell 
+                key={`cell-${index}`} 
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+          <Legend 
+            layout="horizontal"
+            align="center"
+            verticalAlign="bottom"
+            wrapperStyle={{ 
+              fontSize: '12px',
+              paddingTop: '20px'
+            }}
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  </CardContent>
+</Card>
 
-        {/* Paid Expenses Section */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Paid Expenses by Category</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={paidExpenses}
-                  layout="vertical"
-                  margin={{ top: 5, right: 30, left: 80, bottom: 5 }}
+{/* Paid Expenses Section */}
+<Card>
+  <CardHeader>
+    <CardTitle className="text-center">Paid Expenses by Category</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <div className="h-96">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={paidExpenses}
+          layout="vertical"
+          margin={{ top: 20, right: 60, left: 20, bottom: 20 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis 
+            type="number"
+            tickFormatter={(value) => `$${value.toLocaleString()}`}
+          />
+          <YAxis 
+            dataKey="category" 
+            type="category"
+            width={110}
+            tick={{ 
+              fontSize: 12,
+              width: 110,
+              textOverflow: 'ellipsis',
+              wordWrap: 'break-word'
+            }}
+            interval={0}
+            tickFormatter={(value) => {
+              return value.replace(/ /g, '\u00A0');
+            }}
+          />
+          <Tooltip 
+            formatter={(value) => [`$${value.toLocaleString()}`, 'Amount']}
+          />
+          <Bar 
+            dataKey="amount" 
+            fill="#00C49F"
+            label={{ 
+              position: 'right',
+              formatter: (value) => `$${value.toLocaleString()}`,
+              fontSize: 12
+            }}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+    <div className="h-96 mt-8">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={paidExpenses}
+            dataKey="amount"
+            nameKey="category"
+            cx="50%"
+            cy="45%"
+            outerRadius={130}
+            label={({
+              cx,
+              cy,
+              midAngle,
+              innerRadius,
+              outerRadius,
+              value,
+              index
+            }) => {
+              const RADIAN = Math.PI / 180;
+              const radius = 25 + innerRadius + (outerRadius - innerRadius);
+              const x = cx + radius * Math.cos(-midAngle * RADIAN);
+              const y = cy + radius * Math.sin(-midAngle * RADIAN);
+              return (
+                <text
+                  x={x}
+                  y={y}
+                  fill="#000"
+                  textAnchor={x > cx ? 'start' : 'end'}
+                  dominantBaseline="central"
+                  fontSize={12}
                 >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis type="number" />
-                  <YAxis dataKey="category" type="category" />
-                  <Tooltip />
-                  <Bar dataKey="amount" fill="#00C49F" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="h-64 mt-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={paidExpenses}
-                    dataKey="amount"
-                    nameKey="category"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    label
-                  >
-                    {paidExpenses.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+                  {`${paidExpenses[index].category} ($${value.toLocaleString()})`}
+                </text>
+              );
+            }}
+          >
+            {paidExpenses.map((entry, index) => (
+              <Cell 
+                key={`cell-${index}`} 
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+          <Legend 
+            layout="horizontal"
+            align="center"
+            verticalAlign="bottom"
+            wrapperStyle={{ 
+              fontSize: '12px',
+              paddingTop: '20px'
+            }}
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  </CardContent>
+</Card>
+</div>
 
      {/* Paid vs Unpaid Comparison */}
 <Card className="bg-white">
