@@ -7,5 +7,23 @@
     "salary": "5000",
     "loansAndDebts": "15000",
     "timestamp": "2024-11-23T08:02:31.260Z"
+  },
+  {
+    "username": "Player1",
+    "financialGoal": "retirement",
+    "targetAmount": "80000",
+    "targetDate": "2040-02-02",
+    "salary": "5000",
+    "loansAndDebts": "15000",
+    "timestamp": "2024-11-23T13:39:35.714Z"
+  },
+  {
+    "username": "Player1",
+    "financialGoal": "retirement",
+    "targetAmount": "80000",
+    "targetDate": "2040-02-02",
+    "salary": "5000",
+    "loansAndDebts": "15000",
+    "timestamp": "2024-11-23T13:39:34.725Z"
   }
 ]

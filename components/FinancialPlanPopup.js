@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function FinancialPlanPopup({ onClose, username }) {
+export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate }) {
   const [financialData, setFinancialData] = useState({
     financialGoal: '',
     targetAmount: '',
@@ -36,6 +36,7 @@ export default function FinancialPlanPopup({ onClose, username }) {
     const dailyDisposableIncome = disposableIncome / 30;
 
     return {
+      financialGoal: data.financialGoal,
       dailySavingsTarget: dailySavingsNeeded.toFixed(2),
       daysToGoal: daysRemaining,
       dailyDisposableIncome: dailyDisposableIncome.toFixed(2),
@@ -79,6 +80,10 @@ export default function FinancialPlanPopup({ onClose, username }) {
       });
 
       if (response.ok) {
+        // Trigger the parent component to update goals
+        if (onGoalsUpdate) {
+          onGoalsUpdate();
+        }
         alert(`Financial plan saved successfully!\n\nDaily Goals Summary:\n${dailyGoals.recommendations.join('\n')}`);
         onClose();
       } else {

@@ -1,6 +1,7 @@
 [
   {
     "username": "Player1",
+    "financialGoal": "house",
     "dailySavingsTarget": "26.04",
     "daysToGoal": 384,
     "dailyDisposableIncome": "116.67",
@@ -12,5 +13,35 @@
       "Your goal appears achievable with your current income!"
     ],
     "timestamp": "2024-11-23T08:02:31.260Z"
+  },
+  {
+    "username": "Player1",
+    "financialGoal": "retirement",
+    "dailySavingsTarget": "14.42",
+    "daysToGoal": 5549,
+    "dailyDisposableIncome": "116.67",
+    "monthlyDebtPayment": "1500.00",
+    "recommendations": [
+      "Save $14.42 daily to reach your goal",
+      "Available daily spending: $116.67",
+      "Monthly debt payment: $1500.00",
+      "Your goal appears achievable with your current income!"
+    ],
+    "timestamp": "2024-11-23T13:39:35.714Z"
+  },
+  {
+    "username": "Player1",
+    "financialGoal": "retirement",
+    "dailySavingsTarget": "14.42",
+    "daysToGoal": 5549,
+    "dailyDisposableIncome": "116.67",
+    "monthlyDebtPayment": "1500.00",
+    "recommendations": [
+      "Save $14.42 daily to reach your goal",
+      "Available daily spending: $116.67",
+      "Monthly debt payment: $1500.00",
+      "Your goal appears achievable with your current income!"
+    ],
+    "timestamp": "2024-11-23T13:39:34.725Z"
   }
 ]
