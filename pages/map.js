@@ -105,7 +105,7 @@ const DroppableMap = ({ children, onDrop }) => {
     <div 
       id="game-map" 
       ref={drop} 
-      className="absolute inset-0 w-[80%] h-[80vh] mx-auto"
+      className="absolute inset-0 w-full h-full"
     >
       {children}
     </div>

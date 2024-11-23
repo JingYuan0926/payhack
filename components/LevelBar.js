@@ -17,13 +17,6 @@ export default function LevelBar({ username = "Username", progress = 60 }) {
     hour12: false,
   });
 
-  // Example spending history
-  const spendingHistory = [
-    { description: "Buy food", amount: 20 },
-    { description: "Buy food", amount: 100 },
-    { description: "Buy furniture", amount: 20 },
-  ];
-
   return (
     <div className="p-4 flex justify-between items-start">
       <div className="w-[30%] ml-8">
@@ -36,14 +29,7 @@ export default function LevelBar({ username = "Username", progress = 60 }) {
             +
           </button>
         </div>
-        <div
-          className="
-          w-full h-6 
-          border-4 border-black 
-          [image-rendering:pixelated]
-          bg-gray-200
-        "
-        >
+        <div className="w-full h-6 border-4 border-black [image-rendering:pixelated] bg-gray-200">
           <div
             className="h-full bg-green-500"
             style={{ width: `${progress}%` }}
@@ -51,7 +37,6 @@ export default function LevelBar({ username = "Username", progress = 60 }) {
         </div>
       </div>
 
-      {/* Date and Time Area with Hover and Click */}
       <div
         className="text-lg font-bold font-mono mr-8 text-right cursor-pointer hover:text-blue-600"
         onClick={() => setShowSpendHistory(true)}
@@ -60,11 +45,9 @@ export default function LevelBar({ username = "Username", progress = 60 }) {
         <div>{formattedTime}</div>
       </div>
 
-      {/* Spending History Popup */}
       {showSpendHistory && (
         <SpendHistory
           onClose={() => setShowSpendHistory(false)}
-          history={spendingHistory}
         />
       )}
 
