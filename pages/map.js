@@ -2,10 +2,22 @@ import LevelBar from '../components/LevelBar'
 import Coins from '../components/Coins'
 import WalkingCat from '../components/cat'
 
-export default function Map() {
+// Add static props if you need to fetch data
+export async function getStaticProps() {
+  return {
+    props: {
+      initialBalance: 83300,
+      initialProgress: 60,
+      username: "Player1"
+    },
+    // Optionally add revalidation if you want to update the data periodically
+  }
+}
+
+export default function Map({ initialBalance, initialProgress, username }) {
   return (
     <div className="min-h-screen flex flex-col">
-      <LevelBar username="Player1" progress={60} />
+      <LevelBar username={username} progress={initialProgress} />
       
       <div className="flex-1 flex items-center justify-center relative">
         <img 
@@ -18,7 +30,7 @@ export default function Map() {
         </div>
       </div>
 
-      <Coins balance={83300} />
+      <Coins balance={initialBalance} />
     </div>
   )
 }

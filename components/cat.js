@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import CatModal from './CatModal';
 
 const WalkingCat = () => {
   const [currentFrame, setCurrentFrame] = useState(0);
@@ -10,6 +12,7 @@ const WalkingCat = () => {
     height: 0
   });
   const [emotion, setEmotion] = useState('love');
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   const SPRITE_WIDTH = 32;
   const SPRITE_HEIGHT = 32;
@@ -104,6 +107,31 @@ const WalkingCat = () => {
     }
   };
 
+  // Add click handler with position check
+  const handleContainerClick = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+    
+    // Calculate cat's center position
+    const catCenterX = position.x + (SPRITE_WIDTH * SCALE_FACTOR) / 2;
+    const catCenterY = position.y + (SPRITE_HEIGHT * SCALE_FACTOR) / 2;
+    
+    // Define click detection radius (adjust this value to change the clickable area)
+    const CLICK_RADIUS = SPRITE_WIDTH * SCALE_FACTOR;
+    
+    // Calculate distance between click and cat center
+    const distance = Math.sqrt(
+      Math.pow(clickX - catCenterX, 2) + 
+      Math.pow(clickY - catCenterY, 2)
+    );
+    
+    // Only open modal if click is within radius
+    if (distance <= CLICK_RADIUS) {
+      onOpen();
+    }
+  };
+
   const containerStyles = {
     position: 'relative',
     width: '100%',
@@ -123,25 +151,27 @@ const WalkingCat = () => {
     top: `${position.y}px`,
     transform: `scaleX(${facingLeft ? -1 : 1}) scale(${SCALE_FACTOR})`,
     transition: 'transform 0.1s ease-in-out',
-    zIndex: 50
+    zIndex: 50,
+    cursor: 'pointer'
   };
 
   const emotionBubbleStyles = {
     position: 'absolute',
     left: `${position.x + (SPRITE_WIDTH * SCALE_FACTOR) / 2}px`,
-    top: `${position.y }px`,
+    top: `${position.y}px`,
     transform: 'translateX(-50%)',
     backgroundColor: 'white',
     borderRadius: '12px',
     padding: '8px',
     border: '2px solid #333',
-    zIndex: 51,
+    zIndex: 10,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     minWidth: '32px',
     minHeight: '32px',
-    fontSize: '20px'
+    fontSize: '20px',
+    cursor: 'pointer'
   };
 
   const getEmotionEmoji = () => {
@@ -157,20 +187,14 @@ const WalkingCat = () => {
 
   return (
     <>
-      <div style={containerStyles}>
+      <div style={containerStyles} onClick={handleContainerClick}>
         <div style={emotionBubbleStyles}>
           {getEmotionEmoji()}
         </div>
         <div style={spriteStyles} />
       </div>
-      <div className="fixed bottom-4 right-4 bg-white/80 px-3 py-1 rounded-full text-sm text-gray-600 z-50">
-        {/* <input
-          type="text"
-          placeholder="Enter emotion"
-          onChange={handleEmotionChange}
-          className="px-2 py-1 rounded border border-gray-300"
-        /> */}
-      </div>
+      
+      <CatModal isOpen={isOpen} onOpenChange={onOpenChange} />
     </>
   );
 };
