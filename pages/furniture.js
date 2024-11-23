@@ -216,3 +216,6 @@ const FurnitureMap = () => {
 };
 
 export default FurnitureMap;
+
+// Export MenuPopup component
+export { MenuPopup };
