@@ -5,6 +5,10 @@ const WalkingCat = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [direction, setDirection] = useState({ x: 1, y: 1 });
   const [facingLeft, setFacingLeft] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
 
   const SPRITE_WIDTH = 32;
   const SPRITE_HEIGHT = 32;
@@ -13,6 +17,20 @@ const WalkingCat = () => {
   const MOVEMENT_SPEED = 3;
   const DIRECTION_CHANGE_INTERVAL = 4000;
   const SPRITE_ROW = 5;
+  const SCALE_FACTOR = 3;
+
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Animation frame update
   useEffect(() => {
@@ -30,12 +48,8 @@ const WalkingCat = () => {
         const newX = prev.x + (direction.x * MOVEMENT_SPEED);
         const newY = prev.y + (direction.y * MOVEMENT_SPEED);
         
-        // Get container boundaries (accounting for sprite size)
-        const container = document.getElementById('cat-container');
-        if (!container) return prev;
-        
-        const maxX = container.clientWidth - SPRITE_WIDTH * 1.5;  // Accounting for scale
-        const maxY = container.clientHeight - SPRITE_HEIGHT * 1.5;
+        const maxX = windowSize.width - SPRITE_WIDTH * SCALE_FACTOR;
+        const maxY = windowSize.height - SPRITE_HEIGHT * SCALE_FACTOR;
         
         // Bounce off walls
         let newDirX = direction.x;
@@ -56,10 +70,10 @@ const WalkingCat = () => {
           y: Math.max(0, Math.min(maxY, newY))
         };
       });
-    }, 16); // 60fps
+    }, 16);
 
     return () => clearInterval(moveInterval);
-  }, [direction]);
+  }, [direction, windowSize]);
 
   // Random direction change
   useEffect(() => {
@@ -77,26 +91,41 @@ const WalkingCat = () => {
     return () => clearInterval(directionInterval);
   }, []);
 
+  const containerStyles = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '75%',
+    height: '75%',
+    border: '2px solid #eee', // Optional: makes the boundary visible
+    overflow: 'hidden', // Ensures cat doesn't visually overflow
+    backgroundColor: 'rgba(255, 255, 255, 0.1)' // Optional: subtle background
+  };
+
   const spriteStyles = {
     width: `${SPRITE_WIDTH}px`,
     height: `${SPRITE_HEIGHT}px`,
     backgroundImage: 'url("/cat-sprite.png")',
     imageRendering: 'pixelated',
-    backgroundPosition: `-${currentFrame * SPRITE_WIDTH}px -${SPRITE_ROW * SPRITE_HEIGHT}px`, // Updated to use SPRITE_ROW
-    position: 'absolute',
+    backgroundPosition: `-${currentFrame * SPRITE_WIDTH}px -${SPRITE_ROW * SPRITE_HEIGHT}px`,
+    position: 'fixed',
     left: `${position.x}px`,
     top: `${position.y}px`,
-    transform: `scaleX(${facingLeft ? -1 : 1}) scale(3)`,
-    transition: 'transform 0.1s ease-in-out'
+    transform: `scaleX(${facingLeft ? -1 : 1}) scale(${SCALE_FACTOR})`,
+    transition: 'transform 0.1s ease-in-out',
+    zIndex: 50
   };
 
   return (
-    <div id="cat-container" className="relative w-full h-96 bg-slate-100 overflow-hidden rounded-lg shadow-lg">
-      <div style={spriteStyles} />
-      <div className="absolute bottom-4 right-4 bg-white/80 px-3 py-1 rounded-full text-sm text-gray-600">
+    <>
+      <div style={containerStyles}>
+        <div style={spriteStyles} />
+      </div>
+      <div className="fixed bottom-4 right-4 bg-white/80 px-3 py-1 rounded-full text-sm text-gray-600 z-50">
         Position: ({Math.round(position.x)}, {Math.round(position.y)})
       </div>
-    </div>
+    </>
   );
 };
 
