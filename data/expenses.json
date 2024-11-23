@@ -317,6 +317,20 @@
        "payment_amount": 350,
        "payment_method": "Credit Card",
        "payment_date": "2024-04-05"
+     },
+     {
+       "payment_id": "PAY-002",
+       "expense_id": "EXP-007",
+       "payment_amount": 120,
+       "payment_method": "Cash",
+       "payment_date": "2024-04-20"
+     },
+     {
+       "payment_id": "PAY-003",
+       "expense_id": "EXP-008",
+       "payment_amount": 50,
+       "payment_method": "Bank Transfer",
+       "payment_date": "2024-04-30"
      }
    ],
    "expense_aging": [
