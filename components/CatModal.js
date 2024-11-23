@@ -1,11 +1,17 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@nextui-org/react";
 
-const CatModal = ({ isOpen, onOpenChange }) => {
+const CatModal = ({ isOpen, onOpenChange, initialMessage }) => {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (initialMessage) {
+      setChatHistory([{ role: 'assistant', content: initialMessage }]);
+    }
+  }, [initialMessage]);
 
   const handleSendMessage = async () => {
     if (!message.trim()) return;

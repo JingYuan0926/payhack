@@ -12,7 +12,13 @@ export default async function handler(req, res) {
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: req.body.message }],
+      messages: [
+        {
+          role: "system",
+          content: "You are a helpful assistant. Answer questions clearly and concisely."
+        },
+        { role: "user", content: req.body.message }
+      ],
     });
 
     return res.status(200).json({ 

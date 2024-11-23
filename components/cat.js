@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import CatModal from './CatModal';
 
-const WalkingCat = () => {
+const WalkingCat = ({ emotion: parentEmotion, message }) => {
   const [currentFrame, setCurrentFrame] = useState(0);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [direction, setDirection] = useState({ x: 1, y: 1 });
@@ -99,6 +99,13 @@ const WalkingCat = () => {
     return () => clearInterval(directionInterval);
   }, []);
 
+  // Update emotion when parent emotion changes
+  useEffect(() => {
+    if (parentEmotion) {
+      setEmotion(parentEmotion);
+    }
+  }, [parentEmotion]);
+
   // Add input field and handler
   const handleEmotionChange = (e) => {
     const input = e.target.value.toLowerCase();
@@ -113,20 +120,16 @@ const WalkingCat = () => {
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
     
-    // Calculate cat's center position
     const catCenterX = position.x + (SPRITE_WIDTH * SCALE_FACTOR) / 2;
     const catCenterY = position.y + (SPRITE_HEIGHT * SCALE_FACTOR) / 2;
     
-    // Define click detection radius (adjust this value to change the clickable area)
     const CLICK_RADIUS = SPRITE_WIDTH * SCALE_FACTOR;
     
-    // Calculate distance between click and cat center
     const distance = Math.sqrt(
       Math.pow(clickX - catCenterX, 2) + 
       Math.pow(clickY - catCenterY, 2)
     );
     
-    // Only open modal if click is within radius
     if (distance <= CLICK_RADIUS) {
       onOpen();
     }
@@ -194,7 +197,7 @@ const WalkingCat = () => {
         <div style={spriteStyles} />
       </div>
       
-      <CatModal isOpen={isOpen} onOpenChange={onOpenChange} />
+      <CatModal isOpen={isOpen} onOpenChange={onOpenChange} initialMessage={message} />
     </>
   );
 };
