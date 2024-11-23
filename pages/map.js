@@ -163,16 +163,16 @@ export default function Map() {
       <div className="min-h-screen flex flex-col">
         <LevelBar username="Player1" progress={60} />
         
-        <div className="flex-1 flex items-center justify-center relative">
+        <div className="flex-1 relative">
           {/* Daily Goals Button */}
           {dailyGoals && (
             <>
               <button
-                className="absolute left-4 top-4 w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg"
+                className="absolute left-4 top-4 w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg z-10"
                 onClick={() => setShowDailyGoals(!showDailyGoals)}
               >
                 <img
-                  src="/goals-icon.png" // Add this image to your public folder
+                  src="/goals-icon.png"
                   alt="Daily Goals"
                   className="w-8 h-8"
                 />
@@ -187,23 +187,25 @@ export default function Map() {
             </>
           )}
 
-          <img 
-            src="/map.png"
-            alt="Map"
-            className="h-[80vh] w-[80%] border-2 border-black object-contain"
-          />
-          
-          <DroppableMap>
-            <WalkingCat />
-            {placedFurniture.map((item) => (
-              <DraggableFurniture
-                key={item.id}
-                item={item}
-                onMove={handleMoveFurniture}
-                onRemove={handleRemoveFurniture}
-              />
-            ))}
-          </DroppableMap>
+          <div className="w-[80%] h-[80vh] mx-auto relative">
+            <img 
+              src="/map.png"
+              alt="Map"
+              className="absolute inset-0 w-full h-full object-fill border-2 border-black"
+            />
+            
+            <DroppableMap>
+              <WalkingCat />
+              {placedFurniture.map((item) => (
+                <DraggableFurniture
+                  key={item.id}
+                  item={item}
+                  onMove={handleMoveFurniture}
+                  onRemove={handleRemoveFurniture}
+                />
+              ))}
+            </DroppableMap>
+          </div>
 
           <button
             className="absolute bottom-4 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg"
