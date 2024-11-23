@@ -9,6 +9,7 @@ const WalkingCat = () => {
     width: 0,
     height: 0
   });
+  const [emotion, setEmotion] = useState('love');
 
   const SPRITE_WIDTH = 32;
   const SPRITE_HEIGHT = 32;
@@ -95,6 +96,14 @@ const WalkingCat = () => {
     return () => clearInterval(directionInterval);
   }, []);
 
+  // Add input field and handler
+  const handleEmotionChange = (e) => {
+    const input = e.target.value.toLowerCase();
+    if (['happy', 'angry', 'love', 'sad', 'surprise'].includes(input)) {
+      setEmotion(input);
+    }
+  };
+
   const containerStyles = {
     position: 'relative',
     width: '100%',
@@ -117,12 +126,50 @@ const WalkingCat = () => {
     zIndex: 50
   };
 
+  const emotionBubbleStyles = {
+    position: 'absolute',
+    left: `${position.x + (SPRITE_WIDTH * SCALE_FACTOR) / 2}px`,
+    top: `${position.y }px`,
+    transform: 'translateX(-50%)',
+    backgroundColor: 'white',
+    borderRadius: '12px',
+    padding: '8px',
+    border: '2px solid #333',
+    zIndex: 51,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minWidth: '32px',
+    minHeight: '32px',
+    fontSize: '20px'
+  };
+
+  const getEmotionEmoji = () => {
+    switch(emotion) {
+      case 'happy': return '😊';
+      case 'angry': return '😠';
+      case 'love': return '❤️';
+      case 'sad': return '😢';
+      case 'surprise': return '❗';
+      default: return '😊';
+    }
+  };
+
   return (
     <>
       <div style={containerStyles}>
+        <div style={emotionBubbleStyles}>
+          {getEmotionEmoji()}
+        </div>
         <div style={spriteStyles} />
       </div>
       <div className="fixed bottom-4 right-4 bg-white/80 px-3 py-1 rounded-full text-sm text-gray-600 z-50">
+        {/* <input
+          type="text"
+          placeholder="Enter emotion"
+          onChange={handleEmotionChange}
+          className="px-2 py-1 rounded border border-gray-300"
+        /> */}
       </div>
     </>
   );
