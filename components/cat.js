@@ -6,8 +6,8 @@ const WalkingCat = () => {
   const [direction, setDirection] = useState({ x: 1, y: 1 });
   const [facingLeft, setFacingLeft] = useState(false);
   const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth * 0.75,
-    height: window.innerHeight * 0.75
+    width: 0,
+    height: 0
   });
 
   const SPRITE_WIDTH = 32;
@@ -22,12 +22,16 @@ const WalkingCat = () => {
   
   useEffect(() => {
     const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
+      const container = document.querySelector('[class*="w-[80%]"]');
+      if (container) {
+        setWindowSize({
+          width: container.clientWidth,
+          height: container.clientHeight
+        });
+      }
     };
 
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -92,15 +96,11 @@ const WalkingCat = () => {
   }, []);
 
   const containerStyles = {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '75%',
-    height: '75%',
-    border: '2px solid #eee',
+    position: 'relative',
+    width: '100%',
+    height: '100%',
     overflow: 'hidden',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)'
+    backgroundColor: 'transparent'
   };
 
   const spriteStyles = {
@@ -109,7 +109,7 @@ const WalkingCat = () => {
     backgroundImage: 'url("/cat-sprite.png")',
     imageRendering: 'pixelated',
     backgroundPosition: `-${currentFrame * SPRITE_WIDTH}px -${SPRITE_ROW * SPRITE_HEIGHT}px`,
-    position: 'fixed',
+    position: 'absolute',
     left: `${position.x}px`,
     top: `${position.y}px`,
     transform: `scaleX(${facingLeft ? -1 : 1}) scale(${SCALE_FACTOR})`,
