@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { MenuPopup } from './furniture'
 import DailyGoals from '../components/DailyGoals'
 import { useRouter } from 'next/router'
+import CatModal from '../components/CatModal'
 
 // New DraggableFurniture component
 const DraggableFurniture = ({ item, onMove, onRemove }) => {
@@ -82,6 +83,8 @@ export default function Map() {
   const [showDailyGoals, setShowDailyGoals] = useState(false)
   const [catEmotion, setCatEmotion] = useState('love')
   const [catMessage, setCatMessage] = useState('')
+  const [showCatModal, setShowCatModal] = useState(false)
+  const [catModalMessage, setCatModalMessage] = useState('')
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -105,6 +108,11 @@ export default function Map() {
         case '4':
           setCatEmotion('sad')
           setCatMessage("Your savings goal is falling behind schedule... 😢")
+          break
+        case '5':
+          setCatEmotion('love')
+          setCatMessage("You're doing amazing with your finances! I'm so proud! 💖")
+          setShowCatModal(true)
           break
       }
     }
@@ -211,6 +219,12 @@ export default function Map() {
           <span className="text-lg font-bold">{1500}</span>
         </div>
       </div>
+      <CatModal 
+        isOpen={showCatModal} 
+        onOpenChange={setShowCatModal}
+        initialMessage={catModalMessage}
+        isCase5={true}
+      />
     </DndProvider>
   )
 }

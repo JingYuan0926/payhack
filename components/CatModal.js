@@ -2,7 +2,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from
 import { useState, useEffect } from "react";
 import { Input } from "@nextui-org/react";
 
-const CatModal = ({ isOpen, onOpenChange, initialMessage }) => {
+const CatModal = ({ isOpen, onOpenChange, initialMessage, isCase5 }) => {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,9 @@ const CatModal = ({ isOpen, onOpenChange, initialMessage }) => {
     const userMessage = { role: 'user', content: message };
     
     try {
-      const response = await fetch('/api/chat', {
+      const apiEndpoint = isCase5 ? '/api/case5' : '/api/chat';
+      
+      const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: message }),
@@ -37,7 +39,10 @@ const CatModal = ({ isOpen, onOpenChange, initialMessage }) => {
       setChatHistory([
         ...chatHistory, 
         userMessage,
-        { role: 'assistant', content: "Sorry, I'm having trouble connecting right now. Please try again later." }
+        { role: 'assistant', content: isCase5 
+          ? "Purr... I'm having trouble thinking right now. Can we chat later? 😺"
+          : "Sorry, I'm having trouble connecting right now. Please try again later."
+        }
       ]);
     } finally {
       setIsLoading(false);
