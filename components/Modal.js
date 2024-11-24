@@ -28,7 +28,7 @@ export default function OnboardingModal({ isOpen, onOpenChange }) {
                     <span>×</span>
                     <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
                   </div>
-                  <p>RinggitSen uses OpenFin to securely link your accounts</p>
+                  <p>FinPet uses Open Finance API to securely link your accounts</p>
                 </ModalHeader>
                 <ModalBody>
                   <div className="space-y-6">
@@ -36,7 +36,7 @@ export default function OnboardingModal({ isOpen, onOpenChange }) {
                       <div className="flex flex-col items-center gap-2">
                         <div className="w-5 h-5 text-green-500">🔒</div>
                         <p className="font-semibold">Secured and safe</p>
-                        <p className="text-sm text-gray-500">OpenFin is authorised to collect your info securely</p>
+                        <p className="text-sm text-gray-500">Open Finance API is authorised to collect your info securely</p>
                       </div>
                     </div>
                     
@@ -44,7 +44,7 @@ export default function OnboardingModal({ isOpen, onOpenChange }) {
                       <div className="flex flex-col items-center gap-2">
                         <div className="w-5 h-5 text-green-500">✓</div>
                         <p className="font-semibold">Your data belongs to you</p>
-                        <p className="text-sm text-gray-500">OpenFin doesn't sell personal info, and will only use it with your permission</p>
+                        <p className="text-sm text-gray-500">Open Finance API doesn't sell personal info, and will only use it with your permission</p>
                       </div>
                     </div>
 
@@ -52,7 +52,7 @@ export default function OnboardingModal({ isOpen, onOpenChange }) {
                       <div className="flex flex-col items-center gap-2">
                         <div className="w-5 h-5 text-green-500">🔗</div>
                         <p className="font-semibold">Link accounts effortlessly</p>
-                        <p className="text-sm text-gray-500">OpenFin will help to link your financial accounts in seconds</p>
+                        <p className="text-sm text-gray-500">Open Finance API will help to link your financial accounts in seconds</p>
                       </div>
                     </div>
                   </div>
@@ -63,7 +63,7 @@ export default function OnboardingModal({ isOpen, onOpenChange }) {
                     color="primary"
                     onPress={handleNext}
                   >
-                    Let OpenFin help me link my account
+                    Let Open Finance API help me link my account
                   </Button>
                 </ModalFooter>
               </>
@@ -81,7 +81,7 @@ export default function OnboardingModal({ isOpen, onOpenChange }) {
                     <span>×</span>
                     <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
                   </div>
-                  <p>OpenFin will help you link accounts</p>
+                  <p>Open Finance API will help you link accounts</p>
                 </ModalHeader>
                 <ModalBody>
                   <div className="space-y-4">
@@ -122,7 +122,7 @@ export default function OnboardingModal({ isOpen, onOpenChange }) {
             {(onClose) => (
               <>
                 <ModalHeader className="flex flex-col gap-1">
-                  <p>Select account(s) to share information with RinggitSen</p>
+                  <p>Select account(s) to share information with FinPet</p>
                 </ModalHeader>
                 <ModalBody>
                   <div className="space-y-2">
