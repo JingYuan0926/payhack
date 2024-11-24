@@ -13,7 +13,7 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
     setFinancialData(prev => ({
       ...prev,
       salary: '5000',
-      loansAndDebts: '15000'
+      loansAndDebts: '1500'
     }));
   }, []);
 
