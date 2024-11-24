@@ -57,24 +57,31 @@ export default function ChatBot() {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      {/* Chat Button */}
+      {/* Chat Button - Updated with cat sprite */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg"
+        className="w-12 h-12 rounded-full bg-white hover:bg-gray-100 flex items-center justify-center shadow-lg border-2 border-gray-200"
       >
         <img
-          src="/chatbot.png"
+          src="/cat-sprite1.png"  // Changed from chatbot.png to cat-sprite1.png
           alt="Chat"
-          className="w-8 h-8"
+          className="w-10 h-10 object-contain"  // Adjusted size and added object-contain
         />
       </button>
 
       {/* Chat Window */}
       {isOpen && (
         <div className="absolute bottom-16 right-0 w-80 h-96 bg-white rounded-lg shadow-xl flex flex-col">
-          {/* Header */}
+          {/* Header - Updated with cat theme */}
           <div className="p-4 bg-blue-500 text-white rounded-t-lg flex justify-between items-center">
-            <h3 className="font-semibold">Financial Assistant</h3>
+            <div className="flex items-center">
+              <img
+                src="/cat-sprite1.png"
+                alt="Cat Assistant"
+                className="w-6 h-6 mr-2 object-contain"
+              />
+              <h3 className="font-semibold">Cat Assistant</h3>
+            </div>
             <button 
               onClick={() => setIsOpen(false)}
               className="text-white hover:text-gray-200"
