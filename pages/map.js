@@ -6,6 +6,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { useState, useEffect } from 'react'
 import { MenuPopup } from './furniture'
 import DailyGoals from '../components/DailyGoals'
+import { useRouter } from 'next/router'
 
 // New DraggableFurniture component
 const DraggableFurniture = ({ item, onMove, onRemove }) => {
@@ -75,9 +76,23 @@ const DroppableMap = ({ children, onDrop }) => {
 }
 
 export default function Map() {
+  const router = useRouter()
   const [showFurnitureMenu, setShowFurnitureMenu] = useState(false)
   const [placedFurniture, setPlacedFurniture] = useState([])
   const [showDailyGoals, setShowDailyGoals] = useState(false)
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === 'Space') {
+        router.push('/dashboard')
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyPress)
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress)
+    }
+  }, [router])
 
   const handleAddFurniture = (newItem) => {
     setPlacedFurniture((prev) => [
@@ -125,11 +140,13 @@ export default function Map() {
             onClose={() => setShowDailyGoals(false)}
           />
 
-          <img 
-            src="/map.png"
-            alt="Map"
-            className="h-[80vh] w-[80%] border-2 border-black object-cover"
-          />
+          <div className="relative w-[80%] h-[80vh]">
+            <img 
+              src="/map.png"
+              alt="Map"
+              className="absolute inset-0 w-full h-full border-2 border-black object-cover"
+            />
+          </div>
           
           <DroppableMap>
             <WalkingCat />
@@ -162,6 +179,10 @@ export default function Map() {
               onSelect={handleAddFurniture}
             />
           )}
+        </div>
+
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-sm text-gray-600">
+          Press spacebar to view dashboard
         </div>
 
         {/* Coins Component */}
