@@ -222,7 +222,7 @@
        },
        {
          "expense_id": "EXP-021",
-         "category": "Fitness Equipment",
+         "category": "Fitness",
          "date": "2024-05-10",
          "due_date": "2024-06-10",
          "amount": 150,

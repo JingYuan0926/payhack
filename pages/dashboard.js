@@ -68,9 +68,9 @@ const ExpenseDashboard = () => {
       return (
         <div className="pt-10 px-40 space-y-10 bg-gray-200 text-center">
             <h1 className="text-4xl">Financial Analysis</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Unpaid Expenses Section */}
-<Card>
+<Card className="bg-white">
   <CardHeader>
     <CardTitle className="text-center">Unpaid Expenses by Category</CardTitle>
   </CardHeader>
@@ -178,7 +178,7 @@ const ExpenseDashboard = () => {
 </Card>
 
 {/* Paid Expenses Section */}
-<Card>
+<Card className="bg-white">
   <CardHeader>
     <CardTitle className="text-center">Paid Expenses by Category</CardTitle>
   </CardHeader>
