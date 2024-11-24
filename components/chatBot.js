@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +56,12 @@ export default function ChatBot() {
     }
   };
 
+  // Add a function to sanitize markdown content
+  const sanitizeMarkdown = (content) => {
+    // Remove any potential markdown formatting that should be hidden
+    return content.replace(/\*\*\*/g, '').replace(/\*\*/g, '').replace(/\*/g, '');
+  };
+
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {/* Chat Button - Updated with cat sprite */}
@@ -90,7 +97,7 @@ export default function ChatBot() {
             </button>
           </div>
 
-          {/* Messages */}
+          {/* Updated Messages section with ReactMarkdown */}
           <div className="flex-1 p-4 overflow-y-auto space-y-4">
             {messages.map((message, index) => (
               <div
@@ -106,7 +113,9 @@ export default function ChatBot() {
                       : 'bg-gray-100 text-gray-800'
                   }`}
                 >
-                  {message.content}
+                  <ReactMarkdown className="prose prose-sm max-w-none">
+                    {sanitizeMarkdown(message.content)}
+                  </ReactMarkdown>
                 </div>
               </div>
             ))}

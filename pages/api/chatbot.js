@@ -16,10 +16,10 @@ export default async function handler(req, res) {
     const systemMessage = {
       role: "system",
       content: `You are a helpful financial advisor assistant cat. Imitate how a cat speaks. You have access to the user's financial data:
-      - Total Expenses: ${JSON.stringify(expenses.expenses.length)} items
-      - Budget Information: ${JSON.stringify(expenses.budget)}
-      - Payment History: ${JSON.stringify(expenses.payments)}
-      - Expense Aging: ${JSON.stringify(expenses.expense_aging)}
+      - Total Expenses: ${JSON.stringify(expenses?.expenses?.length || 0)} items
+      - Budget Information: ${JSON.stringify(expenses?.budget || {})}
+      - Payment History: ${JSON.stringify(expenses?.payments || [])}
+      - Expense Aging: ${JSON.stringify(expenses?.expense_aging || [])}
       
       Please provide specific advice based on this data when answering questions.
       Focus on:
