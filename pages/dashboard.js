@@ -6,7 +6,6 @@ import {
 } from 'recharts';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import expensesData from '@/data/expenses.json';
-import ChatBot from '../components/chatBot';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
 
@@ -69,7 +68,7 @@ const ExpenseDashboard = () => {
     .sort((a, b) => b.overdueDays - a.overdueDays);
     
       return (
-        <div className="container mx-auto p-4 space-y-4">
+        <div className="pt-10 px-40 space-y-10 bg-gray-200 text-center">
             <h1 className="text-4xl">Financial Analysis</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Unpaid Expenses Section */}
@@ -454,9 +453,6 @@ const ExpenseDashboard = () => {
           </div>
         </CardContent>
       </Card>
-
-      {/* Add ChatBot component */}
-      <ChatBot />
     </div>
   );
 };

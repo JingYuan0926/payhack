@@ -20,7 +20,7 @@ const WalkingCat = ({ emotion: parentEmotion, message }) => {
   const ANIMATION_SPEED = 100;
   const MOVEMENT_SPEED = 3;
   const DIRECTION_CHANGE_INTERVAL = 4000;
-  const SPRITE_ROW = 5;
+  const SPRITE_ROW = 4;
   const SCALE_FACTOR = 5;
 
   

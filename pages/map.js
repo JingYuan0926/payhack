@@ -201,11 +201,6 @@ export default function Map() {
             />
           )}
         </div>
-
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-sm text-gray-600">
-          Press spacebar to view dashboard
-        </div>
-
         {/* Coins Component */}
         <div className="absolute bottom-4 right-4 flex items-center bg-white px-3 py-1 rounded-lg shadow-md">
           <img
