@@ -1,4 +1,4 @@
-export default function Coins({ balance = 83300 }) {
+export default function Coins({ balance = 1500 }) {
   return (
     <div className="
       fixed bottom-8 right-8 

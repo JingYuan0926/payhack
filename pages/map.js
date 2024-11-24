@@ -63,6 +63,30 @@ const DroppableMap = ({ children, onDrop }) => {
       }
     },
   }))
+
+  return (
+    <div 
+      id="game-map" 
+      ref={drop} 
+      className="absolute inset-0 w-full h-full"
+    >
+      {children}
+    </div>
+  )
+}
+
+// Add static props if you need to fetch data
+export async function getStaticProps() {
+  return {
+    props: {
+      initialBalance: 1500,
+      initialProgress: 60,
+      username: "James"
+    },
+    // Optionally add revalidation if you want to update the data periodically
+  }
+}
+
 export default function Map({ initialBalance, initialProgress, username }) {
   const [catEmotion, setCatEmotion] = useState('love');
   const [catMessage, setCatMessage] = useState('');
