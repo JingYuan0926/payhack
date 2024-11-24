@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import CatModal from './CatModal';
 
-const WalkingCat = () => {
+const WalkingCat = ({ emotion: parentEmotion, message }) => {
   const [currentFrame, setCurrentFrame] = useState(0);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [direction, setDirection] = useState({ x: 1, y: 1 });
@@ -9,6 +11,8 @@ const WalkingCat = () => {
     width: 0,
     height: 0
   });
+  const [emotion, setEmotion] = useState('love');
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   const SPRITE_WIDTH = 32;
   const SPRITE_HEIGHT = 32;
@@ -16,7 +20,7 @@ const WalkingCat = () => {
   const ANIMATION_SPEED = 100;
   const MOVEMENT_SPEED = 3;
   const DIRECTION_CHANGE_INTERVAL = 4000;
-  const SPRITE_ROW = 5;
+  const SPRITE_ROW = 4;
   const SCALE_FACTOR = 5;
 
   
@@ -95,6 +99,42 @@ const WalkingCat = () => {
     return () => clearInterval(directionInterval);
   }, []);
 
+  // Update emotion when parent emotion changes
+  useEffect(() => {
+    if (parentEmotion) {
+      setEmotion(parentEmotion);
+    }
+  }, [parentEmotion]);
+
+  // Add input field and handler
+  const handleEmotionChange = (e) => {
+    const input = e.target.value.toLowerCase();
+    if (['happy', 'angry', 'love', 'sad', 'surprise'].includes(input)) {
+      setEmotion(input);
+    }
+  };
+
+  // Add click handler with position check
+  const handleContainerClick = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+    
+    const catCenterX = position.x + (SPRITE_WIDTH * SCALE_FACTOR) / 2;
+    const catCenterY = position.y + (SPRITE_HEIGHT * SCALE_FACTOR) / 2;
+    
+    const CLICK_RADIUS = SPRITE_WIDTH * SCALE_FACTOR;
+    
+    const distance = Math.sqrt(
+      Math.pow(clickX - catCenterX, 2) + 
+      Math.pow(clickY - catCenterY, 2)
+    );
+    
+    if (distance <= CLICK_RADIUS) {
+      onOpen();
+    }
+  };
+
   const containerStyles = {
     position: 'relative',
     width: '100%',
@@ -114,16 +154,50 @@ const WalkingCat = () => {
     top: `${position.y}px`,
     transform: `scaleX(${facingLeft ? -1 : 1}) scale(${SCALE_FACTOR})`,
     transition: 'transform 0.1s ease-in-out',
-    zIndex: 50
+    zIndex: 50,
+    cursor: 'pointer'
+  };
+
+  const emotionBubbleStyles = {
+    position: 'absolute',
+    left: `${position.x + (SPRITE_WIDTH * SCALE_FACTOR) / 2}px`,
+    top: `${position.y}px`,
+    transform: 'translateX(-50%)',
+    backgroundColor: 'white',
+    borderRadius: '12px',
+    padding: '8px',
+    border: '2px solid #333',
+    zIndex: 10,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minWidth: '32px',
+    minHeight: '32px',
+    fontSize: '20px',
+    cursor: 'pointer'
+  };
+
+  const getEmotionEmoji = () => {
+    switch(emotion) {
+      case 'happy': return '😊';
+      case 'angry': return '😠';
+      case 'love': return '❤️';
+      case 'sad': return '😢';
+      case 'surprise': return '❗';
+      default: return '😊';
+    }
   };
 
   return (
     <>
-      <div style={containerStyles}>
+      <div style={containerStyles} onClick={handleContainerClick}>
+        <div style={emotionBubbleStyles}>
+          {getEmotionEmoji()}
+        </div>
         <div style={spriteStyles} />
       </div>
-      <div className="fixed bottom-4 right-4 bg-white/80 px-3 py-1 rounded-full text-sm text-gray-600 z-50">
-      </div>
+      
+      <CatModal isOpen={isOpen} onOpenChange={onOpenChange} initialMessage={message} />
     </>
   );
 };

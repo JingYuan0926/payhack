@@ -1,0 +1,17 @@
+[
+  {
+    "username": "Jack",
+    "financialGoal": "car",
+    "dailySavingsTarget": "103.81",
+    "daysToGoal": 289,
+    "dailyDisposableIncome": "161.67",
+    "monthlyDebtPayment": "150.00",
+    "recommendations": [
+      "Save $103.81 daily to reach your goal",
+      "Available daily spending: $161.67",
+      "Monthly debt payment: $150.00",
+      "Your goal appears achievable with your current income!"
+    ],
+    "timestamp": "2024-11-24T04:47:53.219Z"
+  }
+]

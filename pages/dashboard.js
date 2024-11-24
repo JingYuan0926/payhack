@@ -6,6 +6,7 @@ import {
 } from 'recharts';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import expensesData from '@/data/expenses.json';
+import ChatBot from '@/components/chatBot';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
 
@@ -453,6 +454,8 @@ const ExpenseDashboard = () => {
           </div>
         </CardContent>
       </Card>
+
+      <ChatBot />
     </div>
   );
 };
