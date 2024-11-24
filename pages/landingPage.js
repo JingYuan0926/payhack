@@ -68,7 +68,6 @@ const HeaderBar = () => {
     </>
   );
 };
-
 const Screen = () => {
   return (
     <div
