@@ -70,11 +70,7 @@ const ExpenseDashboard = () => {
       return (
         <div className="pt-10 px-40 space-y-10 bg-gray-200 text-center">
             <h1 className="text-4xl">Financial Analysis</h1>
-<<<<<<< HEAD
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white">
-=======
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
->>>>>>> 85a09ce (Dashboard design and legeng)
         {/* Unpaid Expenses Section */}
 <Card className="bg-white">
   <CardHeader>
@@ -124,14 +120,14 @@ const ExpenseDashboard = () => {
       </ResponsiveContainer>
     </div>
     <div className="h-96 mt-8">
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="110%" height="100%">
         <PieChart>
           <Pie
             data={unpaidExpenses}
             dataKey="amount"
             nameKey="category"
-            cx="50%"
-            cy="45%"
+            cx="46%"
+            cy="50%"
             outerRadius={130}
             label={({
               cx,
@@ -168,13 +164,13 @@ const ExpenseDashboard = () => {
             ))}
           </Pie>
           <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
-          <Legend 
+          <Legend
             layout="horizontal"
             align="center"
             verticalAlign="bottom"
             wrapperStyle={{ 
               fontSize: '12px',
-              paddingTop: '20px'
+              paddingTop: '30px',
             }}
           />
         </PieChart>
@@ -238,8 +234,8 @@ const ExpenseDashboard = () => {
             data={paidExpenses}
             dataKey="amount"
             nameKey="category"
-            cx="50%"
-            cy="45%"
+            cx="46%"
+            cy="50%"
             outerRadius={130}
             label={({
               cx,
@@ -282,7 +278,7 @@ const ExpenseDashboard = () => {
             verticalAlign="bottom"
             wrapperStyle={{ 
               fontSize: '12px',
-              paddingTop: '20px'
+              paddingTop: '30px'
             }}
           />
         </PieChart>
