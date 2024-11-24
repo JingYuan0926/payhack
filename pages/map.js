@@ -172,9 +172,9 @@ export default function Map() {
                 onClick={() => setShowDailyGoals(!showDailyGoals)}
               >
                 <img
-                  src="/goals-icon.png" // Add this image to your public folder
+                  src="/dailyGoals.png" // Add this image to your public folder
                   alt="Daily Goals"
-                  className="w-8 h-8"
+                  className="w-9 h-7"
                 />
               </button>
 
@@ -205,10 +205,16 @@ export default function Map() {
             ))}
           </DroppableMap>
 
+          {/* Shop Button */}
           <button
-            className="absolute bottom-4 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg"
+            className="absolute bottom-4 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center"
             onClick={() => setShowFurnitureMenu(true)}
           >
+            <img
+              src="/shop.png" // Add this image to your public folder
+              alt="Shop"
+              className="w-8 h-8 mr-1"
+            />
             Shop
           </button>
 
@@ -220,8 +226,18 @@ export default function Map() {
           )}
         </div>
 
-        <Coins balance={83300} />
+        {/* Coins Component */}
+        <div className="absolute bottom-4 right-4 flex items-center bg-white px-3 py-1 rounded-lg shadow-md">
+          <img
+            src="/coins.png" // Add this image to your public folder
+            alt="Coins"
+            className="w-6 h-6 mr-2"
+          />
+          <span className="text-lg font-bold">{83300}</span>
+        </div>
       </div>
     </DndProvider>
   )
 }
+
+
