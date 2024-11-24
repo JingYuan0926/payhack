@@ -85,7 +85,7 @@ export default function Map() {
 
   useEffect(() => {
     const handleKeyPress = (event) => {
-      if (event.code === 'Space') {
+      if (event.key === '6') {
         router.push('/dashboard')
       }
 
