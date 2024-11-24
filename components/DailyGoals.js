@@ -20,20 +20,17 @@ export default function DailyGoals({ onClose, showPopup }) {
       if (data.goals && data.goals.length > 0) {
         // Get unique financial goals (latest version of each goal type)
         const uniqueGoals = Object.values(data.goals.reduce((acc, goal) => {
-          const [plan] = goal.recommendations[0].match(/\$[\d,]+\.?\d*/); // Extract amount from first recommendation
-          const targetAmount = parseFloat(plan.replace(/[$,]/g, ''));
-          
           // Use financial goal type as the key
           const goalKey = goal.financialGoal || 'other';
           
-          // Keep only the latest entry for each unique goal
+          // Keep only the latest entry for each unique goal type
           if (!acc[goalKey] || new Date(goal.timestamp) > new Date(acc[goalKey].timestamp)) {
             acc[goalKey] = goal;
           }
           return acc;
         }, {}));
 
-        // Calculate aggregated values
+        // Calculate total daily savings (sum of all goals)
         const totalDailySavings = uniqueGoals.reduce((sum, goal) => 
           sum + parseFloat(goal.dailySavingsTarget), 0
         );
@@ -49,29 +46,33 @@ export default function DailyGoals({ onClose, showPopup }) {
         const dailyDisposableIncome = parseFloat(latestGoal.dailyDisposableIncome);
         const monthlyDebtPayment = parseFloat(latestGoal.monthlyDebtPayment);
 
-        // Generate new recommendations
+        // Generate aggregated recommendations
         const recommendations = [
-          `Save $${totalDailySavings.toFixed(2)} daily to reach all your goals`,
+          `Total daily savings needed: $${totalDailySavings.toFixed(2)}`,
           `Available daily spending: $${dailyDisposableIncome.toFixed(2)}`,
           `Monthly debt payment: $${monthlyDebtPayment.toFixed(2)}`,
         ];
 
         // Add individual goal breakdowns
         uniqueGoals.forEach(goal => {
-          const [savingsRec] = goal.recommendations[0].match(/\$[\d,]+\.?\d*/);
           recommendations.push(
-            `${formatGoalType(goal.financialGoal)}: ${savingsRec} daily (${goal.daysToGoal} days remaining)`
+            `${formatGoalType(goal.financialGoal)}: $${goal.dailySavingsTarget} daily (${goal.daysToGoal} days remaining)`
           );
         });
 
         // Add feasibility warning if needed
         if (totalDailySavings > dailyDisposableIncome) {
           recommendations.push(
-            "⚠️ Warning: Your combined savings targets exceed your disposable income. Consider adjusting your goals or timeline."
+            "⚠️ Warning: Your combined savings targets ($" + 
+            totalDailySavings.toFixed(2) + 
+            ") exceed your daily disposable income ($" + 
+            dailyDisposableIncome.toFixed(2) + 
+            "). Consider adjusting your goals or timeline."
           );
         } else {
+          const remainingDaily = dailyDisposableIncome - totalDailySavings;
           recommendations.push(
-            "Your combined goals appear achievable with your current income!"
+            `✅ Your combined goals are achievable! You'll have $${remainingDaily.toFixed(2)} remaining daily after savings.`
           );
         }
 
@@ -81,7 +82,8 @@ export default function DailyGoals({ onClose, showPopup }) {
           dailyDisposableIncome: dailyDisposableIncome.toFixed(2),
           monthlyDebtPayment: monthlyDebtPayment.toFixed(2),
           recommendations,
-          numberOfGoals: uniqueGoals.length
+          numberOfGoals: uniqueGoals.length,
+          goals: uniqueGoals // Add this to access individual goals if needed
         });
       }
     } catch (error) {
@@ -92,7 +94,7 @@ export default function DailyGoals({ onClose, showPopup }) {
   if (!aggregatedGoals || !showPopup) return null;
 
   return (
-    <div className="absolute left-4 top-20 bg-white rounded-lg shadow-xl p-6 w-96 z-50">
+    <div className="absolute left-4 top-20 bg-white rounded-lg shadow-xl p-6 w-96 z-[9999]">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-lg font-bold">Combined Financial Goals ({aggregatedGoals.numberOfGoals})</h3>
         <button 

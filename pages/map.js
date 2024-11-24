@@ -5,45 +5,7 @@ import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { useState, useEffect } from 'react'
 import { MenuPopup } from './furniture'
-
-// New DailyGoalsPopup Component
-const DailyGoalsPopup = ({ goals, onClose }) => {
-  return (
-    <div className="absolute left-4 top-20 bg-white rounded-lg shadow-xl p-6 w-80 z-50">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-bold">Daily Financial Goals</h3>
-        <button 
-          onClick={onClose}
-          className="text-gray-500 hover:text-gray-700"
-        >
-          ×
-        </button>
-      </div>
-      
-      <div className="space-y-4">
-        <div className="bg-blue-50 p-3 rounded-lg">
-          <p className="font-semibold text-blue-800">Daily Savings Target</p>
-          <p className="text-2xl font-bold text-blue-600">${goals.dailySavingsTarget}</p>
-        </div>
-
-        <div className="space-y-2">
-          <p className="text-sm text-gray-600">Days until goal: {goals.daysToGoal}</p>
-          <p className="text-sm text-gray-600">Daily spending limit: ${goals.dailyDisposableIncome}</p>
-          <p className="text-sm text-gray-600">Monthly debt payment: ${goals.monthlyDebtPayment}</p>
-        </div>
-
-        <div className="mt-4 space-y-2">
-          <h4 className="font-semibold text-gray-700">Recommendations:</h4>
-          <ul className="list-disc pl-5 space-y-1">
-            {goals.recommendations.map((rec, index) => (
-              <li key={index} className="text-sm text-gray-600">{rec}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  )
-}
+import DailyGoals from '../components/DailyGoals'
 
 // New DraggableFurniture component
 const DraggableFurniture = ({ item, onMove, onRemove }) => {
@@ -115,25 +77,7 @@ const DroppableMap = ({ children, onDrop }) => {
 export default function Map() {
   const [showFurnitureMenu, setShowFurnitureMenu] = useState(false)
   const [placedFurniture, setPlacedFurniture] = useState([])
-  const [dailyGoals, setDailyGoals] = useState(null)
   const [showDailyGoals, setShowDailyGoals] = useState(false)
-
-  // Fetch daily goals
-  useEffect(() => {
-    const fetchDailyGoals = async () => {
-      try {
-        const response = await fetch('/api/getDailyGoals')
-        const data = await response.json()
-        if (data.goals && data.goals.length > 0) {
-          setDailyGoals(data.goals[0]) // Get the most recent goals
-        }
-      } catch (error) {
-        console.error('Error fetching daily goals:', error)
-      }
-    }
-
-    fetchDailyGoals()
-  }, [])
 
   const handleAddFurniture = (newItem) => {
     setPlacedFurniture((prev) => [
@@ -161,36 +105,30 @@ export default function Map() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="min-h-screen flex flex-col">
-        <LevelBar username="Player1" progress={60} />
+        <LevelBar username="Jack" progress={60} />
         
         <div className="flex-1 flex items-center justify-center relative">
           {/* Daily Goals Button */}
-          {dailyGoals && (
-            <>
-              <button
-                className="absolute left-4 top-4 w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg"
-                onClick={() => setShowDailyGoals(!showDailyGoals)}
-              >
-                <img
-                  src="/dailyGoals.png" // Add this image to your public folder
-                  alt="Daily Goals"
-                  className="w-9 h-7"
-                />
-              </button>
+          <button
+            className="absolute left-4 top-4 w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg z-[9998]"
+            onClick={() => setShowDailyGoals(!showDailyGoals)}
+          >
+            <img
+              src="/dailyGoals.png"
+              alt="Daily Goals"
+              className="w-9 h-7"
+            />
+          </button>
 
-              {showDailyGoals && (
-                <DailyGoalsPopup 
-                  goals={dailyGoals} 
-                  onClose={() => setShowDailyGoals(false)}
-                />
-              )}
-            </>
-          )}
+          <DailyGoals 
+            showPopup={showDailyGoals}
+            onClose={() => setShowDailyGoals(false)}
+          />
 
           <img 
             src="/map.png"
             alt="Map"
-            className="h-[80vh] w-[80%] border-2 border-black object-contain"
+            className="h-[80vh] w-[80%] border-2 border-black object-cover"
           />
           
           <DroppableMap>
@@ -233,7 +171,7 @@ export default function Map() {
             alt="Coins"
             className="w-6 h-6 mr-2"
           />
-          <span className="text-lg font-bold">{83300}</span>
+          <span className="text-lg font-bold">{1500}</span>
         </div>
       </div>
     </DndProvider>

@@ -80,7 +80,6 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
       });
 
       if (response.ok) {
-        // Trigger the parent component to update goals
         if (onGoalsUpdate) {
           onGoalsUpdate();
         }
