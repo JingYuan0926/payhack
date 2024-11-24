@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { FiBatteryCharging, FiWifi } from "react-icons/fi";
+import OnboardingModal from '../components/Modal'
+import { useDisclosure } from "@nextui-org/react";
 
 const Example = () => {
   return (
@@ -69,6 +71,8 @@ const HeaderBar = () => {
   );
 };
 const Screen = () => {
+  const {isOpen, onOpen, onOpenChange} = useDisclosure()
+
   return (
     <div
       className="relative z-0 grid h-full w-full place-content-center overflow-hidden"
@@ -77,7 +81,7 @@ const Screen = () => {
       {/* Title and Cat Container */}
       <div className="flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <h1 className="text-center text-xl font-bold text-gray-800 mb-2">
-          put title here
+          FinPet
         </h1>
         <img
           src="/screenCat.gif"
@@ -85,9 +89,14 @@ const Screen = () => {
           className="w-48 h-48"
         />
       </div>
-      <button className="absolute bottom-4 left-4 right-4 z-10 rounded-lg border-[1px] bg-white py-2 text-xs sm:text-sm font-medium text-gray-700 backdrop-blur">
+      <button 
+        onClick={onOpen}
+        className="absolute bottom-4 left-4 right-4 z-10 rounded-lg border-[1px] bg-white py-2 text-xs sm:text-sm font-medium text-gray-700 backdrop-blur"
+      >
         Get Started
       </button>
+
+      <OnboardingModal isOpen={isOpen} onOpenChange={onOpenChange} />
     </div>
   );
 };

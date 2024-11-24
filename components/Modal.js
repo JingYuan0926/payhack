@@ -1,10 +1,9 @@
-"use client"
-
 import { useState } from "react"
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react"
+import { useRouter } from 'next/router'
 
-export default function TestPage() {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure()
+export default function OnboardingModal({ isOpen, onOpenChange }) {
+  const router = useRouter()
   const [step, setStep] = useState(1)
 
   const handleNext = () => {
@@ -147,7 +146,10 @@ export default function TestPage() {
                   <Button 
                     className="w-full"
                     color="primary"
-                    onPress={handleClose}
+                    onPress={() => {
+                      handleClose()
+                      router.push('/map')
+                    }}
                   >
                     All set
                   </Button>
@@ -160,16 +162,13 @@ export default function TestPage() {
   }
 
   return (
-    <div>
-      <Button onPress={onOpen}>Link Account</Button>
-      <Modal 
-        isOpen={isOpen} 
-        onOpenChange={handleClose}
-        size="lg"
-        scrollBehavior="inside"
-      >
-        {renderModalContent()}
-      </Modal>
-    </div>
+    <Modal 
+      isOpen={isOpen} 
+      onOpenChange={handleClose}
+      size="lg"
+      scrollBehavior="inside"
+    >
+      {renderModalContent()}
+    </Modal>
   )
 }
