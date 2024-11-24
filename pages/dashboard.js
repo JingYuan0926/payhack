@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   PieChart, Pie, Cell,
@@ -11,6 +11,8 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'
 
 const ExpenseDashboard = () => {
     const data = expensesData;
+    const [showAllAging, setShowAllAging] = useState(false);
+    const [showAllExpenses, setShowAllExpenses] = useState(false);
 
   // Process data for unpaid expenses
   const unpaidExpenses = data.expenses
@@ -378,20 +380,30 @@ const ExpenseDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {agingDetails.map((item, index) => (
-                  <tr 
-                    key={item.id} 
-                    className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
-                  >
-                    <td className="p-4 text-center border-b">{item.id}</td>
-                    <td className="p-4 text-center border-b">{item.category}</td>
-                    <td className="p-4 text-center border-b">${item.amount.toLocaleString()}</td>
-                    <td className="p-4 text-center border-b">{item.dueDate}</td>
-                    <td className="p-4 text-center border-b">{item.overdueDays}</td>
-                  </tr>
+                {agingDetails
+                  .slice(0, showAllAging ? undefined : 5)
+                  .map((item, index) => (
+                    <tr 
+                      key={item.id} 
+                      className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}
+                    >
+                      <td className="p-4 text-center border-b">{item.id}</td>
+                      <td className="p-4 text-center border-b">{item.category}</td>
+                      <td className="p-4 text-center border-b">${item.amount.toLocaleString()}</td>
+                      <td className="p-4 text-center border-b">{item.dueDate}</td>
+                      <td className="p-4 text-center border-b">{item.overdueDays}</td>
+                    </tr>
                 ))}
               </tbody>
             </table>
+            {agingDetails.length > 5 && (
+              <button
+                onClick={() => setShowAllAging(!showAllAging)}
+                className="mt-4 px-4 py-2 text-sm text-blue-600 hover:text-blue-800 font-medium"
+              >
+                {showAllAging ? 'Show Less' : `View More (${agingDetails.length - 5} more items)`}
+              </button>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -401,33 +413,43 @@ const ExpenseDashboard = () => {
         <CardHeader>
           <CardTitle className="text-center">Expense Details</CardTitle>
         </CardHeader>
-        <CardContent >
+        <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
                 <tr className="bg-gray-300">
                   <th className="p-4 text-center font-semibold border-b">ID</th>
-                  <th className="p-4 text-centerfont-semibold border-b">Category</th>
+                  <th className="p-4 text-center font-semibold border-b">Category</th>
                   <th className="p-4 text-center font-semibold border-b">Amount</th>
                   <th className="p-4 text-center font-semibold border-b">Status</th>
                   <th className="p-4 text-center font-semibold border-b">Description</th>
                 </tr>
               </thead>
               <tbody>
-                {data.expenses.map((expense, index) => (
-                  <tr 
-                    key={expense.expense_id} 
-                    className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
-                  >
-                    <td className="p-4 text-center border-b">{expense.expense_id}</td>
-                    <td className="p-4 text-center border-b">{expense.category}</td>
-                    <td className="p-4 text-center border-b">${expense.amount.toLocaleString()}</td>
-                    <td className="p-4 text-center border-b">{expense.status}</td>
-                    <td className="p-4 text-center border-b">{expense.description}</td>
-                  </tr>
+                {data.expenses
+                  .slice(0, showAllExpenses ? undefined : 5)
+                  .map((expense, index) => (
+                    <tr 
+                      key={expense.expense_id} 
+                      className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}
+                    >
+                      <td className="p-4 text-center border-b">{expense.expense_id}</td>
+                      <td className="p-4 text-center border-b">{expense.category}</td>
+                      <td className="p-4 text-center border-b">${expense.amount.toLocaleString()}</td>
+                      <td className="p-4 text-center border-b">{expense.status}</td>
+                      <td className="p-4 text-center border-b">{expense.description}</td>
+                    </tr>
                 ))}
               </tbody>
             </table>
+            {data.expenses.length > 5 && (
+              <button
+                onClick={() => setShowAllExpenses(!showAllExpenses)}
+                className="mt-4 px-4 py-2 text-sm text-blue-600 hover:text-blue-800 font-medium"
+              >
+                {showAllExpenses ? 'Show Less' : `View More (${data.expenses.length - 5} more items)`}
+              </button>
+            )}
           </div>
         </CardContent>
       </Card>
