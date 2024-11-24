@@ -137,7 +137,7 @@
          "category": "Subscriptions",
          "date": "2024-04-10",
          "due_date": "2024-05-10",
-         "amount": 30,
+         "amount": 100,
          "status": "Unpaid",
          "payment_date": null,
          "overdue_days": 25,
