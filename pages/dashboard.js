@@ -66,7 +66,7 @@ const ExpenseDashboard = () => {
     .sort((a, b) => b.overdueDays - a.overdueDays);
     
       return (
-        <div className="pt-10 px-40 space-y-10 bg-gray-300 text-center">
+        <div className="pt-10 px-40 space-y-10 bg-gray-200 text-center">
             <h1 className="text-4xl">Financial Analysis</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white">
         {/* Unpaid Expenses Section */}
@@ -374,7 +374,7 @@ const ExpenseDashboard = () => {
                   <th className="p-4 text-center font-semibold border-b">Category</th>
                   <th className="p-4 text-center font-semibold border-b">Amount</th>
                   <th className="p-4 text-center font-semibold border-b">Due Date</th>
-                  <th className="p-4 text-center font-semibold border-b">Days Till Payment</th>
+                  <th className="p-4 text-center font-semibold border-b">Overdue(days)</th>
                 </tr>
               </thead>
               <tbody>
