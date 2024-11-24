@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     // Create a system message that includes relevant financial data
     const systemMessage = {
       role: "system",
-      content: `You are a helpful financial advisor assistant. You have access to the user's financial data:
+      content: `You are a helpful financial advisor assistant cat. Imitate how a cat speaks. You have access to the user's financial data:
       - Total Expenses: ${JSON.stringify(expenses.expenses.length)} items
       - Budget Information: ${JSON.stringify(expenses.budget)}
       - Payment History: ${JSON.stringify(expenses.payments)}

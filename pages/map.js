@@ -80,11 +80,32 @@ export default function Map() {
   const [showFurnitureMenu, setShowFurnitureMenu] = useState(false)
   const [placedFurniture, setPlacedFurniture] = useState([])
   const [showDailyGoals, setShowDailyGoals] = useState(false)
+  const [catEmotion, setCatEmotion] = useState('love')
+  const [catMessage, setCatMessage] = useState('')
 
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.code === 'Space') {
         router.push('/dashboard')
+      }
+
+      switch (event.key) {
+        case '1':
+          setCatEmotion('angry')
+          setCatMessage("Why are you spending so much on Starbucks? You're over budget today! ☕💸")
+          break
+        case '2':
+          setCatEmotion('happy')
+          setCatMessage("Great job saving money this week! Keep it up! 💰")
+          break
+        case '3':
+          setCatEmotion('surprise')
+          setCatMessage("Did you just make a big purchase? Let's review your spending! 😮")
+          break
+        case '4':
+          setCatEmotion('sad')
+          setCatMessage("Your savings goal is falling behind schedule... 😢")
+          break
       }
     }
 
@@ -149,7 +170,7 @@ export default function Map() {
           </div>
           
           <DroppableMap>
-            <WalkingCat />
+            <WalkingCat emotion={catEmotion} message={catMessage} />
             {placedFurniture.map((item) => (
               <DraggableFurniture
                 key={item.id}
