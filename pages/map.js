@@ -209,15 +209,7 @@ export default function Map() {
             />
           )}
         </div>
-        {/* Coins Component */}
-        <div className="absolute bottom-4 right-4 flex items-center bg-white px-3 py-1 rounded-lg shadow-md">
-          <img
-            src="/coins.png" // Add this image to your public folder
-            alt="Coins"
-            className="w-6 h-6 mr-2"
-          />
-          <span className="text-lg font-bold">{1500}</span>
-        </div>
+        <Coins balance={1500} />
       </div>
       <CatModal 
         isOpen={showCatModal} 
