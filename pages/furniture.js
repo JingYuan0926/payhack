@@ -2,6 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
+// Add this helper function at the top of the file
+const STORAGE_KEY = 'placedFurniture';
+
+const saveToStorage = (furniture) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(furniture));
+};
+
+const loadFromStorage = () => {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  return saved ? JSON.parse(saved) : [];
+};
 
 // DraggableFurniture Component
 const DraggableFurniture = ({ furniture, position, onRemove }) => {
@@ -164,21 +175,33 @@ const MenuPopup = ({ onClose, onSelect }) => {
   
 // Main Component
 const FurnitureMap = () => {
-  const [furniture, setFurniture] = useState([]);
+  const [furniture, setFurniture] = useState(() => loadFromStorage());
   const [showMenu, setShowMenu] = useState(false);
 
   const handleDrop = (id, position) => {
-    setFurniture((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, position } : item))
-    );
+    setFurniture((prev) => {
+      const updated = prev.map((item) => 
+        item.id === id ? { ...item, position } : item
+      );
+      saveToStorage(updated);
+      return updated;
+    });
   };
 
   const handleAddFurniture = (newItem) => {
-    setFurniture((prev) => [...prev, { ...newItem, position: { x: 0, y: 0 } }]);
+    setFurniture((prev) => {
+      const updated = [...prev, { ...newItem, position: { x: 0, y: 0 } }];
+      saveToStorage(updated);
+      return updated;
+    });
   };
 
   const handleRemove = (id) => {
-    setFurniture((prev) => prev.filter((item) => item.id !== id));
+    setFurniture((prev) => {
+      const updated = prev.filter((item) => item.id !== id);
+      saveToStorage(updated);
+      return updated;
+    });
   };
 
   return (
