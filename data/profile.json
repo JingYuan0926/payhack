@@ -23,6 +23,14 @@
     {
       "type": "Credit Card Debt",
       "amount": 3500
+    },
+    {
+      "type": "Personal Loan",
+      "amount": 600
+    },
+    {
+      "type": "Mortgage",
+      "amount": 2000
     }
   ],
   "subscriptions": [
@@ -41,6 +49,22 @@
       "brandImage": "https://placeholder.com/150x150",
       "price": 14.99,
       "monthSubscribed": "2022-08"
+    },
+    {
+      "name": "Gym Membership",
+      "category": "Fitness",
+      "company": "Local Gym",
+      "brandImage": "https://placeholder.com/150x150",
+      "price": 50.00,
+      "monthSubscribed": "2024-04"
+    },
+    {
+      "name": "Movie Streaming",
+      "category": "Entertainment",
+      "company": "Various",
+      "brandImage": "https://placeholder.com/150x150",
+      "price": 100.00,
+      "monthSubscribed": "2024-05"
     }
   ],
   "investments": [
@@ -53,6 +77,11 @@
       "type": "Mutual Funds",
       "amountInvested": 15000,
       "amountEarned": 16200
+    },
+    {
+      "type": "Fixed Deposit",
+      "amountInvested": 1000,
+      "amountEarned": 1000
     }
   ],
   "paymentChannels": {
@@ -102,24 +131,59 @@
   "transactions": [
     {
       "transactionId": "TRX001",
-      "amount": 125.50,
-      "paymentChannel": "Chase Credit Card",
-      "description": "Grocery Shopping at Whole Foods",
-      "category": "Groceries"
+      "amount": 1500.00,
+      "paymentChannel": "Bank Transfer",
+      "description": "Monthly apartment rent",
+      "category": "Rent",
+      "date": "2024-04-01"
     },
     {
       "transactionId": "TRX002",
-      "amount": 45.99,
-      "paymentChannel": "PayPal",
-      "description": "Amazon Prime Subscription",
-      "category": "Subscription"
+      "amount": 350.00,
+      "paymentChannel": "Credit Card",
+      "description": "Weekly groceries shopping",
+      "category": "Groceries",
+      "date": "2024-04-05"
     },
     {
       "transactionId": "TRX003",
-      "amount": 2500.00,
+      "amount": 200.00,
       "paymentChannel": "Bank Transfer",
-      "description": "Monthly Rent Payment",
-      "category": "Housing"
+      "description": "Electricity & water bill",
+      "category": "Utilities",
+      "date": "2024-04-10"
+    },
+    {
+      "transactionId": "TRX004",
+      "amount": 120.00,
+      "paymentChannel": "Cash",
+      "description": "Dinner with friends",
+      "category": "Dining Out",
+      "date": "2024-04-20"
+    },
+    {
+      "transactionId": "TRX005",
+      "amount": 400.00,
+      "paymentChannel": "Bank Transfer",
+      "description": "Daycare expenses for children",
+      "category": "Childcare",
+      "date": "2024-04-05"
+    },
+    {
+      "transactionId": "TRX006",
+      "amount": 80.00,
+      "paymentChannel": "Credit Card",
+      "description": "Petrol refill",
+      "category": "Transportation",
+      "date": "2024-11-26"
+    },
+    {
+      "transactionId": "TRX007",
+      "amount": 1000.00,
+      "paymentChannel": "Bank Transfer",
+      "description": "Fixed deposit investment",
+      "category": "Investment",
+      "date": "2024-11-26"
     }
   ]
 }
