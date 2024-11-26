@@ -93,7 +93,7 @@ const SpendHistory = ({ onClose }) => {
                       </div>
                     )}
                   </div>
-                  <span className="text-xl font-bold text-green-600">
+                  <span className="text-xl text-green-600">
                     ${amount}
                   </span>
                 </div>
