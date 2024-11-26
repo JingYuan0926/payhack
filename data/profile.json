@@ -1,0 +1,125 @@
+{
+  "personalInfo": {
+    "name": "John Smith",
+    "age": 32,
+    "maritalStatus": "Married",
+    "employmentStatus": "Employed"
+  },
+  "income": [
+    {
+      "type": "Salary",
+      "amount": 85000
+    },
+    {
+      "type": "Freelance",
+      "amount": 12000
+    }
+  ],
+  "debtsAndLoans": [
+    {
+      "type": "Car Loan",
+      "amount": 25000
+    },
+    {
+      "type": "Credit Card Debt",
+      "amount": 3500
+    }
+  ],
+  "subscriptions": [
+    {
+      "name": "Netflix Premium",
+      "category": "Entertainment",
+      "company": "Netflix",
+      "brandImage": "https://placeholder.com/150x150",
+      "price": 19.99,
+      "monthSubscribed": "2023-01"
+    },
+    {
+      "name": "Spotify Family",
+      "category": "Music",
+      "company": "Spotify",
+      "brandImage": "https://placeholder.com/150x150",
+      "price": 14.99,
+      "monthSubscribed": "2022-08"
+    }
+  ],
+  "investments": [
+    {
+      "type": "Stocks",
+      "amountInvested": 25000,
+      "amountEarned": 28500
+    },
+    {
+      "type": "Mutual Funds",
+      "amountInvested": 15000,
+      "amountEarned": 16200
+    }
+  ],
+  "paymentChannels": {
+    "banks": [
+      {
+        "bankName": "Chase Bank",
+        "balance": 12500.50,
+        "bankLogo": "https://placeholder.com/100x100"
+      },
+      {
+        "bankName": "Bank of America",
+        "balance": 8750.25,
+        "bankLogo": "https://placeholder.com/100x100"
+      }
+    ],
+    "creditCards": [
+      {
+        "cardNumber": "**** **** **** 4521",
+        "type": "Visa",
+        "issuer": "Chase",
+        "limit": 10000,
+        "usage": 2500,
+        "cardCover": "https://placeholder.com/300x200"
+      },
+      {
+        "cardNumber": "**** **** **** 7890",
+        "type": "Mastercard",
+        "issuer": "Bank of America",
+        "limit": 15000,
+        "usage": 4500,
+        "cardCover": "https://placeholder.com/300x200"
+      }
+    ],
+    "ewallets": [
+      {
+        "company": "PayPal",
+        "balance": 750.25,
+        "ewalletImage": "https://placeholder.com/100x100"
+      },
+      {
+        "company": "Venmo",
+        "balance": 250.75,
+        "ewalletImage": "https://placeholder.com/100x100"
+      }
+    ]
+  },
+  "transactions": [
+    {
+      "transactionId": "TRX001",
+      "amount": 125.50,
+      "paymentChannel": "Chase Credit Card",
+      "description": "Grocery Shopping at Whole Foods",
+      "category": "Groceries"
+    },
+    {
+      "transactionId": "TRX002",
+      "amount": 45.99,
+      "paymentChannel": "PayPal",
+      "description": "Amazon Prime Subscription",
+      "category": "Subscription"
+    },
+    {
+      "transactionId": "TRX003",
+      "amount": 2500.00,
+      "paymentChannel": "Bank Transfer",
+      "description": "Monthly Rent Payment",
+      "category": "Housing"
+    }
+  ]
+}
