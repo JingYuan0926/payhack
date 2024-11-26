@@ -8,6 +8,7 @@ import { MenuPopup } from './furniture'
 import DailyGoals from '../components/DailyGoals'
 import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
+import { getFurniture, saveFurniture } from '../utils/furnitureStorage'
 
 // New DraggableFurniture component
 const DraggableFurniture = ({ item, onMove, onRemove }) => {
@@ -76,22 +77,6 @@ const DroppableMap = ({ children, onDrop }) => {
   )
 }
 
-// Add this near the top of your file
-const loadFurniture = async () => {
-  const response = await fetch('/api/furniture');
-  return response.json();
-};
-
-const saveFurnitureToServer = async (furniture) => {
-  await fetch('/api/furniture', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(furniture),
-  });
-};
-
 export default function Map() {
   const router = useRouter()
   const [showFurnitureMenu, setShowFurnitureMenu] = useState(false)
@@ -106,9 +91,9 @@ export default function Map() {
   // Load furniture data
   useEffect(() => {
     const loadInitialFurniture = async () => {
+      setIsLoading(true);
       try {
-        const response = await fetch('/api/furniture');
-        const data = await response.json();
+        const data = await getFurniture();
         setPlacedFurniture(data);
       } catch (error) {
         console.error('Error loading furniture:', error);
@@ -158,37 +143,33 @@ export default function Map() {
     }
   }, [router])
 
-  const handleAddFurniture = (newItem) => {
-    setPlacedFurniture((prev) => {
-      const updated = [
-        ...prev,
-        {
-          ...newItem,
-          position: { x: 100, y: 100 },
-          id: `${newItem.id}-${Date.now()}`,
-        },
-      ];
-      saveFurnitureToServer(updated);
-      return updated;
-    });
+  const handleAddFurniture = async (newItem) => {
+    const updatedFurniture = [
+      ...placedFurniture,
+      {
+        ...newItem,
+        position: { x: 100, y: 100 },
+        id: `${newItem.id}-${Date.now()}`,
+      },
+    ];
+    
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
   };
 
-  const handleMoveFurniture = (id, newPosition) => {
-    setPlacedFurniture((prev) => {
-      const updated = prev.map((item) =>
-        item.id === id ? { ...item, position: newPosition } : item
-      );
-      saveFurnitureToServer(updated);
-      return updated;
-    });
+  const handleMoveFurniture = async (id, newPosition) => {
+    const updatedFurniture = placedFurniture.map((item) =>
+      item.id === id ? { ...item, position: newPosition } : item
+    );
+    
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
   };
 
-  const handleRemoveFurniture = (id) => {
-    setPlacedFurniture((prev) => {
-      const updated = prev.filter((item) => item.id !== id);
-      saveFurnitureToServer(updated);
-      return updated;
-    });
+  const handleRemoveFurniture = async (id) => {
+    const updatedFurniture = placedFurniture.filter((item) => item.id !== id);
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
   };
 
   if (isLoading) {

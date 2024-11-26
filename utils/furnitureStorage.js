@@ -1,33 +1,30 @@
-import fs from 'fs';
-import path from 'path';
+import { db } from './firebase';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
-const furniturePath = path.join(process.cwd(), 'data', 'furniture.json');
+const FURNITURE_DOC_ID = 'furniture_data';
 
-const defaultData = {
-  placedFurniture: []
-};
-
-export const getFurniture = () => {
+export const getFurniture = async () => {
   try {
-    if (!fs.existsSync(furniturePath)) {
-      fs.writeFileSync(furniturePath, JSON.stringify(defaultData, null, 2));
-      return defaultData.placedFurniture;
-    }
+    const docRef = doc(db, 'furniture', FURNITURE_DOC_ID);
+    const docSnap = await getDoc(docRef);
     
-    const data = fs.readFileSync(furniturePath, 'utf8');
-    return JSON.parse(data).placedFurniture;
+    if (docSnap.exists()) {
+      return docSnap.data().placedFurniture;
+    } else {
+      // Initialize with empty array if document doesn't exist
+      await setDoc(docRef, { placedFurniture: [] });
+      return [];
+    }
   } catch (error) {
     console.error('Error reading furniture data:', error);
     return [];
   }
 };
 
-export const saveFurniture = (furniture) => {
+export const saveFurniture = async (furniture) => {
   try {
-    fs.writeFileSync(
-      furniturePath,
-      JSON.stringify({ placedFurniture: furniture }, null, 2)
-    );
+    const docRef = doc(db, 'furniture', FURNITURE_DOC_ID);
+    await setDoc(docRef, { placedFurniture: furniture });
     return true;
   } catch (error) {
     console.error('Error saving furniture:', error);
