@@ -2,6 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'ThaleahFat';
+  src: url('/fonts/ThaleahFat.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.pixel-text-yellow {
+  font-family: 'ThaleahFat', sans-serif;
+  position: relative;
+  color: #FFE45C; /* Fallback color */
+  background: linear-gradient(to bottom, #FFE45C, #FFA726);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(1px 1px 0px #000)
+         drop-shadow(-1px -1px 0px #000)
+         drop-shadow(1px -1px 0px #000)
+         drop-shadow(-1px 1px 0px #000);
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+.pixel-text-blue {
+  font-family: 'ThaleahFat', sans-serif;
+  position: relative;
+  color: #5CE1FF; /* Fallback color */
+  background: linear-gradient(to bottom, #5CE1FF, #2196F3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(1px 1px 0px #000)
+         drop-shadow(-1px -1px 0px #000)
+         drop-shadow(1px -1px 0px #000)
+         drop-shadow(-1px 1px 0px #000);
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

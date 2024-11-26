@@ -11,7 +11,7 @@ export default function Coins({ balance = 1500 }) {
         alt="Coin" 
         className="w-8 h-8 object-contain"
       />
-      <span className="font-mono text-xl font-bold">
+      <span className="pixel-text-yellow text-4xl">
         {balance.toLocaleString()}
       </span>
     </div>

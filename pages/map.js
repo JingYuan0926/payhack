@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
 import { getFurniture, saveFurniture } from '../utils/furnitureStorage'
 
+
 // New DraggableFurniture component
 const DraggableFurniture = ({ item, onMove, onRemove }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -179,7 +180,9 @@ export default function Map() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="min-h-screen flex flex-col">
-        <LevelBar username="Jack" progress={60} />
+     <div className="font-thaleah">
+  <LevelBar username="Patrick" progress={60} />
+</div>
         
         <div className="flex-1 flex items-center justify-center relative">
           {/* Daily Goals Button */}
