@@ -7,7 +7,7 @@ export default function Coins({ balance = 1500 }) {
       px-4 py-2 rounded-full
     ">
       <img 
-        src="/coin.png" 
+        src="/coins.png" 
         alt="Coin" 
         className="w-8 h-8 object-contain"
       />

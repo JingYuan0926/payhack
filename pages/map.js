@@ -8,6 +8,7 @@ import { MenuPopup } from './furniture'
 import DailyGoals from '../components/DailyGoals'
 import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
+import { getFurniture, saveFurniture } from '../utils/furnitureStorage'
 
 // New DraggableFurniture component
 const DraggableFurniture = ({ item, onMove, onRemove }) => {
@@ -85,7 +86,26 @@ export default function Map() {
   const [catMessage, setCatMessage] = useState('')
   const [showCatModal, setShowCatModal] = useState(false)
   const [catModalMessage, setCatModalMessage] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
 
+  // Load furniture data
+  useEffect(() => {
+    const loadInitialFurniture = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getFurniture();
+        setPlacedFurniture(data);
+      } catch (error) {
+        console.error('Error loading furniture:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadInitialFurniture();
+  }, []);
+
+  // Handle key press events
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key === '6') {
@@ -123,27 +143,37 @@ export default function Map() {
     }
   }, [router])
 
-  const handleAddFurniture = (newItem) => {
-    setPlacedFurniture((prev) => [
-      ...prev,
+  const handleAddFurniture = async (newItem) => {
+    const updatedFurniture = [
+      ...placedFurniture,
       {
         ...newItem,
-        position: { x: 100, y: 100 }, // Initial position
-        id: `${newItem.id}-${Date.now()}`, // Unique ID
+        position: { x: 100, y: 100 },
+        id: `${newItem.id}-${Date.now()}`,
       },
-    ])
-  }
+    ];
+    
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
+  };
 
-  const handleMoveFurniture = (id, newPosition) => {
-    setPlacedFurniture((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, position: newPosition } : item
-      )
-    )
-  }
+  const handleMoveFurniture = async (id, newPosition) => {
+    const updatedFurniture = placedFurniture.map((item) =>
+      item.id === id ? { ...item, position: newPosition } : item
+    );
+    
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
+  };
 
-  const handleRemoveFurniture = (id) => {
-    setPlacedFurniture((prev) => prev.filter((item) => item.id !== id))
+  const handleRemoveFurniture = async (id) => {
+    const updatedFurniture = placedFurniture.filter((item) => item.id !== id);
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -209,15 +239,7 @@ export default function Map() {
             />
           )}
         </div>
-        {/* Coins Component */}
-        <div className="absolute bottom-4 right-4 flex items-center bg-white px-3 py-1 rounded-lg shadow-md">
-          <img
-            src="/coins.png" // Add this image to your public folder
-            alt="Coins"
-            className="w-6 h-6 mr-2"
-          />
-          <span className="text-lg font-bold">{1500}</span>
-        </div>
+        <Coins balance={1500} />
       </div>
       <CatModal 
         isOpen={showCatModal} 
