@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
+// Add these scale factors at the top of the file
+export const PREVIEW_SCALE = 1.5; // Scale for furniture in the menu
+export const PLACED_SCALE = 2.5;  // Scale for furniture on the map
+
 // Add this helper function at the top of the file
 const STORAGE_KEY = 'placedFurniture';
 
@@ -16,6 +20,19 @@ const loadFromStorage = () => {
 
 // DraggableFurniture Component
 const DraggableFurniture = ({ furniture, position, onRemove }) => {
+  const [dimensions, setDimensions] = useState({ width: 100, height: 100 });
+  
+  useEffect(() => {
+    const img = new Image();
+    img.src = furniture.src;
+    img.onload = () => {
+      setDimensions({
+        width: img.width * PLACED_SCALE,
+        height: img.height * PLACED_SCALE
+      });
+    };
+  }, [furniture.src]);
+
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'furniture',
     item: { id: furniture.id, position },
@@ -39,8 +56,8 @@ const DraggableFurniture = ({ furniture, position, onRemove }) => {
         position: 'absolute',
         top: position.y,
         left: position.x,
-        width: '100px',
-        height: '100px',
+        width: dimensions.width,
+        height: dimensions.height,
         opacity: isDragging ? 0.5 : 1,
         cursor: 'move',
       }}
@@ -97,6 +114,7 @@ const Map = ({ furniture, onDrop, onRemove }) => {
 // Popup Menu Component
 const MenuPopup = ({ onClose, onSelect }) => {
     const [furnitureData, setFurnitureData] = useState([]);
+    const [dimensions, setDimensions] = useState({});  // Store dimensions for all furniture items
   
     useEffect(() => {
       setFurnitureData([
@@ -106,27 +124,52 @@ const MenuPopup = ({ onClose, onSelect }) => {
         { id: 4, name: 'Table', src: '/furniture/table.png', price: '$100' },
         { id: 5, name: 'Bookshelf', src: '/furniture/bookShelf.png', price: '$120' },
         { id: 6, name: 'Double Bed', src: '/furniture/doubleBed.png', price: '$300' },
-        { id: 7, name: 'Single Bed', src: '/furniture/singleBed.png', price: '$250' }
+        { id: 7, name: 'Single Bed', src: '/furniture/singleBed.png', price: '$250' },
+        { id: 8, name: 'Wooden Chair', src: '/furniture/woodenChair.png', price: '$80' },
+        { id: 9, name: 'Small Chair', src: '/furniture/smallChair.png', price: '$60' },
+        { id: 10, name: 'Big Bonsai', src: '/furniture/bigBonsai.png', price: '$150' },
+        { id: 11, name: 'Small Bonsai', src: '/furniture/smallBonsai.png', price: '$90' },
+        { id: 12, name: 'Flower Pot', src: '/furniture/flowerPot.png', price: '$40' },
+        { id: 13, name: 'Small Cabinet', src: '/furniture/smallCabinet.png', price: '$120' },
+        { id: 14, name: 'Big Mattress', src: '/furniture/bigMattress.png', price: '$280' },
+        { id: 15, name: 'Small Mattress', src: '/furniture/smallMattress.png', price: '$200' },
+        { id: 16, name: 'Window', src: '/furniture/window.png', price: '$150' },
+        { id: 17, name: 'Curtain', src: '/furniture/curtain.png', price: '$80' }
       ]);
     }, []);
+
+    // Load dimensions for all furniture items
+    useEffect(() => {
+      furnitureData.forEach(furniture => {
+        const img = new Image();
+        img.src = furniture.src;
+        img.onload = () => {
+          setDimensions(prev => ({
+            ...prev,
+            [furniture.id]: {
+              width: img.width * PREVIEW_SCALE,
+              height: img.height * PREVIEW_SCALE
+            }
+          }));
+        };
+      });
+    }, [furnitureData]);
   
     return (
-      <div
-        style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '300px',
-          padding: '20px',
-          background: '#fff',
-          boxShadow: '0 0 10px rgba(0,0,0,0.3)',
-          borderRadius: '8px',
-          zIndex: 1000,
-          maxHeight: '400px',
-          overflowY: 'scroll', // Scrollable for large data
-        }}
-      >
+      <div style={{
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '300px',
+        padding: '20px',
+        background: '#fff',
+        boxShadow: '0 0 10px rgba(0,0,0,0.3)',
+        borderRadius: '8px',
+        zIndex: 1000,
+        maxHeight: '400px',
+        overflowY: 'scroll',
+      }}>
         <h2>Select Furniture</h2>
         <h2>----------------</h2>
         {furnitureData.map((furniture) => (
@@ -138,21 +181,24 @@ const MenuPopup = ({ onClose, onSelect }) => {
               gap: '10px',
               cursor: 'pointer',
               marginBottom: '10px',
-              flexDirection: 'column', // Stack name and price vertically
+              flexDirection: 'column',
               textAlign: 'center'
             }}
             onClick={() => {
-              onSelect({ ...furniture, position: { x: 0, y: 0 } }); // Default position
+              onSelect({ ...furniture, position: { x: 0, y: 0 } });
               onClose();
             }}
           >
             <img
               src={furniture.src}
               alt={furniture.name}
-              style={{ width: '50px', height: '50px' }}
+              style={{
+                width: dimensions[furniture.id]?.width || 50,
+                height: dimensions[furniture.id]?.height || 50
+              }}
             />
             <span>{furniture.name}</span>
-            <span style={{ fontSize: '12px', color: '#555' }}>{furniture.price}</span> {/* Price */}
+            <span style={{ fontSize: '12px', color: '#555' }}>{furniture.price}</span>
           </div>
         ))}
         <button
