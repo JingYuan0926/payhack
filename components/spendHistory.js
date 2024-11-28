@@ -51,7 +51,7 @@ const SpendHistory = ({ onClose }) => {
       {/* Popup Content */}
       <div className="relative bg-white rounded-lg shadow-xl p-6 w-[90%] max-w-md z-[1100]">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-bold">Spending History</h3>
+          <h3 className="text-3xl text-lg font-bold">Spending History</h3>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700"
@@ -61,7 +61,7 @@ const SpendHistory = ({ onClose }) => {
         </div>
 
         {isLoading && (
-          <div className="text-center py-4">
+          <div className="text-2xl text-center py-4">
             <p>Loading expenses...</p>
           </div>
         )}
@@ -75,7 +75,7 @@ const SpendHistory = ({ onClose }) => {
         {!isLoading && !error && (
           <div className="space-y-4">
             {Object.entries(todayExpenses).length === 0 ? (
-              <p className="text-center text-gray-500">No expenses recorded today</p>
+              <p className="text-2xl text-center text-gray-500">No expenses recorded today</p>
             ) : (
               Object.entries(todayExpenses).map(([category, amount]) => (
                 <div 
@@ -83,7 +83,7 @@ const SpendHistory = ({ onClose }) => {
                   className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors flex justify-between items-center"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="font-medium text-gray-900">{category}</span>
+                    <span className="text-xl font-medium text-gray-900">{category}</span>
                     {category === 'Transportation' && (
                       <div className="relative group">
                         <span className="text-yellow-500 cursor-help">⚠</span>
@@ -93,7 +93,7 @@ const SpendHistory = ({ onClose }) => {
                       </div>
                     )}
                   </div>
-                  <span className="font-bold text-green-600">
+                  <span className="text-xl text-green-600">
                     ${amount}
                   </span>
                 </div>
