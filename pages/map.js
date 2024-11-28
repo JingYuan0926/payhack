@@ -5,45 +5,13 @@ import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { useState, useEffect } from 'react'
 import { MenuPopup } from './furniture'
+import DailyGoals from '../components/DailyGoals'
+import { useRouter } from 'next/router'
+import CatModal from '../components/CatModal'
+import WeeklyChallenge from '../components/WeeklyChallenge'
 
-// New DailyGoalsPopup Component
-const DailyGoalsPopup = ({ goals, onClose }) => {
-  return (
-    <div className="absolute left-4 top-20 bg-white rounded-lg shadow-xl p-6 w-80 z-50">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-bold">Daily Financial Goals</h3>
-        <button 
-          onClick={onClose}
-          className="text-gray-500 hover:text-gray-700"
-        >
-          ×
-        </button>
-      </div>
-      
-      <div className="space-y-4">
-        <div className="bg-blue-50 p-3 rounded-lg">
-          <p className="font-semibold text-blue-800">Daily Savings Target</p>
-          <p className="text-2xl font-bold text-blue-600">${goals.dailySavingsTarget}</p>
-        </div>
 
-        <div className="space-y-2">
-          <p className="text-sm text-gray-600">Days until goal: {goals.daysToGoal}</p>
-          <p className="text-sm text-gray-600">Daily spending limit: ${goals.dailyDisposableIncome}</p>
-          <p className="text-sm text-gray-600">Monthly debt payment: ${goals.monthlyDebtPayment}</p>
-        </div>
 
-        <div className="mt-4 space-y-2">
-          <h4 className="font-semibold text-gray-700">Recommendations:</h4>
-          <ul className="list-disc pl-5 space-y-1">
-            {goals.recommendations.map((rec, index) => (
-              <li key={index} className="text-sm text-gray-600">{rec}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 // New DraggableFurniture component
 const DraggableFurniture = ({ item, onMove, onRemove }) => {
@@ -100,12 +68,12 @@ const DroppableMap = ({ children, onDrop }) => {
       }
     },
   }))
-
+  //gamegame
   return (
     <div 
       id="game-map" 
       ref={drop} 
-      className="absolute inset-0 w-[80%] h-[80vh] mx-auto"
+      className="absolute inset-0 w-[80%] h-[70vh] mx-auto"
     >
       {children}
     </div>
@@ -113,27 +81,60 @@ const DroppableMap = ({ children, onDrop }) => {
 }
 
 export default function Map() {
+  const router = useRouter()
   const [showFurnitureMenu, setShowFurnitureMenu] = useState(false)
   const [placedFurniture, setPlacedFurniture] = useState([])
-  const [dailyGoals, setDailyGoals] = useState(null)
   const [showDailyGoals, setShowDailyGoals] = useState(false)
+  const [catEmotion, setCatEmotion] = useState('love')
+  const [catMessage, setCatMessage] = useState('')
+  const [showCatModal, setShowCatModal] = useState(false)
+  const [catModalMessage, setCatModalMessage] = useState('')
+  const [loveLevel, setLoveLevel] = useState(90);
+  const [progress, setProgress] = useState(60);
+  const [rewards, setRewards] = useState({
+    food: [{ name: "Premium Cat Food", quantity: 1 }],
+    vouchers: [{ name: "TNG Cashback RM5 Voucher", code: "TNGRM5-484861", id: 1 }]
+  });
+  const [showRewardsModal, setShowRewardsModal] = useState(false);
 
-  // Fetch daily goals
   useEffect(() => {
-    const fetchDailyGoals = async () => {
-      try {
-        const response = await fetch('/api/getDailyGoals')
-        const data = await response.json()
-        if (data.goals && data.goals.length > 0) {
-          setDailyGoals(data.goals[0]) // Get the most recent goals
-        }
-      } catch (error) {
-        console.error('Error fetching daily goals:', error)
+    const handleKeyPress = (event) => {
+      if (event.key === '6') {
+        router.push('/dashboard')
+      }
+
+      switch (event.key) {
+        case '1':
+          setCatEmotion('angry')
+          setCatMessage("Why are you spending so much on Starbucks? You're over budget today! ☕💸")
+          break
+        case '2':
+          setCatEmotion('happy')
+          setCatMessage("Great job saving money this week! Keep it up! 💰")
+          break
+        case '3':
+          setCatEmotion('surprise')
+          setCatMessage("Did you just make a big purchase? Let's review your spending! 😮")
+          break
+        case '4':
+          setCatEmotion('sad')
+          setCatMessage("Your savings goal is falling behind schedule... 😢")
+          break
+        case '5':
+          setCatEmotion('love')
+          setCatMessage("You're doing amazing with your finances! I'm so proud! 💖")
+          setShowCatModal(true)
+          break
       }
     }
 
-    fetchDailyGoals()
-  }, [])
+    window.addEventListener('keydown', handleKeyPress)
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress)
+    }
+  }, [router])
+
+  
 
   const handleAddFurniture = (newItem) => {
     setPlacedFurniture((prev) => [
@@ -158,43 +159,97 @@ export default function Map() {
     setPlacedFurniture((prev) => prev.filter((item) => item.id !== id))
   }
 
+  const handleChallengeComplete = (isCompleting) => {
+    setLoveLevel(prev => {
+      const newLevel = isCompleting ? prev + 5 : prev - 5;
+      
+      // If new level would exceed 100%, reset to 30%
+      if (newLevel >= 100) {
+        return 30;
+      }
+      
+      // Otherwise, keep within 0-100 range
+      return Math.min(Math.max(newLevel, 0), 100);
+    });
+    
+    // Return the current level for the WeeklyChallenge component
+    return loveLevel;
+  };
+
+  const handleFeedCat = (value = 5) => {
+    setProgress(prev => {
+      const newProgress = prev + value;
+      return Math.min(Math.max(newProgress, 0), 100); // Keeps progress between 0 and 100
+    });
+  };
+
+  // Function to check and add rewards when love bar reaches 100%
+  const checkAndAddRewards = (newLoveLevel) => {
+    if (newLoveLevel >= 100) {
+      // Reset love level
+      setLoveLevel(0);
+      
+      // Add new rewards
+      setRewards(prev => ({
+        food: [...prev.food, { name: "Premium Cat Food", quantity: 1 }],
+        vouchers: [
+          ...prev.vouchers, 
+          { 
+            name: "TNG Cashback RM5 Voucher", 
+            code: `TNGRM5-${Math.random().toString(36).substr(2, 6)}`,
+            id: Date.now()
+          }
+        ]
+      }));
+    } else {
+      setLoveLevel(newLoveLevel);
+    }
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="min-h-screen flex flex-col">
-        <LevelBar username="Player1" progress={60} />
+      <div>
+        <LevelBar username="Jack" progress={progress} dangerProgress={loveLevel} onFeedCat={handleFeedCat} />
         
+        <div
+          style={{
+            position: "absolute",
+            top: "2%",
+            left: "37%",
+            zIndex: 9999,
+          }}
+        >
+          <WeeklyChallenge onChallengeComplete={handleChallengeComplete} onFeedCat={handleFeedCat} />
+        </div>        
         <div className="flex-1 flex items-center justify-center relative">
           {/* Daily Goals Button */}
-          {dailyGoals && (
-            <>
-              <button
-                className="absolute left-4 top-4 w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg"
-                onClick={() => setShowDailyGoals(!showDailyGoals)}
-              >
-                <img
-                  src="/dailyGoals.png" // Add this image to your public folder
-                  alt="Daily Goals"
-                  className="w-9 h-7"
-                />
-              </button>
+          <button
+            className="absolute left-4 top-4 w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg z-[9998]"
+            onClick={() => setShowDailyGoals(!showDailyGoals)}
+          >
+            <img
+              src="/dailyGoals.png"
+              alt="Daily Goals"
+              className="w-9 h-7"
+            />
+          </button>
 
-              {showDailyGoals && (
-                <DailyGoalsPopup 
-                  goals={dailyGoals} 
-                  onClose={() => setShowDailyGoals(false)}
-                />
-              )}
-            </>
-          )}
-
-          <img 
-            src="/map.png"
-            alt="Map"
-            className="h-[80vh] w-[80%] border-2 border-black object-contain"
+          <DailyGoals 
+            showPopup={showDailyGoals}
+            onClose={() => setShowDailyGoals(false)}
           />
           
+          {/* Map and DroppableMap */}
+          <div className="relative w-[80%] h-[7vh]" style={{ marginTop: "20px" }}>
+            <img
+              src="/map.png"
+              alt="Map"
+              className="absolute inset-0 w-full h-full border-2 border-black object-cover"
+            />
+          </div>
+          
           <DroppableMap>
-            <WalkingCat />
+            <WalkingCat emotion={catEmotion} message={catMessage} />
             {placedFurniture.map((item) => (
               <DraggableFurniture
                 key={item.id}
@@ -207,11 +262,11 @@ export default function Map() {
 
           {/* Shop Button */}
           <button
-            className="absolute bottom-4 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center"
+            className="fixed bottom-4 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center"
             onClick={() => setShowFurnitureMenu(true)}
           >
             <img
-              src="/shop.png" // Add this image to your public folder
+              src="/shop.png"
               alt="Shop"
               className="w-8 h-8 mr-1"
             />
@@ -225,19 +280,16 @@ export default function Map() {
             />
           )}
         </div>
-
-        {/* Coins Component */}
-        <div className="absolute bottom-4 right-4 flex items-center bg-white px-3 py-1 rounded-lg shadow-md">
-          <img
-            src="/coins.png" // Add this image to your public folder
-            alt="Coins"
-            className="w-6 h-6 mr-2"
-          />
-          <span className="text-lg font-bold">{83300}</span>
-        </div>
+        
+        <Coins balance={1500} />
+        
+        <CatModal 
+          isOpen={showCatModal} 
+          onOpenChange={setShowCatModal}
+          initialMessage={catModalMessage}
+          isCase5={true}
+        />
       </div>
     </DndProvider>
   )
 }
-
-
