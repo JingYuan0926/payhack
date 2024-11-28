@@ -8,6 +8,10 @@ export default function handler(req, res) {
 
   try {
     const data = req.body;
+    
+    // Ensure financialGoal is included in dailyGoals
+    data.dailyGoals.financialGoal = data.financialPlan.financialGoal;
+
     const financialPlansPath = path.join(process.cwd(), 'data', 'financialPlans.json');
     const dailyGoalsPath = path.join(process.cwd(), 'data', 'dailyGoals.json');
 

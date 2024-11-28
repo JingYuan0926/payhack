@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function FinancialPlanPopup({ onClose, username }) {
+export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate }) {
   const [financialData, setFinancialData] = useState({
     financialGoal: '',
     targetAmount: '',
@@ -13,7 +13,7 @@ export default function FinancialPlanPopup({ onClose, username }) {
     setFinancialData(prev => ({
       ...prev,
       salary: '5000',
-      loansAndDebts: '15000'
+      loansAndDebts: '1500'
     }));
   }, []);
 
@@ -36,6 +36,7 @@ export default function FinancialPlanPopup({ onClose, username }) {
     const dailyDisposableIncome = disposableIncome / 30;
 
     return {
+      financialGoal: data.financialGoal,
       dailySavingsTarget: dailySavingsNeeded.toFixed(2),
       daysToGoal: daysRemaining,
       dailyDisposableIncome: dailyDisposableIncome.toFixed(2),
@@ -79,6 +80,9 @@ export default function FinancialPlanPopup({ onClose, username }) {
       });
 
       if (response.ok) {
+        if (onGoalsUpdate) {
+          onGoalsUpdate();
+        }
         alert(`Financial plan saved successfully!\n\nDaily Goals Summary:\n${dailyGoals.recommendations.join('\n')}`);
         onClose();
       } else {
@@ -93,11 +97,11 @@ export default function FinancialPlanPopup({ onClose, username }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]">
       <div className="bg-white p-6 rounded-lg shadow-xl w-[500px]">
-        <h2 className="text-2xl font-bold mb-4">Financial Plan</h2>
+        <h2 className="text-3xl font-bold mb-4">Financial Plan</h2>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="text-xl block text-sm font-medium text-gray-700">
               What is your financial goal?
             </label>
             <select
@@ -106,7 +110,7 @@ export default function FinancialPlanPopup({ onClose, username }) {
                 ...prev,
                 financialGoal: e.target.value
               }))}
-              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+              className="text-xl mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
               required
             >
               <option value="">Select a goal</option>
@@ -120,7 +124,7 @@ export default function FinancialPlanPopup({ onClose, username }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="text-xl block text-sm font-medium text-gray-700">
               How much money do you need to achieve this goal?
             </label>
             <input
@@ -130,14 +134,14 @@ export default function FinancialPlanPopup({ onClose, username }) {
                 ...prev,
                 targetAmount: e.target.value
               }))}
-              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+              className="text-xl mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
               placeholder="Enter target amount"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="text-xl block text-sm font-medium text-gray-700">
               By what date do you want to reach this goal?
             </label>
             <input
@@ -147,36 +151,36 @@ export default function FinancialPlanPopup({ onClose, username }) {
                 ...prev,
                 targetDate: e.target.value
               }))}
-              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+              className="text-xl mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
               required
               min={new Date().toISOString().split('T')[0]}
             />
           </div>
 
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="text-lg font-medium text-gray-900 mb-3">Current Financial Status</h3>
+          <div className="bg-gray-50 p-1 rounded-lg">
+            <h3 className="text-2xl font-medium text-gray-900 mb-3">Current Financial Status</h3>
             
             <div className="space-y-3">
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="text-xl block text-sm font-medium text-gray-700">
                   Current Monthly Salary
                 </label>
                 <input
                   type="text"
                   value={`$${financialData.salary}`}
-                  className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
+                  className="text-xl mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
                   readOnly
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="text-xl block text-sm font-medium text-gray-700">
                   Current Loans & Debts
                 </label>
                 <input
                   type="text"
                   value={`$${financialData.loansAndDebts}`}
-                  className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
+                  className="text-xl mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
                   readOnly
                 />
               </div>
@@ -187,13 +191,13 @@ export default function FinancialPlanPopup({ onClose, username }) {
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+              className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+              className="text-xl px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
             >
               Save Plan
             </button>

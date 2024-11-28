@@ -96,6 +96,7 @@ export default function Map() {
     vouchers: [{ name: "TNG Cashback RM5 Voucher", code: "TNGRM5-484861", id: 1 }]
   });
   const [showRewardsModal, setShowRewardsModal] = useState(false);
+  const [showSpendingHistory, setShowSpendingHistory] = useState(false);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -217,6 +218,7 @@ export default function Map() {
             top: "2%",
             left: "37%",
             zIndex: 9999,
+            display: showSpendingHistory ? "none" : "block",
           }}
         >
           <WeeklyChallenge onChallengeComplete={handleChallengeComplete} onFeedCat={handleFeedCat} />
@@ -240,7 +242,7 @@ export default function Map() {
           />
           
           {/* Map and DroppableMap */}
-          <div className="relative w-[80%] h-[7vh]" style={{ marginTop: "20px" }}>
+          <div className="relative w-[80%] h-[70vh]" style={{ marginTop: "20px" }}>
             <img
               src="/map.png"
               alt="Map"
