@@ -9,10 +9,25 @@ import DailyGoals from '../components/DailyGoals'
 import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
 import { getFurniture, saveFurniture } from '../utils/furnitureStorage'
+import { PLACED_SCALE } from './furniture'
 
 
 // New DraggableFurniture component
 const DraggableFurniture = ({ item, onMove, onRemove }) => {
+  const [dimensions, setDimensions] = useState({ width: 100, height: 100 });
+  
+  useEffect(() => {
+    const img = new Image();
+    img.src = item.src;
+    img.onload = () => {
+      console.log('Original dimensions:', img.width, img.height); // Add this for debugging
+      setDimensions({
+        width: img.width * PLACED_SCALE,
+        height: img.height * PLACED_SCALE
+      });
+    };
+  }, [item.src]);
+
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'furniture',
     item: { id: item.id, ...item },
@@ -38,8 +53,8 @@ const DraggableFurniture = ({ item, onMove, onRemove }) => {
         position: 'absolute',
         top: item.position.y,
         left: item.position.x,
-        width: '100px',
-        height: '100px',
+        width: dimensions.width,
+        height: dimensions.height,
         opacity: isDragging ? 0.5 : 1,
         cursor: 'move',
       }}
