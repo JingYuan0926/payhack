@@ -1,20 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import FinancialPlanPopup from "./FinancialPlanPopup";
 import SpendHistory from "./spendHistory";
 
-export default function LevelBar({ 
-  username = "Username", 
-  progress = 60, 
-  dangerProgress = 90, 
-  onFeedCat 
-}) {
-  const [currentProgress, setCurrentProgress] = useState(progress);
+export default function LevelBar({ username = "Username", progress = 60 }) {
   const [showFinancialPlan, setShowFinancialPlan] = useState(false);
   const [showSpendHistory, setShowSpendHistory] = useState(false);
-
-  useEffect(() => {
-    setCurrentProgress(progress);
-  }, [progress]);
 
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleDateString("en-US", {
@@ -46,30 +36,15 @@ export default function LevelBar({
             +
           </button>
         </div>
-        
-        {/* Experience bar (green) */}
-        <div className="w-full h-6 border-4 border-black [image-rendering:pixelated] bg-gray-200 mb-2">
-          <div
-            className="h-full bg-green-500 transition-all duration-500"
-            style={{ width: `${currentProgress}%` }}
-          ></div>
-        </div>
-
-        {/* Love Level bar (red) with label */}
-        <div className="mb-1">
-          <span className="text-sm font-semibold text-red-500">
-            Love Level
-          </span>
-        </div>
         <div className="w-full h-6 border-4 border-black [image-rendering:pixelated] bg-gray-200">
           <div
-            className="h-full bg-red-500"
-            style={{ width: `${dangerProgress}%` }}
+            className="h-full bg-green-500"
+            style={{ width: `${progress}%` }}
           ></div>
         </div>
       </div>
 
-      {/* Date and Time Area */}
+      {/* Date and Time Area with Hover and Click */}
       <div
         className="pixel-text-blue text-3xl mr-8 text-right cursor-pointer hover:text-blue-600"
         onClick={() => setShowSpendHistory(true)}
@@ -78,7 +53,7 @@ export default function LevelBar({
         <div>{formattedTime}</div>
       </div>
 
-      {/* Popups */}
+      {/* Spending History Popup */}
       {showSpendHistory && (
         <SpendHistory
           onClose={() => setShowSpendHistory(false)}
