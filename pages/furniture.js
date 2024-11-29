@@ -170,7 +170,7 @@ const MenuPopup = ({ onClose, onSelect }) => {
         maxHeight: '400px',
         overflowY: 'scroll',
       }}>
-        <h2>Select Furniture</h2>
+        <h2 className="text-xl font-bold">Select Furniture</h2>
         <h2>----------------</h2>
         {furnitureData.map((furniture) => (
           <div
@@ -197,8 +197,8 @@ const MenuPopup = ({ onClose, onSelect }) => {
                 height: dimensions[furniture.id]?.height || 50
               }}
             />
-            <span>{furniture.name}</span>
-            <span style={{ fontSize: '12px', color: '#555' }}>{furniture.price}</span>
+            <span style={{ fontSize: '20px'}}>{furniture.name}</span>
+            <span style={{ fontSize: '20px', color: '#555' }}>{furniture.price}</span>
           </div>
         ))}
         <button
