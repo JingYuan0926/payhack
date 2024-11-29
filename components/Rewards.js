@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Barcode from 'react-barcode';
+
 
 const Rewards = ({ onClose, onFeedCat, rewardsContent = {
   food: [{ name: "Premium Cat Food", quantity: 1 }],
