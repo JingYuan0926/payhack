@@ -14,6 +14,7 @@ import DailySummaryButton from '../components/DailySummaryButton'
 import ProgressButton from '../components/ProgressButton'
 import DailySum from '../components/DailySum'
 import Deposit from '../components/Deposit'
+import { createPortal } from 'react-dom';
 
 
 
@@ -418,7 +419,7 @@ export default function Map() {
           />
 
           {/* Map and DroppableMap */}
-          <div className="relative w-[80%] h-[40vh]" style={{ marginTop: "20px" }}>
+          <div className="relative w-[80%] h-[40vh]" style={{ marginTop: "-180px" }}>
             <img
               src="/map.png"
               alt="Map"
@@ -491,12 +492,16 @@ export default function Map() {
           )}
         </div>
 
-        <CatModal
-          isOpen={showCatModal}
-          onOpenChange={setShowCatModal}
-          initialMessage={catModalMessage}
-          isCase5={true}
-        />
+        {/* Move CatModal outside the main container and use createPortal */}
+        {typeof window !== 'undefined' && createPortal(
+          <CatModal
+            isOpen={showCatModal}
+            onOpenChange={setShowCatModal}
+            initialMessage={catModalMessage}
+            isCase5={true}
+          />,
+          document.body
+        )}
 
         {showDailySum && (
           <DailySum
