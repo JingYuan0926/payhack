@@ -9,6 +9,86 @@
   font-style: normal;
 }
 
+@keyframes reward-popup {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes reward-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes reward-sparkle {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+
+@keyframes sparkle-1 {
+  0%, 100% { 
+    background-image: radial-gradient(circle, rgba(255,255,255,0.8) 10%, transparent 10%);
+    background-size: 15px 15px;
+    opacity: 0;
+  }
+  50% { opacity: 1; }
+}
+
+@keyframes sparkle-2 {
+  0%, 100% { 
+    background-image: radial-gradient(circle, rgba(255,215,0,0.6) 15%, transparent 15%);
+    background-size: 25px 25px;
+    opacity: 0;
+  }
+  50% { opacity: 0.8; }
+}
+
+@keyframes sparkle-3 {
+  0%, 100% { 
+    background-image: radial-gradient(circle, rgba(255,255,255,0.9) 5%, transparent 5%);
+    background-size: 10px 10px;
+    opacity: 0;
+  }
+  50% { opacity: 0.6; }
+}
+
+.animate-sparkle-1 {
+  animation: sparkle-1 1.5s ease-in-out infinite;
+  background-position: center;
+}
+
+.animate-sparkle-2 {
+  animation: sparkle-2 2s ease-in-out infinite;
+  animation-delay: 0.2s;
+  background-position: center;
+}
+
+.animate-sparkle-3 {
+  animation: sparkle-3 1.8s ease-in-out infinite;
+  animation-delay: 0.4s;
+  background-position: center;
+}
+
+.animate-reward-popup {
+  animation: reward-popup 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* .animate-reward-popup {
+  animation: reward-popup 0.6s ease-out forwards;
+} */
+
+.animate-reward-bounce {
+  animation: reward-bounce 1s ease-in-out infinite;
+}
+
+.animate-reward-sparkle {
+  background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.3) 20%, transparent 30%),
+              radial-gradient(circle, transparent 20%, rgba(255,255,255,0.3) 20%, transparent 30%);
+  background-size: 20px 20px;
+  animation: reward-sparkle 2s linear infinite;
+  pointer-events: none;
+}
+
 .pixel-text-yellow {
   font-family: 'ThaleahFat', sans-serif;
   position: relative;
@@ -31,6 +111,23 @@
   position: relative;
   color: #5CE1FF; /* Fallback color */
   background: linear-gradient(to bottom, #5CE1FF, #2196F3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(1px 1px 0px #000)
+         drop-shadow(-1px -1px 0px #000)
+         drop-shadow(1px -1px 0px #000)
+         drop-shadow(-1px 1px 0px #000);
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+.pixel-text-golden {
+  font-family: 'ThaleahFat', sans-serif;
+  position: relative;
+  color: #FFD700; /* Fallback color */
+  background: linear-gradient(to bottom, #FFD700, #FFA500);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
