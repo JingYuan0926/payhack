@@ -169,7 +169,7 @@ const WeeklyChallengeBar = ({ onChallengeComplete, onFeedCat }) => {
           }}
           onClick={() => setShowAllChallenges(!showAllChallenges)}
         >
-          Today's Challenge:
+          Today&apos;s Challenge:
         </h2>
       </div>
 

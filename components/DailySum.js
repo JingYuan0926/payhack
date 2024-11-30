@@ -71,11 +71,11 @@ const DailySum = ({ showPopup, onClose }) => {
                 
                 <div className="space-y-8">
                   {/* Today's Spending */}
-                  <div className="p-6 bg-blue-50 rounded-lg border-4 border-blue-200">
-                    <h3 className="text-3xl font-bold mb-4 text-blue-600">Today's Spending</h3>
-                    <div className="space-y-3">
-                      <p className="text-2xl">Total spent: <span className="font-bold">$350</span></p>
-                      <div className="flex justify-between text-xl">
+                  <div className="p-4 bg-blue-50 rounded-lg border-4 border-blue-200">
+                    <h3 className="text-xl font-bold mb-3 text-blue-600">Today's Spending</h3>
+                    <div className="space-y-2">
+                      <p className="text-lg">Total spent: <span className="font-bold">${"350"}</span></p>
+                      <div className="flex justify-between">
                         <span>🍔 Food: $150</span>
                         <span>🚗 Transport: $50</span>
                         <span>🛒 Shopping: $150</span>
@@ -126,9 +126,15 @@ const DailySum = ({ showPopup, onClose }) => {
                       <span className="text-3xl">📝</span>
                       <span className="text-2xl">Remember to log all your expenses for better tracking</span>
                     </li>
+<<<<<<< HEAD
                     <li className="flex items-start space-x-4">
                       <span className="text-3xl">💰</span>
                       <span className="text-2xl">You're on track to meet your savings goal this month!</span>
+=======
+                    <li className="flex items-start space-x-3">
+                      <span className="text-2xl">💰</span>
+                      <span>You&apos;re on track to meet your savings goal this month!</span>
+>>>>>>> 0982248e0189a9d6bff58e2f1e38f542745c2c77
                     </li>
                   </ul>
                 </div>
