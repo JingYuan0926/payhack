@@ -6,13 +6,13 @@ import { useDisclosure } from "@nextui-org/react";
 const Example = () => {
   return (
     <section
-      className="grid place-content-center p-12"
+      className="grid place-content-center p-4 sm:p-12"
       style={{
         backgroundImage: 'url("/landingBackground.gif")',
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        height: "100vh",
+        minHeight: "100vh",
       }}
     >
       <Laptop />
@@ -30,13 +30,14 @@ const Laptop = () => {
         duration: 1.5, // Animation duration
         ease: "easeOut", // Smooth easing
       }}
-      className="flex flex-col items-center"
+      className="flex flex-col items-center w-full max-w-[600px]"
     >
       {/* Laptop Screen */}
       <div
         style={{
-          width: "600px",
-          height: "400px",
+          width: "100%",
+          height: "auto",
+          aspectRatio: "3/2",
         }}
         className="relative rounded-[24px] bg-gray-900 border-4 border-gray-700 overflow-hidden"
       >
@@ -49,8 +50,9 @@ const Laptop = () => {
         src="/keyboard.gif"
         alt="Keyboard"
         style={{
-          width: "600px",
-          height: "150px",
+          width: "100%",
+          height: "auto",
+          aspectRatio: "4/1",
           transform: "perspective(800px) rotateX(25deg)",
         }}
         className="rounded-b-[24px] border-2 border-black -mt-2"
@@ -79,19 +81,19 @@ const Screen = () => {
       style={{ backgroundColor: "#dec3ab" }}
     >
       {/* Title and Cat Container */}
-      <div className="flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <h1 className="text-center text-5xl font-bold text-gray-800 mb-2">
+      <div className="flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4">
+        <h1 className="text-center text-3xl sm:text-5xl font-bold text-gray-800 mb-2">
           FinPet
         </h1>
         <img
           src="/screenCat.gif"
           alt="Screen Cat"
-          className="w-48 h-48"
+          className="w-32 h-32 sm:w-48 sm:h-48"
         />
       </div>
       <button 
         onClick={onOpen}
-        className="absolute bottom-4 left-4 right-4 z-10 rounded-lg border-[1px] bg-white py-2 text-xl font-medium text-gray-700 backdrop-blur"
+        className="absolute bottom-4 left-4 right-4 z-10 rounded-lg border-[1px] bg-white py-2 text-lg sm:text-xl font-medium text-gray-700 backdrop-blur"
       >
         Get Started
       </button>

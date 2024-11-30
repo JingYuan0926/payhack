@@ -117,7 +117,7 @@ const DailySum = ({ showPopup, onClose }) => {
                     </li>
                     <li className="flex items-start space-x-3">
                       <span className="text-2xl">📝</span>
-                      <span className="text-xl text-gray-600">Remember to log all your expenses for better tracking</span>
+                      <span className="text-xl text-gray-600">Consider doing a weekly budget review to ensure you're on track!</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <span className="text-2xl">💰</span>

@@ -15,9 +15,7 @@ const Progress = () => {
     const [showSavings, setShowSavings] = useState(true);
     const [catPosition, setCatPosition] = useState({ x: 0, y: 0 });
     const [animationFrame, setAnimationFrame] = useState(0);
-    const [showCategories, setShowCategories] = useState(false);
-    const [compareMonth, setCompareMonth] = useState(null);
-    const [showYearlySummary, setShowYearlySummary] = useState(false);
+    const [catDirection, setCatDirection] = useState('left');
 
     useEffect(() => {
         try {
@@ -57,6 +55,14 @@ const Progress = () => {
             setIsLoading(false);
         }
     }, []);
+
+    useEffect(() => {
+        if (!showSavings) {
+            setCatDirection('right');
+        } else {
+            setCatDirection('left');
+        }
+    }, [showSavings]);
 
     useEffect(() => {
         if (!showSavings) return;
@@ -205,81 +211,56 @@ const Progress = () => {
             plot_bgcolor: 'rgba(0,0,0,0)',
             hovermode: 'x unified',
             margin: { 
-                t: 50,  // top margin
-                r: 60,  // right margin for y2 axis
-                l: 60,  // left margin for y axis
-                b: 80   // bottom margin for x axis labels
+                t: 30,
+                r: 50,
+                l: 50,
+                b: 60
             },
             showlegend: true,
             legend: {
                 orientation: 'h',
-                y: -0.2,  // Move legend down
+                y: -0.15,
                 xanchor: 'center',
-                x: 0.5
+                x: 0.5,
+                traceorder: 'normal',
+                tracegroupgap: 0
             },
             xaxis: { 
-                tickangle: -45,  // Angle the x-axis labels
-                automargin: true // Ensure labels are visible
-            },
-            yaxis: {
+                title: 'Months',
+                showgrid: true,
+                gridcolor: 'rgba(0,0,0,0.1)',
+                fixedrange: true,
+                tickangle: -45,
                 automargin: true,
+                tickfont: { size: 10 }
+            },
+            yaxis: { 
+                title: 'Expenses ($)',
+                showgrid: true,
+                gridcolor: 'rgba(0,0,0,0.1)',
+                fixedrange: true,
+                tickfont: { size: 10 },
                 title: {
-                    standoff: 20  // Space between axis title and labels
+                    standoff: 15
                 }
             },
             yaxis2: {
-                automargin: true,
+                title: 'Income & Savings ($)',
+                overlaying: 'y',
+                side: 'right',
+                showgrid: false,
+                fixedrange: true,
+                tickfont: { size: 10 },
                 title: {
-                    standoff: 20
+                    standoff: 15
                 }
-            }
+            },
+            showlegend: false
         };
 
         if (showSavings) {
-            const savingsData = processSavingsData();
-            const currentIndex = Math.floor(animationFrame);
-            const nextIndex = Math.min(currentIndex + 1, savingsData.months.length - 1);
-            const fraction = animationFrame - currentIndex;
-
-            // Interpolate position between points
-            const x = savingsData.months[currentIndex];
-            const y = savingsData.income[currentIndex] + 
-                (savingsData.income[nextIndex] - savingsData.income[currentIndex]) * fraction;
-
-            baseLayout.images = [{
-                source: "/walkingCat.gif",
-                x: x,
-                y: y,
-                xref: "x",
-                yref: "y2",
-                sizex: 0.5,
-                sizey: 300,
-                xanchor: "center",
-                yanchor: "middle"
-            }];
-
             return {
                 ...baseLayout,
-                title: 'Savings vs Expenses Analysis',
-                xaxis: { 
-                    title: 'Months',
-                    showgrid: true,
-                    gridcolor: 'rgba(0,0,0,0.1)',
-                    fixedrange: true
-                },
-                yaxis: { 
-                    title: 'Expenses ($)',
-                    showgrid: true,
-                    gridcolor: 'rgba(0,0,0,0.1)',
-                    fixedrange: true
-                },
-                yaxis2: {
-                    title: 'Income & Savings ($)',
-                    overlaying: 'y',
-                    side: 'right',
-                    showgrid: false,
-                    fixedrange: true
-                }
             };
         }
         return baseLayout;
@@ -540,6 +521,13 @@ const Progress = () => {
         };
     };
 
+    // Add this helper function at the top of the Progress component
+    const getNextViewMode = (currentMode) => {
+        const modes = ['current', 'year', 'month'];
+        const currentIndex = modes.indexOf(currentMode);
+        return modes[(currentIndex + 1) % modes.length];
+    };
+
     if (isLoading || !chartData) {
         return (
             <div className="flex items-center justify-center h-screen">
@@ -552,20 +540,73 @@ const Progress = () => {
         <div className="min-h-screen bg-gray-50">
             {/* Home button header - always visible */}
             <header className="bg-white shadow-sm">
-                <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between h-16">
-                        <div className="flex-shrink-0 flex items-center">
-                            <button 
-                                onClick={() => router.push('/map')}
-                                className="h-8 w-auto flex items-center text-blue-600 hover:text-blue-800"
-                            >
-                                <span className="text-xl">🏠</span>
-                                <span className="ml-2">HOME</span>
-                            </button>
-                        </div>
+                <nav className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
+                    <div className="flex flex-col md:flex-row justify-between h-auto md:h-12 py-2 md:py-0">
+                        <button
+                            onClick={handleHomeClick}
+                            className="px-3 py-1 my-1 md:my-auto rounded-md bg-blue-600 text-white hover:bg-blue-700 
+                                     transition-colors duration-200 flex items-center space-x-2 text-sm"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                            </svg>
+                            <span>Home</span>
+                        </button>
+
+                        {!showSavings && (
+                            <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 md:max-w-[70%]">
+                                <div className="flex flex-row md:space-x-8 min-w-max px-2">
+                                    <a href="#" 
+                                       onClick={(e) => handleCategoryClick('groceries', e)}
+                                       className={`px-3 py-1 text-center rounded-md text-sm whitespace-nowrap ${activeChart === 'groceries' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
+                                        Groceries
+                                    </a>
+                                    <a href="#" 
+                                       onClick={(e) => handleCategoryClick('shopping', e)}
+                                       className={`px-3 py-1 text-center rounded-md text-sm whitespace-nowrap ${activeChart === 'shopping' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
+                                        Shopping
+                                    </a>
+                                    <a href="#" 
+                                       onClick={(e) => handleCategoryClick('electronics', e)}
+                                       className={`px-3 py-1 text-center rounded-md text-sm whitespace-nowrap ${activeChart === 'electronics' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
+                                        Electronics
+                                    </a>
+                                    <a href="#" 
+                                       onClick={(e) => handleCategoryClick('healthBeauty', e)}
+                                       className={`px-3 py-1 text-center rounded-md text-sm whitespace-nowrap ${activeChart === 'healthBeauty' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
+                                        Health & Beauty
+                                    </a>
+                                    <a href="#" 
+                                       onClick={(e) => handleCategoryClick('homeLiving', e)}
+                                       className={`px-3 py-1 text-center rounded-md text-sm whitespace-nowrap ${activeChart === 'homeLiving' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
+                                        Home & Living
+                                    </a>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </nav>
             </header>
+            <div className="max-w-7xl mx-auto p-3 md:p-4">
+                <div className="flex flex-col md:flex-row justify-between items-center mb-4">
+                    <h1 className="text-xl md:text-2xl font-bold mb-2 md:mb-0">
+                        {showSavings ? 'Expense & Savings Analysis' : 'Expense Analysis'}
+                    </h1>
+                    <div className="flex items-center space-x-4">
+                        <img
+                            src="/walkingCat.gif"
+                            alt="Walking Cat"
+                            className={`w-16 h-16 object-contain transform ${catDirection === 'right' ? 'scale-x-[-1]' : ''} transition-transform duration-500`}
+                            onClick={() => {
+                                setShowSavings(!showSavings);
+                                setCatDirection(catDirection === 'left' ? 'right' : 'left');
+                            }}
+                        />
+                        <span className="transition-opacity duration-500">
+                            {showSavings ? 'Showing savings + expenses' : 'Showing expenses'}
+                        </span>
+                    </div>
+                </div>
 
             {/* Toggle button */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -633,11 +674,51 @@ const Progress = () => {
                             </select>
                         </div>
                     </div>
-
-                    {/* Expense Charts */}
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        {activeChart ? (
-                            <>
+                ) : (
+                    !activeChart ? (
+                        // Updated empty state with happyCat.gif and better centering
+                        <div className="flex flex-col items-center justify-center min-h-[60vh]">
+                            <img 
+                                src="/happyCat.gif"
+                                alt="Happy Cat"
+                                className="w-64 h-64 object-contain mb-6"
+                            />
+                            <p className="text-xl text-gray-600 font-medium text-center">
+                                Select a category above to view your expenses
+                            </p>
+                        </div>
+                    ) : (
+                        <div className="mt-6 flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
+                            <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 w-full md:flex-grow">
+                                <div className="mb-6 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-center justify-center">
+                                    <button
+                                        onClick={() => setViewMode(getNextViewMode(viewMode))}
+                                        className="w-full md:w-auto px-6 py-3 rounded-lg text-lg bg-blue-600 text-white"
+                                    >
+                                        {viewMode === 'current' ? getCurrentMonthName() :
+                                         viewMode === 'year' ? 'Yearly Trend' : 'Compare Months'}
+                                    </button>
+                                    
+                                    {viewMode === 'month' && (
+                                        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2 w-full md:w-auto">
+                                            <span>Compare with:</span>
+                                            <select
+                                                value={selectedMonth}
+                                                onChange={(e) => setSelectedMonth(Number(e.target.value))}
+                                                className="w-full md:w-auto px-4 py-2 rounded border"
+                                            >
+                                                {chartData[activeChart].months.map((month, index) => (
+                                                    <option key={month} value={index} disabled={index === 11}>
+                                                        {month}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    )}
+                                </div>
+                                
+                                {renderTotalSpending()}
+                                
                                 <Plot
                                     data={getPlotData()}
                                     layout={getLayout()}
