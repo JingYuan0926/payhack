@@ -3,53 +3,152 @@ import { useState, useEffect } from 'react';
 export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate }) {
   const [financialData, setFinancialData] = useState({
     financialGoal: '',
+    goalDescription: '',
     targetAmount: '',
     targetDate: '',
-    salary: '5000',
-    loansAndDebts: '15000',
+    savingStyle: 'flexible',
+    monthlyIncome: 0,
+    monthlyExpenses: 0,
+    disposableIncome: 0
+  });
+
+  const [spendingAnalysis, setSpendingAnalysis] = useState({
+    categories: {},
+    monthlyAverages: {
+      bills: 0,
+      food: 0,
+      transportation: 0,
+      transfers: 0,
+      others: 0
+    },
+    totalMonthlyExpense: 0
   });
 
   useEffect(() => {
-    setFinancialData(prev => ({
-      ...prev,
-      salary: '5000',
-      loansAndDebts: '1500'
-    }));
+    // Fetch and analyze spending data
+    const fetchFinancialData = async () => {
+      try {
+        const response = await fetch('/api/getTransactions');
+        const data = await response.json();
+        
+        // Analyze spending patterns from all payment channels
+        const analysis = analyzeSpendingPatterns(data.payment_channels);
+        setSpendingAnalysis(analysis);
+
+        // Calculate disposable income
+        const monthlyIncome = calculateMonthlyIncome(data);
+        setFinancialData(prev => ({
+          ...prev,
+          monthlyIncome: monthlyIncome,
+          monthlyExpenses: analysis.totalMonthlyExpense,
+          disposableIncome: monthlyIncome - analysis.totalMonthlyExpense
+        }));
+      } catch (error) {
+        console.error('Error fetching transaction data:', error);
+      }
+    };
+
+    fetchFinancialData();
   }, []);
 
-  const calculateDailyGoals = (data) => {
-    const today = new Date();
-    const targetDate = new Date(data.targetDate);
-    const daysRemaining = Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24));
-    const monthlySalary = parseFloat(data.salary);
-    const totalDebts = parseFloat(data.loansAndDebts);
-    const targetAmount = parseFloat(data.targetAmount);
+  const analyzeSpendingPatterns = (paymentChannels) => {
+    const allTransactions = [];
+    
+    // Collect transactions from all payment channels
+    if (paymentChannels.ewallet) {
+      allTransactions.push(...paymentChannels.ewallet.usages);
+    }
+    if (paymentChannels.credit_cards) {
+      paymentChannels.credit_cards.forEach(card => {
+        allTransactions.push(...card.usages);
+      });
+    }
+    if (paymentChannels.bank_accounts) {
+      paymentChannels.bank_accounts.forEach(account => {
+        allTransactions.push(...account.usages);
+      });
+    }
 
-    // Calculate daily savings needed
-    const dailySavingsNeeded = targetAmount / daysRemaining;
-    
-    // Calculate monthly disposable income (after debt payments)
-    const monthlyDebtPayment = totalDebts * 0.1; // Assuming 10% of debt as monthly payment
-    const disposableIncome = monthlySalary - monthlyDebtPayment;
-    
-    // Calculate daily disposable income
-    const dailyDisposableIncome = disposableIncome / 30;
+    // Group transactions by category and calculate monthly averages
+    const categories = {};
+    allTransactions.forEach(transaction => {
+      const category = transaction.category;
+      if (!categories[category]) {
+        categories[category] = [];
+      }
+      categories[category].push(transaction.amount);
+    });
+
+    // Calculate monthly averages for each spending category
+    const monthlyAverages = {
+      bills: calculateMonthlyAverage(categories['Bills'] || []),
+      food: calculateMonthlyAverage(categories['Food & Beverage'] || []),
+      transportation: calculateMonthlyAverage(categories['Transportation'] || []),
+      transfers: calculateMonthlyAverage(categories['Transfer'] || []),
+      others: calculateMonthlyAverage(
+        Object.entries(categories)
+          .filter(([key]) => !['Bills', 'Food & Beverage', 'Transportation', 'Transfer'].includes(key))
+          .flatMap(([_, amounts]) => amounts)
+      )
+    };
+
+    const totalMonthlyExpense = Object.values(monthlyAverages).reduce((a, b) => a + b, 0);
 
     return {
-      financialGoal: data.financialGoal,
-      dailySavingsTarget: dailySavingsNeeded.toFixed(2),
-      daysToGoal: daysRemaining,
-      dailyDisposableIncome: dailyDisposableIncome.toFixed(2),
-      monthlyDebtPayment: monthlyDebtPayment.toFixed(2),
-      recommendations: [
-        `Save $${dailySavingsNeeded.toFixed(2)} daily to reach your goal`,
-        `Available daily spending: $${dailyDisposableIncome.toFixed(2)}`,
-        `Monthly debt payment: $${monthlyDebtPayment.toFixed(2)}`,
-        dailySavingsNeeded > dailyDisposableIncome 
-          ? "Warning: Your target savings exceed your disposable income. Consider extending your target date or adjusting your goal amount."
-          : "Your goal appears achievable with your current income!"
-      ]
+      categories,
+      monthlyAverages,
+      totalMonthlyExpense
     };
+  };
+
+  const calculateFeasibility = (data) => {
+    const monthsToGoal = getMonthsBetweenDates(new Date(), new Date(data.targetDate));
+    const requiredMonthlySaving = data.targetAmount / monthsToGoal;
+    
+    // Calculate discretionary spending (non-essential expenses)
+    const discretionarySpending = spendingAnalysis.monthlyAverages.food + 
+                                 spendingAnalysis.monthlyAverages.others;
+    
+    // Calculate potential savings if reducing discretionary spending
+    const potentialMonthlySavings = data.disposableIncome + (discretionarySpending * 0.3); // Assume 30% reduction possible
+    
+    const feasibilityScore = (potentialMonthlySavings / requiredMonthlySaving) * 100;
+
+    return {
+      feasible: feasibilityScore >= 70,
+      requiredMonthlySaving,
+      feasibilityScore,
+      potentialSavings: potentialMonthlySavings,
+      recommendations: generateRecommendations(
+        feasibilityScore, 
+        data, 
+        spendingAnalysis,
+        requiredMonthlySaving
+      )
+    };
+  };
+
+  const generateRecommendations = (feasibilityScore, data, spending, requiredSaving) => {
+    let recommendations = [];
+    
+    if (feasibilityScore >= 70) {
+      recommendations.push("Your goal appears achievable!");
+      if (data.savingStyle === 'flexible') {
+        const dailyMin = (requiredSaving * 0.7) / 30;
+        const dailyMax = (requiredSaving * 1.3) / 30;
+        recommendations.push(`Recommended daily saving: $${dailyMin.toFixed(2)} - $${dailyMax.toFixed(2)}`);
+      } else {
+        recommendations.push(`Required daily saving: $${(requiredSaving / 30).toFixed(2)}`);
+      }
+    } else {
+      recommendations.push("This goal may be challenging with current spending.");
+      recommendations.push(`Consider reducing:`);
+      recommendations.push(`- Food expenses (current: $${spending.monthlyAverages.food.toFixed(2)}/month)`);
+      recommendations.push(`- Transportation (current: $${spending.monthlyAverages.transportation.toFixed(2)}/month)`);
+      recommendations.push(`- Other discretionary spending (current: $${spending.monthlyAverages.others.toFixed(2)}/month)`);
+    }
+
+    return recommendations;
   };
 
   const handleSubmit = async (e) => {
@@ -96,38 +195,30 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
-      <div className="bg-white p-6 rounded-lg shadow-xl w-[500px]">
-        <h2 className="text-3xl font-bold mb-4">Financial Plan</h2>
+      <div className="bg-white p-6 rounded-lg shadow-xl w-[600px] max-h-[90vh] overflow-y-auto">
+        <h2 className="text-3xl font-bold mb-4">Financial Goal Planning</h2>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="text-xl block text-sm font-medium text-gray-700">
-              What is your financial goal?
+            <label className="block text-sm font-medium text-gray-700">
+              What are you saving for?
             </label>
-            <select
-              value={financialData.financialGoal}
+            <input
+              type="text"
+              value={financialData.goalDescription}
               onChange={(e) => setFinancialData(prev => ({
                 ...prev,
-                financialGoal: e.target.value
+                goalDescription: e.target.value
               }))}
-              onFocus={(e) => e.stopPropagation()}
-              onClick={(e) => e.stopPropagation()}
-              className="text-xl mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+              placeholder="e.g., Trip to Europe, Car down payment"
               required
-            >
-              <option value="">Select a goal</option>
-              <option value="house">Buy a House</option>
-              <option value="car">Buy a Car</option>
-              <option value="education">Education</option>
-              <option value="retirement">Retirement Savings</option>
-              <option value="emergency">Emergency Fund</option>
-              <option value="other">Other</option>
-            </select>
+            />
           </div>
 
           <div>
-            <label className="text-xl block text-sm font-medium text-gray-700">
-              How much money do you need to achieve this goal?
+            <label className="block text-sm font-medium text-gray-700">
+              Target Amount
             </label>
             <input
               type="number"
@@ -136,15 +227,15 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
                 ...prev,
                 targetAmount: e.target.value
               }))}
-              className="text-xl mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
-              placeholder="Enter target amount"
+              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+              placeholder="Enter amount needed"
               required
             />
           </div>
 
           <div>
-            <label className="text-xl block text-sm font-medium text-gray-700">
-              By what date do you want to reach this goal?
+            <label className="block text-sm font-medium text-gray-700">
+              Target Date
             </label>
             <input
               type="date"
@@ -153,38 +244,43 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
                 ...prev,
                 targetDate: e.target.value
               }))}
-              className="text-xl mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
               required
               min={new Date().toISOString().split('T')[0]}
             />
           </div>
 
-          <div className="bg-gray-50 p-1 rounded-lg">
-            <h3 className="text-2xl font-medium text-gray-900 mb-3">Current Financial Status</h3>
-            
-            <div className="space-y-3">
-              <div>
-                <label className="text-xl block text-sm font-medium text-gray-700">
-                  Current Monthly Salary
-                </label>
-                <input
-                  type="text"
-                  value={`$${financialData.salary}`}
-                  className="text-xl mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
-                  readOnly
-                />
-              </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Saving Style
+            </label>
+            <select
+              value={financialData.savingStyle}
+              onChange={(e) => setFinancialData(prev => ({
+                ...prev,
+                savingStyle: e.target.value
+              }))}
+              className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+            >
+              <option value="flexible">Flexible (variable daily amounts)</option>
+              <option value="strict">Strict (fixed daily amount)</option>
+            </select>
+          </div>
 
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <h3 className="text-lg font-medium text-gray-900 mb-3">Current Financial Status</h3>
+            <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-xl block text-sm font-medium text-gray-700">
-                  Current Loans & Debts
-                </label>
-                <input
-                  type="text"
-                  value={`$${financialData.loansAndDebts}`}
-                  className="text-xl mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
-                  readOnly
-                />
+                <p className="text-sm text-gray-600">Monthly Income</p>
+                <p className="text-lg font-medium">${financialData.monthlyIncome}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">Monthly Expenses</p>
+                <p className="text-lg font-medium">${financialData.monthlyExpenses}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">Disposable Income</p>
+                <p className="text-lg font-medium">${financialData.disposableIncome}</p>
               </div>
             </div>
           </div>
@@ -193,13 +289,13 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
             <button
               type="button"
               onClick={onClose}
-              className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="text-xl px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
             >
               Save Plan
             </button>
