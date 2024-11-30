@@ -1,5 +1,4 @@
 import LevelBar from '../components/LevelBar'
-import Coins from '../components/Coins'
 import WalkingCat from '../components/cat'
 import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -92,11 +91,6 @@ export default function Map() {
   const [catModalMessage, setCatModalMessage] = useState('')
   const [loveLevel, setLoveLevel] = useState(90);
   const [progress, setProgress] = useState(60);
-  const [rewards, setRewards] = useState({
-    food: [{ name: "Premium Cat Food", quantity: 1 }],
-    vouchers: [{ name: "TNG Cashback RM5 Voucher", code: "TNGRM5-484861", id: 1 }]
-  });
-  const [showRewardsModal, setShowRewardsModal] = useState(false);
   const [showSpendingHistory, setShowSpendingHistory] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -158,12 +152,20 @@ export default function Map() {
   }, []);
 
   const handleAddFurniture = async (newItem) => {
+    // Format current time in 12-hour format with AM/PM
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-US', { 
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true 
+    }).replace(/\s/g, ''); // Remove spaces between time and AM/PM
+
     const updatedFurniture = [
       ...placedFurniture,
       {
         ...newItem,
         position: { x: 100, y: 100 },
-        id: `${newItem.id}-${Date.now()}`,
+        id: `${newItem.id}-${timeString}`, // Use formatted time in ID
       },
     ];
     
@@ -186,51 +188,11 @@ export default function Map() {
     setPlacedFurniture(updatedFurniture);
   };
 
-  const handleChallengeComplete = (isCompleting) => {
-    setLoveLevel(prev => {
-      const newLevel = isCompleting ? prev + 5 : prev - 5;
-      
-      // If new level would exceed 100%, reset to 30%
-      if (newLevel >= 100) {
-        return 30;
-      }
-      
-      // Otherwise, keep within 0-100 range
-      return Math.min(Math.max(newLevel, 0), 100);
-    });
-    
-    // Return the current level for the WeeklyChallenge component
-    return loveLevel;
-  };
-
   const handleFeedCat = (value = 5) => {
     setProgress(prev => {
       const newProgress = prev + value;
       return Math.min(Math.max(newProgress, 0), 100); // Keeps progress between 0 and 100
     });
-  };
-
-  // Function to check and add rewards when love bar reaches 100%
-  const checkAndAddRewards = (newLoveLevel) => {
-    if (newLoveLevel >= 100) {
-      // Reset love level
-      setLoveLevel(0);
-      
-      // Add new rewards
-      setRewards(prev => ({
-        food: [...prev.food, { name: "Premium Cat Food", quantity: 1 }],
-        vouchers: [
-          ...prev.vouchers, 
-          { 
-            name: "TNG Cashback RM5 Voucher", 
-            code: `TNGRM5-${Math.random().toString(36).substr(2, 6)}`,
-            id: Date.now()
-          }
-        ]
-      }));
-    } else {
-      setLoveLevel(newLoveLevel);
-    }
   };
 
   if (isLoading) {
@@ -255,7 +217,9 @@ export default function Map() {
             display: showSpendingHistory ? "none" : "block",
           }}
         >
+          {/* Removing Weekly Challenge component
           <WeeklyChallenge onChallengeComplete={handleChallengeComplete} onFeedCat={handleFeedCat} />
+          */}
         </div>        
         <div className="flex-1 flex items-center justify-center relative">
           {/* Daily Goals Button */}
@@ -296,17 +260,17 @@ export default function Map() {
             ))}
           </DroppableMap>
 
-          {/* Shop Button */}
+          {/* Inventory Button (previously Shop) */}
           <button
             className="fixed bottom-4 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center"
             onClick={() => setShowFurnitureMenu(true)}
           >
             <img
               src="/shop.png"
-              alt="Shop"
+              alt="Inventory"
               className="w-8 h-8 mr-1"
             />
-            Shop
+            Inventory
           </button>
 
           {showFurnitureMenu && (
@@ -316,8 +280,6 @@ export default function Map() {
             />
           )}
         </div>
-        
-        <Coins balance={1500} />
         
         <CatModal 
           isOpen={showCatModal} 

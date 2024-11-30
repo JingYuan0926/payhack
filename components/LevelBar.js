@@ -13,20 +13,30 @@ export default function LevelBar({
   const [currentProgress, setCurrentProgress] = useState(progress);
   const [showFinancialPlan, setShowFinancialPlan] = useState(false);
   const [showSpendHistory, setShowSpendHistory] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
     setCurrentProgress(progress);
   }, [progress]);
 
-  const currentDate = new Date();
-  const formattedDate = currentDate.toLocaleDateString("en-US", {
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    // Cleanup timer on component unmount
+    return () => clearInterval(timer);
+  }, []);
+
+  const formattedDate = currentTime.toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
   });
-  const formattedTime = currentDate.toLocaleTimeString("en-US", {
+  const formattedTime = currentTime.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
-    hour12: false,
+    second: "2-digit",
+    hour12: true
   });
 
   // Example spending history
