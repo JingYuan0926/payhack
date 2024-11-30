@@ -1,0 +1,920 @@
+{
+  "payment_channels": {
+    "ewallet": {
+      "provider": "Touch n Go eWallet",
+      "balance": 150.50,
+      "usages": [
+        {
+          "date": "2024-01-05",
+          "time": "08:30:25",
+          "amount": 15.90,
+          "category": "Food & Beverage",
+          "merchant": "McDonald's"
+        },
+        {
+          "date": "2024-01-08",
+          "time": "12:15:00",
+          "amount": 25.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-01-12",
+          "time": "15:45:00",
+          "amount": 8.50,
+          "category": "Food & Beverage",
+          "merchant": "Starbucks"
+        },
+        {
+          "date": "2024-01-15",
+          "time": "10:20:00",
+          "amount": 30.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-01-18",
+          "time": "19:30:00",
+          "amount": 45.90,
+          "category": "Food & Beverage",
+          "merchant": "KFC"
+        },
+        {
+          "date": "2024-01-21",
+          "time": "14:15:00",
+          "amount": 12.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-01-24",
+          "time": "11:45:00",
+          "amount": 18.90,
+          "category": "Food & Beverage",
+          "merchant": "Subway"
+        },
+        {
+          "date": "2024-01-27",
+          "time": "16:30:00",
+          "amount": 35.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-01-29",
+          "time": "20:15:00",
+          "amount": 28.50,
+          "category": "Food & Beverage",
+          "merchant": "Pizza Hut"
+        },
+        {
+          "date": "2024-01-31",
+          "time": "13:20:00",
+          "amount": 15.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-02-03",
+          "time": "09:15:00",
+          "amount": 22.90,
+          "category": "Food & Beverage",
+          "merchant": "Tealive"
+        },
+        {
+          "date": "2024-02-06",
+          "time": "11:30:00",
+          "amount": 28.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+            "date": "2024-02-08",
+            "time": "13:45:00",
+            "amount": 16.50,
+            "category": "Food & Beverage",
+            "merchant": "Boost Juice"
+          },
+          {
+            "date": "2024-02-12",
+            "time": "17:20:00",
+            "amount": 32.00,
+            "category": "Transportation",
+            "merchant": "MRT"
+          },
+          {
+            "date": "2024-02-15",
+            "time": "12:30:00",
+            "amount": 42.90,
+            "category": "Food & Beverage",
+            "merchant": "Texas Chicken"
+          },
+          {
+            "date": "2024-02-18",
+            "time": "15:15:00",
+            "amount": 10.00,
+            "category": "Parking",
+            "merchant": "DBKL Parking"
+          },
+          {
+            "date": "2024-02-21",
+            "time": "14:45:00",
+            "amount": 20.90,
+            "category": "Food & Beverage",
+            "merchant": "Chatime"
+          },
+          {
+            "date": "2024-02-24",
+            "time": "18:30:00",
+            "amount": 38.00,
+            "category": "Transportation",
+            "merchant": "Grab"
+          },
+          {
+            "date": "2024-02-27",
+            "time": "19:15:00",
+            "amount": 25.50,
+            "category": "Food & Beverage",
+            "merchant": "Domino's"
+          },
+          {
+            "date": "2024-02-29",
+            "time": "11:20:00",
+            "amount": 18.00,
+            "category": "Transportation",
+            "merchant": "Bus"
+          },
+        {
+          "date": "2024-03-02",
+          "time": "09:30:00",
+          "amount": 17.90,
+          "category": "Food & Beverage",
+          "merchant": "Old Town White Coffee"
+        },
+        {
+          "date": "2024-03-05",
+          "time": "12:45:00",
+          "amount": 26.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-03-08",
+          "time": "15:20:00",
+          "amount": 13.50,
+          "category": "Food & Beverage",
+          "merchant": "Gong Cha"
+        },
+        {
+          "date": "2024-03-11",
+          "time": "11:15:00",
+          "amount": 28.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-03-15",
+          "time": "18:30:00",
+          "amount": 39.90,
+          "category": "Food & Beverage",
+          "merchant": "Nando's"
+        },
+        {
+          "date": "2024-03-18",
+          "time": "14:45:00",
+          "amount": 15.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-03-22",
+          "time": "13:20:00",
+          "amount": 22.90,
+          "category": "Food & Beverage",
+          "merchant": "Marrybrown"
+        },
+        {
+          "date": "2024-03-25",
+          "time": "17:30:00",
+          "amount": 32.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-03-28",
+          "time": "20:45:00",
+          "amount": 27.50,
+          "category": "Food & Beverage",
+          "merchant": "Secret Recipe"
+        },
+        {
+          "date": "2024-03-31",
+          "time": "12:15:00",
+          "amount": 16.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-04-03",
+          "time": "10:30:00",
+          "amount": 19.90,
+          "category": "Food & Beverage",
+          "merchant": "PappaRich"
+        },
+        {
+          "date": "2024-04-06",
+          "time": "13:15:00",
+          "amount": 29.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-04-09",
+          "time": "16:45:00",
+          "amount": 12.50,
+          "category": "Food & Beverage",
+          "merchant": "Teh Tarik Place"
+        },
+        {
+          "date": "2024-04-12",
+          "time": "11:30:00",
+          "amount": 31.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-04-15",
+          "time": "19:20:00",
+          "amount": 43.90,
+          "category": "Food & Beverage",
+          "merchant": "Sushi Mentai"
+        },
+        {
+          "date": "2024-04-18",
+          "time": "15:30:00",
+          "amount": 11.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-04-21",
+          "time": "14:15:00",
+          "amount": 24.90,
+          "category": "Food & Beverage",
+          "merchant": "Kenny Rogers"
+        },
+        {
+          "date": "2024-04-24",
+          "time": "17:45:00",
+          "amount": 34.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-04-27",
+          "time": "20:30:00",
+          "amount": 29.50,
+          "category": "Food & Beverage",
+          "merchant": "Dragon-i"
+        },
+        {
+          "date": "2024-04-30",
+          "time": "12:45:00",
+          "amount": 17.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-05-02",
+          "time": "09:45:00",
+          "amount": 21.90,
+          "category": "Food & Beverage",
+          "merchant": "Hokkaido Baked Cheese Tart"
+        },
+        {
+          "date": "2024-05-05",
+          "time": "12:30:00",
+          "amount": 27.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-05-08",
+          "time": "15:15:00",
+          "amount": 14.50,
+          "category": "Food & Beverage",
+          "merchant": "Mr. Teh Tarik"
+        },
+        {
+          "date": "2024-05-11",
+          "time": "10:45:00",
+          "amount": 33.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-05-14",
+          "time": "18:45:00",
+          "amount": 41.90,
+          "category": "Food & Beverage",
+          "merchant": "Sakae Sushi"
+        },
+        {
+          "date": "2024-05-17",
+          "time": "14:30:00",
+          "amount": 13.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-05-20",
+          "time": "13:45:00",
+          "amount": 23.90,
+          "category": "Food & Beverage",
+          "merchant": "Chicken Rice Shop"
+        },
+        {
+          "date": "2024-05-23",
+          "time": "16:15:00",
+          "amount": 36.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-05-26",
+          "time": "19:45:00",
+          "amount": 31.50,
+          "category": "Food & Beverage",
+          "merchant": "Din Tai Fung"
+        },
+        {
+          "date": "2024-05-29",
+          "time": "11:30:00",
+          "amount": 19.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-06-01",
+          "time": "10:15:00",
+          "amount": 18.90,
+          "category": "Food & Beverage",
+          "merchant": "Baskin Robbins"
+        },
+        {
+          "date": "2024-06-04",
+          "time": "13:30:00",
+          "amount": 30.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-06-07",
+          "time": "16:20:00",
+          "amount": 15.50,
+          "category": "Food & Beverage",
+          "merchant": "Llao Llao"
+        },
+        {
+          "date": "2024-06-10",
+          "time": "11:45:00",
+          "amount": 29.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-06-13",
+          "time": "19:15:00",
+          "amount": 44.90,
+          "category": "Food & Beverage",
+          "merchant": "Go Noodle House"
+        },
+        {
+          "date": "2024-06-16",
+          "time": "15:45:00",
+          "amount": 12.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-06-19",
+          "time": "14:30:00",
+          "amount": 25.90,
+          "category": "Food & Beverage",
+          "merchant": "Auntie Anne's"
+        },
+        {
+          "date": "2024-06-22",
+          "time": "17:15:00",
+          "amount": 33.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-06-25",
+          "time": "20:00:00",
+          "amount": 28.50,
+          "category": "Food & Beverage",
+          "merchant": "4Fingers"
+        },
+        {
+          "date": "2024-06-28",
+          "time": "12:30:00",
+          "amount": 16.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-07-02",
+          "time": "09:15:00",
+          "amount": 20.90,
+          "category": "Food & Beverage",
+          "merchant": "Sushi King"
+        },
+        {
+          "date": "2024-07-05",
+          "time": "11:30:00",
+          "amount": 31.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-07-08",
+          "time": "14:45:00",
+          "amount": 17.50,
+          "category": "Food & Beverage",
+          "merchant": "KOI"
+        },
+        {
+          "date": "2024-07-11",
+          "time": "10:20:00",
+          "amount": 27.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-07-14",
+          "time": "18:30:00",
+          "amount": 38.90,
+          "category": "Food & Beverage",
+          "merchant": "Burger King"
+        },
+        {
+          "date": "2024-07-17",
+          "time": "13:15:00",
+          "amount": 14.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-07-20",
+          "time": "16:45:00",
+          "amount": 21.90,
+          "category": "Food & Beverage",
+          "merchant": "Wendy's"
+        },
+        {
+          "date": "2024-07-23",
+          "time": "19:30:00",
+          "amount": 35.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-07-26",
+          "time": "12:15:00",
+          "amount": 26.50,
+          "category": "Food & Beverage",
+          "merchant": "Pepper Lunch"
+        },
+        {
+          "date": "2024-07-29",
+          "time": "15:20:00",
+          "amount": 18.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-08-01",
+          "time": "10:30:00",
+          "amount": 19.90,
+          "category": "Food & Beverage",
+          "merchant": "Krispy Kreme"
+        },
+        {
+          "date": "2024-08-04",
+          "time": "13:45:00",
+          "amount": 32.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-08-07",
+          "time": "16:20:00",
+          "amount": 16.50,
+          "category": "Food & Beverage",
+          "merchant": "Dunkin' Donuts"
+        },
+        {
+          "date": "2024-08-10",
+          "time": "11:15:00",
+          "amount": 29.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-08-13",
+          "time": "19:45:00",
+          "amount": 42.90,
+          "category": "Food & Beverage",
+          "merchant": "Chili's"
+        },
+        {
+          "date": "2024-08-16",
+          "time": "14:30:00",
+          "amount": 11.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-08-19",
+          "time": "17:15:00",
+          "amount": 23.90,
+          "category": "Food & Beverage",
+          "merchant": "A&W"
+        },
+        {
+          "date": "2024-08-22",
+          "time": "20:00:00",
+          "amount": 37.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-08-25",
+          "time": "12:45:00",
+          "amount": 28.50,
+          "category": "Food & Beverage",
+          "merchant": "Subway"
+        },
+        {
+          "date": "2024-08-28",
+          "time": "15:30:00",
+          "amount": 17.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-09-01",
+          "time": "09:45:00",
+          "amount": 22.90,
+          "category": "Food & Beverage",
+          "merchant": "The Coffee Bean"
+        },
+        {
+          "date": "2024-09-04",
+          "time": "12:30:00",
+          "amount": 33.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-09-07",
+          "time": "15:15:00",
+          "amount": 15.50,
+          "category": "Food & Beverage",
+          "merchant": "San Francisco Coffee"
+        },
+        {
+          "date": "2024-09-10",
+          "time": "10:45:00",
+          "amount": 30.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-09-13",
+          "time": "18:45:00",
+          "amount": 40.90,
+          "category": "Food & Beverage",
+          "merchant": "Tony Roma's"
+        },
+        {
+          "date": "2024-09-16",
+          "time": "13:30:00",
+          "amount": 13.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-09-19",
+          "time": "16:15:00",
+          "amount": 24.90,
+          "category": "Food & Beverage",
+          "merchant": "Boost Juice"
+        },
+        {
+          "date": "2024-09-22",
+          "time": "19:00:00",
+          "amount": 36.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-09-25",
+          "time": "11:45:00",
+          "amount": 27.50,
+          "category": "Food & Beverage",
+          "merchant": "Nando's"
+        },
+        {
+          "date": "2024-09-28",
+          "time": "14:30:00",
+          "amount": 19.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-10-02",
+          "time": "09:30:00",
+          "amount": 21.90,
+          "category": "Food & Beverage",
+          "merchant": "Starbucks"
+        },
+        {
+          "date": "2024-10-05",
+          "time": "12:15:00",
+          "amount": 34.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-10-08",
+          "time": "15:45:00",
+          "amount": 16.50,
+          "category": "Food & Beverage",
+          "merchant": "Tealive"
+        },
+        {
+          "date": "2024-10-11",
+          "time": "11:20:00",
+          "amount": 28.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-10-14",
+          "time": "18:30:00",
+          "amount": 43.90,
+          "category": "Food & Beverage",
+          "merchant": "Pizza Hut"
+        },
+        {
+          "date": "2024-10-17",
+          "time": "14:15:00",
+          "amount": 12.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-10-20",
+          "time": "16:45:00",
+          "amount": 25.90,
+          "category": "Food & Beverage",
+          "merchant": "KFC"
+        },
+        {
+          "date": "2024-10-23",
+          "time": "19:30:00",
+          "amount": 38.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-10-26",
+          "time": "12:15:00",
+          "amount": 29.50,
+          "category": "Food & Beverage",
+          "merchant": "Subway"
+        },
+        {
+          "date": "2024-10-29",
+          "time": "15:20:00",
+          "amount": 16.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-12-02",
+          "time": "09:45:00",
+          "amount": 23.90,
+          "category": "Food & Beverage",
+          "merchant": "Old Town White Coffee"
+        },
+        {
+          "date": "2024-12-05",
+          "time": "12:30:00",
+          "amount": 32.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-12-08",
+          "time": "15:15:00",
+          "amount": 17.50,
+          "category": "Food & Beverage",
+          "merchant": "Gong Cha"
+        },
+        {
+          "date": "2024-12-11",
+          "time": "10:45:00",
+          "amount": 29.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-12-14",
+          "time": "18:45:00",
+          "amount": 44.90,
+          "category": "Food & Beverage",
+          "merchant": "Secret Recipe"
+        },
+        {
+          "date": "2024-12-17",
+          "time": "13:30:00",
+          "amount": 11.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-12-20",
+          "time": "16:15:00",
+          "amount": 26.90,
+          "category": "Food & Beverage",
+          "merchant": "PappaRich"
+        },
+        {
+          "date": "2024-12-23",
+          "time": "19:00:00",
+          "amount": 37.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-12-26",
+          "time": "11:45:00",
+          "amount": 28.50,
+          "category": "Food & Beverage",
+          "merchant": "Kenny Rogers"
+        },
+        {
+          "date": "2024-12-29",
+          "time": "14:30:00",
+          "amount": 19.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        }
+      ]
+    },
+    "debit_cards": [
+      {
+        "card_number": "1438 2321 9988 4521",
+        "bank": "Maybank",
+        "card_image": "https://placeholder.com/card_image1.jpg",
+        "expiry_date": "05/26",
+        "usages": [
+          {
+            "date": "2024-03-15",
+            "time": "16:45:30",
+            "amount": 156.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-03-13",
+            "time": "11:20:15",
+            "amount": 89.90,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          }
+        ]
+      },
+      {
+        "card_number": "1438 2332 9348 7832",
+        "bank": "CIMB",
+        "card_image": "https://placeholder.com/card_image2.jpg",
+        "expiry_date": "08/25",
+        "usages": [
+          {
+            "date": "2024-03-14",
+            "time": "13:15:00",
+            "amount": 35.90,
+            "category": "Entertainment",
+            "merchant": "GSC Movies"
+          },
+          {
+            "date": "2024-03-12",
+            "time": "19:30:45",
+            "amount": 68.50,
+            "category": "Food & Beverage",
+            "merchant": "Sushi King"
+          }
+        ]
+      }
+    ],
+    "credit_cards": [
+      {
+        "card_number": "8847 2382 1242 9245",
+        "bank": "Public Bank",
+        "card_image": "https://placeholder.com/card_image3.jpg",
+        "expiry_date": "11/26",
+        "credit_limit": 10000,
+        "usages": [
+          {
+            "date": "2024-03-15",
+            "time": "15:20:00",
+            "amount": 1299.00,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-03-11",
+            "time": "14:10:30",
+            "amount": 459.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          }
+        ]
+      },
+      {
+        "card_number": "2134 3534 2323 6123",
+        "bank": "Hong Leong Bank",
+        "card_image": "https://placeholder.com/card_image4.jpg",
+        "expiry_date": "03/27",
+        "credit_limit": 8000,
+        "usages": [
+          {
+            "date": "2024-03-14",
+            "time": "12:45:20",
+            "amount": 789.00,
+            "category": "Travel",
+            "merchant": "AirAsia"
+          },
+          {
+            "date": "2024-03-10",
+            "time": "16:30:00",
+            "amount": 245.90,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          }
+        ]
+      }
+    ],
+    "bank_accounts": [
+      {
+        "bank_name": "Maybank",
+        "account_number": "1234567890",
+        "bank_image": "https://placeholder.com/bank_image1.jpg",
+        "account_type": "Savings",
+        "usages": [
+          {
+            "date": "2024-03-15",
+            "time": "09:30:00",
+            "amount": 1500.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-03-12",
+            "time": "11:45:20",
+            "amount": 850.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          }
+        ]
+      },
+      {
+        "bank_name": "RHB Bank",
+        "account_number": "9876543210",
+        "bank_image": "https://placeholder.com/bank_image2.jpg",
+        "account_type": "Current",
+        "usages": [
+          {
+            "date": "2024-03-13",
+            "time": "14:20:15",
+            "amount": 2000.00,
+            "category": "Salary",
+            "sender": "ABC Company"
+          },
+          {
+            "date": "2024-03-11",
+            "time": "10:15:30",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          }
+        ]
+      }
+    ]
+  }
+}
