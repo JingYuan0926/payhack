@@ -95,7 +95,7 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
       <div className="bg-white p-6 rounded-lg shadow-xl w-[500px]">
         <h2 className="text-3xl font-bold mb-4">Financial Plan</h2>
         

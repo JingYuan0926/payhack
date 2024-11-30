@@ -94,7 +94,7 @@ export default function DailyGoals({ onClose, showPopup }) {
   if (!aggregatedGoals || !showPopup) return null;
 
   return (
-    <div className="absolute left-4 top-20 bg-white rounded-lg shadow-xl p-6 w-96 max-h-[60vh] z-[9999] flex flex-col">
+    <div className="absolute left-4 top-20 bg-white rounded-lg shadow-xl p-6 w-96 max-h-[60vh] z-[99999] flex flex-col">
       <div className="flex justify-between items-center mb-4 sticky top-0 bg-white">
         <h3 className="text-2xl font-bold">Combined Financial Goals ({aggregatedGoals.numberOfGoals})</h3>
         <button 
