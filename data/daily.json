@@ -1,26 +1,26 @@
 {
   "Tom The Cat": {
     "username": "Tom The Cat",
-    "goal": "1",
-    "targetAmount": 1,
-    "targetDate": "2026-01-01",
+    "goal": "house",
+    "targetAmount": 40000,
+    "targetDate": "2027-01-01",
     "planType": "flexi",
     "dailySavings": {
-      "min": 0.0020151133501259445,
-      "max": 0.003022670025188917
+      "min": 41.99475065616798,
+      "max": 62.99212598425197
     },
     "daysToGoal": {
-      "min": 331,
-      "max": 497
+      "min": 635,
+      "max": 953
     },
     "dailyLimit": 113.65,
     "monthlyDebt": 681.9000000000001,
     "dailyDisposableIncome": 113.65,
     "monthlyDisposableIncome": 3409.5,
     "remainingDaily": {
-      "min": 113.64697732997482,
-      "max": 113.64798488664988
+      "min": 50.657874015748035,
+      "max": 71.65524934383203
     },
-    "createdAt": "2024-11-30T18:01:02.788Z"
+    "createdAt": "2024-11-30T19:37:49.291Z"
   }
 }

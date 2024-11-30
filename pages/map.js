@@ -383,9 +383,9 @@ export default function Map() {
             onClick={() => setShowTotalSavings(!showTotalSavings)}
           >
             <img
-              src="/wallet.png"
+              src="/bank.png"
               alt="Total Savings"
-              className="w-7 h-7"
+              className="w-21 h-21"
             />
           </button>
 
