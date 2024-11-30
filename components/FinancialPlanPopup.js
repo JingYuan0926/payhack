@@ -23,19 +23,36 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
     const targetDate = new Date(financialData.targetDate);
     const today = new Date();
     const daysToGoal = Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24));
-    const monthlyDisposableIncome = analysis.disposableIncome;
-    const dailyDisposableIncome = monthlyDisposableIncome / 30;
     
-    const requiredDailySavings = financialData.targetAmount / daysToGoal;
+    // Get monthly disposable income and convert to daily
+    const monthlyDisposableIncome = analysis.disposableIncome || 0; // RM 2409.50
+    const dailyDisposableIncome = monthlyDisposableIncome / 30; // About RM 80.32 per day
+    
+    // Calculate required daily savings
+    const requiredDailySavings = parseFloat(financialData.targetAmount) / daysToGoal;
     
     // Calculate flexible range (±20% of required daily savings)
     const flexibleMin = requiredDailySavings * 0.8;
     const flexibleMax = requiredDailySavings * 1.2;
-    const flexiDaysMin = financialData.targetAmount / flexibleMax;
-    const flexiDaysMax = financialData.targetAmount / flexibleMin;
+    const flexiDaysMin = parseFloat(financialData.targetAmount) / flexibleMax;
+    const flexiDaysMax = parseFloat(financialData.targetAmount) / flexibleMin;
+
+    // A goal is considered achievable if the required daily savings is less than daily disposable income
+    const remainingDaily = dailyDisposableIncome - requiredDailySavings;
+
+    console.log({
+      monthlyDisposableIncome,
+      dailyDisposableIncome,
+      requiredDailySavings,
+      remainingDaily
+    });
 
     return {
       isAchievable: requiredDailySavings <= dailyDisposableIncome,
+      monthlyDisposableIncome,
+      dailyDisposableIncome,
+      requiredDailySavings,
+      remainingDaily,
       strictPlan: {
         dailySavings: requiredDailySavings,
         daysToGoal: daysToGoal
@@ -173,62 +190,104 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
           <div>
             <h2 className="text-2xl font-bold mb-4">Choose Your Savings Plan</h2>
             
-            {!feasibility.isAchievable && (
-              <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
-                Warning: This goal might be challenging with your current disposable income.
-                Consider extending your target date or adjusting the target amount.
-              </div>
+            {!feasibility.isAchievable ? (
+              <>
+                <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+                  <p>Warning: This goal might be challenging with your current finances.</p>
+                  <ul className="list-disc ml-4 mt-2">
+                    <li>Monthly disposable income: RM {feasibility.monthlyDisposableIncome.toFixed(2)}</li>
+                    <li>Daily disposable income: RM {feasibility.dailyDisposableIncome.toFixed(2)}</li>
+                    <li>Required daily savings: RM {feasibility.requiredDailySavings.toFixed(2)}</li>
+                    <li>Consider extending your target date or adjusting the target amount</li>
+                  </ul>
+                </div>
+
+                <div className="flex justify-end space-x-3 mt-6">
+                  <button
+                    onClick={onClose}
+                    className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => {
+                      setStep(1);
+                      setFinancialData({
+                        goal: '',
+                        targetAmount: '',
+                        targetDate: '',
+                        planType: ''
+                      });
+                    }}
+                    className="text-xl px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                  >
+                    Edit Plan
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4">
+                  <p>✅ Your goal is achievable!</p>
+                  <ul className="list-disc ml-4 mt-2">
+                    <li>Monthly disposable income: RM {feasibility.monthlyDisposableIncome.toFixed(2)}</li>
+                    <li>Daily disposable income: RM {feasibility.dailyDisposableIncome.toFixed(2)}</li>
+                    <li>Required daily savings: RM {feasibility.requiredDailySavings.toFixed(2)}</li>
+                    <li>Remaining daily after savings: RM {feasibility.remainingDaily.toFixed(2)}</li>
+                  </ul>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Flexible Plan */}
+                  <div 
+                    className={`p-4 border rounded cursor-pointer ${
+                      financialData.planType === 'flexi' ? 'border-blue-500 bg-blue-50' : ''
+                    }`}
+                    onClick={() => setFinancialData({...financialData, planType: 'flexi'})}
+                  >
+                    <h3 className="font-bold mb-2">Flexible Plan</h3>
+                    <ul className="space-y-2 text-sm">
+                      <li>Daily Savings: RM {feasibility.flexiPlan.minDailySavings.toFixed(2)} - {feasibility.flexiPlan.maxDailySavings.toFixed(2)}</li>
+                      <li>Timeline: {feasibility.flexiPlan.minDays} - {feasibility.flexiPlan.maxDays} days</li>
+                      <li>Adjustable daily savings</li>
+                      <li>More flexibility</li>
+                    </ul>
+                  </div>
+
+                  {/* Strict Plan */}
+                  <div 
+                    className={`p-4 border rounded cursor-pointer ${
+                      financialData.planType === 'strict' ? 'border-blue-500 bg-blue-50' : ''
+                    }`}
+                    onClick={() => setFinancialData({...financialData, planType: 'strict'})}
+                  >
+                    <h3 className="font-bold mb-2">Strict Plan</h3>
+                    <ul className="space-y-2 text-sm">
+                      <li>Daily Savings: RM {feasibility.strictPlan.dailySavings.toFixed(2)}</li>
+                      <li>Timeline: {feasibility.strictPlan.daysToGoal} days</li>
+                      <li>Fixed daily savings</li>
+                      <li>Consistent routine</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="flex justify-end space-x-3 mt-6">
+                  <button
+                    onClick={onClose}
+                    className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSavePlan}
+                    disabled={!financialData.planType}
+                    className="text-xl px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:hover:bg-gray-300"
+                  >
+                    Save Plan
+                  </button>
+                </div>
+              </>
             )}
-
-            <div className="grid grid-cols-2 gap-4">
-              {/* Flexible Plan */}
-              <div 
-                className={`p-4 border rounded cursor-pointer ${
-                  financialData.planType === 'flexi' ? 'border-blue-500 bg-blue-50' : ''
-                }`}
-                onClick={() => setFinancialData({...financialData, planType: 'flexi'})}
-              >
-                <h3 className="font-bold mb-2">Flexible Plan</h3>
-                <ul className="space-y-2 text-sm">
-                  <li>Daily Savings: RM {feasibility.flexiPlan.minDailySavings.toFixed(2)} - {feasibility.flexiPlan.maxDailySavings.toFixed(2)}</li>
-                  <li>Timeline: {feasibility.flexiPlan.minDays} - {feasibility.flexiPlan.maxDays} days</li>
-                  <li>Adjustable daily savings</li>
-                  <li>More flexibility</li>
-                </ul>
-              </div>
-
-              {/* Strict Plan */}
-              <div 
-                className={`p-4 border rounded cursor-pointer ${
-                  financialData.planType === 'strict' ? 'border-blue-500 bg-blue-50' : ''
-                }`}
-                onClick={() => setFinancialData({...financialData, planType: 'strict'})}
-              >
-                <h3 className="font-bold mb-2">Strict Plan</h3>
-                <ul className="space-y-2 text-sm">
-                  <li>Daily Savings: RM {feasibility.strictPlan.dailySavings.toFixed(2)}</li>
-                  <li>Timeline: {feasibility.strictPlan.daysToGoal} days</li>
-                  <li>Fixed daily savings</li>
-                  <li>Consistent routine</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex justify-end space-x-3 mt-6">
-              <button
-                onClick={onClose}
-                className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleSavePlan}
-                disabled={!financialData.planType}
-                className="text-xl px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:hover:bg-gray-300"
-              >
-                Save Plan
-              </button>
-            </div>
           </div>
         )}
       </div>

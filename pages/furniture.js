@@ -3,7 +3,6 @@ import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import SpinWheel from '../components/SpinWheel';
 
-// Add these scale factors at the top of the file
 export const PREVIEW_SCALE = 1.5; // Scale for furniture in the menu
 export const PLACED_SCALE = 2.5;  // Scale for furniture on the map
 
