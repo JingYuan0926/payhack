@@ -27,11 +27,6 @@ export default function DailyGoals({ onClose, showPopup }) {
     }
   };
 
-  const formatGoalType = (goalType) => {
-    if (!goalType) return 'Other';
-    return goalType.charAt(0).toUpperCase() + goalType.slice(1).replace(/([A-Z])/g, ' $1');
-  };
-
   const fetchAndAggregateGoals = async () => {
     try {
       const response = await fetch('/api/getDailyPlan');
@@ -55,20 +50,20 @@ export default function DailyGoals({ onClose, showPopup }) {
       // Use the values directly from the plan instead of calculating
       setAggregatedGoals({
         dailySavingsTarget: typeof plan.dailySavings === 'object' 
-          ? `${plan.dailySavings.min.toFixed(2)} - ${plan.dailySavings.max.toFixed(2)}`
-          : plan.dailySavings.toFixed(2),
+          ? `${plan.dailySavings.min?.toFixed(2) || '0.00'} - ${plan.dailySavings.max?.toFixed(2) || '0.00'}`
+          : plan.dailySavings?.toFixed(2) || '0.00',
         daysToGoal: typeof plan.daysToGoal === 'object' 
-          ? `${plan.daysToGoal.min} - ${plan.daysToGoal.max}`
-          : plan.daysToGoal,
-        dailyDisposableIncome: plan.dailyDisposableIncome.toFixed(2),
-        monthlyDebtPayment: plan.monthlyDebt.toFixed(2),
+          ? `${plan.daysToGoal.min || 0} - ${plan.daysToGoal.max || 0}`
+          : plan.daysToGoal || 0,
+        dailyDisposableIncome: plan.dailyDisposableIncome?.toFixed(2) || '0.00',
+        monthlyDebtPayment: plan.monthlyDebt?.toFixed(2) || '0.00',
         recommendations: [
-          `Goal: ${plan.goal} - RM ${plan.targetAmount.toFixed(2)}`,
-          `Daily spending limit: RM ${plan.dailyLimit.toFixed(2)}`,
-          `Monthly debt payment: RM ${plan.monthlyDebt.toFixed(2)}`,
+          `Goal: ${plan.goal} - RM ${plan.targetAmount?.toFixed(2) || '0.00'}`,
+          `Daily spending limit: RM ${plan.dailyLimit?.toFixed(2) || '0.00'}`,
+          `Monthly debt payment: RM ${plan.monthlyDebt?.toFixed(2) || '0.00'}`,
           typeof plan.remainingDaily === 'object'
-            ? `✅ Your goal is achievable! You'll have RM ${plan.remainingDaily.min.toFixed(2)} - RM ${plan.remainingDaily.max.toFixed(2)} remaining daily after savings.`
-            : `✅ Your goal is achievable! You'll have RM ${plan.remainingDaily.toFixed(2)} remaining daily after savings.`
+            ? `✅ Your goal is achievable! You'll have RM ${plan.remainingDaily.min?.toFixed(2) || '0.00'} - RM ${plan.remainingDaily.max?.toFixed(2) || '0.00'} remaining daily after savings.`
+            : `✅ Your goal is achievable! You'll have RM ${plan.remainingDaily?.toFixed(2) || '0.00'} remaining daily after savings.`
         ],
         numberOfGoals: 1,
         goals: [plan]
@@ -112,9 +107,9 @@ export default function DailyGoals({ onClose, showPopup }) {
               <p className="text-5xl font-bold text-blue-600">
                 {dailyPlan ? (
                   typeof dailyPlan.dailySavings === 'object' ? (
-                    `RM ${dailyPlan.dailySavings.min.toFixed(2)} - ${dailyPlan.dailySavings.max.toFixed(2)}`
+                    `RM ${dailyPlan.dailySavings.min?.toFixed(2) || '0.00'} - ${dailyPlan.dailySavings.max?.toFixed(2) || '0.00'}`
                   ) : (
-                    `RM ${Number(dailyPlan.dailySavings).toFixed(2)}`
+                    `RM ${Number(dailyPlan.dailySavings).toFixed(2) || '0.00'}`
                   )
                 ) : (
                   'RM 0.00'
@@ -130,7 +125,7 @@ export default function DailyGoals({ onClose, showPopup }) {
             <p className="text-lg">
               Timeline: {
                 typeof dailyPlan?.daysToGoal === 'object' 
-                  ? `${dailyPlan.daysToGoal.min} - ${dailyPlan.daysToGoal.max} days`
+                  ? `${dailyPlan.daysToGoal.min || 0} - ${dailyPlan.daysToGoal.max || 0} days`
                   : `${dailyPlan?.daysToGoal || 0} days`
               }
             </p>
@@ -143,9 +138,9 @@ export default function DailyGoals({ onClose, showPopup }) {
               <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-500 mt-4">
                 <p className="text-lg text-green-700">
                   {typeof dailyPlan.remainingDaily === 'object' ? (
-                    `✅ Your goal is achievable! You'll have RM ${dailyPlan.remainingDaily.min.toFixed(2)} - RM ${dailyPlan.remainingDaily.max.toFixed(2)} remaining daily after savings.`
+                    `✅ Your goal is achievable! You'll have RM ${dailyPlan.remainingDaily.min?.toFixed(2) || '0.00'} - RM ${dailyPlan.remainingDaily.max?.toFixed(2) || '0.00'} remaining daily after savings.`
                   ) : (
-                    `✅ Your goal is achievable! You'll have RM ${dailyPlan.remainingDaily.toFixed(2)} remaining daily after savings.`
+                    `✅ Your goal is achievable! You'll have RM ${dailyPlan.remainingDaily?.toFixed(2) || '0.00'} remaining daily after savings.`
                   )}
                 </p>
               </div>

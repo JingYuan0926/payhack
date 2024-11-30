@@ -18,9 +18,11 @@ export default async function handler(req, res) {
       0
     );
 
-    // Randomly select a bank
+    // Randomly select banks for both accounts
     const banks = ['Maybank', 'RHB Bank'];
-    const selectedBank = banks[Math.floor(Math.random() * banks.length)];
+    const fdBank = banks[Math.floor(Math.random() * banks.length)];
+    // Select the other bank for savings account
+    const savingsBank = banks.find(bank => bank !== fdBank);
 
     const prompt = `
       Analyze this financial data and provide a JSON response for investment split:
@@ -32,7 +34,7 @@ export default async function handler(req, res) {
       ${JSON.stringify(income.annual_summary, null, 2)}
 
       Total Savings Amount: RM ${totalSavingsAmount.toFixed(2)}
-      Selected Bank: ${selectedBank}
+      Selected Banks: FD - ${fdBank}, Savings - ${savingsBank}
 
       Return the investment split in JSON format with bank, percentages, and amounts.
     `;
@@ -56,18 +58,19 @@ export default async function handler(req, res) {
       response_format: { type: "json_object" }
     });
 
-    // Instead of parsing OpenAI response, use our fixed structure
+    // Use fixed structure with both banks
     const formattedAdvice = {
       fixedDeposit: {
-        bank: selectedBank,
+        bank: fdBank,
         percentage: 60,
         amount: Number((totalSavingsAmount * 0.6).toFixed(2))
       },
       savingsAccount: {
+        bank: savingsBank,
         percentage: 40,
         amount: Number((totalSavingsAmount * 0.4).toFixed(2))
       },
-      explanation: `${selectedBank} fixed deposit (60%) for stable returns, savings account (40%) for liquidity.`
+      explanation: `${fdBank} fixed deposit (60%) for stable returns, ${savingsBank} savings account (40%) for liquidity.`
     };
 
     console.log('Formatted advice:', formattedAdvice); // Debug log

@@ -7,7 +7,7 @@ const DailySum2 = ({ showPopup, onClose, onStreakUpdate }) => {
   const [showSpinWheel, setShowSpinWheel] = useState(false);
   const [showDailyGoals, setShowDailyGoals] = useState(false);
 
-  if (!showPopup) return null;
+  if (!showPopup && !showDailyGoals) return null;
 
   const handleCardClick = () => {
     if (!isFlipped) {
@@ -23,31 +23,40 @@ const DailySum2 = ({ showPopup, onClose, onStreakUpdate }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          overspentAmount: 1000,
+          overspentAmount: 1036.35,
           username: "Tom The Cat"
         }),
       });
 
+      const data = await response.json();
       if (response.ok) {
+        // Calculate extra daily savings needed
+        const daysRemaining = data.daysToGoal;
+        const extraDaily = (1036.35 / daysRemaining).toFixed(2);
+        
+        // Show alert with the extra savings needed
+        
+        // First show DailyGoals, then close DailySum2
+        setShowDailyGoals(true);
         onClose();
-        setTimeout(() => {
-          setShowDailyGoals(true);
-        }, 100);
       }
     } catch (error) {
       console.error('Error updating goals:', error);
     }
   };
 
-  const handleDailyGoalsClose = () => {
-    setShowDailyGoals(false);
-  };
-
   return (
     <>
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
-        {/* Card Container */}
-        {!showDailyGoals && (
+      {showDailyGoals ? (
+        <DailyGoals 
+          showPopup={true} 
+          onClose={() => {
+            setShowDailyGoals(false);
+            onClose();
+          }}
+        />
+      ) : (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
           <div className="bg-white p-6 rounded-lg shadow-xl w-[90%] max-w-[500px]">
             {/* Front Side - Daily Summary */}
             {!isFlipped && (
@@ -159,15 +168,7 @@ const DailySum2 = ({ showPopup, onClose, onStreakUpdate }) => {
               </div>
             )}
           </div>
-        )}
-      </div>
-      
-      {/* Render DailyGoals as a separate overlay */}
-      {showDailyGoals && (
-        <DailyGoals 
-          showPopup={showDailyGoals} 
-          onClose={handleDailyGoalsClose}
-        />
+        </div>
       )}
     </>
   );

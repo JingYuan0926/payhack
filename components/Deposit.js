@@ -9,7 +9,7 @@ const Circle = forwardRef(({ className, children }, ref) => {
     <div
       ref={ref}
       className={cn(
-        "z-10 flex size-12 items-center justify-center rounded-full border-2 bg-white p-3 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]",
+        "z-10 flex size-12 items-center justify-center rounded-full border-2 bg-white p-0 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)] overflow-hidden",
         className,
       )}
     >
@@ -46,17 +46,17 @@ export default function Deposit({ className }) {
         {/* FinCat Circle */}
         <div className="flex flex-col justify-center">
           <Circle ref={fincatRef} className="size-15">
-            <img src="/logo.png" alt="FinCat" className="w-10 h-10" />
+            <img src="/logo.png" alt="FinCat" className="w-20 h-20 object-cover" />
           </Circle>
         </div>
 
         {/* Output Circles */}
         <div className="flex flex-col justify-center gap-4">
           <Circle ref={output1Ref}>
-            <div className="text-sm font-medium">Bank 1</div>
+            <img src="/maybank.png" alt="Maybank" className="w-full h-full object-cover" />
           </Circle>
           <Circle ref={output2Ref}>
-            <div className="text-sm font-medium">Bank 2</div>
+            <img src="/rhb.jpeg" alt="RHB" className="w-full h-full object-cover" />
           </Circle>
         </div>
       </div>

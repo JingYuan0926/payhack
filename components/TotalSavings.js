@@ -90,14 +90,12 @@ export default function TotalSavings({ onClose, showPopup }) {
 
   const AdviceCard = ({ title, bank, percentage, amount, className }) => (
     <div className={`${className} p-4 rounded-lg shadow-sm`}>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+      <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <div className="space-y-1">
-        {bank && (
-          <div className="flex justify-between items-center">
-            <span className="text-gray-600">Bank:</span>
-            <span className="text-xl font-bold">{bank}</span>
-          </div>
-        )}
+        <div className="flex justify-between items-center">
+          <span className="text-gray-600">Bank:</span>
+          <span className="text-xl font-bold">{bank}</span>
+        </div>
         <div className="flex justify-between items-center">
           <span className="text-gray-600">Percentage:</span>
           <span className="text-2xl font-bold">{percentage}%</span>
@@ -221,19 +219,20 @@ export default function TotalSavings({ onClose, showPopup }) {
                       bank={investmentAdvice.fixedDeposit.bank || ''}
                       percentage={investmentAdvice.fixedDeposit.percentage || 0}
                       amount={investmentAdvice.fixedDeposit.amount || 0}
-                      className="bg-green-50 border border-green-100"
+                      className="bg-green-50 border border-green-100 text-lg"
                     />
                     <AdviceCard
                       title="Savings Account"
-                      percentage={investmentAdvice.savingsAccount?.percentage || 0}
-                      amount={investmentAdvice.savingsAccount?.amount || 0}
-                      className="bg-blue-50 border border-blue-100"
+                      bank={investmentAdvice.savingsAccount.bank || ''}
+                      percentage={investmentAdvice.savingsAccount.percentage || 0}
+                      amount={investmentAdvice.savingsAccount.amount || 0}
+                      className="bg-blue-50 border border-blue-100 text-lg"
                     />
                   </div>
 
                   <div className="bg-gray-50 p-4 rounded-lg mt-4">
-                    <h3 className="text-lg font-semibold mb-2">RECOMMENDATION RATIONALE</h3>
-                    <p className="text-gray-600">
+                    <h3 className="text-xl font-semibold mb-2">RECOMMENDATION RATIONALE</h3>
+                    <p className="text-gray-600 text-lg">
                       {investmentAdvice.explanation || 'No explanation provided'}
                     </p>
                   </div>
