@@ -112,16 +112,59 @@ export default function Map() {
   const [showSpendingHistory, setShowSpendingHistory] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+
+  const sendEmail = async () => {
+    try {
+      console.log('Sending email...');
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: 'derekliew0@gmail.com',
+          subject: 'Meow! 🐱 Your Spending is Pawsitively Concerning!',
+          text: 'Purr-lease be careful! You\'ve spent RM 842 today, which is 83% of your daily budget! Time to put those paws back in your pockets! 🐾💰\n\n',
+          html: `
+            <p>Purr-lease be careful! You've spent RM 842 today, which is 83% of your daily budget! Time to put those paws back in your pockets! 🐾💰</p>
+            <img src="cid:cryCat" alt="Crying Cat" style="width: 200px;">
+          `,
+          attachments: [{
+            filename: 'cryCat.gif',
+            path: 'cryCat.gif',
+            cid: 'cryCat'
+          }]
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send email');
+      }
+
+      setEmailSent(true);
+      setCatEmotion('happy');
+      setCatMessage("Purrfect! Email sent successfully! 📧");
+    } catch (error) {
+      console.error('Detailed error sending email:', error);
+      setCatEmotion('sad');
+      setCatMessage(`Meowch! Failed to send email: ${error.message} 😿`);
+    }
+  };
 
   useEffect(() => {
     const handleKeyPress = (event) => {
-      // Check if any modal/popup is open
       const financialPlanPopup = document.querySelector('[role="dialog"]');
       if (financialPlanPopup) {
-        return; // Don't handle keyboard events if popup is open
+        return;
       }
 
       switch (event.key) {
+        case '+':
+          sendEmail();
+          break;
         case '1':
           setCatEmotion('angry')
           setCatMessage("Why are you spending so much on Starbucks? You're over budget today! ☕💸")
@@ -223,23 +266,17 @@ export default function Map() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div>
-        <LevelBar username="Tom The Cat" progress={progress} dangerProgress={loveLevel} onFeedCat={handleFeedCat} />
-
-        <div
-          style={{
-            position: "absolute",
-            top: "2%",
-            left: "37%",
-            zIndex: 9999,
-            display: showSpendingHistory ? "none" : "block",
-          }}
-        >
-          {/* Removing Weekly Challenge component
-          <WeeklyChallenge onChallengeComplete={handleChallengeComplete} onFeedCat={handleFeedCat} />
-          */}
+      <div className="flex flex-col">
+        <div className="px-4 pt-2">
+          <LevelBar 
+            username="Tom The Cat" 
+            progress={progress} 
+            dangerProgress={loveLevel} 
+            onFeedCat={handleFeedCat} 
+          />
         </div>
-        <div className="flex-1 flex items-center justify-center relative">
+
+        <div className="flex-1 flex items-center justify-center relative mt-4">
           {/* Daily Goals Button */}
           <button
             className="absolute left-4 top-4 w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg z-[9998]"

@@ -42,9 +42,9 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
       dailyDisposableIncome: dailyDisposableIncome.toFixed(2),
       monthlyDebtPayment: monthlyDebtPayment.toFixed(2),
       recommendations: [
-        `Save $${dailySavingsNeeded.toFixed(2)} daily to reach your goal`,
-        `Available daily spending: $${dailyDisposableIncome.toFixed(2)}`,
-        `Monthly debt payment: $${monthlyDebtPayment.toFixed(2)}`,
+        `Save RM${dailySavingsNeeded.toFixed(2)} daily to reach your goal`,
+        `Available daily spending: RM ${dailyDisposableIncome.toFixed(2)}`,
+        `Monthly debt payment: RM ${monthlyDebtPayment.toFixed(2)}`,
         dailySavingsNeeded > dailyDisposableIncome 
           ? "Warning: Your target savings exceed your disposable income. Consider extending your target date or adjusting your goal amount."
           : "Your goal appears achievable with your current income!"
@@ -97,7 +97,7 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
       <div className="bg-white p-6 rounded-lg shadow-xl w-[500px]">
-        <h2 className="text-3xl font-bold mb-4">Financial Plan</h2>
+        <h2 className="text-4xl font-bold mb-4 pixel-text-blue">Financial Plan</h2>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -169,7 +169,7 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
                 </label>
                 <input
                   type="text"
-                  value={`$${financialData.salary}`}
+                  value={`RM ${financialData.salary}`}
                   className="text-xl mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
                   readOnly
                 />
@@ -181,7 +181,7 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
                 </label>
                 <input
                   type="text"
-                  value={`$${financialData.loansAndDebts}`}
+                  value={`RM ${financialData.loansAndDebts}`}
                   className="text-xl mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
                   readOnly
                 />

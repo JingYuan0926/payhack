@@ -131,94 +131,57 @@ const Map = ({ furniture, onDrop, onRemove }) => {
 
 // Popup Menu Component
 const MenuPopup = ({ onClose, onSelect }) => {
-    const [furnitureData, setFurnitureData] = useState(() => loadFromInventory());
-    const [dimensions, setDimensions] = useState({});
-    
-    // Add this useEffect to reload inventory when MenuPopup is opened
-    useEffect(() => {
-      setFurnitureData(loadFromInventory());
-    }, []);
-  
-    // Load dimensions for all furniture items
-    useEffect(() => {
-      furnitureData.forEach(furniture => {
-        const img = new Image();
-        img.src = furniture.src;
-        img.onload = () => {
-          setDimensions(prev => ({
-            ...prev,
-            [furniture.id]: {
-              width: img.width * PREVIEW_SCALE,
-              height: img.height * PREVIEW_SCALE
-            }
-          }));
-        };
-      });
-    }, [furnitureData]);
-  
-    return (
-      <div style={{
-        position: 'fixed',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '300px',
-        padding: '20px',
-        background: '#fff',
-        boxShadow: '0 0 10px rgba(0,0,0,0.3)',
-        borderRadius: '8px',
-        zIndex: 1000,
-        maxHeight: '400px',
-        overflowY: 'scroll',
-      }}>
-        <h2 className="text-xl font-bold">Select Furniture</h2>
-        <h2>----------------</h2>
-        {furnitureData.map((furniture) => (
-          <div
-            key={furniture.id}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              cursor: 'pointer',
-              marginBottom: '10px',
-              flexDirection: 'column',
-              textAlign: 'center'
-            }}
-            onClick={() => {
-              onSelect({ ...furniture, position: { x: 0, y: 0 } });
-              onClose();
-            }}
+  const inventory = loadFromInventory();
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
+      <div className="bg-white p-6 rounded-lg shadow-xl w-[90%] max-w-[500px]">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-4xl font-bold pixel-text-blue">Inventory</h2>
+        </div>
+
+        {/* Scrollable Content */}
+        <div className="max-h-[60vh] overflow-y-auto space-y-4 pr-2">
+          {inventory.map((item) => (
+            <div
+              key={item.id}
+              className="bg-blue-50 p-3 rounded-lg flex items-center justify-between hover:bg-blue-100 transition-colors"
+            >
+              <div className="flex items-center space-x-4">
+                <img
+                  src={item.src}
+                  alt={item.name}
+                  className="w-16 h-16 object-contain"
+                />
+                <div>
+                  <h3 className="text-xl font-bold text-blue-600">{item.name}</h3>
+                  <p className="text-gray-600">{item.price}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => onSelect(item)}
+                className="text-blue-500 hover:text-blue-600 font-bold"
+              >
+                Place
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer with Cancel Button */}
+        <div className="flex justify-end space-x-3 mt-6">
+          <button
+            onClick={onClose}
+            className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
           >
-            <img
-              src={furniture.src}
-              alt={furniture.name}
-              style={{
-                width: furniture.previewWidth || dimensions[furniture.id]?.width || 50,
-                height: furniture.previewHeight || dimensions[furniture.id]?.height || 50
-              }}
-            />
-            <span style={{ fontSize: '20px'}}>{furniture.name}</span>
-            <span style={{ fontSize: '20px', color: '#555' }}>{furniture.price}</span>
-          </div>
-        ))}
-        <button
-          onClick={onClose}
-          style={{
-            marginTop: '10px',
-            padding: '10px 20px',
-            background: '#00aaff',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-          }}
-        >
-          Close
-        </button>
+            Cancel
+          </button>
+        </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
   
 // Main Component
 const FurnitureMap = () => {
@@ -300,7 +263,5 @@ const FurnitureMap = () => {
   );
 };
 
-export default FurnitureMap;
-
-// Export MenuPopup component
-export { MenuPopup };
+// Single export statement at the end
+export { FurnitureMap as default, MenuPopup };
