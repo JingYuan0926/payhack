@@ -6,7 +6,8 @@ import { useRouter } from 'next/router';
 export default function LevelBar({ 
   username = "Username", 
   progress = 60, 
-  dangerProgress = 90, 
+  level = 1,
+  streak = 0,
   onFeedCat 
 }) {
   const router = useRouter();
@@ -48,7 +49,7 @@ export default function LevelBar({
 
   return (
     <div className="p-4 flex justify-between items-start">
-      <div className="w-[30%] ml-8">
+      <div className="w-[50%] ml-8">
         <div className="text-lg font-bold mb-2 flex items-center">
           <span 
             className="pixel-text-blue text-3xl cursor-pointer hover:text-blue-600"
@@ -64,25 +65,29 @@ export default function LevelBar({
           </button>
         </div>
         
-        {/* Experience bar (green) */}
-        <div className="w-full h-6 border-4 border-black [image-rendering:pixelated] bg-gray-200 mb-2">
-          <div
-            className="h-full bg-green-500 transition-all duration-500"
-            style={{ width: `${currentProgress}%` }}
-          ></div>
-        </div>
-
-        {/* Love Level bar (red) with label */}
-        <div className="mb-1">
-          <span className="text-sm font-semibold text-red-500">
-            Love Level
-          </span>
-        </div>
-        <div className="w-full h-6 border-4 border-black [image-rendering:pixelated] bg-gray-200">
-          <div
-            className="h-full bg-red-500"
-            style={{ width: `${dangerProgress}%` }}
-          ></div>
+        {/* Health bar (green) with stats beside it */}
+        <div className="flex items-center gap-4">
+          <div className="flex-1">
+            <div className="w-full h-8 border-4 border-black [image-rendering:pixelated] bg-gray-200">
+              <div
+                className="h-full bg-green-500 transition-all duration-500"
+                style={{ width: `${currentProgress}%` }}
+              ></div>
+            </div>
+          </div>
+          
+          {/* Level and Streak display */}
+          <div className="flex gap-6 text-2xl">
+            <div className="flex items-center">
+              <span className="font-bold pixel-text-golden text-4xl">LVL {level}</span>
+            </div>
+            <div className="flex items-center">
+              <span className="font-bold text-4xl">
+                <span>🔥 </span>
+                <span className="pixel-text-golden">{streak}</span>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
