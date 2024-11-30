@@ -123,42 +123,38 @@ export default function DailyGoals({ onClose, showPopup }) {
 
         {/* Show Daily Plan if exists */}
         {dailyPlan && (
-          <div className="bg-blue-50 p-4 rounded-lg mb-4">
-            <h4 className="text-2xl font-semibold text-blue-800 mb-2">Your Savings Goal</h4>
-            <div className="space-y-2">
-              <p className="text-xl">Goal: {dailyPlan.goal}</p>
-              <p className="text-xl">Target: RM {dailyPlan.targetAmount.toFixed(2)}</p>
-              <p className="text-xl">Daily Savings Required: RM {
-                typeof dailyPlan.dailySavings === 'object' 
-                  ? `${dailyPlan.dailySavings.min.toFixed(2)} - ${dailyPlan.dailySavings.max.toFixed(2)}`
-                  : dailyPlan.dailySavings.toFixed(2)
-              }</p>
-              <p className="text-xl">Days to Goal: {
-                typeof dailyPlan.daysToGoal === 'object'
-                  ? `${dailyPlan.daysToGoal.min} - ${dailyPlan.daysToGoal.max}`
-                  : dailyPlan.daysToGoal
-              } days</p>
-              <p className="text-xl">Plan Type: {dailyPlan.planType === 'strict' ? 'Strict' : 'Flexible'}</p>
-            </div>
-          </div>
-        )}
-
-        {/* Existing aggregated goals section */}
-        <div className="space-y-4 overflow-y-auto">
-          {aggregatedGoals && (
-            <>
-              <div className="bg-blue-50 p-3 rounded-lg">
-                <p className="font-semibold text-blue-800 text-2xl">Total Daily Savings Target</p>
-                <p className="text-5xl font-bold text-blue-600">RM {aggregatedGoals.dailySavingsTarget}</p>
-              </div>
-
+          <div className="space-y-4">
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h4 className="text-2xl font-semibold text-blue-800 mb-2">Your Savings Goal</h4>
               <div className="space-y-2">
-                <p className="text-xl text-gray-600">Daily spending limit: RM {aggregatedGoals.dailyDisposableIncome}</p>
-                <p className="text-xl text-gray-600">Monthly debt payment: RM {aggregatedGoals.monthlyDebtPayment}</p>
+                <p className="text-xl">Goal: {dailyPlan.goal}</p>
+                <p className="text-xl">Target: RM {dailyPlan.targetAmount.toFixed(2)}</p>
+                <p className="text-xl">Daily Savings Required: RM {
+                  typeof dailyPlan.dailySavings === 'object' 
+                    ? `${dailyPlan.dailySavings.min.toFixed(2)} - ${dailyPlan.dailySavings.max.toFixed(2)}`
+                    : dailyPlan.dailySavings.toFixed(2)
+                }</p>
+                <p className="text-xl">Days to Goal: {
+                  typeof dailyPlan.daysToGoal === 'object'
+                    ? `${dailyPlan.daysToGoal.min} - ${dailyPlan.daysToGoal.max}`
+                    : dailyPlan.daysToGoal
+                } days</p>
+                <p className="text-xl">Plan Type: {dailyPlan.planType === 'strict' ? 'Strict' : 'Flexible'}</p>
               </div>
+            </div>
 
-              {/* Feasibility Check */}
-              {dailyPlan && aggregatedGoals && (
+            {/* Financial Summary */}
+            {aggregatedGoals && (
+              <div className="space-y-4">
+                <div className="bg-blue-50 p-3 rounded-lg">
+                  <p className="font-semibold text-blue-800 text-2xl">Daily Financial Summary</p>
+                  <div className="space-y-2 mt-2">
+                    <p className="text-xl text-gray-600">Daily spending limit: RM {aggregatedGoals.dailyDisposableIncome}</p>
+                    <p className="text-xl text-gray-600">Monthly debt payment: RM {aggregatedGoals.monthlyDebtPayment}</p>
+                  </div>
+                </div>
+
+                {/* Feasibility Check */}
                 <div className={`p-4 rounded-lg ${
                   parseFloat(aggregatedGoals.dailyDisposableIncome) >= 
                   (typeof dailyPlan.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan.dailySavings)
@@ -167,32 +163,16 @@ export default function DailyGoals({ onClose, showPopup }) {
                 }`}>
                   {parseFloat(aggregatedGoals.dailyDisposableIncome) >= 
                    (typeof dailyPlan.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan.dailySavings)
-                    ? "✅ Your savings goal is achievable with your current income!"
+                    ? `✅ Your goal is achievable! You'll have RM ${(parseFloat(aggregatedGoals.dailyDisposableIncome) - 
+                        (typeof dailyPlan.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan.dailySavings)
+                      ).toFixed(2)} remaining daily after savings.`
                     : "⚠️ Your savings goal might be challenging. Consider adjusting your target or timeline."
                   }
                 </div>
-              )}
-
-              <div className="mt-4 space-y-2">
-                <h4 className="font-semibold text-gray-700 text-2xl">Recommendations:</h4>
-                <ul className="list-disc pl-5 space-y-1">
-                  {aggregatedGoals.recommendations.map((rec, index) => (
-                    <li
-                      key={index}
-                      className={`text-xl ${
-                        rec.includes('⚠️') ? 'text-red-600 font-medium' :
-                        rec.includes('achievable') ? 'text-green-600 font-medium' :
-                        'text-gray-600'
-                      }`}
-                    >
-                      {rec}
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </>
-          )}
-        </div>
+            )}
+          </div>
+        )}
 
         <div className="flex justify-end space-x-3 mt-6">
           <button
@@ -200,12 +180,6 @@ export default function DailyGoals({ onClose, showPopup }) {
             className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
           >
             Close
-          </button>
-          <button
-            onClick={handleClose}
-            className="text-xl px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-          >
-            Next
           </button>
         </div>
       </div>
