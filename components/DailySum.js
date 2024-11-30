@@ -72,7 +72,7 @@ const DailySum = ({ showPopup, onClose }) => {
                 <div className="space-y-6">
                   {/* Today's Spending */}
                   <div className="p-4 bg-blue-50 rounded-lg border-4 border-blue-200">
-                    <h3 className="text-xl font-bold mb-3 text-blue-600">Today's Spending</h3>
+                    <h3 className="text-xl font-bold mb-3 text-blue-600">Today&apos;s Spending</h3>
                     <div className="space-y-2">
                       <p className="text-lg">Total spent: <span className="font-bold">${"350"}</span></p>
                       <div className="flex justify-between">

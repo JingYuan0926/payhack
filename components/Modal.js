@@ -44,7 +44,7 @@ export default function OnboardingModal({ isOpen, onOpenChange }) {
                       <div className="flex flex-col items-center gap-2">
                         <div className="w-5 h-5 text-green-500">✓</div>
                         <p className="font-semibold">Your data belongs to you</p>
-                        <p className="text-sm text-gray-500">Open Finance API doesn't sell personal info, and will only use it with your permission</p>
+                        <p className="text-sm text-gray-500">Open Finance API doesn&apos;t sell personal info, and will only use it with your permission</p>
                       </div>
                     </div>
 
