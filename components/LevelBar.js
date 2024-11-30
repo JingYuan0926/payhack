@@ -5,12 +5,14 @@ import { useRouter } from 'next/router';
 import ProgressButton from './ProgressButton';
 import DailySummaryButton from './DailySummaryButton';
 
+
 export default function LevelBar({ 
   username = "Username", 
   progress = 60, 
   dangerProgress = 90, 
   level = 1,
-  streak = 0
+  streak = 0,
+  onStreakUpdate
 }) {
   const router = useRouter();
   const [currentProgress, setCurrentProgress] = useState(progress);
@@ -108,11 +110,11 @@ export default function LevelBar({
           </div>
         </div>
         
-        {/* Progress bar */}
+        {/* Progress bar with CSS transition */}
         <div className="flex-1">
           <div className="w-full h-8 border-4 border-black [image-rendering:pixelated] bg-gray-200">
             <div
-              className="h-full bg-green-500 transition-all duration-500"
+              className="h-full bg-green-500 transition-all duration-500 ease-out"
               style={{ width: `${currentProgress}%` }}
             ></div>
           </div>

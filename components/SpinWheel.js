@@ -50,7 +50,7 @@ const FURNITURE_DATA = {
   17: { name: 'Curtain', src: '/furniture/curtain.png' }
 };
 
-const SpinWheel = ({ onRewardClaimed }) => {
+const SpinWheel = ({ onRewardClaimed, onStreakUpdate }) => {
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [reward, setReward] = useState(null);
@@ -165,13 +165,10 @@ const SpinWheel = ({ onRewardClaimed }) => {
           ...reward,
           id: `${reward.id}-${Date.now()}`,
           price: reward.rarity.toUpperCase(),
-          // Add original dimensions
           originalWidth: img.width,
           originalHeight: img.height,
-          // Add preview dimensions
           previewWidth: img.width * PREVIEW_SCALE,
           previewHeight: img.height * PREVIEW_SCALE,
-          // Add placed dimensions
           placedWidth: img.width * PLACED_SCALE,
           placedHeight: img.height * PLACED_SCALE
         };
@@ -180,10 +177,19 @@ const SpinWheel = ({ onRewardClaimed }) => {
         const updatedInventory = [...currentInventory, rewardWithId];
         localStorage.setItem('furnitureInventory', JSON.stringify(updatedInventory));
         
+        if (onStreakUpdate) {
+          onStreakUpdate();
+        }
+        
         onRewardClaimed(rewardWithId);
         setShowReward(false);
         setReward(null);
       };
+    } else {
+      if (onStreakUpdate) {
+        onStreakUpdate();
+      }
+      onRewardClaimed();
     }
   };
 

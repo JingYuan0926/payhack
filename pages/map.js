@@ -194,6 +194,8 @@ export default function Map() {
   const [showTotalSavings, setShowTotalSavings] = useState(false);
   const [showDailySum, setShowDailySum] = useState(false);
   const [showDeposit, setShowDeposit] = useState(false);
+  const [streak, setStreak] = useState(0);
+  const [level, setLevel] = useState(1);
 
   const sendEmail = async () => {
     try {
@@ -300,19 +302,33 @@ export default function Map() {
       hour: 'numeric',
       minute: 'numeric',
       hour12: true
-    }).replace(/\s/g, ''); // Remove spaces between time and AM/PM
+    }).replace(/\s/g, '');
 
     const updatedFurniture = [
       ...placedFurniture,
       {
         ...newItem,
         position: { x: 100, y: 100 },
-        id: `${newItem.id}-${timeString}`, // Use formatted time in ID
+        id: `${newItem.id}-${timeString}`,
       },
     ];
 
     await saveFurniture(updatedFurniture);
     setPlacedFurniture(updatedFurniture);
+
+    // Add EXP when furniture is placed
+    setProgress(prev => {
+      const newProgress = prev + 20; // Add 20% EXP per furniture placed
+      
+      // If progress reaches or exceeds 100%
+      if (newProgress >= 100) {
+        // Level up and reset progress
+        setLevel(prevLevel => prevLevel + 1);
+        return newProgress - 100; // Keep remainder progress
+      }
+      
+      return newProgress;
+    });
   };
 
   const handleMoveFurniture = async (id, newPosition) => {
@@ -364,6 +380,8 @@ export default function Map() {
             onFeedCat={handleFeedCat}
             onProgressClick={handleProgressClick}
             onDailySummaryClick={handleDailySummaryClick}
+            streak={streak}
+            level={level}
           />
         </div>
 
@@ -507,6 +525,7 @@ export default function Map() {
           <DailySum
             showPopup={showDailySum}
             onClose={() => setShowDailySum(false)}
+            onStreakUpdate={() => setStreak(prev => prev + 1)}
           />
         )}
       </div>
