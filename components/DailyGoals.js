@@ -129,18 +129,6 @@ export default function DailyGoals({ onClose, showPopup }) {
           <p className="text-lg text-gray-600">Daily spending limit: ${aggregatedGoals.dailyDisposableIncome}</p>
           <p className="text-lg text-gray-600">Monthly debt payment: ${aggregatedGoals.monthlyDebtPayment}</p>
         </div>
-        
-        <div className="space-y-4">
-          <div className="bg-blue-50 p-3 rounded-lg">
-            <p className="font-semibold text-blue-800">Total Daily Savings Target</p>
-            <p className="text-2xl font-bold text-blue-600">${aggregatedGoals.dailySavingsTarget}</p>
-          </div>
-
-          <div className="space-y-2">
-            <p className="text-sm text-gray-600">Longest goal timeline: {aggregatedGoals.daysToGoal} days</p>
-            <p className="text-sm text-gray-600">Daily spending limit: ${aggregatedGoals.dailyDisposableIncome}</p>
-            <p className="text-sm text-gray-600">Monthly debt payment: ${aggregatedGoals.monthlyDebtPayment}</p>
-          </div>
 
         <div className="mt-4 space-y-2">
           <h4 className="font-semibold text-gray-700 text-lg">Goal Breakdown & Recommendations:</h4>

@@ -9,10 +9,9 @@ export default function LevelBar({
   progress = 60, 
   dangerProgress = 90, 
   onFeedCat,
-  onProgressClick
+
   level = 1,
-  streak = 0,
-  onFeedCat 
+  streak = 0
 }) {
   const router = useRouter();
   const [currentProgress, setCurrentProgress] = useState(progress);
