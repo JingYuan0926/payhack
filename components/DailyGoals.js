@@ -2,9 +2,16 @@ import { useState, useEffect } from 'react';
 
 export default function DailyGoals({ onClose, showPopup }) {
   const [aggregatedGoals, setAggregatedGoals] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    fetchAndAggregateGoals();
+    if (showPopup) {
+      fetchAndAggregateGoals();
+      // Delay setting visibility to true to allow fade in
+      setTimeout(() => setIsVisible(true), 50);
+    } else {
+      setIsVisible(false);
+    }
   }, [showPopup]);
 
   const formatGoalType = (goalType) => {
@@ -89,6 +96,12 @@ export default function DailyGoals({ onClose, showPopup }) {
     } catch (error) {
       console.error('Error fetching daily goals:', error);
     }
+  };
+
+  const handleClose = () => {
+    setIsVisible(false);
+    // Wait for fade out animation to complete before calling onClose
+    setTimeout(onClose, 300);
   };
 
   if (!aggregatedGoals || !showPopup) return null;
