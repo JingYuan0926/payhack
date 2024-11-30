@@ -35,7 +35,16 @@ export default function LeaderboardModal({ isOpen, onClose }) {
             >
               <div className="flex items-center gap-6">
                 <span className="font-bold pixel-text-blue text-3xl min-w-[3rem]">{player.rank}.</span>
-                <span className="pixel-text-blue text-3xl">{player.username}</span>
+                <span className="relative pixel-text-blue text-3xl group">
+                  {player.username}
+                  {player.username === "SAVINGS MASTER" && (
+                    <img
+                      src="/visit.png"
+                      alt="Visit"
+                      className="absolute left-1/2 -top-16 transform -translate-x-1/2 w-300 h-300 opacity-0 group-hover:opacity-100 transition-opacity z-[10000]"
+                    />
+                  )}
+                </span>
               </div>
               <div className="flex items-center gap-8">
                 <div className="flex items-center">

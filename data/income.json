@@ -1,28 +1,25 @@
 {
     "user": {
         "name": "Jason",
-        "income": {
-            "monthly_income": 5000,
-            "annual_income": 60000
+        "monthly_finances": {
+            "January": {"total_income": 10500.0, "total_savings": 2300.0, "total_debt": 2900.0},
+            "February": {"total_income": 10450.0, "total_savings": 2400.0, "total_debt": 2800.0},
+            "March": {"total_income": 10600.0, "total_savings": 2600.0, "total_debt": 2750.0},
+            "April": {"total_income": 10550.0, "total_savings": 2750.0, "total_debt": 2700.0},
+            "May": {"total_income": 10700.0, "total_savings": 2900.0, "total_debt": 2650.0},
+            "June": {"total_income": 10650.0, "total_savings": 3100.0, "total_debt": 2600.0},
+            "July": {"total_income": 10800.0, "total_savings": 3300.0, "total_debt": 2550.0},
+            "August": {"total_income": 10750.0, "total_savings": 3500.0, "total_debt": 2500.0},
+            "September": {"total_income": 10900.0, "total_savings": 3700.0, "total_debt": 2450.0},
+            "October": {"total_income": 10850.0, "total_savings": 3900.0, "total_debt": 2400.0},
+            "November": {"total_income": 11000.0, "total_savings": 2000.0, "total_debt": 2350.0},
+            "December": {"total_income": 20950.0, "total_savings": 4300.0, "total_debt": 2300.0}
         },
-        "monthly_debts": {
-            "debt": 1200,
-            "loans": 800,
-            "total": 2000
-        },
-        "loans": [
-            {
-                "loan_type": "Car Loan",
-                "loan_amount": 15000,
-                "monthly_payment": 500,
-                "interest_rate": 5.0
-            },
-            {
-                "loan_type": "Personal Loan",
-                "loan_amount": 8000,
-                "monthly_payment": 300,
-                "interest_rate": 7.5
-            }
-        ]
+        "annual_summary": {
+            "total_income": 128700.0,
+            "total_savings": 38850.0,
+            "total_debt": 30950.0,
+            "net_worth": 7900.0
+        }
     }
 }

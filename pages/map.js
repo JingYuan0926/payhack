@@ -9,6 +9,13 @@ import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
 import { getFurniture, saveFurniture, subscribeFurniture } from '../utils/furnitureStorage'
 import LeaderboardModal from '../components/LeaderboardModal'
+import TotalSavings from '../components/TotalSavings'
+import DailySummaryButton from '../components/DailySummaryButton'
+import ProgressButton from '../components/ProgressButton'
+import DailySum from '../components/DailySum'
+import Deposit from '../components/Deposit'
+import DailySum2 from '../components/DailySum2'
+import { createPortal } from 'react-dom';
 
 
 
@@ -19,6 +26,10 @@ const DraggableFurniture = ({ item, onMove, onRemove }) => {
     width: item.placedWidth || (item.originalWidth ? item.originalWidth * 2.5 : 100),
     height: item.placedHeight || (item.originalHeight ? item.originalHeight * 2.5 : 100)
   });
+  
+  const [progress, setProgress] = useState(item.progress || 0);
+  const [opacity, setOpacity] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     if (!item.originalWidth || !item.originalHeight) {
@@ -32,6 +43,45 @@ const DraggableFurniture = ({ item, onMove, onRemove }) => {
       };
     }
   }, [item]);
+
+  // Add keyboard event listener for the '9' key
+  useEffect(() => {
+    if (!item.isCelebration) return;
+
+    const handleKeyPress = async (event) => {
+      if (event.key === '9' && !isAnimating) {
+        setIsAnimating(true);
+        
+        const startTime = Date.now();
+        const duration = 300;
+
+        setProgress(10);
+        setOpacity(0.9);
+
+        const animate = () => {
+          const currentTime = Date.now();
+          const elapsed = currentTime - startTime;
+          const newProgress = Math.min((elapsed / duration) * 100, 100);
+          
+          setProgress(newProgress);
+          setOpacity(1 - (newProgress / 100));
+          
+          if (newProgress < 100) {
+            requestAnimationFrame(animate);
+          } else {
+            setTimeout(() => {
+              onRemove(item.id);
+            }, 50);
+          }
+        };
+
+        requestAnimationFrame(animate);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [item, onRemove, isAnimating]);
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'furniture',
@@ -47,25 +97,54 @@ const DraggableFurniture = ({ item, onMove, onRemove }) => {
         onMove(item.id, dropResult)
       }
     },
-  }))
+  }));
 
   return (
-    <img
-      ref={drag}
-      src={item.src}
-      alt={item.name}
+    <div
       style={{
         position: 'absolute',
         top: item.position.y,
         left: item.position.x,
-        width: dimensions.width,
-        height: dimensions.height,
-        opacity: isDragging ? 0.5 : 1,
-        cursor: 'move',
       }}
-    />
-  )
-}
+    >
+      <img
+        ref={drag}
+        src={item.src}
+        alt={item.name}
+        style={{
+          width: dimensions.width,
+          height: dimensions.height,
+          opacity: isDragging ? 0.5 : opacity,
+          cursor: 'move',
+          transition: 'opacity 0.001s linear',
+        }}
+      />
+      {item.isCelebration && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: -10,
+            left: 0,
+            width: '100%',
+            height: '8px',
+            backgroundColor: '#e0e0e0',
+            borderRadius: '4px',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              width: `${progress}%`,
+              height: '100%',
+              backgroundColor: '#4CAF50',
+              transition: 'width 0.001s linear',
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
 
 // New DroppableMap component
 const DroppableMap = ({ children, onDrop }) => {
@@ -113,6 +192,12 @@ export default function Map() {
   const [isLoading, setIsLoading] = useState(true);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const [showTotalSavings, setShowTotalSavings] = useState(false);
+  const [showDailySum, setShowDailySum] = useState(false);
+  const [showDailySum2, setShowDailySum2] = useState(false);
+  const [showDeposit, setShowDeposit] = useState(false);
+  const [streak, setStreak] = useState(0);
+  const [level, setLevel] = useState(1);
 
   const sendEmail = async () => {
     try {
@@ -164,6 +249,10 @@ export default function Map() {
       switch (event.key) {
         case '+':
           sendEmail();
+          break;
+        case '-':
+          setShowDailySum(false);
+          setShowDailySum2(true);
           break;
         case '1':
           setCatEmotion('angry')
@@ -219,19 +308,33 @@ export default function Map() {
       hour: 'numeric',
       minute: 'numeric',
       hour12: true
-    }).replace(/\s/g, ''); // Remove spaces between time and AM/PM
+    }).replace(/\s/g, '');
 
     const updatedFurniture = [
       ...placedFurniture,
       {
         ...newItem,
         position: { x: 100, y: 100 },
-        id: `${newItem.id}-${timeString}`, // Use formatted time in ID
+        id: `${newItem.id}-${timeString}`,
       },
     ];
 
     await saveFurniture(updatedFurniture);
     setPlacedFurniture(updatedFurniture);
+
+    // Add EXP when furniture is placed
+    setProgress(prev => {
+      const newProgress = prev + 20; // Add 20% EXP per furniture placed
+      
+      // If progress reaches or exceeds 100%
+      if (newProgress >= 100) {
+        // Level up and reset progress
+        setLevel(prevLevel => prevLevel + 1);
+        return newProgress - 100; // Keep remainder progress
+      }
+      
+      return newProgress;
+    });
   };
 
   const handleMoveFurniture = async (id, newPosition) => {
@@ -256,6 +359,14 @@ export default function Map() {
     })
   }
 
+  const handleProgressClick = () => {
+    router.push('/progress');
+  };
+
+  const handleDailySummaryClick = () => {
+    setShowDailySum(true);
+  };
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -266,13 +377,17 @@ export default function Map() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="flex flex-col">
+      <div className="flex flex-col" style={{ backgroundColor: '#c5e4eb', minHeight: '100vh' }}>
         <div className="px-4 pt-2">
           <LevelBar 
             username="Tom The Cat" 
             progress={progress} 
             dangerProgress={loveLevel} 
-            onFeedCat={handleFeedCat} 
+            onFeedCat={handleFeedCat}
+            onProgressClick={handleProgressClick}
+            onDailySummaryClick={handleDailySummaryClick}
+            streak={streak}
+            level={level}
           />
         </div>
 
@@ -289,13 +404,46 @@ export default function Map() {
             />
           </button>
 
+          {/* Total Savings Button */}
+          <button
+            className="absolute left-4 top-20 w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-lg z-[9998]"
+            onClick={() => setShowTotalSavings(!showTotalSavings)}
+          >
+            <img
+              src="/bank.png"
+              alt="Total Savings"
+              className="w-21 h-21"
+            />
+          </button>
+          {showDeposit && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]">
+              <div className="bg-white rounded-lg p-4 w-[90%] max-w-2xl">
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-xl font-bold">Deposit Money</h2>
+                  <button
+                    onClick={() => setShowDeposit(false)}
+                    className="text-gray-500 hover:text-gray-700"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <Deposit />
+              </div>
+            </div>
+          )}
+
           <DailyGoals
             showPopup={showDailyGoals}
             onClose={() => setShowDailyGoals(false)}
           />
 
+          <TotalSavings
+            showPopup={showTotalSavings}
+            onClose={() => setShowTotalSavings(false)}
+          />
+
           {/* Map and DroppableMap */}
-          <div className="relative w-[80%] h-[70vh]" style={{ marginTop: "20px" }}>
+          <div className="relative w-[80%] h-[40vh]" style={{ marginTop: "-180px" }}>
             <img
               src="/map.png"
               alt="Map"
@@ -314,16 +462,30 @@ export default function Map() {
               />
             ))}
             
-            {/* Add a small trophy icon that opens the leaderboard */}
+            {/* Leaderboard Button */}
             <div 
               className="absolute top-4 right-4 cursor-pointer hover:scale-110 transition-transform"
               onClick={() => setShowLeaderboard(!showLeaderboard)}
             >
               <img
-                src="/leaderboard.png"
+                src="/board.png"
                 alt="Leaderboard"
-                className="w-8 h-8"
+                className="w-12 h-8"
               />
+            </div>
+
+            {/* Daily Summary Button */}
+            <div 
+              className="absolute top-16 right-4 cursor-pointer"
+            >
+              <DailySummaryButton onClick={() => setShowDailySum(true)} />
+            </div>
+
+            {/* Progress Button */}
+            <div 
+              className="absolute top-3 right-40 cursor-pointer"
+            >
+              <ProgressButton onClick={handleProgressClick} />
             </div>
 
             {/* Leaderboard Modal */}
@@ -335,7 +497,7 @@ export default function Map() {
 
           {/* Inventory Button (previously Shop) */}
           <button
-            className="fixed bottom-4 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center"
+            className="fixed bottom-4 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center z-[1005]"
             onClick={() => setShowFurnitureMenu(true)}
           >
             <img
@@ -354,12 +516,32 @@ export default function Map() {
           )}
         </div>
 
-        <CatModal
-          isOpen={showCatModal}
-          onOpenChange={setShowCatModal}
-          initialMessage={catModalMessage}
-          isCase5={true}
-        />
+        {/* Move CatModal outside the main container and use createPortal */}
+        {typeof window !== 'undefined' && createPortal(
+          <CatModal
+            isOpen={showCatModal}
+            onOpenChange={setShowCatModal}
+            initialMessage={catModalMessage}
+            isCase5={true}
+          />,
+          document.body
+        )}
+
+        {showDailySum && (
+          <DailySum
+            showPopup={showDailySum}
+            onClose={() => setShowDailySum(false)}
+            onStreakUpdate={() => setStreak(prev => prev + 1)}
+          />
+        )}
+
+        {showDailySum2 && (
+          <DailySum2
+            showPopup={showDailySum2}
+            onClose={() => setShowDailySum2(false)}
+            onStreakUpdate={() => setStreak(prev => prev + 1)}
+          />
+        )}
       </div>
     </DndProvider>
   )

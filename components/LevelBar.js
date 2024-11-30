@@ -1,22 +1,26 @@
 import { useState, useEffect } from "react";
 import FinancialPlanPopup from "./FinancialPlanPopup";
-import SpendHistory from "./spendHistory";
 import DailySum from "./DailySum";
 import { useRouter } from 'next/router';
+import ProgressButton from './ProgressButton';
+import DailySummaryButton from './DailySummaryButton';
+
 
 export default function LevelBar({ 
   username = "Username", 
   progress = 60, 
   dangerProgress = 90, 
   level = 1,
-  streak = 0
+  streak = 0,
+  onStreakUpdate
 }) {
   const router = useRouter();
   const [currentProgress, setCurrentProgress] = useState(progress);
   const [showFinancialPlan, setShowFinancialPlan] = useState(false);
-  const [showSpendHistory, setShowSpendHistory] = useState(false);
   const [showDailySum, setShowDailySum] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [openApiData, setOpenApiData] = useState(null);
+  const [incomeData, setIncomeData] = useState(null);
 
   useEffect(() => {
     setCurrentProgress(progress);
@@ -27,8 +31,25 @@ export default function LevelBar({
       setCurrentTime(new Date());
     }, 1000);
 
-    // Cleanup timer on component unmount
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const loadFinancialData = async () => {
+      try {
+        const openApiData = await import('../data/openapi.json')
+          .then(module => module.default);
+        const incomeData = await import('../data/income.json')
+          .then(module => module.default);
+
+        setOpenApiData(openApiData);
+        setIncomeData(incomeData);
+      } catch (error) {
+        console.error('Error loading financial data:', error);
+      }
+    };
+
+    loadFinancialData();
   }, []);
 
   const formattedDate = currentTime.toLocaleDateString("en-US", {
@@ -41,13 +62,6 @@ export default function LevelBar({
     second: "2-digit",
     hour12: true
   });
-
-  // Example spending history
-  const spendingHistory = [
-    { description: "Buy food", amount: 20 },
-    { description: "Buy food", amount: 100 },
-    { description: "Buy furniture", amount: 20 },
-  ];
 
   const handleProgressClick = () => {
     router.push('/progress');
@@ -76,7 +90,6 @@ export default function LevelBar({
         {/* Right side: Date and Time */}
         <div
           className="pixel-text-blue text-3xl cursor-pointer hover:text-blue-600 text-right"
-          onClick={() => setShowSpendHistory(true)}
         >
           <div>{formattedDate}</div>
           <div>{formattedTime}</div>
@@ -97,64 +110,24 @@ export default function LevelBar({
           </div>
         </div>
         
-        {/* Progress bar */}
+        {/* Progress bar with CSS transition */}
         <div className="flex-1">
           <div className="w-full h-8 border-4 border-black [image-rendering:pixelated] bg-gray-200">
             <div
-              className="h-full bg-green-500 transition-all duration-500"
+              className="h-full bg-green-500 transition-all duration-500 ease-out"
               style={{ width: `${currentProgress}%` }}
             ></div>
           </div>
         </div>
       </div>
 
-      {/* Progress and Daily Sum Buttons Container */}
-      <div className="flex flex-col space-y-2 mt-4">
-        {/* Progress Button */}
-        <button
-          onClick={handleProgressClick}
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg 
-                   shadow-lg transition-colors duration-200 flex items-center space-x-2"
-        >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            className="h-5 w-5" 
-            viewBox="0 0 20 20" 
-            fill="currentColor"
-          >
-            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-          </svg>
-          <span>Progress</span>
-        </button>
-
-        {/* Daily Summarization Button */}
-        <button
-          onClick={() => setShowDailySum(true)}
-          className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg 
-                   shadow-lg transition-colors duration-200 flex items-center space-x-2"
-        >
-          <img
-            src="/summary.png"
-            alt="Daily Summary"
-            className="w-5 h-5"
-          />
-          <span>Daily Summary</span>
-        </button>
-      </div>
-
       {/* Popups */}
-      {showSpendHistory && (
-        <SpendHistory
-          onClose={() => setShowSpendHistory(false)}
-          history={spendingHistory}
-        />
-      )}
-
-      {showFinancialPlan && (
+      {showFinancialPlan && openApiData && incomeData && (
         <FinancialPlanPopup
           onClose={() => setShowFinancialPlan(false)}
           username={username}
+          openApiData={openApiData}
+          incomeData={incomeData}
         />
       )}
 

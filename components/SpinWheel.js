@@ -50,7 +50,7 @@ const FURNITURE_DATA = {
   17: { name: 'Curtain', src: '/furniture/curtain.png' }
 };
 
-const SpinWheel = ({ onRewardClaimed }) => {
+const SpinWheel = ({ onRewardClaimed, onStreakUpdate }) => {
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [reward, setReward] = useState(null);
@@ -165,13 +165,10 @@ const SpinWheel = ({ onRewardClaimed }) => {
           ...reward,
           id: `${reward.id}-${Date.now()}`,
           price: reward.rarity.toUpperCase(),
-          // Add original dimensions
           originalWidth: img.width,
           originalHeight: img.height,
-          // Add preview dimensions
           previewWidth: img.width * PREVIEW_SCALE,
           previewHeight: img.height * PREVIEW_SCALE,
-          // Add placed dimensions
           placedWidth: img.width * PLACED_SCALE,
           placedHeight: img.height * PLACED_SCALE
         };
@@ -180,10 +177,19 @@ const SpinWheel = ({ onRewardClaimed }) => {
         const updatedInventory = [...currentInventory, rewardWithId];
         localStorage.setItem('furnitureInventory', JSON.stringify(updatedInventory));
         
+        if (onStreakUpdate) {
+          onStreakUpdate();
+        }
+        
         onRewardClaimed(rewardWithId);
         setShowReward(false);
         setReward(null);
       };
+    } else {
+      if (onStreakUpdate) {
+        onStreakUpdate();
+      }
+      onRewardClaimed();
     }
   };
 
@@ -204,25 +210,27 @@ const SpinWheel = ({ onRewardClaimed }) => {
                 ? 'transform 3s cubic-bezier(0.2, 0.8, 0.2, 0.99)'
                 : 'none',
               boxShadow: `
-                0 0 0 8px white,
-                0 0 0 10px #e0e0e0,
+                0 0 0 4px white,
+                0 0 0 5px #e0e0e0,
                 0 0 20px rgba(0,0,0,0.5)
               `,
               background: '#2a2a2a',
             }}
           >
-            {/* Wheel segments */}
+            {/* Wheel segments with labels */}
             {Object.entries(RARITY_CONFIG).map(([rarity, config], index) => {
               const segmentAngle = 360 / Object.keys(RARITY_CONFIG).length;
+              const rotationAngle = index * segmentAngle;
               return (
                 <div
                   key={rarity}
                   className="absolute w-full h-full"
                   style={{
-                    transform: `rotate(${index * segmentAngle}deg)`,
+                    transform: `rotate(${rotationAngle}deg)`,
                     transformOrigin: '50% 50%',
                   }}
                 >
+                  {/* Segment background */}
                   <div
                     style={{
                       position: 'absolute',
@@ -234,24 +242,30 @@ const SpinWheel = ({ onRewardClaimed }) => {
                     }}
                   />
                   {/* Rarity Label */}
-                  {/* <div
+                  <div
+                    className="absolute text-white font-bold text-xl uppercase"
                     style={{
                       position: 'absolute',
                       left: '50%',
-                      top: '25%',
+                      top: '5%',
                       transform: `
-                        rotate(${segmentAngle / 2}deg) 
                         translateX(-50%)
+                        rotate(${segmentAngle / 2}deg)
                       `,
-                      color: 'white',
-                      fontWeight: 'bold',
-                      fontSize: '18px',
-                      textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
-                      whiteSpace: 'nowrap',
+                      transformOrigin: 'center bottom',
+                      textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+                      width: '24px',
+                      height: '90px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      writingMode: 'vertical-rl',
+                      textOrientation: 'mixed',
+                      letterSpacing: '2px',
                     }}
                   >
-                    {rarity.toUpperCase()}
-                  </div> */}
+                    {rarity}
+                  </div>
                 </div>
               );
             })}
@@ -269,7 +283,7 @@ const SpinWheel = ({ onRewardClaimed }) => {
               boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
             }}
           >
-            <div className="text-gray-800 font-bold text-xl">
+            <div className="text-gray-800 font-bold text-base sm:text-lg md:text-xl">
               {isSpinning ? '...' : 'SPIN'}
             </div>
             {/* Pointer Line */}
@@ -283,7 +297,17 @@ const SpinWheel = ({ onRewardClaimed }) => {
           </button>
         </div>
 
-        {/* Reward Popup - Modified to match style */}
+        {/* Cancel Button */}
+        <div className="flex justify-end w-full">
+          <button
+            onClick={onRewardClaimed}
+            className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+          >
+            Cancel
+          </button>
+        </div>
+
+        {/* Reward Popup */}
         {showReward && reward && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className={`bg-white p-8 border-8 border-black [image-rendering:pixelated]
@@ -304,17 +328,16 @@ const SpinWheel = ({ onRewardClaimed }) => {
                 <img
                   src={reward.src}
                   alt={reward.name}
-                  className="w-32 h-32 object-contain mx-auto"
+                  className="w-24 h-24 sm:w-32 sm:h-32 object-contain mx-auto"
                 />
-                <div className="absolute inset-0 animate-sparkle-1" />
-                <div className="absolute inset-0 animate-sparkle-2" />
-                <div className="absolute inset-0 animate-sparkle-3" />
               </div>
-              <p className="text-2xl mt-4 text-center font-bold">{reward.name}</p>
+              <p className="text-lg sm:text-xl md:text-2xl mt-2 sm:mt-4 text-center font-bold">
+                {reward.name}
+              </p>
               <button
                 onClick={claimReward}
-                className="mt-6 w-full px-6 py-3 bg-blue-500 hover:bg-blue-600 
-                         text-white rounded-lg font-bold text-lg transform transition-all
+                className="mt-4 sm:mt-6 w-full px-4 sm:px-6 py-2 sm:py-3 bg-blue-500 hover:bg-blue-600 
+                         text-white rounded-lg font-bold text-base sm:text-lg transform transition-all
                          hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 
                          focus:ring-opacity-50"
               >

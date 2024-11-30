@@ -2,150 +2,159 @@ import { useState, useEffect } from 'react';
 
 export default function DailyGoals({ onClose, showPopup }) {
   const [aggregatedGoals, setAggregatedGoals] = useState(null);
+  const [dailyPlan, setDailyPlan] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (showPopup) {
       fetchAndAggregateGoals();
-      // Delay setting visibility to true to allow fade in
+      fetchDailyPlan();
       setTimeout(() => setIsVisible(true), 50);
     } else {
       setIsVisible(false);
     }
   }, [showPopup]);
 
-  const formatGoalType = (goalType) => {
-    if (!goalType) return 'Other';
-    return goalType.charAt(0).toUpperCase() + goalType.slice(1).replace(/([A-Z])/g, ' $1');
+  const fetchDailyPlan = async () => {
+    try {
+      const response = await fetch('/api/getDailyPlan');
+      const data = await response.json();
+      if (data.plan) {
+        setDailyPlan(data.plan);
+      }
+    } catch (error) {
+      console.error('Error fetching daily plan:', error);
+    }
   };
 
   const fetchAndAggregateGoals = async () => {
     try {
-      const response = await fetch('/api/getDailyGoals');
+      const response = await fetch('/api/getDailyPlan');
       const data = await response.json();
-      
-      if (data.goals && data.goals.length > 0) {
-        // Get unique financial goals (latest version of each goal type)
-        const uniqueGoals = Object.values(data.goals.reduce((acc, goal) => {
-          // Use financial goal type as the key
-          const goalKey = goal.financialGoal || 'other';
-          
-          // Keep only the latest entry for each unique goal type
-          if (!acc[goalKey] || new Date(goal.timestamp) > new Date(acc[goalKey].timestamp)) {
-            acc[goalKey] = goal;
-          }
-          return acc;
-        }, {}));
 
-        // Calculate total daily savings (sum of all goals)
-        const totalDailySavings = uniqueGoals.reduce((sum, goal) => 
-          sum + parseFloat(goal.dailySavingsTarget), 0
-        );
-
-        // Find the longest time to goal
-        const maxDaysToGoal = Math.max(...uniqueGoals.map(goal => goal.daysToGoal));
-        
-        // Use the daily disposable income from the most recent goal
-        const latestGoal = uniqueGoals.reduce((latest, current) => 
-          new Date(current.timestamp) > new Date(latest.timestamp) ? current : latest
-        );
-
-        const dailyDisposableIncome = parseFloat(latestGoal.dailyDisposableIncome);
-        const monthlyDebtPayment = parseFloat(latestGoal.monthlyDebtPayment);
-
-        // Generate aggregated recommendations
-        const recommendations = [
-          `Total daily savings needed: $${totalDailySavings.toFixed(2)}`,
-          `Available daily spending: $${dailyDisposableIncome.toFixed(2)}`,
-          `Monthly debt payment: $${monthlyDebtPayment.toFixed(2)}`,
-        ];
-
-        // Add individual goal breakdowns
-        uniqueGoals.forEach(goal => {
-          recommendations.push(
-            `${formatGoalType(goal.financialGoal)}: $${goal.dailySavingsTarget} daily (${goal.daysToGoal} days remaining)`
-          );
-        });
-
-        // Add feasibility warning if needed
-        if (totalDailySavings > dailyDisposableIncome) {
-          recommendations.push(
-            "⚠️ Warning: Your combined savings targets ($" + 
-            totalDailySavings.toFixed(2) + 
-            ") exceed your daily disposable income ($" + 
-            dailyDisposableIncome.toFixed(2) + 
-            "). Consider adjusting your goals or timeline."
-          );
-        } else {
-          const remainingDaily = dailyDisposableIncome - totalDailySavings;
-          recommendations.push(
-            `✅ Your combined goals are achievable! You'll have $${remainingDaily.toFixed(2)} remaining daily after savings.`
-          );
-        }
-
+      if (!data.plan) {
         setAggregatedGoals({
-          dailySavingsTarget: totalDailySavings.toFixed(2),
-          daysToGoal: maxDaysToGoal,
-          dailyDisposableIncome: dailyDisposableIncome.toFixed(2),
-          monthlyDebtPayment: monthlyDebtPayment.toFixed(2),
-          recommendations,
-          numberOfGoals: uniqueGoals.length,
-          goals: uniqueGoals // Add this to access individual goals if needed
+          dailySavingsTarget: "0.00",
+          daysToGoal: 0,
+          dailyDisposableIncome: "0.00",
+          monthlyDebtPayment: "0.00",
+          recommendations: ["No financial goals set yet."],
+          numberOfGoals: 0,
+          goals: []
         });
+        return;
       }
+
+      const plan = data.plan;
+      
+      // Use the values directly from the plan instead of calculating
+      setAggregatedGoals({
+        dailySavingsTarget: typeof plan.dailySavings === 'object' 
+          ? `${plan.dailySavings.min?.toFixed(2) || '0.00'} - ${plan.dailySavings.max?.toFixed(2) || '0.00'}`
+          : plan.dailySavings?.toFixed(2) || '0.00',
+        daysToGoal: typeof plan.daysToGoal === 'object' 
+          ? `${plan.daysToGoal.min || 0} - ${plan.daysToGoal.max || 0}`
+          : plan.daysToGoal || 0,
+        dailyDisposableIncome: plan.dailyDisposableIncome?.toFixed(2) || '0.00',
+        monthlyDebtPayment: plan.monthlyDebt?.toFixed(2) || '0.00',
+        recommendations: [
+          `Goal: ${plan.goal} - RM ${plan.targetAmount?.toFixed(2) || '0.00'}`,
+          `Daily spending limit: RM ${plan.dailyLimit?.toFixed(2) || '0.00'}`,
+          `Monthly debt payment: RM ${plan.monthlyDebt?.toFixed(2) || '0.00'}`,
+          typeof plan.remainingDaily === 'object'
+            ? `✅ Your goal is achievable! You'll have RM ${plan.remainingDaily.min?.toFixed(2) || '0.00'} - RM ${plan.remainingDaily.max?.toFixed(2) || '0.00'} remaining daily after savings.`
+            : `✅ Your goal is achievable! You'll have RM ${plan.remainingDaily?.toFixed(2) || '0.00'} remaining daily after savings.`
+        ],
+        numberOfGoals: 1,
+        goals: [plan]
+      });
+
     } catch (error) {
-      console.error('Error fetching daily goals:', error);
+      console.error('Error fetching daily plan:', error);
+      setAggregatedGoals({
+        dailySavingsTarget: "0.00",
+        daysToGoal: 0,
+        dailyDisposableIncome: "0.00",
+        monthlyDebtPayment: "0.00",
+        recommendations: ["Error loading plan. Please try again."],
+        numberOfGoals: 0,
+        goals: []
+      });
     }
   };
 
   const handleClose = () => {
     setIsVisible(false);
-    // Wait for fade out animation to complete before calling onClose
     setTimeout(onClose, 300);
   };
 
   if (!aggregatedGoals || !showPopup) return null;
 
   return (
-    <div className="absolute left-4 top-20 bg-white rounded-lg shadow-xl p-6 w-96 max-h-[60vh] z-[99999] flex flex-col">
-      <div className="flex justify-between items-center mb-4 sticky top-0 bg-white">
-        <h3 className="text-2xl font-bold">Combined Financial Goals ({aggregatedGoals.numberOfGoals})</h3>
-        <button 
-          onClick={onClose}
-          className="text-gray-500 hover:text-gray-700"
-        >
-          ×
-        </button>
-      </div>
-      
-      <div className="space-y-4 overflow-y-auto">
-        <div className="bg-blue-50 p-3 rounded-lg">
-          <p className="font-semibold text-blue-800 text-lg">Total Daily Savings Target</p>
-          <p className="text-3xl font-bold text-blue-600">${aggregatedGoals.dailySavingsTarget}</p>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
+      <div className="bg-white p-6 rounded-lg shadow-xl w-[500px]">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-4xl font-bold pixel-text-blue">
+            Financial Goals Summary
+          </h3>
         </div>
 
-        <div className="space-y-2">
-          <p className="text-lg text-gray-600">Longest goal timeline: {aggregatedGoals.daysToGoal} days</p>
-          <p className="text-lg text-gray-600">Daily spending limit: ${aggregatedGoals.dailyDisposableIncome}</p>
-          <p className="text-lg text-gray-600">Monthly debt payment: ${aggregatedGoals.monthlyDebtPayment}</p>
+        <div className="space-y-4 overflow-y-auto">
+          {/* Daily Savings Required - with blue background */}
+          <div className="bg-blue-50 p-3 rounded-lg mb-4">
+            <div className="text-center">
+              <p className="font-semibold text-blue-800 text-2xl">Daily Savings Required</p>
+              <p className="text-5xl font-bold text-blue-600">
+                {dailyPlan ? (
+                  typeof dailyPlan.dailySavings === 'object' ? (
+                    `RM ${dailyPlan.dailySavings.min?.toFixed(2) || '0.00'} - ${dailyPlan.dailySavings.max?.toFixed(2) || '0.00'}`
+                  ) : (
+                    `RM ${Number(dailyPlan.dailySavings).toFixed(2) || '0.00'}`
+                  )
+                ) : (
+                  'RM 0.00'
+                )}
+              </p>
+            </div>
+          </div>
+
+          {/* Other plan details - without blue background */}
+          <div className="space-y-2">
+            <p className="text-lg">Goal: {dailyPlan?.goal || 'No goal set'}</p>
+            <p className="text-lg">Target Amount: RM {Number(dailyPlan?.targetAmount || 0).toFixed(2)}</p>
+            <p className="text-lg">
+              Timeline: {
+                typeof dailyPlan?.daysToGoal === 'object' 
+                  ? `${dailyPlan.daysToGoal.min || 0} - ${dailyPlan.daysToGoal.max || 0} days`
+                  : `${dailyPlan?.daysToGoal || 0} days`
+              }
+            </p>
+            <p className="text-lg">Plan Type: {dailyPlan?.planType === 'strict' ? 'Strict' : 'Flexible'}</p>
+            <p className="text-lg">Daily spending limit: RM {dailyPlan?.dailyLimit?.toFixed(2) || '0.00'}</p>
+            <p className="text-lg">Monthly debt payment: RM {dailyPlan?.monthlyDebt?.toFixed(2) || '0.00'}</p>
+            
+            {/* Remaining daily message with green background */}
+            {dailyPlan && (
+              <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-500 mt-4">
+                <p className="text-lg text-green-700">
+                  {typeof dailyPlan.remainingDaily === 'object' ? (
+                    `✅ Your goal is achievable! You'll have RM ${dailyPlan.remainingDaily.min?.toFixed(2) || '0.00'} - RM ${dailyPlan.remainingDaily.max?.toFixed(2) || '0.00'} remaining daily after savings.`
+                  ) : (
+                    `✅ Your goal is achievable! You'll have RM ${dailyPlan.remainingDaily?.toFixed(2) || '0.00'} remaining daily after savings.`
+                  )}
+                </p>
+              </div>
+            )}
+          </div>
         </div>
 
-        <div className="mt-4 space-y-2">
-          <h4 className="font-semibold text-gray-700 text-lg">Goal Breakdown & Recommendations:</h4>
-          <ul className="list-disc pl-5 space-y-1">
-            {aggregatedGoals.recommendations.map((rec, index) => (
-              <li 
-                key={index} 
-                className={`text-lg ${
-                  rec.includes('⚠️') ? 'text-red-600 font-medium' : 
-                  rec.includes('achievable') ? 'text-green-600 font-medium' : 
-                  'text-gray-600'
-                }`}
-              >
-                {rec}
-              </li>
-            ))}
-          </ul>
+        <div className="flex justify-end space-x-3 mt-6">
+          <button
+            onClick={handleClose}
+            className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>

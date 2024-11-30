@@ -29,10 +29,25 @@ const CatModal = ({ isOpen, onOpenChange, initialMessage, isCase5 }) => {
       });
       
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`Server error (${response.status})`);
       }
       
-      const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch (e) {
+        console.error('JSON Parse Error:', e);
+        setChatHistory([
+          ...chatHistory,
+          userMessage,
+          { role: 'assistant', content: isCase5 
+            ? "Purr... I'm having trouble understanding the response. Please try again! 😺"
+            : "I'm having trouble processing the response. Please try again."
+          }
+        ]);
+        return;
+      }
+      
       setChatHistory([...chatHistory, userMessage, { role: 'assistant', content: data.message }]);
     } catch (error) {
       console.error('Error:', error);
@@ -40,8 +55,8 @@ const CatModal = ({ isOpen, onOpenChange, initialMessage, isCase5 }) => {
         ...chatHistory, 
         userMessage,
         { role: 'assistant', content: isCase5 
-          ? "Purr... I'm having trouble thinking right now. Can we chat later? 😺"
-          : "Sorry, I'm having trouble connecting right now. Please try again later."
+          ? "Meow... I'm having some technical difficulties. Please try again in a moment! 😺"
+          : "I'm experiencing technical difficulties. Please try again later."
         }
       ]);
     } finally {
@@ -50,58 +65,76 @@ const CatModal = ({ isOpen, onOpenChange, initialMessage, isCase5 }) => {
     }
   };
 
+  if (!isOpen) return null;
+
   return (
-    <Modal 
-      isOpen={isOpen} 
-      onOpenChange={onOpenChange}
-      size="lg"
-      scrollBehavior="inside"
+    <div 
+      className="fixed inset-0 flex items-center justify-center"
+      style={{ 
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+        zIndex: 999999999999 
+      }}
     >
-      <ModalContent>
-        {(onClose) => (
-          <>
-            <ModalHeader className="flex flex-col items-center gap-1">
-              <p>Hey there! 👋</p>
-            </ModalHeader>
-            <ModalBody>
-              <div className="flex flex-col gap-4 h-[300px] overflow-y-auto">
-                {chatHistory.map((msg, index) => (
-                  <div key={index} className={`p-2 rounded-lg ${
-                    msg.role === 'user' ? 'bg-blue-100 ml-auto' : 'bg-gray-100'
-                  } max-w-[80%]`}>
-                    {msg.content}
-                  </div>
-                ))}
-              </div>
-              <div className="flex gap-2">
-                <Input
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Type your message..."
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                />
-                <Button
-                  color="primary"
-                  isLoading={isLoading}
-                  onPress={handleSendMessage}
-                >
-                  Send
-                </Button>
-              </div>
-            </ModalBody>
-            <ModalFooter>
-              <Button 
-                className="w-full"
-                color="primary"
-                onPress={onClose}
-              >
-                Close
-              </Button>
-            </ModalFooter>
-          </>
-        )}
-      </ModalContent>
-    </Modal>
+      <div 
+        className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 flex flex-col"
+        style={{ zIndex: 999999999999, height: '500px' }}
+      >
+        {/* Header */}
+        <div className="p-4 border-b flex justify-between items-center">
+          <h3 className="text-xl font-semibold">Hey there! 👋</h3>
+          <button
+            onClick={() => onOpenChange(false)}
+            className="text-gray-500 hover:text-gray-700 text-2xl"
+          >
+            ×
+          </button>
+        </div>
+
+        {/* Chat History */}
+        <div className="flex-1 p-4 overflow-y-auto">
+          {chatHistory.map((msg, index) => (
+            <div
+              key={index}
+              className={`p-2 rounded-lg mb-2 ${
+                msg.role === 'user' ? 'bg-blue-100 ml-auto' : 'bg-gray-100'
+              } max-w-[80%]`}
+            >
+              {msg.content}
+            </div>
+          ))}
+        </div>
+
+        {/* Message Input */}
+        <div className="p-4">
+          <div className="bg-gray-100 rounded-full p-2 flex gap-2">
+            <input
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Type your message..."
+              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+              className="flex-1 bg-transparent outline-none px-2"
+            />
+            <button
+              onClick={handleSendMessage}
+              disabled={isLoading}
+              className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 disabled:opacity-50"
+            >
+              Send
+            </button>
+          </div>
+        </div>
+
+        {/* Close Button */}
+        <div className="p-4">
+          <button 
+            onClick={() => onOpenChange(false)}
+            className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
