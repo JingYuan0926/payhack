@@ -1,10 +1,16 @@
-export default function DailySummaryButton({ onClick }) {
+const DailySummaryButton = ({ onClick }) => {
   return (
-    <img
-      src="/summary.png"
-      alt="Daily Summary"
+    <div 
       onClick={onClick}
-      className="w-12 h-12 cursor-pointer hover:scale-110 transition-transform"
-    />
+      className="hover:scale-110 transition-transform"
+    >
+      <img
+        src="/daily.png"
+        alt="Daily Summary"
+        className="w-12 h-16"
+      />
+    </div>
   );
-}
+};
+
+export default DailySummaryButton;

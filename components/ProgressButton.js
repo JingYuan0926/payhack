@@ -1,10 +1,16 @@
-export default function ProgressButton({ onClick }) {
+const ProgressButton = ({ onClick }) => {
   return (
-    <img
-      src="/progress.png"
-      alt="Progress"
+    <div 
       onClick={onClick}
-      className="w-12 h-12 cursor-pointer hover:scale-110 transition-transform"
-    />
+      className="hover:scale-110 transition-transform"
+    >
+      <img
+        src="/progress.png"
+        alt="Progress"
+        className="w-12 h-12"
+      />
+    </div>
   );
-}
+};
+
+export default ProgressButton;

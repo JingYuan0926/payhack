@@ -406,9 +406,9 @@ export default function Map() {
               onClick={() => setShowLeaderboard(!showLeaderboard)}
             >
               <img
-                src="/leaderboard.png"
+                src="/board.png"
                 alt="Leaderboard"
-                className="w-8 h-8"
+                className="w-12 h-8"
               />
             </div>
 
@@ -421,7 +421,7 @@ export default function Map() {
 
             {/* Progress Button */}
             <div 
-              className="absolute top-32 right-4 cursor-pointer"
+              className="absolute top-3 right-40 cursor-pointer"
             >
               <ProgressButton onClick={handleProgressClick} />
             </div>
