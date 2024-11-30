@@ -17,6 +17,8 @@ export default function LevelBar({
   const [showSpendHistory, setShowSpendHistory] = useState(false);
   const [showDailySum, setShowDailySum] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [openApiData, setOpenApiData] = useState(null);
+  const [incomeData, setIncomeData] = useState(null);
 
   useEffect(() => {
     setCurrentProgress(progress);
@@ -29,6 +31,24 @@ export default function LevelBar({
 
     // Cleanup timer on component unmount
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const loadFinancialData = async () => {
+      try {
+        const openApiData = await import('../data/openapi.json')
+          .then(module => module.default);
+        const incomeData = await import('../data/income.json')
+          .then(module => module.default);
+
+        setOpenApiData(openApiData);
+        setIncomeData(incomeData);
+      } catch (error) {
+        console.error('Error loading financial data:', error);
+      }
+    };
+
+    loadFinancialData();
   }, []);
 
   const formattedDate = currentTime.toLocaleDateString("en-US", {
@@ -155,10 +175,12 @@ export default function LevelBar({
         />
       )}
 
-      {showFinancialPlan && (
+      {showFinancialPlan && openApiData && incomeData && (
         <FinancialPlanPopup
           onClose={() => setShowFinancialPlan(false)}
           username={username}
+          openApiData={openApiData}
+          incomeData={incomeData}
         />
       )}
 
