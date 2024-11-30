@@ -15,6 +15,8 @@ const Progress = () => {
     const [showSavings, setShowSavings] = useState(true);
     const [catPosition, setCatPosition] = useState({ x: 0, y: 0 });
     const [animationFrame, setAnimationFrame] = useState(0);
+    const [showCategories, setShowCategories] = useState(false);
+    const [compareMonth, setCompareMonth] = useState(null);
 
     useEffect(() => {
         try {
@@ -159,7 +161,7 @@ const Progress = () => {
 
     const handleCategoryClick = (category, e) => {
         e.preventDefault();
-        setActiveChart(activeChart === category ? null : category);
+        setActiveChart(category === '' ? null : category);
     };
 
     const getCurrentMonthName = () => {
@@ -170,41 +172,26 @@ const Progress = () => {
         if (!activeChart) return [];
 
         const currentData = chartData[activeChart];
-        
-        try {
-            if (viewMode === 'year') {
-                return Object.entries(currentData.expenses).map(([category, values]) => ({
-                    type: 'scatter',
-                    mode: 'lines+markers',
-                    name: category,
-                    x: currentData.months,
-                    y: values,
-                    hoverinfo: 'y+name',
-                }));
-            } else if (viewMode === 'month') {
-                const currentMonth = 11; // December 2024
-                const selectedMonthName = currentData.months[selectedMonth];
-                const currentMonthName = currentData.months[currentMonth];
-                
-                return Object.entries(currentData.expenses).map(([category, values]) => ({
-                    type: 'bar',
-                    name: category,
-                    x: [selectedMonthName, currentMonthName],
-                    y: [values[selectedMonth], values[currentMonth]],
-                    hoverinfo: 'y+name',
-                }));
-            } else {
-                return [{
-                    type: 'bar',
-                    x: Object.keys(currentData.expenses),
-                    y: Object.values(currentData.expenses).map(values => values[11]), // December 2024
-                    marker: { color: 'rgb(59, 130, 246)' },
-                    hoverinfo: 'y',
-                }];
-            }
-        } catch (error) {
-            console.error('Error in getPlotData:', error);
-            return [];
+        const currentMonth = 11; // December 2024
+
+        if (compareMonth) {
+            // Comparison view
+            return Object.entries(currentData.expenses).map(([category, values]) => ({
+                type: 'bar',
+                name: category,
+                x: [currentData.months[compareMonth], currentData.months[currentMonth]],
+                y: [values[compareMonth], values[currentMonth]],
+                hoverinfo: 'y+name',
+            }));
+        } else {
+            // Single month view
+            return [{
+                type: 'bar',
+                x: Object.keys(currentData.expenses),
+                y: Object.values(currentData.expenses).map(values => values[currentMonth]),
+                marker: { color: 'rgb(59, 130, 246)' },
+                hoverinfo: 'y',
+            }];
         }
     };
 
@@ -325,38 +312,41 @@ const Progress = () => {
     const renderTotalSpending = () => {
         if (!activeChart) return null;
 
-        const total = calculateTotal();
+        const currentData = chartData[activeChart];
+        const currentMonth = 11; // December 2024
         
-        if (viewMode === 'year') {
-            return (
-                <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                    <h2 className="text-lg font-semibold">Total Spending (All Time)</h2>
-                    <p className="text-2xl text-blue-600">${total.toFixed(2)}</p>
-                </div>
-            );
-        } else if (viewMode === 'month') {
+        if (compareMonth) {
+            const compareTotal = Object.values(currentData.expenses)
+                .reduce((total, values) => total + values[compareMonth], 0);
+            const currentTotal = Object.values(currentData.expenses)
+                .reduce((total, values) => total + values[currentMonth], 0);
+            const difference = currentTotal - compareTotal;
+
             return (
                 <div className="mt-4 p-4 bg-gray-50 rounded-lg flex space-x-8">
                     <div>
-                        <h2 className="text-lg font-semibold">Selected Month ({chartData[activeChart].months[selectedMonth]})</h2>
-                        <p className="text-2xl text-blue-600">${total.selectedTotal.toFixed(2)}</p>
+                        <h2 className="text-lg font-semibold">Selected Month ({currentData.months[compareMonth]})</h2>
+                        <p className="text-2xl text-blue-600">${compareTotal.toFixed(2)}</p>
                     </div>
                     <div>
-                        <h2 className="text-lg font-semibold">Current Month ({getCurrentMonthName()})</h2>
-                        <p className="text-2xl text-blue-600">${total.currentTotal.toFixed(2)}</p>
+                        <h2 className="text-lg font-semibold">Current Month ({currentData.months[currentMonth]})</h2>
+                        <p className="text-2xl text-blue-600">${currentTotal.toFixed(2)}</p>
                     </div>
                     <div>
                         <h2 className="text-lg font-semibold">Difference</h2>
-                        <p className={`text-2xl ${total.currentTotal - total.selectedTotal > 0 ? 'text-red-600' : 'text-green-600'}`}>
-                            ${(total.currentTotal - total.selectedTotal).toFixed(2)}
+                        <p className={`text-2xl ${difference > 0 ? 'text-red-600' : 'text-green-600'}`}>
+                            ${difference.toFixed(2)}
                         </p>
                     </div>
                 </div>
             );
         } else {
+            const total = Object.values(currentData.expenses)
+                .reduce((total, values) => total + values[currentMonth], 0);
+            
             return (
                 <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                    <h2 className="text-lg font-semibold">Total Spending ({getCurrentMonthName()})</h2>
+                    <h2 className="text-lg font-semibold">Total Spending ({currentData.months[currentMonth]})</h2>
                     <p className="text-2xl text-blue-600">${total.toFixed(2)}</p>
                 </div>
             );
@@ -558,250 +548,118 @@ const Progress = () => {
     }
 
     return ( 
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-gray-50">
+            {/* Home button header - always visible */}
             <header className="bg-white shadow-sm">
-                <nav className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
-                    <div className="flex flex-col md:flex-row justify-between h-auto md:h-12 py-2 md:py-0">
-                        <button
-                            onClick={handleHomeClick}
-                            className="px-3 py-1 my-1 md:my-auto rounded-md bg-blue-600 text-white hover:bg-blue-700 
-                                     transition-colors duration-200 flex items-center space-x-2 text-sm"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                            </svg>
-                            <span>Home</span>
-                        </button>
-
-                        <div className="flex flex-col md:flex-row md:space-x-8 space-y-1 md:space-y-0">
-                            <a href="#" 
-                               onClick={(e) => handleCategoryClick('groceries', e)}
-                               className={`px-3 py-1 text-center rounded-md text-sm ${activeChart === 'groceries' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
-                                Groceries
-                            </a>
-                            <a href="#" 
-                               onClick={(e) => handleCategoryClick('shopping', e)}
-                               className={`px-3 py-1 text-center rounded-md text-sm ${activeChart === 'shopping' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
-                                Shopping
-                            </a>
-                            <a href="#" 
-                               onClick={(e) => handleCategoryClick('electronics', e)}
-                               className={`px-3 py-1 text-center rounded-md text-sm ${activeChart === 'electronics' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
-                                Electronics
-                            </a>
-                            <a href="#" 
-                               onClick={(e) => handleCategoryClick('healthBeauty', e)}
-                               className={`px-3 py-1 text-center rounded-md text-sm ${activeChart === 'healthBeauty' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
-                                Health & Beauty
-                            </a>
-                            <a href="#" 
-                               onClick={(e) => handleCategoryClick('homeLiving', e)}
-                               className={`px-3 py-1 text-center rounded-md text-sm ${activeChart === 'homeLiving' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
-                                Home & Living
-                            </a>
+                <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex justify-between h-16">
+                        <div className="flex-shrink-0 flex items-center">
+                            <button 
+                                onClick={() => router.push('/map')}
+                                className="h-8 w-auto flex items-center text-blue-600 hover:text-blue-800"
+                            >
+                                <span className="text-xl">🏠</span>
+                                <span className="ml-2">HOME</span>
+                            </button>
                         </div>
                     </div>
                 </nav>
             </header>
-            <div className="max-w-7xl mx-auto p-3 md:p-4">
-                <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-                    <h1 className="text-xl md:text-2xl font-bold mb-2 md:mb-0">Expense Analysis</h1>
-                    <button
-                        onClick={() => setShowSavings(!showSavings)}
-                        className={`w-full md:w-auto px-4 py-2 rounded-md text-sm ${
-                            showSavings ? 'bg-green-600 text-white' : 'bg-gray-200'
-                        }`}
-                    >
-                        {showSavings ? 'Show Categories' : 'Show Savings'}
-                    </button>
-                </div>
 
-                {showSavings ? (
-                    <div className="mt-4 flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
-                        <div className="bg-white rounded-lg shadow-lg p-3 w-full md:w-4/5">
-                            <Plot
-                                data={getSavingsPlotData()}
-                                layout={getLayout()}
-                                config={{
-                                    responsive: true,
-                                    displayModeBar: false,
-                                    scrollZoom: false
-                                }}
-                                useResizeHandler={true}
-                                style={{ width: "100%", height: "400px" }}
-                            />
-                        </div>
+            {/* Toggle button */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <button
+                    onClick={() => setShowSavings(!showSavings)}
+                    className="w-full py-3 text-center rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+                >
+                    {showSavings ? 'VIEWING SAVINGS SUMMARY' : 'VIEWING EXPENSES'}
+                </button>
+            </div>
+
+            {/* Savings Analysis View */}
+            {showSavings && (
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <Plot
+                        data={getSavingsPlotData()}
+                        layout={getLayout()}
+                        config={{ responsive: true }}
+                        style={{ width: '100%', height: '500px' }}
+                    />
+                </div>
+            )}
+
+            {/* Expenses Analysis View */}
+            {!showSavings && (
+                <div>
+                    {/* Expense Analysis title and Category Dropdowns */}
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                        <h1 className="text-2xl font-bold text-center mb-4">EXPENSE ANALYSIS</h1>
                         
-                        {/* Smaller container, same content */}
-                        <div className="bg-white rounded-lg shadow-lg p-3 w-full md:w-1/5 text-sm">
-                            <div className="flex items-center justify-center mb-3">
-                                <img 
-                                    src="/catWheel.gif" 
-                                    alt="Cat Wheel" 
-                                    className="w-16 h-16 object-contain"
-                                />
-                            </div>
-                            
-                            {(() => {
-                                const summary = generateSummary(processSavingsData());
-                                return (
-                                    <div className="space-y-3">
-                                        <h3 className="text-base font-bold text-gray-800 text-center">
-                                            Monthly Summary
-                                        </h3>
-                                        
-                                        <div className="p-2 bg-blue-50 rounded-lg">
-                                            <p className="text-xs text-gray-600">Your savings have {summary.trend} by</p>
-                                            <p className="text-xl font-bold text-blue-600">
-                                                ${summary.amount}
-                                            </p>
-                                        </div>
-                                        
-                                        <div className="space-y-2">
-                                            <div className="flex justify-between items-center">
-                                                <span className="text-gray-600">Savings Rate:</span>
-                                                <span className="font-bold text-green-600">{summary.savingsRate}%</span>
-                                            </div>
-                                            <div className="flex justify-between items-center">
-                                                <span className="text-gray-600">Monthly Expenses:</span>
-                                                <span className="font-bold text-red-600">${summary.monthlyExpenses}</span>
-                                            </div>
-                                            <div className="flex justify-between items-center">
-                                                <span className="text-gray-600">Monthly Savings:</span>
-                                                <span className="font-bold text-green-600">${summary.monthlySavings}</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="text-xs text-gray-500 text-center p-2 bg-gray-50 rounded-lg">
-                                            {summary.savingsRate >= 20 
-                                                ? "Great job! You're on track! 🎉"
-                                                : "Consider reducing expenses 💪"}
-                                        </div>
-                                    </div>
-                                );
-                            })()}
+                        <div className="grid grid-cols-2 gap-4 mb-4">
+                            {/* Category Selection */}
+                            <select
+                                value={activeChart || ''}
+                                onChange={(e) => handleCategoryClick(e.target.value, e)}
+                                className="w-full p-3 text-center rounded-md bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                            >
+                                <option value="">Select Category</option>
+                                <option value="groceries">GROCERIES</option>
+                                <option value="shopping">SHOPPING</option>
+                                <option value="electronics">ELECTRONICS</option>
+                                <option value="healthBeauty">HEALTH + BEAUTY</option>
+                                <option value="homeLiving">HOME + LIVING</option>
+                            </select>
+
+                            {/* Comparison Month Selection */}
+                            <select
+                                value={compareMonth || ''}
+                                onChange={(e) => setCompareMonth(e.target.value)}
+                                className="w-full p-3 text-center rounded-md bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                            >
+                                <option value="">No Comparison</option>
+                                <option value="0">January 2024</option>
+                                <option value="1">February 2024</option>
+                                <option value="2">March 2024</option>
+                                <option value="3">April 2024</option>
+                                <option value="4">May 2024</option>
+                                <option value="5">June 2024</option>
+                                <option value="6">July 2024</option>
+                                <option value="7">August 2024</option>
+                                <option value="8">September 2024</option>
+                                <option value="9">October 2024</option>
+                                <option value="10">November 2024</option>
+                                <option value="11">December 2024</option>
+                            </select>
                         </div>
                     </div>
-                ) : (
-                    activeChart && (
-                        <div className="mt-6 flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
-                            <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 w-full md:flex-grow">
-                                <div className="mb-6 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-center justify-center">
-                                    <button
-                                        onClick={() => setViewMode('current')}
-                                        className={`w-full md:w-auto px-6 py-3 rounded-lg text-lg ${viewMode === 'current' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-                                    >
-                                        {getCurrentMonthName()}
-                                    </button>
-                                    <button
-                                        onClick={() => setViewMode('year')}
-                                        className={`px-4 py-2 rounded ${viewMode === 'year' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-                                    >
-                                        Yearly Trend
-                                    </button>
-                                    <button
-                                        onClick={() => setViewMode('month')}
-                                        className={`px-4 py-2 rounded ${viewMode === 'month' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-                                    >
-                                        Compare Months
-                                    </button>
-                                    
-                                    {viewMode === 'month' && (
-                                        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2 w-full md:w-auto">
-                                            <span>Compare with:</span>
-                                            <select
-                                                value={selectedMonth}
-                                                onChange={(e) => setSelectedMonth(Number(e.target.value))}
-                                                className="w-full md:w-auto px-4 py-2 rounded border"
-                                            >
-                                                {chartData[activeChart].months.map((month, index) => (
-                                                    <option key={month} value={index} disabled={index === 11}>
-                                                        {month}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </div>
-                                    )}
-                                </div>
-                                
-                                {renderTotalSpending()}
-                                
+
+                    {/* Expense Charts */}
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        {activeChart ? (
+                            <>
                                 <Plot
                                     data={getPlotData()}
                                     layout={getLayout()}
-                                    config={{
-                                        responsive: true,
-                                        displayModeBar: false,
-                                        scrollZoom: false
-                                    }}
-                                    useResizeHandler={true}
-                                    style={{ width: "100%", height: "400px" }}
+                                    config={{ responsive: true }}
+                                    style={{ width: '100%', height: '500px' }}
                                 />
+                                {renderTotalSpending()}
+                            </>
+                        ) : (
+                            <div className="flex flex-col items-center justify-center p-8">
+                                <img 
+                                    src="/placeholder-select-category.png" 
+                                    alt="Please select a category"
+                                    className="w-64 h-64 object-contain mb-4"
+                                />
+                                <p className="text-xl text-gray-600 font-semibold">
+                                    Please select a category to view expenses
+                                </p>
                             </div>
-
-                            {/* New Category Summary Box */}
-                            {viewMode === 'year' && (
-                                <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 w-full md:w-80">
-                                    <div className="flex items-center justify-center mb-4">
-                                        <img 
-                                            src="/catWheel.gif" 
-                                            alt="Cat Wheel" 
-                                            className="w-24 h-24 object-contain"
-                                        />
-                                    </div>
-                                    
-                                    {(() => {
-                                        const summary = generateCategoryTrend(activeChart);
-                                        if (!summary) return null;
-                                        
-                                        return (
-                                            <div className="space-y-4">
-                                                <h3 className="text-xl font-bold text-gray-800 text-center">
-                                                    {chartData[activeChart].title} Summary
-                                                </h3>
-                                                
-                                                <div className="p-4 bg-blue-50 rounded-lg">
-                                                    <p className="text-sm text-gray-600">Total Yearly Spending</p>
-                                                    <p className="text-2xl font-bold text-blue-600">
-                                                        ${summary.total}
-                                                    </p>
-                                                </div>
-                                                
-                                                <div className="space-y-2">
-                                                    <div className="flex justify-between items-center">
-                                                        <span className="text-gray-600">Monthly Average:</span>
-                                                        <span className="font-bold text-orange-600">
-                                                            ${summary.monthly}
-                                                        </span>
-                                                    </div>
-                                                    <div className="flex justify-between items-center">
-                                                        <span className="text-gray-600">Peak Month:</span>
-                                                        <span className="font-bold text-red-600">
-                                                            {summary.peakMonth}
-                                                        </span>
-                                                    </div>
-                                                    <div className="flex justify-between items-center">
-                                                        <span className="text-gray-600">Peak Amount:</span>
-                                                        <span className="font-bold text-red-600">
-                                                            ${summary.peakAmount}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div className="text-sm text-gray-500 text-center mt-4">
-                                                    {Number(summary.monthly) > 1000 
-                                                        ? "Consider reducing spending in this category 🤔"
-                                                        : "Spending in this category looks reasonable 👍"}
-                                                </div>
-                                            </div>
-                                        );
-                                    })()}
-                                </div>
-                            )}
-                        </div>
-                    )
-                )}
-            </div>
+                        )}
+                    </div>
+                </div>
+            )}
         </div>
      );
 }
