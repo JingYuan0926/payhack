@@ -4,11 +4,9 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }) {
   return (
     <NextUIProvider>
-      <main className="font-['ThaleahFat']">
-        <Component {...pageProps} />
-      </main>
+      <Component {...pageProps} />
     </NextUIProvider>
   )
 }
 
-export default MyApp
+export default MyApp 

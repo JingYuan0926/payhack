@@ -9,7 +9,7 @@ import DailyGoals from '../components/DailyGoals'
 import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
 import WeeklyChallenge from '../components/WeeklyChallenge'
-import { getFurniture, saveFurniture } from '../utils/furnitureStorage'
+import { getFurniture, saveFurniture, subscribeFurniture } from '../utils/furnitureStorage'
 
 
 
@@ -139,19 +139,20 @@ export default function Map() {
 
   // Load furniture data
   useEffect(() => {
-    const loadInitialFurniture = async () => {
-      setIsLoading(true);
-      try {
-        const data = await getFurniture();
-        setPlacedFurniture(data);
-      } catch (error) {
-        console.error('Error loading furniture:', error);
-      } finally {
-        setIsLoading(false);
+    setIsLoading(true);
+    
+    // Subscribe to real-time updates
+    const unsubscribe = subscribeFurniture((furnitureData) => {
+      setPlacedFurniture(furnitureData);
+      setIsLoading(false);
+    });
+
+    // Cleanup subscription on component unmount
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
       }
     };
-
-    loadInitialFurniture();
   }, []);
 
   const handleAddFurniture = async (newItem) => {
