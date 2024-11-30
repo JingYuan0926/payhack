@@ -9,6 +9,8 @@ import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
 import { getFurniture, saveFurniture, subscribeFurniture } from '../utils/furnitureStorage'
 import LeaderboardModal from '../components/LeaderboardModal'
+import DailySummaryButton from '../components/DailySummaryButton'
+import ProgressButton from '../components/ProgressButton'
 
 
 
@@ -386,7 +388,7 @@ export default function Map() {
               />
             ))}
             
-            {/* Add a small trophy icon that opens the leaderboard */}
+            {/* Leaderboard Button */}
             <div 
               className="absolute top-4 right-4 cursor-pointer hover:scale-110 transition-transform"
               onClick={() => setShowLeaderboard(!showLeaderboard)}
@@ -396,6 +398,20 @@ export default function Map() {
                 alt="Leaderboard"
                 className="w-8 h-8"
               />
+            </div>
+
+            {/* Daily Summary Button */}
+            <div 
+              className="absolute top-16 right-4 cursor-pointer"
+            >
+              <DailySummaryButton onClick={() => {/* Add your handler here */}} />
+            </div>
+
+            {/* Progress Button */}
+            <div 
+              className="absolute top-32 right-4 cursor-pointer"
+            >
+              <ProgressButton onClick={() => {/* Add your handler here */}} />
             </div>
 
             {/* Leaderboard Modal */}
