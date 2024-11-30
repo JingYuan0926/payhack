@@ -19,6 +19,10 @@ const DraggableFurniture = ({ item, onMove, onRemove }) => {
     width: item.placedWidth || (item.originalWidth ? item.originalWidth * 2.5 : 100),
     height: item.placedHeight || (item.originalHeight ? item.originalHeight * 2.5 : 100)
   });
+  
+  const [progress, setProgress] = useState(item.progress || 0);
+  const [opacity, setOpacity] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     if (!item.originalWidth || !item.originalHeight) {
@@ -32,6 +36,45 @@ const DraggableFurniture = ({ item, onMove, onRemove }) => {
       };
     }
   }, [item]);
+
+  // Add keyboard event listener for the '9' key
+  useEffect(() => {
+    if (!item.isCelebration) return;
+
+    const handleKeyPress = async (event) => {
+      if (event.key === '9' && !isAnimating) {
+        setIsAnimating(true);
+        
+        const startTime = Date.now();
+        const duration = 300;
+
+        setProgress(10);
+        setOpacity(0.9);
+
+        const animate = () => {
+          const currentTime = Date.now();
+          const elapsed = currentTime - startTime;
+          const newProgress = Math.min((elapsed / duration) * 100, 100);
+          
+          setProgress(newProgress);
+          setOpacity(1 - (newProgress / 100));
+          
+          if (newProgress < 100) {
+            requestAnimationFrame(animate);
+          } else {
+            setTimeout(() => {
+              onRemove(item.id);
+            }, 50);
+          }
+        };
+
+        requestAnimationFrame(animate);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [item, onRemove, isAnimating]);
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'furniture',
@@ -47,25 +90,54 @@ const DraggableFurniture = ({ item, onMove, onRemove }) => {
         onMove(item.id, dropResult)
       }
     },
-  }))
+  }));
 
   return (
-    <img
-      ref={drag}
-      src={item.src}
-      alt={item.name}
+    <div
       style={{
         position: 'absolute',
         top: item.position.y,
         left: item.position.x,
-        width: dimensions.width,
-        height: dimensions.height,
-        opacity: isDragging ? 0.5 : 1,
-        cursor: 'move',
       }}
-    />
-  )
-}
+    >
+      <img
+        ref={drag}
+        src={item.src}
+        alt={item.name}
+        style={{
+          width: dimensions.width,
+          height: dimensions.height,
+          opacity: isDragging ? 0.5 : opacity,
+          cursor: 'move',
+          transition: 'opacity 0.001s linear',
+        }}
+      />
+      {item.isCelebration && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: -10,
+            left: 0,
+            width: '100%',
+            height: '8px',
+            backgroundColor: '#e0e0e0',
+            borderRadius: '4px',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              width: `${progress}%`,
+              height: '100%',
+              backgroundColor: '#4CAF50',
+              transition: 'width 0.001s linear',
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
 
 // New DroppableMap component
 const DroppableMap = ({ children, onDrop }) => {
