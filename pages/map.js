@@ -390,20 +390,6 @@ export default function Map() {
               className="w-21 h-21"
             />
           </button>
-
-          {/* Add Deposit Button after Total Savings Button */}
-          <button
-            className="absolute left-4 top-36 w-12 h-12 rounded-full bg-purple-500 hover:bg-purple-600 flex items-center justify-center shadow-lg z-[9998]"
-            onClick={() => setShowDeposit(true)}
-          >
-            <img
-              src="/deposit.png"
-              alt="Deposit"
-              className="w-7 h-7"
-            />
-          </button>
-
-          {/* Add Deposit Modal */}
           {showDeposit && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]">
               <div className="bg-white rounded-lg p-4 w-[90%] max-w-2xl">

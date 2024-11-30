@@ -30,7 +30,7 @@ export default function Deposit({ className }) {
   return (
     <div
       className={cn(
-        "relative flex h-[300px] w-full items-center justify-center overflow-hidden rounded-lg border bg-background p-10 md:shadow-xl",
+        "relative flex h-[300px] w-full items-center justify-center rounded-lg border bg-background p-10 md:shadow-xl",
         className,
       )}
       ref={containerRef}
@@ -45,8 +45,8 @@ export default function Deposit({ className }) {
 
         {/* FinCat Circle */}
         <div className="flex flex-col justify-center">
-          <Circle ref={fincatRef} className="size-16">
-            <img src="/cat.png" alt="FinCat" className="w-10 h-10" />
+          <Circle ref={fincatRef} className="size-15">
+            <img src="/logo.png" alt="FinCat" className="w-10 h-10" />
           </Circle>
         </div>
 

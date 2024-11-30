@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import FinancialPlanPopup from "./FinancialPlanPopup";
-import SpendHistory from "./spendHistory";
 import DailySum from "./DailySum";
 import { useRouter } from 'next/router';
 import ProgressButton from './ProgressButton';
@@ -16,7 +15,6 @@ export default function LevelBar({
   const router = useRouter();
   const [currentProgress, setCurrentProgress] = useState(progress);
   const [showFinancialPlan, setShowFinancialPlan] = useState(false);
-  const [showSpendHistory, setShowSpendHistory] = useState(false);
   const [showDailySum, setShowDailySum] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [openApiData, setOpenApiData] = useState(null);
@@ -31,7 +29,6 @@ export default function LevelBar({
       setCurrentTime(new Date());
     }, 1000);
 
-    // Cleanup timer on component unmount
     return () => clearInterval(timer);
   }, []);
 
@@ -64,13 +61,6 @@ export default function LevelBar({
     hour12: true
   });
 
-  // Example spending history
-  const spendingHistory = [
-    { description: "Buy food", amount: 20 },
-    { description: "Buy food", amount: 100 },
-    { description: "Buy furniture", amount: 20 },
-  ];
-
   const handleProgressClick = () => {
     router.push('/progress');
   };
@@ -98,7 +88,6 @@ export default function LevelBar({
         {/* Right side: Date and Time */}
         <div
           className="pixel-text-blue text-3xl cursor-pointer hover:text-blue-600 text-right"
-          onClick={() => setShowSpendHistory(true)}
         >
           <div>{formattedDate}</div>
           <div>{formattedTime}</div>
@@ -131,13 +120,6 @@ export default function LevelBar({
       </div>
 
       {/* Popups */}
-      {showSpendHistory && (
-        <SpendHistory
-          onClose={() => setShowSpendHistory(false)}
-          history={spendingHistory}
-        />
-      )}
-
       {showFinancialPlan && openApiData && incomeData && (
         <FinancialPlanPopup
           onClose={() => setShowFinancialPlan(false)}
