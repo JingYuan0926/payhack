@@ -266,7 +266,7 @@ export default function Map() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="flex flex-col">
+      <div className="flex flex-col" style={{ backgroundColor: '#c5e4eb', minHeight: '100vh' }}>
         <div className="px-4 pt-2">
           <LevelBar 
             username="Tom The Cat" 

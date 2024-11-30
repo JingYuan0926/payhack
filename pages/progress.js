@@ -226,7 +226,7 @@ const Progress = () => {
             plot_bgcolor: 'rgba(0,0,0,0)',
             hovermode: 'x unified',
             margin: { 
-                t: 30,  // reduced top margin since we're removing title
+                t: 30,
                 r: 50,
                 l: 50,
                 b: 60
@@ -236,7 +236,9 @@ const Progress = () => {
                 orientation: 'h',
                 y: -0.15,
                 xanchor: 'center',
-                x: 0.5
+                x: 0.5,
+                traceorder: 'normal',
+                tracegroupgap: 0
             },
             xaxis: { 
                 title: 'Months',
@@ -267,13 +269,13 @@ const Progress = () => {
                 title: {
                     standoff: 15
                 }
-            }
+            },
+            showlegend: false
         };
 
         if (showSavings) {
             return {
                 ...baseLayout,
-                // Removed the title property here
             };
         }
         return baseLayout;
@@ -684,7 +686,19 @@ const Progress = () => {
                         </div>
                     </div>
                 ) : (
-                    activeChart && (
+                    !activeChart ? (
+                        // Updated empty state with happyCat.gif and better centering
+                        <div className="flex flex-col items-center justify-center min-h-[60vh]">
+                            <img 
+                                src="/happyCat.gif"
+                                alt="Happy Cat"
+                                className="w-64 h-64 object-contain mb-6"
+                            />
+                            <p className="text-xl text-gray-600 font-medium text-center">
+                                Select a category above to view your expenses
+                            </p>
+                        </div>
+                    ) : (
                         <div className="mt-6 flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
                             <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 w-full md:flex-grow">
                                 <div className="mb-6 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-center justify-center">
