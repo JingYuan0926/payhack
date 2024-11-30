@@ -207,23 +207,17 @@ export default function Map() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div>
-        <LevelBar username="Tom The Cat" progress={progress} dangerProgress={loveLevel} onFeedCat={handleFeedCat} />
-
-        <div
-          style={{
-            position: "absolute",
-            top: "2%",
-            left: "37%",
-            zIndex: 9999,
-            display: showSpendingHistory ? "none" : "block",
-          }}
-        >
-          {/* Removing Weekly Challenge component
-          <WeeklyChallenge onChallengeComplete={handleChallengeComplete} onFeedCat={handleFeedCat} />
-          */}
+      <div className="flex flex-col">
+        <div className="px-4 pt-2">
+          <LevelBar 
+            username="Tom The Cat" 
+            progress={progress} 
+            dangerProgress={loveLevel} 
+            onFeedCat={handleFeedCat} 
+          />
         </div>
-        <div className="flex-1 flex items-center justify-center relative">
+
+        <div className="flex-1 flex items-center justify-center relative mt-4">
           {/* Daily Goals Button */}
           <button
             className="absolute left-4 top-4 w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg z-[9998]"
