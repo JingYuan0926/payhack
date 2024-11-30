@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
 import WeeklyChallenge from '../components/WeeklyChallenge'
 import { getFurniture, saveFurniture, subscribeFurniture } from '../utils/furnitureStorage'
+import LeaderboardModal from '../components/LeaderboardModal'
 
 
 
@@ -93,6 +94,7 @@ export default function Map() {
   const [progress, setProgress] = useState(60);
   const [showSpendingHistory, setShowSpendingHistory] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -258,6 +260,24 @@ export default function Map() {
                 onRemove={handleRemoveFurniture}
               />
             ))}
+            
+            {/* Add a small trophy icon that opens the leaderboard */}
+            <div 
+              className="absolute top-4 right-4 cursor-pointer hover:scale-110 transition-transform"
+              onClick={() => setShowLeaderboard(!showLeaderboard)}
+            >
+              <img
+                src="/leaderboard.png"
+                alt="Leaderboard"
+                className="w-8 h-8"
+              />
+            </div>
+
+            {/* Leaderboard Modal */}
+            <LeaderboardModal 
+              isOpen={showLeaderboard}
+              onClose={() => setShowLeaderboard(false)}
+            />
           </DroppableMap>
 
           {/* Inventory Button (previously Shop) */}
