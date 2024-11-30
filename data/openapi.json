@@ -784,40 +784,1699 @@
         "expiry_date": "05/26",
         "usages": [
           {
-            "date": "2024-03-15",
-            "time": "16:45:30",
+            "date": "2024-01-03",
+            "time": "10:15:30",
             "amount": 156.90,
             "category": "Groceries",
             "merchant": "Giant Hypermarket"
           },
           {
-            "date": "2024-03-13",
-            "time": "11:20:15",
+            "date": "2024-01-07",
+            "time": "14:30:00",
             "amount": 89.90,
             "category": "Shopping",
             "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-01-11",
+            "time": "16:45:20",
+            "amount": 234.50,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-01-15",
+            "time": "11:20:10",
+            "amount": 67.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-01-19",
+            "time": "13:15:45",
+            "amount": 145.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-01-22",
+            "time": "15:30:00",
+            "amount": 98.40,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-01-25",
+            "time": "12:45:30",
+            "amount": 178.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-01-28",
+            "time": "17:20:15",
+            "amount": 56.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-01-30",
+            "time": "14:10:25",
+            "amount": 123.40,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-01-31",
+            "time": "19:05:00",
+            "amount": 167.30,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+
+          {
+            "date": "2024-02-03",
+            "time": "09:30:15",
+            "amount": 189.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-02-06",
+            "time": "13:45:30",
+            "amount": 95.60,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-02-09",
+            "time": "15:20:45",
+            "amount": 245.70,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-02-12",
+            "time": "11:15:00",
+            "amount": 78.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-02-15",
+            "time": "14:30:20",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-02-18",
+            "time": "16:45:10",
+            "amount": 112.30,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-02-21",
+            "time": "12:20:35",
+            "amount": 198.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-02-24",
+            "time": "17:15:25",
+            "amount": 65.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-02-27",
+            "time": "13:40:15",
+            "amount": 145.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-02-29",
+            "time": "18:25:00",
+            "amount": 178.90,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-03-03",
+            "time": "10:30:15",
+            "amount": 178.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-03-07",
+            "time": "14:15:30",
+            "amount": 134.50,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-03-11",
+            "time": "16:20:45",
+            "amount": 267.80,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-03-15",
+            "time": "11:45:00",
+            "amount": 89.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-03-18",
+            "time": "13:30:20",
+            "amount": 156.70,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-03-21",
+            "time": "15:45:10",
+            "amount": 123.40,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-03-24",
+            "time": "12:20:35",
+            "amount": 245.60,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-03-27",
+            "time": "17:15:25",
+            "amount": 78.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-03-29",
+            "time": "14:40:15",
+            "amount": 167.30,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-03-31",
+            "time": "19:25:00",
+            "amount": 145.60,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-04-03",
+            "time": "09:30:15",
+            "amount": 198.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-04-07",
+            "time": "13:45:30",
+            "amount": 145.60,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-04-11",
+            "time": "15:20:45",
+            "amount": 289.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-04-15",
+            "time": "11:15:00",
+            "amount": 92.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },{
+            "date": "2024-04-18",
+            "time": "14:30:20",
+            "amount": 178.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-04-21",
+            "time": "16:45:10",
+            "amount": 134.50,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-04-24",
+            "time": "12:20:35",
+            "amount": 267.80,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-04-27",
+            "time": "17:15:25",
+            "amount": 85.60,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },{
+            "date": "2024-04-29",
+            "time": "13:40:15",
+            "amount": 156.70,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-04-30",
+            "time": "18:25:00",
+            "amount": 189.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+
+          {
+            "date": "2024-05-03",
+            "time": "10:15:30",
+            "amount": 187.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-05-07",
+            "time": "14:30:00",
+            "amount": 156.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },{
+            "date": "2024-05-11",
+            "time": "16:45:20",
+            "amount": 298.50,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-05-15",
+            "time": "11:20:10",
+            "amount": 95.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-05-18",
+            "time": "13:15:45",
+            "amount": 167.60,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-05-21",
+            "time": "15:30:00",
+            "amount": 145.40,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },{
+            "date": "2024-05-24",
+            "time": "12:45:30",
+            "amount": 278.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-05-27",
+            "time": "17:20:15",
+            "amount": 88.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-05-29",
+            "time": "14:10:25",
+            "amount": 198.40,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-05-31",
+            "time": "19:05:00",
+            "amount": 167.30,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },{
+            "date": "2024-06-03",
+            "time": "09:30:15",
+            "amount": 176.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-06-07",
+            "time": "13:45:30",
+            "amount": 145.60,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-06-11",
+            "time": "15:20:45",
+            "amount": 312.70,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-06-15",
+            "time": "11:15:00",
+            "amount": 97.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },{
+            "date": "2024-06-18",
+            "time": "14:30:20",
+            "amount": 189.80,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-06-21",
+            "time": "16:45:10",
+            "amount": 156.30,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-06-24",
+            "time": "12:20:35",
+            "amount": 289.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-06-27",
+            "time": "17:15:25",
+            "amount": 92.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },{
+            "date": "2024-06-29",
+            "time": "13:40:15",
+            "amount": 178.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-06-30",
+            "time": "18:25:00",
+            "amount": 198.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-07-03",
+            "time": "10:15:30",
+            "amount": 188.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-07-07",
+            "time": "14:30:00",
+            "amount": 167.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-07-11",
+            "time": "16:45:20",
+            "amount": 278.50,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-07-15",
+            "time": "11:20:10",
+            "amount": 98.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-07-19",
+            "time": "13:15:45",
+            "amount": 178.60,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-07-22",
+            "time": "15:30:00",
+            "amount": 156.40,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-07-25",
+            "time": "12:45:30",
+            "amount": 289.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-07-28",
+            "time": "17:20:15",
+            "amount": 92.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-07-30",
+            "time": "14:10:25",
+            "amount": 201.40,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-07-31",
+            "time": "19:05:00",
+            "amount": 178.30,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          
+          {
+            "date": "2024-08-03",
+            "time": "09:30:15",
+            "amount": 192.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-08-07",
+            "time": "13:45:30",
+            "amount": 154.60,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-08-11",
+            "time": "15:20:45",
+            "amount": 345.70,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-08-15",
+            "time": "11:15:00",
+            "amount": 102.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-08-18",
+            "time": "14:30:20",
+            "amount": 198.80,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-08-21",
+            "time": "16:45:10",
+            "amount": 167.30,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-08-24",
+            "time": "12:20:35",
+            "amount": 312.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-08-27",
+            "time": "17:15:25",
+            "amount": 95.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-08-29",
+            "time": "13:40:15",
+            "amount": 187.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-08-31",
+            "time": "18:25:00",
+            "amount": 212.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          
+          {
+            "date": "2024-09-03",
+            "time": "10:30:15",
+            "amount": 189.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-09-07",
+            "time": "14:15:30",
+            "amount": 145.50,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-09-11",
+            "time": "16:20:45",
+            "amount": 298.80,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-09-15",
+            "time": "11:45:00",
+            "amount": 97.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-09-18",
+            "time": "13:30:20",
+            "amount": 167.70,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-09-21",
+            "time": "15:45:10",
+            "amount": 134.40,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-09-24",
+            "time": "12:20:35",
+            "amount": 267.60,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-09-27",
+            "time": "17:15:25",
+            "amount": 88.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-09-29",
+            "time": "14:40:15",
+            "amount": 178.30,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-09-30",
+            "time": "19:25:00",
+            "amount": 156.60,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          
+          {
+            "date": "2024-10-03",
+            "time": "09:30:15",
+            "amount": 212.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-10-07",
+            "time": "13:45:30",
+            "amount": 156.60,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-10-11",
+            "time": "15:20:45",
+            "amount": 312.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-10-15",
+            "time": "11:15:00",
+            "amount": 99.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-10-18",
+            "time": "14:30:20",
+            "amount": 189.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-10-21",
+            "time": "16:45:10",
+            "amount": 145.50,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-10-24",
+            "time": "12:20:35",
+            "amount": 289.80,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-10-27",
+            "time": "17:15:25",
+            "amount": 92.60,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-10-29",
+            "time": "13:40:15",
+            "amount": 167.70,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-10-31",
+            "time": "18:25:00",
+            "amount": 198.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          
+          {
+            "date": "2024-11-03",
+            "time": "10:15:30",
+            "amount": 198.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-11-07",
+            "time": "14:30:00",
+            "amount": 167.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-11-11",
+            "time": "16:45:20",
+            "amount": 323.50,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-11-15",
+            "time": "11:20:10",
+            "amount": 103.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-11-18",
+            "time": "13:15:45",
+            "amount": 178.60,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-11-21",
+            "time": "15:30:00",
+            "amount": 156.40,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-11-24",
+            "time": "12:45:30",
+            "amount": 298.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-11-27",
+            "time": "17:20:15",
+            "amount": 94.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-11-29",
+            "time": "14:10:25",
+            "amount": 212.40,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-11-30",
+            "time": "19:05:00",
+            "amount": 178.30,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          
+          {
+            "date": "2024-12-03",
+            "time": "09:30:15",
+            "amount": 223.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-12-07",
+            "time": "13:45:30",
+            "amount": 167.60,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-12-11",
+            "time": "15:20:45",
+            "amount": 356.70,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-12-15",
+            "time": "11:15:00",
+            "amount": 108.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-12-18",
+            "time": "14:30:20",
+            "amount": 234.80,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-12-21",
+            "time": "16:45:10",
+            "amount": 189.30,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-12-24",
+            "time": "12:20:35",
+            "amount": 345.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-12-27",
+            "time": "17:15:25",
+            "amount": 98.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-12-29",
+            "time": "13:40:15",
+            "amount": 198.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-12-31",
+            "time": "18:25:00",
+            "amount": 245.90,
+            "category": "Shopping",
+            "merchant": "Zara"
           }
         ]
       },
       {
-        "card_number": "1438 2332 9348 7832",
-        "bank": "CIMB",
+        "card_number": "5367 8912 3456 7890",
+        "bank": "CIMB Bank",
         "card_image": "https://placeholder.com/card_image2.jpg",
-        "expiry_date": "08/25",
+        "expiry_date": "09/25",
         "usages": [
           {
-            "date": "2024-03-14",
-            "time": "13:15:00",
-            "amount": 35.90,
-            "category": "Entertainment",
-            "merchant": "GSC Movies"
+            "date": "2024-01-02",
+            "time": "11:30:00",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "AEON"
           },
           {
-            "date": "2024-03-12",
-            "time": "19:30:45",
-            "amount": 68.50,
-            "category": "Food & Beverage",
-            "merchant": "Sushi King"
+            "date": "2024-01-06",
+            "time": "15:45:20",
+            "amount": 123.90,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-01-10",
+            "time": "13:20:15",
+            "amount": 256.70,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-01-14",
+            "time": "10:15:30",
+            "amount": 76.50,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-01-18",
+            "time": "14:25:00",
+            "amount": 189.30,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-01-21",
+            "time": "16:40:45",
+            "amount": 145.60,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-01-24",
+            "time": "12:35:20",
+            "amount": 234.80,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-01-27",
+            "time": "18:15:00",
+            "amount": 82.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-01-30",
+            "time": "13:50:30",
+            "amount": 156.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-01-31",
+            "time": "17:25:15",
+            "amount": 178.90,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-02-03",
+            "time": "09:45:00",
+            "amount": 178.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-02-07",
+            "time": "14:20:15",
+            "amount": 134.60,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-02-11",
+            "time": "16:35:30",
+            "amount": 289.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-02-15",
+            "time": "11:25:45",
+            "amount": 88.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-02-18",
+            "time": "13:40:20",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-02-21",
+            "time": "15:55:10",
+            "amount": 156.30,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-02-24",
+            "time": "12:15:40",
+            "amount": 245.60,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-02-27",
+            "time": "17:30:25",
+            "amount": 79.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-02-29",
+            "time": "14:45:15",
+            "amount": 189.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-02-29",
+            "time": "19:20:00",
+            "amount": 167.50,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          
+          {
+            "date": "2024-03-03",
+            "time": "10:15:30",
+            "amount": 198.70,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-03-07",
+            "time": "13:40:45",
+            "amount": 145.90,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-03-11",
+            "time": "15:25:20",
+            "amount": 312.40,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-03-15",
+            "time": "11:50:35",
+            "amount": 92.60,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-03-18",
+            "time": "14:15:50",
+            "amount": 176.30,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-03-21",
+            "time": "16:30:15",
+            "amount": 134.80,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-03-24",
+            "time": "12:45:40",
+            "amount": 267.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-03-27",
+            "time": "18:20:25",
+            "amount": 85.40,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-03-30",
+            "time": "13:35:10",
+            "amount": 198.60,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-03-31",
+            "time": "17:50:45",
+            "amount": 156.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          
+          {
+            "date": "2024-04-03",
+            "time": "09:30:15",
+            "amount": 187.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-04-07",
+            "time": "14:45:30",
+            "amount": 167.40,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-04-11",
+            "time": "16:20:45",
+            "amount": 298.60,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-04-15",
+            "time": "11:35:20",
+            "amount": 89.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-04-18",
+            "time": "13:50:45",
+            "amount": 189.30,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-04-21",
+            "time": "15:15:10",
+            "amount": 145.80,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-04-24",
+            "time": "12:30:35",
+            "amount": 234.50,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-04-27",
+            "time": "17:45:20",
+            "amount": 76.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-04-29",
+            "time": "14:10:45",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-04-30",
+            "time": "19:25:30",
+            "amount": 178.60,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-05-03",
+            "time": "10:15:30",
+            "amount": 192.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-05-07",
+            "time": "14:30:00",
+            "amount": 156.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-05-11",
+            "time": "16:45:20",
+            "amount": 323.50,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-05-15",
+            "time": "11:20:10",
+            "amount": 94.80,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-05-18",
+            "time": "13:15:45",
+            "amount": 178.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-05-21",
+            "time": "15:30:00",
+            "amount": 145.40,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-05-24",
+            "time": "12:45:30",
+            "amount": 267.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-05-27",
+            "time": "17:20:15",
+            "amount": 88.70,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-05-29",
+            "time": "14:10:25",
+            "amount": 187.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-05-31",
+            "time": "19:05:00",
+            "amount": 167.30,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          
+          {
+            "date": "2024-06-03",
+            "time": "09:30:15",
+            "amount": 198.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-06-07",
+            "time": "13:45:30",
+            "amount": 178.60,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-06-11",
+            "time": "15:20:45",
+            "amount": 345.70,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-06-15",
+            "time": "11:15:00",
+            "amount": 96.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-06-18",
+            "time": "14:30:20",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-06-21",
+            "time": "16:45:10",
+            "amount": 134.30,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-06-24",
+            "time": "12:20:35",
+            "amount": 289.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-06-27",
+            "time": "17:15:25",
+            "amount": 82.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-06-29",
+            "time": "13:40:15",
+            "amount": 176.60,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-06-30",
+            "time": "18:25:00",
+            "amount": 189.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          
+          {
+            "date": "2024-07-03",
+            "time": "10:30:15",
+            "amount": 187.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-07-07",
+            "time": "14:15:30",
+            "amount": 145.50,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-07-11",
+            "time": "16:20:45",
+            "amount": 334.80,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-07-15",
+            "time": "11:45:00",
+            "amount": 91.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-07-18",
+            "time": "13:30:20",
+            "amount": 198.70,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-07-21",
+            "time": "15:45:10",
+            "amount": 167.40,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-07-24",
+            "time": "12:20:35",
+            "amount": 278.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-07-27",
+            "time": "17:15:25",
+            "amount": 87.60,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-07-29",
+            "time": "13:40:15",
+            "amount": 189.70,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-07-31",
+            "time": "18:25:00",
+            "amount": 156.90,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          
+          {
+            "date": "2024-08-03",
+            "time": "09:45:00",
+            "amount": 201.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-08-07",
+            "time": "13:20:15",
+            "amount": 178.60,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-08-11",
+            "time": "15:35:30",
+            "amount": 312.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-08-15",
+            "time": "11:25:45",
+            "amount": 93.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-08-18",
+            "time": "14:40:20",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-08-21",
+            "time": "16:55:10",
+            "amount": 145.30,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-08-24",
+            "time": "12:15:40",
+            "amount": 256.60,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-08-27",
+            "time": "17:30:25",
+            "amount": 84.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-08-29",
+            "time": "14:45:15",
+            "amount": 178.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-08-31",
+            "time": "19:20:00",
+            "amount": 198.50,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-09-03",
+            "time": "10:15:30",
+            "amount": 195.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-09-07",
+            "time": "14:30:00",
+            "amount": 167.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-09-11",
+            "time": "16:45:20",
+            "amount": 345.50,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-09-15",
+            "time": "11:20:10",
+            "amount": 97.80,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-09-18",
+            "time": "13:15:45",
+            "amount": 187.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-09-21",
+            "time": "15:30:00",
+            "amount": 156.40,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-09-24",
+            "time": "12:45:30",
+            "amount": 289.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-09-27",
+            "time": "17:20:15",
+            "amount": 88.70,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-09-29",
+            "time": "14:10:25",
+            "amount": 198.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-09-30",
+            "time": "19:05:00",
+            "amount": 178.30,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          
+          {
+            "date": "2024-10-03",
+            "time": "09:30:15",
+            "amount": 212.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-10-07",
+            "time": "13:45:30",
+            "amount": 178.60,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-10-11",
+            "time": "15:20:45",
+            "amount": 367.70,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-10-15",
+            "time": "11:15:00",
+            "amount": 94.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-10-18",
+            "time": "14:30:20",
+            "amount": 176.80,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-10-21",
+            "time": "16:45:10",
+            "amount": 145.30,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-10-24",
+            "time": "12:20:35",
+            "amount": 312.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-10-27",
+            "time": "17:15:25",
+            "amount": 86.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-10-29",
+            "time": "13:40:15",
+            "amount": 189.60,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-10-31",
+            "time": "18:25:00",
+            "amount": 167.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          
+          {
+            "date": "2024-11-03",
+            "time": "10:30:15",
+            "amount": 223.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-11-07",
+            "time": "14:15:30",
+            "amount": 189.50,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-11-11",
+            "time": "16:20:45",
+            "amount": 389.80,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-11-15",
+            "time": "11:45:00",
+            "amount": 98.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-11-18",
+            "time": "13:30:20",
+            "amount": 198.70,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-11-21",
+            "time": "15:45:10",
+            "amount": 167.40,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-11-24",
+            "time": "12:20:35",
+            "amount": 334.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-11-27",
+            "time": "17:15:25",
+            "amount": 92.60,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-11-29",
+            "time": "13:40:15",
+            "amount": 212.70,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-11-30",
+            "time": "18:25:00",
+            "amount": 178.90,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-12-03",
+            "time": "09:45:00",
+            "amount": 245.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-12-07",
+            "time": "13:20:15",
+            "amount": 198.60,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-12-11",
+            "time": "15:35:30",
+            "amount": 412.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-12-15",
+            "time": "11:25:45",
+            "amount": 103.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-12-18",
+            "time": "14:40:20",
+            "amount": 234.80,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-12-21",
+            "time": "16:55:10",
+            "amount": 189.30,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-12-24",
+            "time": "12:15:40",
+            "amount": 356.60,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-12-27",
+            "time": "17:30:25",
+            "amount": 97.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-12-29",
+            "time": "14:45:15",
+            "amount": 223.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-12-31",
+            "time": "19:20:00",
+            "amount": 212.50,
+            "category": "Shopping",
+            "merchant": "Zara"
           }
         ]
       }
