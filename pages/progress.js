@@ -22,27 +22,27 @@ const Progress = () => {
             const processedData = {
                 groceries: {
                     title: 'Groceries',
-                    months: generateMonths(),
+                    months: generateAllMonths(),
                     expenses: processExpenses('Groceries')
                 },
                 shopping: {
                     title: 'Shopping',
-                    months: generateMonths(),
+                    months: generateAllMonths(),
                     expenses: processExpenses('Shopping')
                 },
                 electronics: {
                     title: 'Electronics',
-                    months: generateMonths(),
+                    months: generateAllMonths(),
                     expenses: processExpenses('Electronics')
                 },
                 healthBeauty: {
                     title: 'Health & Beauty',
-                    months: generateMonths(),
+                    months: generateAllMonths(),
                     expenses: processExpenses('Health & Beauty')
                 },
                 homeLiving: {
                     title: 'Home & Living',
-                    months: generateMonths(),
+                    months: generateAllMonths(),
                     expenses: processExpenses('Home & Living')
                 }
             };
@@ -60,13 +60,23 @@ const Progress = () => {
         
         const savingsData = processSavingsData();
         let frameId;
+        let direction = 1; // 1 for forward, -1 for backward
         
         const animate = () => {
             setAnimationFrame(prev => {
-                if (prev >= savingsData.months.length - 1) {
-                    return 0; // Reset to start
+                // Calculate next frame
+                const nextFrame = prev + (0.03 * direction);
+                
+                // Check boundaries and reverse direction if needed
+                if (nextFrame >= savingsData.months.length - 1) {
+                    direction = -1;
+                    return savingsData.months.length - 1;
+                } else if (nextFrame <= 0) {
+                    direction = 1;
+                    return 0;
                 }
-                return prev + 0.03; // Adjust speed by changing this value
+                
+                return nextFrame;
             });
 
             frameId = requestAnimationFrame(animate);
@@ -86,11 +96,19 @@ const Progress = () => {
         const months = [];
         const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         
-        // Generate months for 2024
-        for (let month of monthNames) {
-            months.push(`${month} 2024`);
+        // Generate only even-numbered months for 2024
+        for (let i = 0; i < monthNames.length; i++) {
+            if (i % 2 === 0) { // Only add even-indexed months (0, 2, 4, 6, 8, 10)
+                months.push(`${monthNames[i]} 2024`);
+            }
         }
         return months;
+    };
+
+    // Add new function for all months (expenses view)
+    const generateAllMonths = () => {
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return monthNames.map(month => `${month} 2024`);
     };
 
     // Helper function to process expenses by merchant
@@ -113,7 +131,7 @@ const Progress = () => {
                 const merchant = transaction.merchant;
 
                 if (!expenses[merchant]) {
-                    expenses[merchant] = Array(12).fill(0);
+                    expenses[merchant] = Array(12).fill(0); // 12 months
                 }
 
                 expenses[merchant][monthIndex] += transaction.amount;
@@ -192,16 +210,40 @@ const Progress = () => {
 
     const getLayout = () => {
         const baseLayout = {
-            width: 1000,
-            height: 600,
+            autosize: true,
+            width: undefined,
+            height: undefined,
             paper_bgcolor: 'rgba(0,0,0,0)',
             plot_bgcolor: 'rgba(0,0,0,0)',
             hovermode: 'x unified',
-            margin: { t: 60, r: 60, l: 60, b: 60 },
+            margin: { 
+                t: 50,  // top margin
+                r: 60,  // right margin for y2 axis
+                l: 60,  // left margin for y axis
+                b: 80   // bottom margin for x axis labels
+            },
             showlegend: true,
             legend: {
                 orientation: 'h',
-                y: -0.15
+                y: -0.2,  // Move legend down
+                xanchor: 'center',
+                x: 0.5
+            },
+            xaxis: { 
+                tickangle: -45,  // Angle the x-axis labels
+                automargin: true // Ensure labels are visible
+            },
+            yaxis: {
+                automargin: true,
+                title: {
+                    standoff: 20  // Space between axis title and labels
+                }
+            },
+            yaxis2: {
+                automargin: true,
+                title: {
+                    standoff: 20
+                }
             }
         };
 
@@ -325,10 +367,10 @@ const Progress = () => {
         const months = generateMonths();
         const monthlyFinances = incomeData.user.monthly_finances;
         
-        // Arrays to store the data
+        // Arrays to store the data (6 months for even months)
         const monthlyIncome = [];
         const monthlySavings = [];
-        const monthlyExpenses = Array(12).fill(0);
+        const monthlyExpenses = Array(6).fill(0);
 
         // Get all transactions for expenses
         const allTransactions = [
@@ -337,16 +379,20 @@ const Progress = () => {
             ...transactionData.payment_channels.credit_cards.flatMap(card => card.usages)
         ];
 
-        // Calculate total expenses per month
+        // Calculate total expenses per month (even months only)
         allTransactions.forEach(transaction => {
             const monthIndex = getMonthIndex(transaction.date);
-            monthlyExpenses[monthIndex] += transaction.amount;
+            if (monthIndex % 2 === 0) {
+                monthlyExpenses[Math.floor(monthIndex / 2)] += transaction.amount;
+            }
         });
 
-        // Get income and savings from income.json
-        Object.values(monthlyFinances).forEach((monthData) => {
-            monthlyIncome.push(monthData.total_income);
-            monthlySavings.push(monthData.total_savings);
+        // Get income and savings from income.json (even months only)
+        Object.values(monthlyFinances).forEach((monthData, index) => {
+            if (index % 2 === 0) {
+                monthlyIncome.push(monthData.total_income);
+                monthlySavings.push(monthData.total_savings);
+            }
         });
 
         return {
@@ -414,25 +460,55 @@ const Progress = () => {
 
     // Add this helper function to generate summary text
     const generateSummary = (savingsData) => {
-        const currentMonth = 11; // December
-        const prevMonth = 10;    // November
-        
-        const currentSavings = savingsData.savings[currentMonth];
-        const prevSavings = savingsData.savings[prevMonth];
-        const savingsDiff = currentSavings - prevSavings;
-        
-        const currentIncome = savingsData.income[currentMonth];
-        const currentExpenses = savingsData.expenses[currentMonth];
-        
-        const savingsRate = ((currentSavings / currentIncome) * 100).toFixed(1);
-        
-        return {
-            trend: savingsDiff >= 0 ? 'increased' : 'decreased',
-            amount: Math.abs(savingsDiff).toFixed(2),
-            savingsRate,
-            monthlyExpenses: currentExpenses.toFixed(2),
-            monthlySavings: currentSavings.toFixed(2)
-        };
+        try {
+            // Early return with default values if data is invalid
+            if (!savingsData || !Array.isArray(savingsData.savings) || !Array.isArray(savingsData.income) || !Array.isArray(savingsData.expenses)) {
+                console.log('Invalid savings data:', savingsData);
+                return {
+                    trend: 'unchanged',
+                    amount: '0.00',
+                    savingsRate: '0.0',
+                    monthlyExpenses: '0.00',
+                    monthlySavings: '0.00'
+                };
+            }
+
+            // Ensure arrays have enough elements
+            const lastIndex = Math.min(
+                savingsData.savings.length - 1,
+                savingsData.income.length - 1,
+                savingsData.expenses.length - 1
+            );
+            
+            const currentMonth = lastIndex;
+            const prevMonth = Math.max(0, lastIndex - 1);
+            
+            // Ensure all values are numbers
+            const currentSavings = Number(savingsData.savings[currentMonth]) || 0;
+            const prevSavings = Number(savingsData.savings[prevMonth]) || 0;
+            const currentIncome = Number(savingsData.income[currentMonth]) || 0;
+            const currentExpenses = Number(savingsData.expenses[currentMonth]) || 0;
+            
+            const savingsDiff = currentSavings - prevSavings;
+            const savingsRate = currentIncome > 0 ? ((currentSavings / currentIncome) * 100) : 0;
+
+            return {
+                trend: savingsDiff >= 0 ? 'increased' : 'decreased',
+                amount: savingsDiff.toFixed(2),
+                savingsRate: savingsRate.toFixed(1),
+                monthlyExpenses: currentExpenses.toFixed(2),
+                monthlySavings: currentSavings.toFixed(2)
+            };
+        } catch (error) {
+            console.error('Error in generateSummary:', error);
+            return {
+                trend: 'unchanged',
+                amount: '0.00',
+                savingsRate: '0.0',
+                monthlyExpenses: '0.00',
+                monthlySavings: '0.00'
+            };
+        }
     };
 
     const updateCatPosition = (data) => {
@@ -483,58 +559,56 @@ const Progress = () => {
 
     return ( 
         <div className="min-h-screen bg-gray-100">
-            <header className="bg-white shadow">
-                <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between h-16">
+            <header className="bg-white shadow-sm">
+                <nav className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
+                    <div className="flex flex-col md:flex-row justify-between h-auto md:h-12 py-2 md:py-0">
                         <button
                             onClick={handleHomeClick}
-                            className="px-4 py-2 my-auto rounded-lg bg-blue-600 text-white hover:bg-blue-700 
-                                     transition-colors duration-200 flex items-center space-x-2"
+                            className="px-3 py-1 my-1 md:my-auto rounded-md bg-blue-600 text-white hover:bg-blue-700 
+                                     transition-colors duration-200 flex items-center space-x-2 text-sm"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                             </svg>
                             <span>Home</span>
                         </button>
 
-                        <div className="flex space-x-12">
+                        <div className="flex flex-col md:flex-row md:space-x-8 space-y-1 md:space-y-0">
                             <a href="#" 
                                onClick={(e) => handleCategoryClick('groceries', e)}
-                               className={`px-4 py-2 rounded-md ${activeChart === 'groceries' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
+                               className={`px-3 py-1 text-center rounded-md text-sm ${activeChart === 'groceries' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
                                 Groceries
                             </a>
                             <a href="#" 
                                onClick={(e) => handleCategoryClick('shopping', e)}
-                               className={`px-3 py-2 rounded-md ${activeChart === 'shopping' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
+                               className={`px-3 py-1 text-center rounded-md text-sm ${activeChart === 'shopping' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
                                 Shopping
                             </a>
                             <a href="#" 
                                onClick={(e) => handleCategoryClick('electronics', e)}
-                               className={`px-3 py-2 rounded-md ${activeChart === 'electronics' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
+                               className={`px-3 py-1 text-center rounded-md text-sm ${activeChart === 'electronics' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
                                 Electronics
                             </a>
                             <a href="#" 
                                onClick={(e) => handleCategoryClick('healthBeauty', e)}
-                               className={`px-3 py-2 rounded-md ${activeChart === 'healthBeauty' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
+                               className={`px-3 py-1 text-center rounded-md text-sm ${activeChart === 'healthBeauty' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
                                 Health & Beauty
                             </a>
                             <a href="#" 
                                onClick={(e) => handleCategoryClick('homeLiving', e)}
-                               className={`px-3 py-2 rounded-md ${activeChart === 'homeLiving' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
+                               className={`px-3 py-1 text-center rounded-md text-sm ${activeChart === 'homeLiving' ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-gray-900'}`}>
                                 Home & Living
                             </a>
                         </div>
-
-                        <div className="w-[100px]"></div>
                     </div>
                 </nav>
             </header>
-            <div className="max-w-7xl mx-auto p-6">
-                <div className="flex justify-between items-center mb-6">
-                    <h1 className="text-3xl font-bold">Expense Analysis</h1>
+            <div className="max-w-7xl mx-auto p-3 md:p-4">
+                <div className="flex flex-col md:flex-row justify-between items-center mb-4">
+                    <h1 className="text-xl md:text-2xl font-bold mb-2 md:mb-0">Expense Analysis</h1>
                     <button
                         onClick={() => setShowSavings(!showSavings)}
-                        className={`px-6 py-3 rounded-lg text-lg ${
+                        className={`w-full md:w-auto px-4 py-2 rounded-md text-sm ${
                             showSavings ? 'bg-green-600 text-white' : 'bg-gray-200'
                         }`}
                     >
@@ -543,8 +617,8 @@ const Progress = () => {
                 </div>
 
                 {showSavings ? (
-                    <div className="mt-6 flex space-x-6">
-                        <div className="bg-white rounded-lg shadow-lg p-6 flex-grow">
+                    <div className="mt-4 flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                        <div className="bg-white rounded-lg shadow-lg p-3 w-full md:w-4/5">
                             <Plot
                                 data={getSavingsPlotData()}
                                 layout={getLayout()}
@@ -554,31 +628,31 @@ const Progress = () => {
                                     scrollZoom: false
                                 }}
                                 useResizeHandler={true}
-                                style={{ width: "100%", height: "100%" }}
+                                style={{ width: "100%", height: "400px" }}
                             />
                         </div>
                         
-                        {/* Summary Box */}
-                        <div className="bg-white rounded-lg shadow-lg p-6 w-80">
-                            <div className="flex items-center justify-center mb-4">
+                        {/* Smaller container, same content */}
+                        <div className="bg-white rounded-lg shadow-lg p-3 w-full md:w-1/5 text-sm">
+                            <div className="flex items-center justify-center mb-3">
                                 <img 
                                     src="/catWheel.gif" 
                                     alt="Cat Wheel" 
-                                    className="w-24 h-24 object-contain"
+                                    className="w-16 h-16 object-contain"
                                 />
                             </div>
                             
                             {(() => {
                                 const summary = generateSummary(processSavingsData());
                                 return (
-                                    <div className="space-y-4">
-                                        <h3 className="text-xl font-bold text-gray-800 text-center">
+                                    <div className="space-y-3">
+                                        <h3 className="text-base font-bold text-gray-800 text-center">
                                             Monthly Summary
                                         </h3>
                                         
-                                        <div className="p-4 bg-blue-50 rounded-lg">
-                                            <p className="text-sm text-gray-600">Your savings have {summary.trend} by</p>
-                                            <p className="text-2xl font-bold text-blue-600">
+                                        <div className="p-2 bg-blue-50 rounded-lg">
+                                            <p className="text-xs text-gray-600">Your savings have {summary.trend} by</p>
+                                            <p className="text-xl font-bold text-blue-600">
                                                 ${summary.amount}
                                             </p>
                                         </div>
@@ -598,10 +672,10 @@ const Progress = () => {
                                             </div>
                                         </div>
                                         
-                                        <div className="text-sm text-gray-500 text-center mt-4">
+                                        <div className="text-xs text-gray-500 text-center p-2 bg-gray-50 rounded-lg">
                                             {summary.savingsRate >= 20 
-                                                ? "Great job! You're on track with your savings goals! 🎉"
-                                                : "Consider reducing expenses to increase your savings rate 💪"}
+                                                ? "Great job! You're on track! 🎉"
+                                                : "Consider reducing expenses 💪"}
                                         </div>
                                     </div>
                                 );
@@ -610,12 +684,12 @@ const Progress = () => {
                     </div>
                 ) : (
                     activeChart && (
-                        <div className="mt-6 flex space-x-6">
-                            <div className="bg-white rounded-lg shadow-lg p-6 flex-grow">
-                                <div className="mb-6 flex space-x-4 items-center justify-center">
+                        <div className="mt-6 flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
+                            <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 w-full md:flex-grow">
+                                <div className="mb-6 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-center justify-center">
                                     <button
                                         onClick={() => setViewMode('current')}
-                                        className={`px-6 py-3 rounded-lg text-lg ${viewMode === 'current' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+                                        className={`w-full md:w-auto px-6 py-3 rounded-lg text-lg ${viewMode === 'current' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
                                     >
                                         {getCurrentMonthName()}
                                     </button>
@@ -633,12 +707,12 @@ const Progress = () => {
                                     </button>
                                     
                                     {viewMode === 'month' && (
-                                        <div className="flex items-center space-x-2">
+                                        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2 w-full md:w-auto">
                                             <span>Compare with:</span>
                                             <select
                                                 value={selectedMonth}
                                                 onChange={(e) => setSelectedMonth(Number(e.target.value))}
-                                                className="px-4 py-2 rounded border"
+                                                className="w-full md:w-auto px-4 py-2 rounded border"
                                             >
                                                 {chartData[activeChart].months.map((month, index) => (
                                                     <option key={month} value={index} disabled={index === 11}>
@@ -661,13 +735,13 @@ const Progress = () => {
                                         scrollZoom: false
                                     }}
                                     useResizeHandler={true}
-                                    style={{ width: "100%", height: "100%" }}
+                                    style={{ width: "100%", height: "400px" }}
                                 />
                             </div>
 
                             {/* New Category Summary Box */}
                             {viewMode === 'year' && (
-                                <div className="bg-white rounded-lg shadow-lg p-6 w-80">
+                                <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 w-full md:w-80">
                                     <div className="flex items-center justify-center mb-4">
                                         <img 
                                             src="/catWheel.gif" 

@@ -5,14 +5,6 @@ const DailySum = ({ showPopup, onClose }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [showSpinWheel, setShowSpinWheel] = useState(false);
 
-  // Format current date
-  const currentDate = new Date().toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-
   if (!showPopup) return null;
 
   const handleCardClick = () => {
@@ -88,9 +80,6 @@ const DailySum = ({ showPopup, onClose }) => {
                 </div>
               </div>
 
-<<<<<<< HEAD
-                <p className="text-center mt-8 text-gray-500 text-2xl">Click to see recommendations →</p>
-=======
               <div className="flex justify-end space-x-3 mt-6">
                 <button
                   onClick={onClose}
@@ -104,7 +93,6 @@ const DailySum = ({ showPopup, onClose }) => {
                 >
                   Next
                 </button>
->>>>>>> 7ee2fa379b40f52f4f22fd16cfc51def467d3d06
               </div>
             </div>
           )}
@@ -131,27 +119,14 @@ const DailySum = ({ showPopup, onClose }) => {
                       <span className="text-2xl">📝</span>
                       <span className="text-xl text-gray-600">Remember to log all your expenses for better tracking</span>
                     </li>
-<<<<<<< HEAD
-                    <li className="flex items-start space-x-4">
-                      <span className="text-3xl">💰</span>
-                      <span className="text-2xl">You're on track to meet your savings goal this month!</span>
-=======
                     <li className="flex items-start space-x-3">
                       <span className="text-2xl">💰</span>
-<<<<<<< HEAD
-                      <span>You&apos;re on track to meet your savings goal this month!</span>
->>>>>>> 0982248e0189a9d6bff58e2f1e38f542745c2c77
-=======
                       <span className="text-xl text-gray-600">You're on track to meet your savings goal this month!</span>
->>>>>>> 7ee2fa379b40f52f4f22fd16cfc51def467d3d06
                     </li>
                   </ul>
                 </div>
               </div>
 
-<<<<<<< HEAD
-                <p className="text-center mt-8 text-gray-500 text-2xl">Click to spin the wheel! 🎡</p>
-=======
               <div className="flex justify-end space-x-3 mt-6">
                 <button
                   onClick={onClose}
@@ -165,7 +140,6 @@ const DailySum = ({ showPopup, onClose }) => {
                 >
                   Spin & Win
                 </button>
->>>>>>> 7ee2fa379b40f52f4f22fd16cfc51def467d3d06
               </div>
             </div>
           )}
