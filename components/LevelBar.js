@@ -49,8 +49,12 @@ export default function LevelBar({
     { description: "Buy furniture", amount: 20 },
   ];
 
-  const handleProgressClick = () => {
-    router.push('/progress');
+  const handleProgressClick = async () => {
+    try {
+      await router.push('/progress');
+    } catch (error) {
+      console.error('Navigation error:', error);
+    }
   };
 
   return (
