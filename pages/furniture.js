@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
+// Add these scale factors at the top of the file
+export const PREVIEW_SCALE = 1.5; // Scale for furniture in the menu
+export const PLACED_SCALE = 2.5;  // Scale for furniture on the map
+
 // Add this helper function at the top of the file
 const STORAGE_KEY = 'placedFurniture';
 
@@ -217,53 +221,34 @@ const MenuPopup = ({ onClose, onSelect }) => {
   
 // Main Component
 const FurnitureMap = () => {
-  const [furniture, setFurniture] = useState([]);
+  const [furniture, setFurniture] = useState(() => loadFromStorage());
   const [showMenu, setShowMenu] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
-  // Load initial furniture data from Firebase
-  useEffect(() => {
-    const loadFurniture = async () => {
-      setIsLoading(true);
-      try {
-        const data = await getFurniture();
-        setFurniture(data);
-      } catch (error) {
-        console.error('Error loading furniture:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadFurniture();
-  }, []);
-
-  const handleDrop = async (id, position) => {
-    const updated = furniture.map((item) => 
-      item.id === id ? { ...item, position } : item
-    );
-    await saveFurniture(updated);
-    setFurniture(updated);
+  const handleDrop = (id, position) => {
+    setFurniture((prev) => {
+      const updated = prev.map((item) => 
+        item.id === id ? { ...item, position } : item
+      );
+      saveToStorage(updated);
+      return updated;
+    });
   };
 
-  const handleAddFurniture = async (newItem) => {
-    const updated = [
-      ...furniture, 
-      { ...newItem, position: { x: 0, y: 0 }, id: `${newItem.id}-${Date.now()}` }
-    ];
-    await saveFurniture(updated);
-    setFurniture(updated);
+  const handleAddFurniture = (newItem) => {
+    setFurniture((prev) => {
+      const updated = [...prev, { ...newItem, position: { x: 0, y: 0 } }];
+      saveToStorage(updated);
+      return updated;
+    });
   };
 
-  const handleRemove = async (id) => {
-    const updated = furniture.filter((item) => item.id !== id);
-    await saveFurniture(updated);
-    setFurniture(updated);
+  const handleRemove = (id) => {
+    setFurniture((prev) => {
+      const updated = prev.filter((item) => item.id !== id);
+      saveToStorage(updated);
+      return updated;
+    });
   };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <DndProvider backend={HTML5Backend}>
