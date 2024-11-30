@@ -9,6 +9,9 @@ import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
 import { getFurniture, saveFurniture, subscribeFurniture } from '../utils/furnitureStorage'
 import LeaderboardModal from '../components/LeaderboardModal'
+import DailySummaryButton from '../components/DailySummaryButton'
+import ProgressButton from '../components/ProgressButton'
+import DailySum from '../components/DailySum'
 
 
 
@@ -185,6 +188,7 @@ export default function Map() {
   const [isLoading, setIsLoading] = useState(true);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const [showDailySum, setShowDailySum] = useState(false);
 
   const sendEmail = async () => {
     try {
@@ -328,6 +332,14 @@ export default function Map() {
     })
   }
 
+  const handleProgressClick = () => {
+    router.push('/progress');
+  };
+
+  const handleDailySummaryClick = () => {
+    setShowDailySum(true);
+  };
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -344,7 +356,9 @@ export default function Map() {
             username="Tom The Cat" 
             progress={progress} 
             dangerProgress={loveLevel} 
-            onFeedCat={handleFeedCat} 
+            onFeedCat={handleFeedCat}
+            onProgressClick={handleProgressClick}
+            onDailySummaryClick={handleDailySummaryClick}
           />
         </div>
 
@@ -386,7 +400,7 @@ export default function Map() {
               />
             ))}
             
-            {/* Add a small trophy icon that opens the leaderboard */}
+            {/* Leaderboard Button */}
             <div 
               className="absolute top-4 right-4 cursor-pointer hover:scale-110 transition-transform"
               onClick={() => setShowLeaderboard(!showLeaderboard)}
@@ -396,6 +410,20 @@ export default function Map() {
                 alt="Leaderboard"
                 className="w-8 h-8"
               />
+            </div>
+
+            {/* Daily Summary Button */}
+            <div 
+              className="absolute top-16 right-4 cursor-pointer"
+            >
+              <DailySummaryButton onClick={() => setShowDailySum(true)} />
+            </div>
+
+            {/* Progress Button */}
+            <div 
+              className="absolute top-32 right-4 cursor-pointer"
+            >
+              <ProgressButton onClick={handleProgressClick} />
             </div>
 
             {/* Leaderboard Modal */}
@@ -432,6 +460,13 @@ export default function Map() {
           initialMessage={catModalMessage}
           isCase5={true}
         />
+
+        {showDailySum && (
+          <DailySum
+            showPopup={showDailySum}
+            onClose={() => setShowDailySum(false)}
+          />
+        )}
       </div>
     </DndProvider>
   )
