@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
+import { PREVIEW_SCALE, PLACED_SCALE } from '../pages/furniture';
 
 const RARITY_CONFIG = {
   common: {
@@ -155,138 +156,174 @@ const SpinWheel = ({ onRewardClaimed }) => {
 
   const claimReward = () => {
     if (reward && onRewardClaimed) {
-      onRewardClaimed(reward);
-      setShowReward(false);
-      setReward(null);
+      // Create new image to get dimensions
+      const img = new Image();
+      img.src = reward.src;
+      
+      img.onload = () => {
+        const rewardWithId = {
+          ...reward,
+          id: `${reward.id}-${Date.now()}`,
+          price: reward.rarity.toUpperCase(),
+          // Add original dimensions
+          originalWidth: img.width,
+          originalHeight: img.height,
+          // Add preview dimensions
+          previewWidth: img.width * PREVIEW_SCALE,
+          previewHeight: img.height * PREVIEW_SCALE,
+          // Add placed dimensions
+          placedWidth: img.width * PLACED_SCALE,
+          placedHeight: img.height * PLACED_SCALE
+        };
+        
+        const currentInventory = JSON.parse(localStorage.getItem('furnitureInventory') || '[]');
+        const updatedInventory = [...currentInventory, rewardWithId];
+        localStorage.setItem('furnitureInventory', JSON.stringify(updatedInventory));
+        
+        onRewardClaimed(rewardWithId);
+        setShowReward(false);
+        setReward(null);
+      };
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800">
-      {/* Spin Wheel Container */}
-      <div className="relative w-80 h-80 mb-8">
-        {/* Main Wheel */}
-        <div
-          className="absolute w-full h-full rounded-full overflow-hidden"
-          style={{
-            transform: `rotate(${rotation}deg)`,
-            transition: isSpinning 
-              ? 'transform 3s cubic-bezier(0.2, 0.8, 0.2, 0.99)'
-              : 'none',
-            boxShadow: `
-              0 0 0 8px white,
-              0 0 0 10px #e0e0e0,
-              0 0 20px rgba(0,0,0,0.5)
-            `,
-            background: '#2a2a2a',
-          }}
-        >
-          {/* Wheel segments */}
-          {Object.entries(RARITY_CONFIG).map(([rarity, config], index) => {
-            const segmentAngle = 360 / Object.keys(RARITY_CONFIG).length;
-            return (
-              <div
-                key={rarity}
-                className="absolute w-full h-full"
-                style={{
-                  transform: `rotate(${index * segmentAngle}deg)`,
-                  transformOrigin: '50% 50%',
-                }}
-              >
+    <div className="relative w-[800px] h-[600px]">
+      {/* Content Container */}
+      <div className="p-12 flex flex-col items-center justify-center h-full">
+        <h2 className="text-4xl font-bold mb-8 pixel-text-blue">Spin to Win!</h2>
+        
+        {/* Spin Wheel Container */}
+        <div className="relative w-80 h-80 mb-8">
+          {/* Main Wheel */}
+          <div
+            className="absolute w-full h-full rounded-full overflow-hidden"
+            style={{
+              transform: `rotate(${rotation}deg)`,
+              transition: isSpinning 
+                ? 'transform 3s cubic-bezier(0.2, 0.8, 0.2, 0.99)'
+                : 'none',
+              boxShadow: `
+                0 0 0 8px white,
+                0 0 0 10px #e0e0e0,
+                0 0 20px rgba(0,0,0,0.5)
+              `,
+              background: '#2a2a2a',
+            }}
+          >
+            {/* Wheel segments */}
+            {Object.entries(RARITY_CONFIG).map(([rarity, config], index) => {
+              const segmentAngle = 360 / Object.keys(RARITY_CONFIG).length;
+              return (
                 <div
+                  key={rarity}
+                  className="absolute w-full h-full"
                   style={{
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    background: config.color,
-                    clipPath: `polygon(50% 50%, 50% 0, ${50 + Math.tan((Math.PI / 180) * segmentAngle) * 50}% 0, 50% 50%)`,
-                    boxShadow: 'inset 0 0 15px rgba(0,0,0,0.2)',
-                  }}
-                />
-                {/* Rarity Label */}
-                {/* <div
-                  style={{
-                    position: 'absolute',
-                    left: '50%',
-                    top: '25%',
-                    transform: `
-                      rotate(${segmentAngle / 2}deg) 
-                      translateX(-50%)
-                    `,
-                    color: 'white',
-                    fontWeight: 'bold',
-                    fontSize: '18px',
-                    textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
-                    whiteSpace: 'nowrap',
+                    transform: `rotate(${index * segmentAngle}deg)`,
+                    transformOrigin: '50% 50%',
                   }}
                 >
-                  {rarity.toUpperCase()}
-                </div> */}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Center Spin Button */}
-        <button
-          onClick={handleSpin}
-          disabled={isSpinning}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20
-                     w-20 h-20 rounded-full bg-white border-4 border-gray-300
-                     flex items-center justify-center
-                     transition-all duration-200 hover:scale-105"
-          style={{
-            boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
-          }}
-        >
-          <div className="text-gray-800 font-bold text-xl">
-            {isSpinning ? '...' : 'SPIN'}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      background: config.color,
+                      clipPath: `polygon(50% 50%, 50% 0, ${50 + Math.tan((Math.PI / 180) * segmentAngle) * 50}% 0, 50% 50%)`,
+                      boxShadow: 'inset 0 0 15px rgba(0,0,0,0.2)',
+                    }}
+                  />
+                  {/* Rarity Label */}
+                  {/* <div
+                    style={{
+                      position: 'absolute',
+                      left: '50%',
+                      top: '25%',
+                      transform: `
+                        rotate(${segmentAngle / 2}deg) 
+                        translateX(-50%)
+                      `,
+                      color: 'white',
+                      fontWeight: 'bold',
+                      fontSize: '18px',
+                      textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {rarity.toUpperCase()}
+                  </div> */}
+                </div>
+              );
+            })}
           </div>
-          {/* Pointer Line */}
-          <div
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full h-8 w-2"
+
+          {/* Center Spin Button */}
+          <button
+            onClick={handleSpin}
+            disabled={isSpinning}
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20
+                       w-20 h-20 rounded-full bg-white border-4 border-gray-300
+                       flex items-center justify-center
+                       transition-all duration-200 hover:scale-105"
             style={{
-              background: 'white',
-              boxShadow: '0 0 5px rgba(0,0,0,0.3)',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
             }}
-          />
-        </button>
-      </div>
-
-      {/* Updated Reward Popup */}
-      {showReward && reward && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-8 rounded-lg shadow-xl transform animate-reward-popup">
-            <h2 
-              className="text-3xl font-bold mb-4 text-center" 
-              style={{ color: RARITY_CONFIG[reward.rarity].color }}
-            >
-              {reward.rarity.toUpperCase()}!
-            </h2>
-            <div className="relative">
-              <img
-                src={reward.src}
-                alt={reward.name}
-                className="w-32 h-32 object-contain mx-auto" // Reduced from w-48 h-48
-              />
-              {/* Keep sparkle layers */}
-              <div className="absolute inset-0 animate-sparkle-1" />
-              <div className="absolute inset-0 animate-sparkle-2" />
-              <div className="absolute inset-0 animate-sparkle-3" />
+          >
+            <div className="text-gray-800 font-bold text-xl">
+              {isSpinning ? '...' : 'SPIN'}
             </div>
-            <p className="text-2xl mt-4 text-center font-bold">{reward.name}</p>
-            <button
-              onClick={claimReward}
-              className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 
-                       text-white rounded-lg font-bold text-lg transform transition-all
-                       hover:from-green-600 hover:to-green-700 hover:scale-105
-                       focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-            >
-              Claim Reward
-            </button>
-          </div>
+            {/* Pointer Line */}
+            <div
+              className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full h-8 w-2"
+              style={{
+                background: 'white',
+                boxShadow: '0 0 5px rgba(0,0,0,0.3)',
+              }}
+            />
+          </button>
         </div>
-      )}
+
+        {/* Reward Popup - Modified to match style */}
+        {showReward && reward && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div className={`bg-white p-8 border-8 border-black [image-rendering:pixelated]
+                            shadow-[8px_8px_0_0_rgba(0,0,0,1)] rounded-lg transform animate-reward-popup`}>
+              {/* Pixel Corner Decorations */}
+              <div className="absolute top-0 left-0 w-4 h-4 bg-black"></div>
+              <div className="absolute top-0 right-0 w-4 h-4 bg-black"></div>
+              <div className="absolute bottom-0 left-0 w-4 h-4 bg-black"></div>
+              <div className="absolute bottom-0 right-0 w-4 h-4 bg-black"></div>
+
+              <h2 
+                className="text-3xl font-bold mb-4 text-center pixel-text-blue" 
+                style={{ color: RARITY_CONFIG[reward.rarity].color }}
+              >
+                {reward.rarity.toUpperCase()}!
+              </h2>
+              <div className="relative">
+                <img
+                  src={reward.src}
+                  alt={reward.name}
+                  className="w-32 h-32 object-contain mx-auto"
+                />
+                <div className="absolute inset-0 animate-sparkle-1" />
+                <div className="absolute inset-0 animate-sparkle-2" />
+                <div className="absolute inset-0 animate-sparkle-3" />
+              </div>
+              <p className="text-2xl mt-4 text-center font-bold">{reward.name}</p>
+              <button
+                onClick={claimReward}
+                className="mt-6 w-full px-6 py-3 bg-blue-500 hover:bg-blue-600 
+                         text-white rounded-lg font-bold text-lg transform transition-all
+                         hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 
+                         focus:ring-opacity-50"
+              >
+                Claim Reward
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

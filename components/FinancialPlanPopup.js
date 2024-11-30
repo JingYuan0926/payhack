@@ -95,9 +95,25 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
     const totalMonthlyExpense = Object.values(monthlyAverages).reduce((a, b) => a + b, 0);
 
     return {
+<<<<<<< HEAD
       categories,
       monthlyAverages,
       totalMonthlyExpense
+=======
+      financialGoal: data.financialGoal,
+      dailySavingsTarget: dailySavingsNeeded.toFixed(2),
+      daysToGoal: daysRemaining,
+      dailyDisposableIncome: dailyDisposableIncome.toFixed(2),
+      monthlyDebtPayment: monthlyDebtPayment.toFixed(2),
+      recommendations: [
+        `Save RM${dailySavingsNeeded.toFixed(2)} daily to reach your goal`,
+        `Available daily spending: RM ${dailyDisposableIncome.toFixed(2)}`,
+        `Monthly debt payment: RM ${monthlyDebtPayment.toFixed(2)}`,
+        dailySavingsNeeded > dailyDisposableIncome 
+          ? "Warning: Your target savings exceed your disposable income. Consider extending your target date or adjusting your goal amount."
+          : "Your goal appears achievable with your current income!"
+      ]
+>>>>>>> 87c2b56e2ba918893892f3afd33f7508e806a681
     };
   };
 
@@ -195,8 +211,13 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
+<<<<<<< HEAD
       <div className="bg-white p-6 rounded-lg shadow-xl w-[600px] max-h-[90vh] overflow-y-auto">
         <h2 className="text-3xl font-bold mb-4">Financial Goal Planning</h2>
+=======
+      <div className="bg-white p-6 rounded-lg shadow-xl w-[500px]">
+        <h2 className="text-4xl font-bold mb-4 pixel-text-blue">Financial Plan</h2>
+>>>>>>> 87c2b56e2ba918893892f3afd33f7508e806a681
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -250,6 +271,7 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
             />
           </div>
 
+<<<<<<< HEAD
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Saving Style
@@ -266,11 +288,29 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
               <option value="strict">Strict (fixed daily amount)</option>
             </select>
           </div>
+=======
+          <div className="bg-gray-50 p-1 rounded-lg">
+            <h3 className="text-2xl font-medium text-gray-900 mb-3">Current Financial Status</h3>
+            
+            <div className="space-y-3">
+              <div>
+                <label className="text-xl block text-sm font-medium text-gray-700">
+                  Current Monthly Salary
+                </label>
+                <input
+                  type="text"
+                  value={`RM ${financialData.salary}`}
+                  className="text-xl mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
+                  readOnly
+                />
+              </div>
+>>>>>>> 87c2b56e2ba918893892f3afd33f7508e806a681
 
           <div className="bg-gray-50 p-4 rounded-lg">
             <h3 className="text-lg font-medium text-gray-900 mb-3">Current Financial Status</h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
+<<<<<<< HEAD
                 <p className="text-sm text-gray-600">Monthly Income</p>
                 <p className="text-lg font-medium">${financialData.monthlyIncome}</p>
               </div>
@@ -281,6 +321,17 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
               <div>
                 <p className="text-sm text-gray-600">Disposable Income</p>
                 <p className="text-lg font-medium">${financialData.disposableIncome}</p>
+=======
+                <label className="text-xl block text-sm font-medium text-gray-700">
+                  Current Loans & Debts
+                </label>
+                <input
+                  type="text"
+                  value={`RM ${financialData.loansAndDebts}`}
+                  className="text-xl mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
+                  readOnly
+                />
+>>>>>>> 87c2b56e2ba918893892f3afd33f7508e806a681
               </div>
             </div>
           </div>

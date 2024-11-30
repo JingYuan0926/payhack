@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import FinancialPlanPopup from "./FinancialPlanPopup";
 import SpendHistory from "./spendHistory";
+import DailySum from "./DailySum";
 import { useRouter } from 'next/router';
 
 export default function LevelBar({ 
   username = "Username", 
   progress = 60, 
+  dangerProgress = 90, 
   level = 1,
-  streak = 0,
-  onFeedCat 
+  streak = 0
 }) {
   const router = useRouter();
   const [currentProgress, setCurrentProgress] = useState(progress);
   const [showFinancialPlan, setShowFinancialPlan] = useState(false);
   const [showSpendHistory, setShowSpendHistory] = useState(false);
+  const [showDailySum, setShowDailySum] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
@@ -47,10 +49,16 @@ export default function LevelBar({
     { description: "Buy furniture", amount: 20 },
   ];
 
+  const handleProgressClick = () => {
+    router.push('/progress');
+  };
+
   return (
-    <div className="p-4 flex justify-between items-start">
-      <div className="w-[50%] ml-8">
-        <div className="text-lg font-bold mb-2 flex items-center">
+    <div className="p-4 flex flex-col gap-4">
+      {/* Top row with all elements aligned */}
+      <div className="flex justify-between items-center">
+        {/* Left side: Username */}
+        <div className="flex items-center">
           <span 
             className="pixel-text-blue text-3xl cursor-pointer hover:text-blue-600"
             onClick={() => router.push('/dashboard')}
@@ -64,40 +72,75 @@ export default function LevelBar({
             +
           </button>
         </div>
-        
-        {/* Health bar (green) with stats beside it */}
-        <div className="flex items-center gap-4">
-          <div className="flex-1">
-            <div className="w-full h-8 border-4 border-black [image-rendering:pixelated] bg-gray-200">
-              <div
-                className="h-full bg-green-500 transition-all duration-500"
-                style={{ width: `${currentProgress}%` }}
-              ></div>
-            </div>
+
+        {/* Right side: Date and Time */}
+        <div
+          className="pixel-text-blue text-3xl cursor-pointer hover:text-blue-600 text-right"
+          onClick={() => setShowSpendHistory(true)}
+        >
+          <div>{formattedDate}</div>
+          <div>{formattedTime}</div>
+        </div>
+      </div>
+
+      {/* Second row: Level, Streak, and Progress bar */}
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-6 text-2xl">
+          <div className="flex items-center">
+            <span className="font-bold pixel-text-golden text-4xl">LVL {level}</span>
           </div>
-          
-          {/* Level and Streak display */}
-          <div className="flex gap-6 text-2xl">
-            <div className="flex items-center">
-              <span className="font-bold pixel-text-golden text-4xl">LVL {level}</span>
-            </div>
-            <div className="flex items-center">
-              <span className="font-bold text-4xl">
-                <span>🔥 </span>
-                <span className="pixel-text-golden">{streak}</span>
-              </span>
-            </div>
+          <div className="flex items-center">
+            <span className="font-bold text-4xl">
+              <span>🔥 </span>
+              <span className="pixel-text-golden">{streak}</span>
+            </span>
+          </div>
+        </div>
+        
+        {/* Progress bar */}
+        <div className="flex-1">
+          <div className="w-full h-8 border-4 border-black [image-rendering:pixelated] bg-gray-200">
+            <div
+              className="h-full bg-green-500 transition-all duration-500"
+              style={{ width: `${currentProgress}%` }}
+            ></div>
           </div>
         </div>
       </div>
 
-      {/* Date and Time Area */}
-      <div
-        className="pixel-text-blue text-3xl mr-8 text-right cursor-pointer hover:text-blue-600"
-        onClick={() => setShowSpendHistory(true)}
-      >
-        <div>{formattedDate}</div>
-        <div>{formattedTime}</div>
+      {/* Progress and Daily Sum Buttons Container */}
+      <div className="flex flex-col space-y-2 mt-4">
+        {/* Progress Button */}
+        <button
+          onClick={handleProgressClick}
+          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg 
+                   shadow-lg transition-colors duration-200 flex items-center space-x-2"
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-5 w-5" 
+            viewBox="0 0 20 20" 
+            fill="currentColor"
+          >
+            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+          </svg>
+          <span>Progress</span>
+        </button>
+
+        {/* Daily Summarization Button */}
+        <button
+          onClick={() => setShowDailySum(true)}
+          className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg 
+                   shadow-lg transition-colors duration-200 flex items-center space-x-2"
+        >
+          <img
+            src="/summary.png"
+            alt="Daily Summary"
+            className="w-5 h-5"
+          />
+          <span>Daily Summary</span>
+        </button>
       </div>
 
       {/* Popups */}
@@ -112,6 +155,14 @@ export default function LevelBar({
         <FinancialPlanPopup
           onClose={() => setShowFinancialPlan(false)}
           username={username}
+        />
+      )}
+
+      {/* Add DailySum component if you want to keep the popup functionality */}
+      {showDailySum && (
+        <DailySum
+          showPopup={showDailySum}
+          onClose={() => setShowDailySum(false)}
         />
       )}
     </div>

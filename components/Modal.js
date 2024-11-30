@@ -109,7 +109,7 @@ export default function OnboardingModal({ isOpen, onOpenChange }) {
                     color="primary"
                     onPress={handleNext}
                   >
-                    I'm ready to link
+                    I&apos;m ready to link
                   </Button>
                 </ModalFooter>
               </>

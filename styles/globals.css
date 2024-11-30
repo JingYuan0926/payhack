@@ -10,9 +10,9 @@
 }
 
 @keyframes reward-popup {
-  0% { transform: scale(0); opacity: 0; }
-  70% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
+  0% { transform: scale(0); opacity: 0; z-index: 10000000; }
+  70% { transform: scale(1.1); opacity: 1; z-index: 10000000; }
+  100% { transform: scale(1); opacity: 1; z-index: 10000000; }
 }
 
 @keyframes reward-bounce {
@@ -55,22 +55,26 @@
 .animate-sparkle-1 {
   animation: sparkle-1 1.5s ease-in-out infinite;
   background-position: center;
+  z-index: 10000001;
 }
 
 .animate-sparkle-2 {
   animation: sparkle-2 2s ease-in-out infinite;
   animation-delay: 0.2s;
   background-position: center;
+  z-index: 10000002;
 }
 
 .animate-sparkle-3 {
   animation: sparkle-3 1.8s ease-in-out infinite;
   animation-delay: 0.4s;
   background-position: center;
+  z-index: 10000003;
 }
 
 .animate-reward-popup {
   animation: reward-popup 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 10000000;
 }
 
 /* .animate-reward-popup {
@@ -79,6 +83,7 @@
 
 .animate-reward-bounce {
   animation: reward-bounce 1s ease-in-out infinite;
+  z-index: 101;
 }
 
 .animate-reward-sparkle {
@@ -87,6 +92,7 @@
   background-size: 20px 20px;
   animation: reward-sparkle 2s linear infinite;
   pointer-events: none;
+  z-index: 102;
 }
 
 .pixel-text-yellow {
