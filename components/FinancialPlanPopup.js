@@ -136,8 +136,8 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
           name: 'Background House',
           originalWidth: 100,
           originalHeight: 100,
-          placedWidth: 250,
-          placedHeight: 250,
+          placedWidth: 200,
+          placedHeight: 200,
           isBackground: true
         };
 
@@ -152,8 +152,8 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
           name: 'New House Goal!',
           originalWidth: 100,
           originalHeight: 100,
-          placedWidth: 250,
-          placedHeight: 250,
+          placedWidth: 200,
+          placedHeight: 200,
           progress: 0,
           isCelebration: true
         };

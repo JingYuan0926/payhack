@@ -1,0 +1,72 @@
+{
+    "best_model": "gradient_boosting",
+    "best_score": 0.9933193474257623,
+    "feature_importance": {
+        "monthly_income": 4.1737316245372056e-05,
+        "age": 4.124312638831886e-05,
+        "risk_tolerance": 0.5068828662399655,
+        "dependent_count": 1.0572321406302444e-05,
+        "monthly_expenses": 8.075423707167607e-05,
+        "emergency_fund_ratio": 3.885336110301285e-05,
+        "spending_volatility": 0.023236468914656413,
+        "income_stability": 0.19905452775083068,
+        "savings_goal_timeline": 0.2704789321790021,
+        "fixed_deposit_rate": 4.620736715530184e-05,
+        "savings_account_rate": 2.2442593780929176e-05,
+        "debt_to_income_ratio": 3.8940407192801826e-05,
+        "job_industry_Education": 8.154531159094605e-07,
+        "job_industry_Energy": 5.537176925873907e-06,
+        "job_industry_Finance": 4.905095655859383e-06,
+        "job_industry_Government": 0.0,
+        "job_industry_Healthcare": 6.381404629632773e-06,
+        "job_industry_Manufacturing": 3.701667461526612e-06,
+        "job_industry_Retail": 1.212550165264891e-06,
+        "job_industry_Services": 1.3738314004102344e-06,
+        "job_industry_Technology": 2.527005847085906e-06
+    },
+    "best_params": {
+        "regressor__learning_rate": 0.1,
+        "regressor__max_depth": 3,
+        "regressor__n_estimators": 300
+    },
+    "features": [
+        "monthly_income",
+        "age",
+        "risk_tolerance",
+        "dependent_count",
+        "monthly_expenses",
+        "emergency_fund_ratio",
+        "spending_volatility",
+        "income_stability",
+        "savings_goal_timeline",
+        "fixed_deposit_rate",
+        "savings_account_rate",
+        "debt_to_income_ratio",
+        "job_industry_Education",
+        "job_industry_Energy",
+        "job_industry_Finance",
+        "job_industry_Government",
+        "job_industry_Healthcare",
+        "job_industry_Manufacturing",
+        "job_industry_Retail",
+        "job_industry_Services",
+        "job_industry_Technology"
+    ],
+    "categorical_features": [
+        "job_industry"
+    ],
+    "numerical_features": [
+        "monthly_income",
+        "age",
+        "risk_tolerance",
+        "dependent_count",
+        "monthly_expenses",
+        "emergency_fund_ratio",
+        "spending_volatility",
+        "income_stability",
+        "savings_goal_timeline",
+        "fixed_deposit_rate",
+        "savings_account_rate",
+        "debt_to_income_ratio"
+    ]
+}
