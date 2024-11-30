@@ -151,7 +151,7 @@ export default function TotalSavings({ onClose, showPopup }) {
                     </div>
                     <div className="mt-4 text-lg font-bold text-center">
                       {week.date}
-                      <div className="text-xs text-gray-500">{week.tooltip}</div>
+                      <div className="text-sm text-gray-500">{week.tooltip}</div>
                     </div>
                   </div>
                 ))}
