@@ -29,10 +29,25 @@ const CatModal = ({ isOpen, onOpenChange, initialMessage, isCase5 }) => {
       });
       
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`Server error (${response.status})`);
       }
       
-      const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch (e) {
+        console.error('JSON Parse Error:', e);
+        setChatHistory([
+          ...chatHistory,
+          userMessage,
+          { role: 'assistant', content: isCase5 
+            ? "Purr... I'm having trouble understanding the response. Please try again! 😺"
+            : "I'm having trouble processing the response. Please try again."
+          }
+        ]);
+        return;
+      }
+      
       setChatHistory([...chatHistory, userMessage, { role: 'assistant', content: data.message }]);
     } catch (error) {
       console.error('Error:', error);
@@ -40,8 +55,8 @@ const CatModal = ({ isOpen, onOpenChange, initialMessage, isCase5 }) => {
         ...chatHistory, 
         userMessage,
         { role: 'assistant', content: isCase5 
-          ? "Purr... I'm having trouble thinking right now. Can we chat later? 😺"
-          : "Sorry, I'm having trouble connecting right now. Please try again later."
+          ? "Meow... I'm having some technical difficulties. Please try again in a moment! 😺"
+          : "I'm experiencing technical difficulties. Please try again later."
         }
       ]);
     } finally {
