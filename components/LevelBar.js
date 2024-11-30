@@ -11,7 +11,8 @@ export default function LevelBar({
   progress = 60, 
   dangerProgress = 90, 
   level = 1,
-  streak = 0
+  streak = 0,
+  onStreakUpdate
 }) {
   const router = useRouter();
   const [currentProgress, setCurrentProgress] = useState(progress);

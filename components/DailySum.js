@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SpinWheel from './SpinWheel';
 
-const DailySum = ({ showPopup, onClose }) => {
+const DailySum = ({ showPopup, onClose, onStreakUpdate }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [showSpinWheel, setShowSpinWheel] = useState(false);
 
@@ -26,7 +26,10 @@ const DailySum = ({ showPopup, onClose }) => {
       {showSpinWheel && (
         <div className="relative z-[10000] w-[800px] mx-auto flex items-center justify-center">
           <div className="relative bg-white rounded-lg shadow-xl">
-            <SpinWheel onRewardClaimed={handleSpinWheelClose} />
+            <SpinWheel 
+              onRewardClaimed={handleSpinWheelClose}
+              onStreakUpdate={onStreakUpdate}
+            />
           </div>
         </div>
       )}

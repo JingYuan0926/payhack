@@ -193,6 +193,7 @@ export default function Map() {
   const [showTotalSavings, setShowTotalSavings] = useState(false);
   const [showDailySum, setShowDailySum] = useState(false);
   const [showDeposit, setShowDeposit] = useState(false);
+  const [streak, setStreak] = useState(0);
 
   const sendEmail = async () => {
     try {
@@ -363,6 +364,7 @@ export default function Map() {
             onFeedCat={handleFeedCat}
             onProgressClick={handleProgressClick}
             onDailySummaryClick={handleDailySummaryClick}
+            streak={streak}
           />
         </div>
 
@@ -516,6 +518,7 @@ export default function Map() {
           <DailySum
             showPopup={showDailySum}
             onClose={() => setShowDailySum(false)}
+            onStreakUpdate={() => setStreak(prev => prev + 1)}
           />
         )}
       </div>
