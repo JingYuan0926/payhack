@@ -111,13 +111,21 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
               value={financialData.goal}
               onChange={(e) => setFinancialData({...financialData, goal: e.target.value})}
             />
-            <button
-              onClick={handleNext}
-              disabled={!financialData.goal}
-              className="w-full bg-blue-500 text-white p-2 rounded disabled:bg-gray-300"
-            >
-              Next
-            </button>
+            <div className="flex space-x-4">
+              <button
+                onClick={onClose}
+                className="flex-1 bg-red-500 text-white p-2 rounded hover:bg-red-600"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleNext}
+                disabled={!financialData.goal}
+                className="flex-1 bg-blue-500 text-white p-2 rounded disabled:bg-gray-300 hover:bg-blue-600"
+              >
+                Next
+              </button>
+            </div>
           </div>
         )}
 
@@ -143,13 +151,21 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
                 onChange={(e) => setFinancialData({...financialData, targetDate: e.target.value})}
               />
             </div>
-            <button
-              onClick={handleNext}
-              disabled={!financialData.targetAmount || !financialData.targetDate}
-              className="w-full bg-blue-500 text-white p-2 rounded disabled:bg-gray-300"
-            >
-              Calculate Plan
-            </button>
+            <div className="flex space-x-4">
+              <button
+                onClick={onClose}
+                className="flex-1 bg-red-500 text-white p-2 rounded hover:bg-red-600"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleNext}
+                disabled={!financialData.targetAmount || !financialData.targetDate}
+                className="flex-1 bg-blue-500 text-white p-2 rounded disabled:bg-gray-300 hover:bg-blue-600"
+              >
+                Calculate Plan
+              </button>
+            </div>
           </div>
         )}
 
@@ -201,14 +217,14 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
             <div className="mt-6 flex space-x-4">
               <button
                 onClick={onClose}
-                className="flex-1 bg-gray-300 text-gray-700 p-2 rounded"
+                className="flex-1 bg-red-500 text-white p-2 rounded hover:bg-red-600"
               >
                 Cancel
               </button>
               <button
                 onClick={handleSavePlan}
                 disabled={!financialData.planType}
-                className="flex-1 bg-blue-500 text-white p-2 rounded disabled:bg-gray-300"
+                className="flex-1 bg-blue-500 text-white p-2 rounded disabled:bg-gray-300 hover:bg-blue-600"
               >
                 Save Plan
               </button>

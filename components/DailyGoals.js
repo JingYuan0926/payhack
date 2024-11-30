@@ -106,7 +106,6 @@ export default function DailyGoals({ onClose, showPopup }) {
 
   const handleClose = () => {
     setIsVisible(false);
-    // Wait for fade out animation to complete before calling onClose
     setTimeout(onClose, 300);
   };
 
@@ -117,69 +116,56 @@ export default function DailyGoals({ onClose, showPopup }) {
       <div className="bg-white p-6 rounded-lg shadow-xl w-[500px]">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-4xl font-bold pixel-text-blue">
-            Daily Financial Goals
+            Financial Goals Summary
           </h3>
         </div>
 
-        {/* Show Daily Plan if exists */}
-        {dailyPlan && (
-          <div className="space-y-4">
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="text-2xl font-semibold text-blue-800 mb-2">Your Savings Goal</h4>
-              <div className="space-y-2">
-                <p className="text-xl">Goal: {dailyPlan.goal}</p>
-                <p className="text-xl">Target: RM {dailyPlan.targetAmount.toFixed(2)}</p>
-                <p className="text-xl">Daily Savings Required: RM {
-                  typeof dailyPlan.dailySavings === 'object' 
-                    ? `${dailyPlan.dailySavings.min.toFixed(2)} - ${dailyPlan.dailySavings.max.toFixed(2)}`
-                    : dailyPlan.dailySavings.toFixed(2)
-                }</p>
-                <p className="text-xl">Days to Goal: {
-                  typeof dailyPlan.daysToGoal === 'object'
-                    ? `${dailyPlan.daysToGoal.min} - ${dailyPlan.daysToGoal.max}`
-                    : dailyPlan.daysToGoal
-                } days</p>
-                <p className="text-xl">Plan Type: {dailyPlan.planType === 'strict' ? 'Strict' : 'Flexible'}</p>
-              </div>
-            </div>
-
-            {/* Financial Summary */}
-            {aggregatedGoals && (
-              <div className="space-y-4">
-                <div className="bg-blue-50 p-3 rounded-lg">
-                  <p className="font-semibold text-blue-800 text-2xl">Daily Financial Summary</p>
-                  <div className="space-y-2 mt-2">
-                    <p className="text-xl text-gray-600">Daily spending limit: RM {aggregatedGoals.dailyDisposableIncome}</p>
-                    <p className="text-xl text-gray-600">Monthly debt payment: RM {aggregatedGoals.monthlyDebtPayment}</p>
-                  </div>
-                </div>
-
-                {/* Feasibility Check */}
-                <div className={`p-4 rounded-lg ${
-                  parseFloat(aggregatedGoals.dailyDisposableIncome) >= 
-                  (typeof dailyPlan.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan.dailySavings)
-                    ? 'bg-green-100 text-green-800'
-                    : 'bg-red-100 text-red-800'
-                }`}>
-                  {parseFloat(aggregatedGoals.dailyDisposableIncome) >= 
-                   (typeof dailyPlan.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan.dailySavings)
-                    ? `✅ Your goal is achievable! You'll have RM ${(parseFloat(aggregatedGoals.dailyDisposableIncome) - 
-                        (typeof dailyPlan.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan.dailySavings)
-                      ).toFixed(2)} remaining daily after savings.`
-                    : "⚠️ Your savings goal might be challenging. Consider adjusting your target or timeline."
-                  }
-                </div>
-              </div>
-            )}
+        <div className="space-y-4 overflow-y-auto">
+          {/* Daily Savings Target */}
+          <div className="bg-blue-50 p-3 rounded-lg">
+            <p className="font-semibold text-blue-800 text-2xl">Daily Savings Required</p>
+            <p className="text-5xl font-bold text-blue-600">
+              RM {dailyPlan?.dailySavings.toFixed(2) || "0.00"}
+            </p>
           </div>
-        )}
+
+          {/* Goal Details */}
+          <div className="space-y-2">
+            <p className="text-xl text-gray-600">Goal: {dailyPlan?.goal}</p>
+            <p className="text-xl text-gray-600">Target Amount: RM {dailyPlan?.targetAmount.toFixed(2)}</p>
+            <p className="text-xl text-gray-600">Timeline: {dailyPlan?.daysToGoal} days</p>
+            <p className="text-xl text-gray-600">Plan Type: {dailyPlan?.planType === 'strict' ? 'Strict' : 'Flexible'}</p>
+          </div>
+
+          {/* Financial Summary */}
+          <div className="space-y-2">
+            <p className="text-xl text-gray-600">Daily spending limit: RM {aggregatedGoals.dailyDisposableIncome}</p>
+            <p className="text-xl text-gray-600">Monthly debt payment: RM {aggregatedGoals.monthlyDebtPayment}</p>
+          </div>
+
+          {/* Feasibility Check */}
+          <div className={`p-4 rounded-lg ${
+            parseFloat(aggregatedGoals.dailyDisposableIncome) >= 
+            (typeof dailyPlan?.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan?.dailySavings)
+              ? 'bg-green-100 text-green-800'
+              : 'bg-red-100 text-red-800'
+          }`}>
+            {parseFloat(aggregatedGoals.dailyDisposableIncome) >= 
+             (typeof dailyPlan?.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan?.dailySavings)
+              ? `✅ Your goal is achievable! You'll have RM ${(parseFloat(aggregatedGoals.dailyDisposableIncome) - 
+                  (typeof dailyPlan?.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan?.dailySavings)
+                ).toFixed(2)} remaining daily after savings.`
+              : "⚠️ Your savings goal might be challenging. Consider adjusting your target or timeline."
+            }
+          </div>
+        </div>
 
         <div className="flex justify-end space-x-3 mt-6">
           <button
             onClick={handleClose}
             className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
           >
-            Close
+            Cancel
           </button>
         </div>
       </div>
