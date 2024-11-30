@@ -1,0 +1,5658 @@
+{
+  "payment_channels": {
+    "ewallet": {
+      "provider": "Touch n Go eWallet",
+      "balance": 150.50,
+      "usages": [
+        {
+          "date": "2024-01-05",
+          "time": "08:30:25",
+          "amount": 15.90,
+          "category": "Food & Beverage",
+          "merchant": "McDonald's"
+        },
+        {
+          "date": "2024-01-08",
+          "time": "12:15:00",
+          "amount": 25.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-01-12",
+          "time": "15:45:00",
+          "amount": 8.50,
+          "category": "Food & Beverage",
+          "merchant": "Starbucks"
+        },
+        {
+          "date": "2024-01-15",
+          "time": "10:20:00",
+          "amount": 30.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-01-18",
+          "time": "19:30:00",
+          "amount": 45.90,
+          "category": "Food & Beverage",
+          "merchant": "KFC"
+        },
+        {
+          "date": "2024-01-21",
+          "time": "14:15:00",
+          "amount": 12.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-01-24",
+          "time": "11:45:00",
+          "amount": 18.90,
+          "category": "Food & Beverage",
+          "merchant": "Subway"
+        },
+        {
+          "date": "2024-01-27",
+          "time": "16:30:00",
+          "amount": 35.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-01-29",
+          "time": "20:15:00",
+          "amount": 28.50,
+          "category": "Food & Beverage",
+          "merchant": "Pizza Hut"
+        },
+        {
+          "date": "2024-01-31",
+          "time": "13:20:00",
+          "amount": 15.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-02-03",
+          "time": "09:15:00",
+          "amount": 22.90,
+          "category": "Food & Beverage",
+          "merchant": "Tealive"
+        },
+        {
+          "date": "2024-02-06",
+          "time": "11:30:00",
+          "amount": 28.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+            "date": "2024-02-08",
+            "time": "13:45:00",
+            "amount": 16.50,
+            "category": "Food & Beverage",
+            "merchant": "Boost Juice"
+          },
+          {
+            "date": "2024-02-12",
+            "time": "17:20:00",
+            "amount": 32.00,
+            "category": "Transportation",
+            "merchant": "MRT"
+          },
+          {
+            "date": "2024-02-15",
+            "time": "12:30:00",
+            "amount": 42.90,
+            "category": "Food & Beverage",
+            "merchant": "Texas Chicken"
+          },
+          {
+            "date": "2024-02-18",
+            "time": "15:15:00",
+            "amount": 10.00,
+            "category": "Parking",
+            "merchant": "DBKL Parking"
+          },
+          {
+            "date": "2024-02-21",
+            "time": "14:45:00",
+            "amount": 20.90,
+            "category": "Food & Beverage",
+            "merchant": "Chatime"
+          },
+          {
+            "date": "2024-02-24",
+            "time": "18:30:00",
+            "amount": 38.00,
+            "category": "Transportation",
+            "merchant": "Grab"
+          },
+          {
+            "date": "2024-02-27",
+            "time": "19:15:00",
+            "amount": 25.50,
+            "category": "Food & Beverage",
+            "merchant": "Domino's"
+          },
+          {
+            "date": "2024-02-29",
+            "time": "11:20:00",
+            "amount": 18.00,
+            "category": "Transportation",
+            "merchant": "Bus"
+          },
+        {
+          "date": "2024-03-02",
+          "time": "09:30:00",
+          "amount": 17.90,
+          "category": "Food & Beverage",
+          "merchant": "Old Town White Coffee"
+        },
+        {
+          "date": "2024-03-05",
+          "time": "12:45:00",
+          "amount": 26.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-03-08",
+          "time": "15:20:00",
+          "amount": 13.50,
+          "category": "Food & Beverage",
+          "merchant": "Gong Cha"
+        },
+        {
+          "date": "2024-03-11",
+          "time": "11:15:00",
+          "amount": 28.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-03-15",
+          "time": "18:30:00",
+          "amount": 39.90,
+          "category": "Food & Beverage",
+          "merchant": "Nando's"
+        },
+        {
+          "date": "2024-03-18",
+          "time": "14:45:00",
+          "amount": 15.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-03-22",
+          "time": "13:20:00",
+          "amount": 22.90,
+          "category": "Food & Beverage",
+          "merchant": "Marrybrown"
+        },
+        {
+          "date": "2024-03-25",
+          "time": "17:30:00",
+          "amount": 32.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-03-28",
+          "time": "20:45:00",
+          "amount": 27.50,
+          "category": "Food & Beverage",
+          "merchant": "Secret Recipe"
+        },
+        {
+          "date": "2024-03-31",
+          "time": "12:15:00",
+          "amount": 16.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-04-03",
+          "time": "10:30:00",
+          "amount": 19.90,
+          "category": "Food & Beverage",
+          "merchant": "PappaRich"
+        },
+        {
+          "date": "2024-04-06",
+          "time": "13:15:00",
+          "amount": 29.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-04-09",
+          "time": "16:45:00",
+          "amount": 12.50,
+          "category": "Food & Beverage",
+          "merchant": "Teh Tarik Place"
+        },
+        {
+          "date": "2024-04-12",
+          "time": "11:30:00",
+          "amount": 31.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-04-15",
+          "time": "19:20:00",
+          "amount": 43.90,
+          "category": "Food & Beverage",
+          "merchant": "Sushi Mentai"
+        },
+        {
+          "date": "2024-04-18",
+          "time": "15:30:00",
+          "amount": 11.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-04-21",
+          "time": "14:15:00",
+          "amount": 24.90,
+          "category": "Food & Beverage",
+          "merchant": "Kenny Rogers"
+        },
+        {
+          "date": "2024-04-24",
+          "time": "17:45:00",
+          "amount": 34.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-04-27",
+          "time": "20:30:00",
+          "amount": 29.50,
+          "category": "Food & Beverage",
+          "merchant": "Dragon-i"
+        },
+        {
+          "date": "2024-04-30",
+          "time": "12:45:00",
+          "amount": 17.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-05-02",
+          "time": "09:45:00",
+          "amount": 21.90,
+          "category": "Food & Beverage",
+          "merchant": "Hokkaido Baked Cheese Tart"
+        },
+        {
+          "date": "2024-05-05",
+          "time": "12:30:00",
+          "amount": 27.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-05-08",
+          "time": "15:15:00",
+          "amount": 14.50,
+          "category": "Food & Beverage",
+          "merchant": "Mr. Teh Tarik"
+        },
+        {
+          "date": "2024-05-11",
+          "time": "10:45:00",
+          "amount": 33.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-05-14",
+          "time": "18:45:00",
+          "amount": 41.90,
+          "category": "Food & Beverage",
+          "merchant": "Sakae Sushi"
+        },
+        {
+          "date": "2024-05-17",
+          "time": "14:30:00",
+          "amount": 13.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-05-20",
+          "time": "13:45:00",
+          "amount": 23.90,
+          "category": "Food & Beverage",
+          "merchant": "Chicken Rice Shop"
+        },
+        {
+          "date": "2024-05-23",
+          "time": "16:15:00",
+          "amount": 36.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-05-26",
+          "time": "19:45:00",
+          "amount": 31.50,
+          "category": "Food & Beverage",
+          "merchant": "Din Tai Fung"
+        },
+        {
+          "date": "2024-05-29",
+          "time": "11:30:00",
+          "amount": 19.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-06-01",
+          "time": "10:15:00",
+          "amount": 18.90,
+          "category": "Food & Beverage",
+          "merchant": "Baskin Robbins"
+        },
+        {
+          "date": "2024-06-04",
+          "time": "13:30:00",
+          "amount": 30.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-06-07",
+          "time": "16:20:00",
+          "amount": 15.50,
+          "category": "Food & Beverage",
+          "merchant": "Llao Llao"
+        },
+        {
+          "date": "2024-06-10",
+          "time": "11:45:00",
+          "amount": 29.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-06-13",
+          "time": "19:15:00",
+          "amount": 44.90,
+          "category": "Food & Beverage",
+          "merchant": "Go Noodle House"
+        },
+        {
+          "date": "2024-06-16",
+          "time": "15:45:00",
+          "amount": 12.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-06-19",
+          "time": "14:30:00",
+          "amount": 25.90,
+          "category": "Food & Beverage",
+          "merchant": "Auntie Anne's"
+        },
+        {
+          "date": "2024-06-22",
+          "time": "17:15:00",
+          "amount": 33.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-06-25",
+          "time": "20:00:00",
+          "amount": 28.50,
+          "category": "Food & Beverage",
+          "merchant": "4Fingers"
+        },
+        {
+          "date": "2024-06-28",
+          "time": "12:30:00",
+          "amount": 16.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-07-02",
+          "time": "09:15:00",
+          "amount": 20.90,
+          "category": "Food & Beverage",
+          "merchant": "Sushi King"
+        },
+        {
+          "date": "2024-07-05",
+          "time": "11:30:00",
+          "amount": 31.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-07-08",
+          "time": "14:45:00",
+          "amount": 17.50,
+          "category": "Food & Beverage",
+          "merchant": "KOI"
+        },
+        {
+          "date": "2024-07-11",
+          "time": "10:20:00",
+          "amount": 27.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-07-14",
+          "time": "18:30:00",
+          "amount": 38.90,
+          "category": "Food & Beverage",
+          "merchant": "Burger King"
+        },
+        {
+          "date": "2024-07-17",
+          "time": "13:15:00",
+          "amount": 14.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-07-20",
+          "time": "16:45:00",
+          "amount": 21.90,
+          "category": "Food & Beverage",
+          "merchant": "Wendy's"
+        },
+        {
+          "date": "2024-07-23",
+          "time": "19:30:00",
+          "amount": 35.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-07-26",
+          "time": "12:15:00",
+          "amount": 26.50,
+          "category": "Food & Beverage",
+          "merchant": "Pepper Lunch"
+        },
+        {
+          "date": "2024-07-29",
+          "time": "15:20:00",
+          "amount": 18.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-08-01",
+          "time": "10:30:00",
+          "amount": 19.90,
+          "category": "Food & Beverage",
+          "merchant": "Krispy Kreme"
+        },
+        {
+          "date": "2024-08-04",
+          "time": "13:45:00",
+          "amount": 32.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-08-07",
+          "time": "16:20:00",
+          "amount": 16.50,
+          "category": "Food & Beverage",
+          "merchant": "Dunkin' Donuts"
+        },
+        {
+          "date": "2024-08-10",
+          "time": "11:15:00",
+          "amount": 29.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-08-13",
+          "time": "19:45:00",
+          "amount": 42.90,
+          "category": "Food & Beverage",
+          "merchant": "Chili's"
+        },
+        {
+          "date": "2024-08-16",
+          "time": "14:30:00",
+          "amount": 11.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-08-19",
+          "time": "17:15:00",
+          "amount": 23.90,
+          "category": "Food & Beverage",
+          "merchant": "A&W"
+        },
+        {
+          "date": "2024-08-22",
+          "time": "20:00:00",
+          "amount": 37.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-08-25",
+          "time": "12:45:00",
+          "amount": 28.50,
+          "category": "Food & Beverage",
+          "merchant": "Subway"
+        },
+        {
+          "date": "2024-08-28",
+          "time": "15:30:00",
+          "amount": 17.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-09-01",
+          "time": "09:45:00",
+          "amount": 22.90,
+          "category": "Food & Beverage",
+          "merchant": "The Coffee Bean"
+        },
+        {
+          "date": "2024-09-04",
+          "time": "12:30:00",
+          "amount": 33.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-09-07",
+          "time": "15:15:00",
+          "amount": 15.50,
+          "category": "Food & Beverage",
+          "merchant": "San Francisco Coffee"
+        },
+        {
+          "date": "2024-09-10",
+          "time": "10:45:00",
+          "amount": 30.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-09-13",
+          "time": "18:45:00",
+          "amount": 40.90,
+          "category": "Food & Beverage",
+          "merchant": "Tony Roma's"
+        },
+        {
+          "date": "2024-09-16",
+          "time": "13:30:00",
+          "amount": 13.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-09-19",
+          "time": "16:15:00",
+          "amount": 24.90,
+          "category": "Food & Beverage",
+          "merchant": "Boost Juice"
+        },
+        {
+          "date": "2024-09-22",
+          "time": "19:00:00",
+          "amount": 36.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-09-25",
+          "time": "11:45:00",
+          "amount": 27.50,
+          "category": "Food & Beverage",
+          "merchant": "Nando's"
+        },
+        {
+          "date": "2024-09-28",
+          "time": "14:30:00",
+          "amount": 19.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-10-02",
+          "time": "09:30:00",
+          "amount": 21.90,
+          "category": "Food & Beverage",
+          "merchant": "Starbucks"
+        },
+        {
+          "date": "2024-10-05",
+          "time": "12:15:00",
+          "amount": 34.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-10-08",
+          "time": "15:45:00",
+          "amount": 16.50,
+          "category": "Food & Beverage",
+          "merchant": "Tealive"
+        },
+        {
+          "date": "2024-10-11",
+          "time": "11:20:00",
+          "amount": 28.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-10-14",
+          "time": "18:30:00",
+          "amount": 43.90,
+          "category": "Food & Beverage",
+          "merchant": "Pizza Hut"
+        },
+        {
+          "date": "2024-10-17",
+          "time": "14:15:00",
+          "amount": 12.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-10-20",
+          "time": "16:45:00",
+          "amount": 25.90,
+          "category": "Food & Beverage",
+          "merchant": "KFC"
+        },
+        {
+          "date": "2024-10-23",
+          "time": "19:30:00",
+          "amount": 38.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-10-26",
+          "time": "12:15:00",
+          "amount": 29.50,
+          "category": "Food & Beverage",
+          "merchant": "Subway"
+        },
+        {
+          "date": "2024-10-29",
+          "time": "15:20:00",
+          "amount": 16.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        },
+        {
+          "date": "2024-12-02",
+          "time": "09:45:00",
+          "amount": 23.90,
+          "category": "Food & Beverage",
+          "merchant": "Old Town White Coffee"
+        },
+        {
+          "date": "2024-12-05",
+          "time": "12:30:00",
+          "amount": 32.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-12-08",
+          "time": "15:15:00",
+          "amount": 17.50,
+          "category": "Food & Beverage",
+          "merchant": "Gong Cha"
+        },
+        {
+          "date": "2024-12-11",
+          "time": "10:45:00",
+          "amount": 29.00,
+          "category": "Transportation",
+          "merchant": "MRT"
+        },
+        {
+          "date": "2024-12-14",
+          "time": "18:45:00",
+          "amount": 44.90,
+          "category": "Food & Beverage",
+          "merchant": "Secret Recipe"
+        },
+        {
+          "date": "2024-12-17",
+          "time": "13:30:00",
+          "amount": 11.00,
+          "category": "Parking",
+          "merchant": "DBKL Parking"
+        },
+        {
+          "date": "2024-12-20",
+          "time": "16:15:00",
+          "amount": 26.90,
+          "category": "Food & Beverage",
+          "merchant": "PappaRich"
+        },
+        {
+          "date": "2024-12-23",
+          "time": "19:00:00",
+          "amount": 37.00,
+          "category": "Transportation",
+          "merchant": "Grab"
+        },
+        {
+          "date": "2024-12-26",
+          "time": "11:45:00",
+          "amount": 28.50,
+          "category": "Food & Beverage",
+          "merchant": "Kenny Rogers"
+        },
+        {
+          "date": "2024-12-29",
+          "time": "14:30:00",
+          "amount": 19.00,
+          "category": "Transportation",
+          "merchant": "Bus"
+        }
+      ]
+    },
+    "debit_cards": [
+      {
+        "card_number": "1438 2321 9988 4521",
+        "bank": "Maybank",
+        "card_image": "https://placeholder.com/card_image1.jpg",
+        "expiry_date": "05/26",
+        "usages": [
+          {
+            "date": "2024-01-03",
+            "time": "10:15:30",
+            "amount": 156.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-01-07",
+            "time": "14:30:00",
+            "amount": 89.90,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-01-11",
+            "time": "16:45:20",
+            "amount": 234.50,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-01-15",
+            "time": "11:20:10",
+            "amount": 67.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-01-19",
+            "time": "13:15:45",
+            "amount": 145.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-01-22",
+            "time": "15:30:00",
+            "amount": 98.40,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-01-25",
+            "time": "12:45:30",
+            "amount": 178.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-01-28",
+            "time": "17:20:15",
+            "amount": 56.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-01-30",
+            "time": "14:10:25",
+            "amount": 123.40,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-01-31",
+            "time": "19:05:00",
+            "amount": 167.30,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+
+          {
+            "date": "2024-02-03",
+            "time": "09:30:15",
+            "amount": 189.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-02-06",
+            "time": "13:45:30",
+            "amount": 95.60,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-02-09",
+            "time": "15:20:45",
+            "amount": 245.70,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-02-12",
+            "time": "11:15:00",
+            "amount": 78.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-02-15",
+            "time": "14:30:20",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-02-18",
+            "time": "16:45:10",
+            "amount": 112.30,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-02-21",
+            "time": "12:20:35",
+            "amount": 198.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-02-24",
+            "time": "17:15:25",
+            "amount": 65.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-02-27",
+            "time": "13:40:15",
+            "amount": 145.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-02-29",
+            "time": "18:25:00",
+            "amount": 178.90,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-03-03",
+            "time": "10:30:15",
+            "amount": 178.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-03-07",
+            "time": "14:15:30",
+            "amount": 134.50,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-03-11",
+            "time": "16:20:45",
+            "amount": 267.80,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-03-15",
+            "time": "11:45:00",
+            "amount": 89.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-03-18",
+            "time": "13:30:20",
+            "amount": 156.70,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-03-21",
+            "time": "15:45:10",
+            "amount": 123.40,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-03-24",
+            "time": "12:20:35",
+            "amount": 245.60,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-03-27",
+            "time": "17:15:25",
+            "amount": 78.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-03-29",
+            "time": "14:40:15",
+            "amount": 167.30,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-03-31",
+            "time": "19:25:00",
+            "amount": 145.60,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-04-03",
+            "time": "09:30:15",
+            "amount": 198.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-04-07",
+            "time": "13:45:30",
+            "amount": 145.60,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-04-11",
+            "time": "15:20:45",
+            "amount": 289.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-04-15",
+            "time": "11:15:00",
+            "amount": 92.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },{
+            "date": "2024-04-18",
+            "time": "14:30:20",
+            "amount": 178.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-04-21",
+            "time": "16:45:10",
+            "amount": 134.50,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-04-24",
+            "time": "12:20:35",
+            "amount": 267.80,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-04-27",
+            "time": "17:15:25",
+            "amount": 85.60,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },{
+            "date": "2024-04-29",
+            "time": "13:40:15",
+            "amount": 156.70,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-04-30",
+            "time": "18:25:00",
+            "amount": 189.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+
+          {
+            "date": "2024-05-03",
+            "time": "10:15:30",
+            "amount": 187.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-05-07",
+            "time": "14:30:00",
+            "amount": 156.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },{
+            "date": "2024-05-11",
+            "time": "16:45:20",
+            "amount": 298.50,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-05-15",
+            "time": "11:20:10",
+            "amount": 95.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-05-18",
+            "time": "13:15:45",
+            "amount": 167.60,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-05-21",
+            "time": "15:30:00",
+            "amount": 145.40,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },{
+            "date": "2024-05-24",
+            "time": "12:45:30",
+            "amount": 278.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-05-27",
+            "time": "17:20:15",
+            "amount": 88.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-05-29",
+            "time": "14:10:25",
+            "amount": 198.40,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-05-31",
+            "time": "19:05:00",
+            "amount": 167.30,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },{
+            "date": "2024-06-03",
+            "time": "09:30:15",
+            "amount": 176.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-06-07",
+            "time": "13:45:30",
+            "amount": 145.60,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-06-11",
+            "time": "15:20:45",
+            "amount": 312.70,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-06-15",
+            "time": "11:15:00",
+            "amount": 97.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },{
+            "date": "2024-06-18",
+            "time": "14:30:20",
+            "amount": 189.80,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-06-21",
+            "time": "16:45:10",
+            "amount": 156.30,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-06-24",
+            "time": "12:20:35",
+            "amount": 289.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-06-27",
+            "time": "17:15:25",
+            "amount": 92.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },{
+            "date": "2024-06-29",
+            "time": "13:40:15",
+            "amount": 178.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-06-30",
+            "time": "18:25:00",
+            "amount": 198.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-07-03",
+            "time": "10:15:30",
+            "amount": 188.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-07-07",
+            "time": "14:30:00",
+            "amount": 167.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-07-11",
+            "time": "16:45:20",
+            "amount": 278.50,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-07-15",
+            "time": "11:20:10",
+            "amount": 98.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-07-19",
+            "time": "13:15:45",
+            "amount": 178.60,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-07-22",
+            "time": "15:30:00",
+            "amount": 156.40,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-07-25",
+            "time": "12:45:30",
+            "amount": 289.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-07-28",
+            "time": "17:20:15",
+            "amount": 92.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-07-30",
+            "time": "14:10:25",
+            "amount": 201.40,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-07-31",
+            "time": "19:05:00",
+            "amount": 178.30,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          
+          {
+            "date": "2024-08-03",
+            "time": "09:30:15",
+            "amount": 192.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-08-07",
+            "time": "13:45:30",
+            "amount": 154.60,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-08-11",
+            "time": "15:20:45",
+            "amount": 345.70,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-08-15",
+            "time": "11:15:00",
+            "amount": 102.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-08-18",
+            "time": "14:30:20",
+            "amount": 198.80,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-08-21",
+            "time": "16:45:10",
+            "amount": 167.30,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-08-24",
+            "time": "12:20:35",
+            "amount": 312.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-08-27",
+            "time": "17:15:25",
+            "amount": 95.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-08-29",
+            "time": "13:40:15",
+            "amount": 187.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-08-31",
+            "time": "18:25:00",
+            "amount": 212.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          
+          {
+            "date": "2024-09-03",
+            "time": "10:30:15",
+            "amount": 189.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-09-07",
+            "time": "14:15:30",
+            "amount": 145.50,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-09-11",
+            "time": "16:20:45",
+            "amount": 298.80,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-09-15",
+            "time": "11:45:00",
+            "amount": 97.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-09-18",
+            "time": "13:30:20",
+            "amount": 167.70,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-09-21",
+            "time": "15:45:10",
+            "amount": 134.40,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-09-24",
+            "time": "12:20:35",
+            "amount": 267.60,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-09-27",
+            "time": "17:15:25",
+            "amount": 88.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-09-29",
+            "time": "14:40:15",
+            "amount": 178.30,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-09-30",
+            "time": "19:25:00",
+            "amount": 156.60,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          
+          {
+            "date": "2024-10-03",
+            "time": "09:30:15",
+            "amount": 212.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-10-07",
+            "time": "13:45:30",
+            "amount": 156.60,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-10-11",
+            "time": "15:20:45",
+            "amount": 312.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-10-15",
+            "time": "11:15:00",
+            "amount": 99.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-10-18",
+            "time": "14:30:20",
+            "amount": 189.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-10-21",
+            "time": "16:45:10",
+            "amount": 145.50,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-10-24",
+            "time": "12:20:35",
+            "amount": 289.80,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-10-27",
+            "time": "17:15:25",
+            "amount": 92.60,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-10-29",
+            "time": "13:40:15",
+            "amount": 167.70,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-10-31",
+            "time": "18:25:00",
+            "amount": 198.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          
+          {
+            "date": "2024-11-03",
+            "time": "10:15:30",
+            "amount": 198.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-11-07",
+            "time": "14:30:00",
+            "amount": 167.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-11-11",
+            "time": "16:45:20",
+            "amount": 323.50,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-11-15",
+            "time": "11:20:10",
+            "amount": 103.80,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-11-18",
+            "time": "13:15:45",
+            "amount": 178.60,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-11-21",
+            "time": "15:30:00",
+            "amount": 156.40,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-11-24",
+            "time": "12:45:30",
+            "amount": 298.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-11-27",
+            "time": "17:20:15",
+            "amount": 94.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-11-29",
+            "time": "14:10:25",
+            "amount": 212.40,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-11-30",
+            "time": "19:05:00",
+            "amount": 178.30,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          
+          {
+            "date": "2024-12-03",
+            "time": "09:30:15",
+            "amount": 223.90,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-12-07",
+            "time": "13:45:30",
+            "amount": 167.60,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-12-11",
+            "time": "15:20:45",
+            "amount": 356.70,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-12-15",
+            "time": "11:15:00",
+            "amount": 108.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-12-18",
+            "time": "14:30:20",
+            "amount": 234.80,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-12-21",
+            "time": "16:45:10",
+            "amount": 189.30,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-12-24",
+            "time": "12:20:35",
+            "amount": 345.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-12-27",
+            "time": "17:15:25",
+            "amount": 98.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-12-29",
+            "time": "13:40:15",
+            "amount": 198.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-12-31",
+            "time": "18:25:00",
+            "amount": 245.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          }
+        ]
+      },
+      {
+        "card_number": "5367 8912 3456 7890",
+        "bank": "CIMB Bank",
+        "card_image": "https://placeholder.com/card_image2.jpg",
+        "expiry_date": "09/25",
+        "usages": [
+          {
+            "date": "2024-01-02",
+            "time": "11:30:00",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-01-06",
+            "time": "15:45:20",
+            "amount": 123.90,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-01-10",
+            "time": "13:20:15",
+            "amount": 256.70,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-01-14",
+            "time": "10:15:30",
+            "amount": 76.50,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-01-18",
+            "time": "14:25:00",
+            "amount": 189.30,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-01-21",
+            "time": "16:40:45",
+            "amount": 145.60,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-01-24",
+            "time": "12:35:20",
+            "amount": 234.80,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-01-27",
+            "time": "18:15:00",
+            "amount": 82.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-01-30",
+            "time": "13:50:30",
+            "amount": 156.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-01-31",
+            "time": "17:25:15",
+            "amount": 178.90,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-02-03",
+            "time": "09:45:00",
+            "amount": 178.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-02-07",
+            "time": "14:20:15",
+            "amount": 134.60,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-02-11",
+            "time": "16:35:30",
+            "amount": 289.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-02-15",
+            "time": "11:25:45",
+            "amount": 88.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-02-18",
+            "time": "13:40:20",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-02-21",
+            "time": "15:55:10",
+            "amount": 156.30,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-02-24",
+            "time": "12:15:40",
+            "amount": 245.60,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-02-27",
+            "time": "17:30:25",
+            "amount": 79.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-02-29",
+            "time": "14:45:15",
+            "amount": 189.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-02-29",
+            "time": "19:20:00",
+            "amount": 167.50,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          
+          {
+            "date": "2024-03-03",
+            "time": "10:15:30",
+            "amount": 198.70,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-03-07",
+            "time": "13:40:45",
+            "amount": 145.90,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-03-11",
+            "time": "15:25:20",
+            "amount": 312.40,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-03-15",
+            "time": "11:50:35",
+            "amount": 92.60,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-03-18",
+            "time": "14:15:50",
+            "amount": 176.30,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-03-21",
+            "time": "16:30:15",
+            "amount": 134.80,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-03-24",
+            "time": "12:45:40",
+            "amount": 267.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-03-27",
+            "time": "18:20:25",
+            "amount": 85.40,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-03-30",
+            "time": "13:35:10",
+            "amount": 198.60,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-03-31",
+            "time": "17:50:45",
+            "amount": 156.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          
+          {
+            "date": "2024-04-03",
+            "time": "09:30:15",
+            "amount": 187.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-04-07",
+            "time": "14:45:30",
+            "amount": 167.40,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-04-11",
+            "time": "16:20:45",
+            "amount": 298.60,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-04-15",
+            "time": "11:35:20",
+            "amount": 89.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-04-18",
+            "time": "13:50:45",
+            "amount": 189.30,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-04-21",
+            "time": "15:15:10",
+            "amount": 145.80,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-04-24",
+            "time": "12:30:35",
+            "amount": 234.50,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-04-27",
+            "time": "17:45:20",
+            "amount": 76.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-04-29",
+            "time": "14:10:45",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-04-30",
+            "time": "19:25:30",
+            "amount": 178.60,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-05-03",
+            "time": "10:15:30",
+            "amount": 192.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-05-07",
+            "time": "14:30:00",
+            "amount": 156.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-05-11",
+            "time": "16:45:20",
+            "amount": 323.50,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-05-15",
+            "time": "11:20:10",
+            "amount": 94.80,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-05-18",
+            "time": "13:15:45",
+            "amount": 178.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-05-21",
+            "time": "15:30:00",
+            "amount": 145.40,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-05-24",
+            "time": "12:45:30",
+            "amount": 267.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-05-27",
+            "time": "17:20:15",
+            "amount": 88.70,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-05-29",
+            "time": "14:10:25",
+            "amount": 187.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-05-31",
+            "time": "19:05:00",
+            "amount": 167.30,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          
+          {
+            "date": "2024-06-03",
+            "time": "09:30:15",
+            "amount": 198.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-06-07",
+            "time": "13:45:30",
+            "amount": 178.60,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-06-11",
+            "time": "15:20:45",
+            "amount": 345.70,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-06-15",
+            "time": "11:15:00",
+            "amount": 96.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-06-18",
+            "time": "14:30:20",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-06-21",
+            "time": "16:45:10",
+            "amount": 134.30,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-06-24",
+            "time": "12:20:35",
+            "amount": 289.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-06-27",
+            "time": "17:15:25",
+            "amount": 82.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-06-29",
+            "time": "13:40:15",
+            "amount": 176.60,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-06-30",
+            "time": "18:25:00",
+            "amount": 189.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          
+          {
+            "date": "2024-07-03",
+            "time": "10:30:15",
+            "amount": 187.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-07-07",
+            "time": "14:15:30",
+            "amount": 145.50,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-07-11",
+            "time": "16:20:45",
+            "amount": 334.80,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-07-15",
+            "time": "11:45:00",
+            "amount": 91.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-07-18",
+            "time": "13:30:20",
+            "amount": 198.70,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-07-21",
+            "time": "15:45:10",
+            "amount": 167.40,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-07-24",
+            "time": "12:20:35",
+            "amount": 278.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-07-27",
+            "time": "17:15:25",
+            "amount": 87.60,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-07-29",
+            "time": "13:40:15",
+            "amount": 189.70,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-07-31",
+            "time": "18:25:00",
+            "amount": 156.90,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          
+          {
+            "date": "2024-08-03",
+            "time": "09:45:00",
+            "amount": 201.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-08-07",
+            "time": "13:20:15",
+            "amount": 178.60,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-08-11",
+            "time": "15:35:30",
+            "amount": 312.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-08-15",
+            "time": "11:25:45",
+            "amount": 93.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-08-18",
+            "time": "14:40:20",
+            "amount": 167.80,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-08-21",
+            "time": "16:55:10",
+            "amount": 145.30,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-08-24",
+            "time": "12:15:40",
+            "amount": 256.60,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-08-27",
+            "time": "17:30:25",
+            "amount": 84.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-08-29",
+            "time": "14:45:15",
+            "amount": 178.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-08-31",
+            "time": "19:20:00",
+            "amount": 198.50,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-09-03",
+            "time": "10:15:30",
+            "amount": 195.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-09-07",
+            "time": "14:30:00",
+            "amount": 167.70,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-09-11",
+            "time": "16:45:20",
+            "amount": 345.50,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-09-15",
+            "time": "11:20:10",
+            "amount": 97.80,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-09-18",
+            "time": "13:15:45",
+            "amount": 187.60,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-09-21",
+            "time": "15:30:00",
+            "amount": 156.40,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-09-24",
+            "time": "12:45:30",
+            "amount": 289.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-09-27",
+            "time": "17:20:15",
+            "amount": 88.70,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-09-29",
+            "time": "14:10:25",
+            "amount": 198.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-09-30",
+            "time": "19:05:00",
+            "amount": 178.30,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          
+          {
+            "date": "2024-10-03",
+            "time": "09:30:15",
+            "amount": 212.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-10-07",
+            "time": "13:45:30",
+            "amount": 178.60,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-10-11",
+            "time": "15:20:45",
+            "amount": 367.70,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-10-15",
+            "time": "11:15:00",
+            "amount": 94.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-10-18",
+            "time": "14:30:20",
+            "amount": 176.80,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-10-21",
+            "time": "16:45:10",
+            "amount": 145.30,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-10-24",
+            "time": "12:20:35",
+            "amount": 312.40,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-10-27",
+            "time": "17:15:25",
+            "amount": 86.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-10-29",
+            "time": "13:40:15",
+            "amount": 189.60,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-10-31",
+            "time": "18:25:00",
+            "amount": 167.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          
+          {
+            "date": "2024-11-03",
+            "time": "10:30:15",
+            "amount": 223.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-11-07",
+            "time": "14:15:30",
+            "amount": 189.50,
+            "category": "Shopping",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-11-11",
+            "time": "16:20:45",
+            "amount": 389.80,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-11-15",
+            "time": "11:45:00",
+            "amount": 98.90,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-11-18",
+            "time": "13:30:20",
+            "amount": 198.70,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-11-21",
+            "time": "15:45:10",
+            "amount": 167.40,
+            "category": "Shopping",
+            "merchant": "Cotton On"
+          },
+          {
+            "date": "2024-11-24",
+            "time": "12:20:35",
+            "amount": 334.90,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-11-27",
+            "time": "17:15:25",
+            "amount": 92.60,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-11-29",
+            "time": "13:40:15",
+            "amount": 212.70,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-11-30",
+            "time": "18:25:00",
+            "amount": 178.90,
+            "category": "Shopping",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-12-03",
+            "time": "09:45:00",
+            "amount": 245.90,
+            "category": "Groceries",
+            "merchant": "AEON"
+          },
+          {
+            "date": "2024-12-07",
+            "time": "13:20:15",
+            "amount": 198.60,
+            "category": "Shopping",
+            "merchant": "Padini"
+          },
+          {
+            "date": "2024-12-11",
+            "time": "15:35:30",
+            "amount": 412.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-12-15",
+            "time": "11:25:45",
+            "amount": 103.70,
+            "category": "Health & Beauty",
+            "merchant": "Guardian"
+          },
+          {
+            "date": "2024-12-18",
+            "time": "14:40:20",
+            "amount": 234.80,
+            "category": "Groceries",
+            "merchant": "Tesco"
+          },
+          {
+            "date": "2024-12-21",
+            "time": "16:55:10",
+            "amount": 189.30,
+            "category": "Shopping",
+            "merchant": "Brands Outlet"
+          },
+          {
+            "date": "2024-12-24",
+            "time": "12:15:40",
+            "amount": 356.60,
+            "category": "Home & Living",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-12-27",
+            "time": "17:30:25",
+            "amount": 97.90,
+            "category": "Health & Beauty",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-12-29",
+            "time": "14:45:15",
+            "amount": 223.40,
+            "category": "Groceries",
+            "merchant": "Giant Hypermarket"
+          },
+          {
+            "date": "2024-12-31",
+            "time": "19:20:00",
+            "amount": 212.50,
+            "category": "Shopping",
+            "merchant": "Zara"
+          }
+        ]
+      }
+    ],
+    "credit_cards": [
+      {
+        "card_number": "8847 2382 1242 9245",
+        "bank": "Public Bank",
+        "card_image": "https://placeholder.com/card_image3.jpg",
+        "expiry_date": "11/26",
+        "credit_limit": 10000,
+        "usages": [
+          {
+            "date": "2024-01-03",
+            "time": "10:15:30",
+            "amount": 899.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-01-06",
+            "time": "14:30:00",
+            "amount": 459.90,
+            "category": "Shopping",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-01-09",
+            "time": "16:45:20",
+            "amount": 1299.00,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-01-12",
+            "time": "11:20:10",
+            "amount": 789.50,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-01-15",
+            "time": "13:15:45",
+            "amount": 599.00,
+            "category": "Fashion",
+            "merchant": "Michael Kors"
+          },
+          {
+            "date": "2024-01-18",
+            "time": "15:30:00",
+            "amount": 849.00,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-01-21",
+            "time": "12:45:30",
+            "amount": 699.90,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-01-24",
+            "time": "17:20:15",
+            "amount": 899.00,
+            "category": "Home Appliances",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-01-27",
+            "time": "14:10:25",
+            "amount": 559.90,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-01-30",
+            "time": "19:05:00",
+            "amount": 799.00,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-02-03",
+            "time": "09:45:00",
+            "amount": 1299.90,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-02-06",
+            "time": "13:20:15",
+            "amount": 599.60,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-02-09",
+            "time": "15:35:30",
+            "amount": 899.90,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-02-12",
+            "time": "11:25:45",
+            "amount": 849.70,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-02-15",
+            "time": "14:40:20",
+            "amount": 499.80,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-02-18",
+            "time": "16:55:10",
+            "amount": 1099.30,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-02-21",
+            "time": "12:15:40",
+            "amount": 649.60,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-02-24",
+            "time": "17:30:25",
+            "amount": 799.90,
+            "category": "Home Appliances",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-02-27",
+            "time": "14:45:15",
+            "amount": 459.40,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-02-29",
+            "time": "19:20:00",
+            "amount": 999.50,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          
+          {
+            "date": "2024-03-03",
+            "time": "10:15:30",
+            "amount": 1199.90,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-03-06",
+            "time": "14:30:00",
+            "amount": 549.90,
+            "category": "Fashion",
+            "merchant": "Michael Kors"
+          },
+          {
+            "date": "2024-03-09",
+            "time": "16:45:20",
+            "amount": 949.00,
+            "category": "Home Appliances",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-03-12",
+            "time": "11:20:10",
+            "amount": 799.50,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-03-15",
+            "time": "13:15:45",
+            "amount": 699.00,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-03-18",
+            "time": "15:30:00",
+            "amount": 1299.00,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-03-21",
+            "time": "12:45:30",
+            "amount": 599.90,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-03-24",
+            "time": "17:20:15",
+            "amount": 849.00,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-03-27",
+            "time": "14:10:25",
+            "amount": 479.90,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-03-30",
+            "time": "19:05:00",
+            "amount": 1099.00,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-04-03",
+            "time": "09:30:15",
+            "amount": 1399.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-04-06",
+            "time": "13:45:30",
+            "amount": 649.60,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-04-09",
+            "time": "15:20:45",
+            "amount": 999.70,
+            "category": "Home Appliances",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-04-12",
+            "time": "11:15:00",
+            "amount": 749.90,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-04-15",
+            "time": "14:30:20",
+            "amount": 599.80,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-04-18",
+            "time": "16:45:10",
+            "amount": 1199.30,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-04-21",
+            "time": "12:20:35",
+            "amount": 549.40,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-04-24",
+            "time": "17:15:25",
+            "amount": 899.90,
+            "category": "Home Appliances",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-04-27",
+            "time": "13:40:15",
+            "amount": 499.60,
+            "category": "Fashion",
+            "merchant": "Michael Kors"
+          },
+          {
+            "date": "2024-04-30",
+            "time": "18:25:00",
+            "amount": 1299.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-05-03",
+            "time": "10:15:30",
+            "amount": 1299.90,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-05-06",
+            "time": "14:30:00",
+            "amount": 599.90,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-05-09",
+            "time": "16:45:20",
+            "amount": 949.00,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-05-12",
+            "time": "11:20:10",
+            "amount": 829.50,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-05-15",
+            "time": "13:15:45",
+            "amount": 679.00,
+            "category": "Fashion",
+            "merchant": "Michael Kors"
+          },
+          {
+            "date": "2024-05-18",
+            "time": "15:30:00",
+            "amount": 1199.00,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-05-21",
+            "time": "12:45:30",
+            "amount": 549.90,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-05-24",
+            "time": "17:20:15",
+            "amount": 899.00,
+            "category": "Home Appliances",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-05-27",
+            "time": "14:10:25",
+            "amount": 489.90,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-05-30",
+            "time": "19:05:00",
+            "amount": 1099.00,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          
+          {
+            "date": "2024-06-03",
+            "time": "09:45:00",
+            "amount": 1399.90,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-06-06",
+            "time": "13:20:15",
+            "amount": 629.60,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-06-09",
+            "time": "15:35:30",
+            "amount": 979.90,
+            "category": "Home Appliances",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-06-12",
+            "time": "11:25:45",
+            "amount": 859.70,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-06-15",
+            "time": "14:40:20",
+            "amount": 589.80,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-06-18",
+            "time": "16:55:10",
+            "amount": 1299.30,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-06-21",
+            "time": "12:15:40",
+            "amount": 569.60,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-06-24",
+            "time": "17:30:25",
+            "amount": 929.90,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-06-27",
+            "time": "14:45:15",
+            "amount": 499.40,
+            "category": "Fashion",
+            "merchant": "Michael Kors"
+          },
+          {
+            "date": "2024-06-30",
+            "time": "19:20:00",
+            "amount": 1199.50,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          
+          {
+            "date": "2024-07-03",
+            "time": "10:30:15",
+            "amount": 1299.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-07-06",
+            "time": "14:15:30",
+            "amount": 649.50,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-07-09",
+            "time": "16:20:45",
+            "amount": 999.80,
+            "category": "Home Appliances",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-07-12",
+            "time": "11:45:00",
+            "amount": 879.90,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-07-15",
+            "time": "13:30:20",
+            "amount": 599.70,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-07-18",
+            "time": "15:45:10",
+            "amount": 1399.40,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-07-21",
+            "time": "12:20:35",
+            "amount": 579.90,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-07-24",
+            "time": "17:15:25",
+            "amount": 949.90,
+            "category": "Home Appliances",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-07-27",
+            "time": "14:40:15",
+            "amount": 519.60,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-07-30",
+            "time": "18:25:00",
+            "amount": 1299.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-08-03",
+            "time": "09:45:00",
+            "amount": 1449.90,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-08-06",
+            "time": "13:20:15",
+            "amount": 669.60,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-08-09",
+            "time": "15:35:30",
+            "amount": 1029.90,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-08-12",
+            "time": "11:25:45",
+            "amount": 899.70,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-08-15",
+            "time": "14:40:20",
+            "amount": 619.80,
+            "category": "Fashion",
+            "merchant": "Michael Kors"
+          },
+          {
+            "date": "2024-08-18",
+            "time": "16:55:10",
+            "amount": 1349.30,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-08-21",
+            "time": "12:15:40",
+            "amount": 589.60,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-08-24",
+            "time": "17:30:25",
+            "amount": 969.90,
+            "category": "Home Appliances",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-08-27",
+            "time": "14:45:15",
+            "amount": 529.40,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-08-30",
+            "time": "19:20:00",
+            "amount": 1249.50,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          
+          {
+            "date": "2024-09-03",
+            "time": "10:30:15",
+            "amount": 1399.90,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-09-06",
+            "time": "14:15:30",
+            "amount": 679.50,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-09-09",
+            "time": "16:20:45",
+            "amount": 1049.80,
+            "category": "Home Appliances",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-09-12",
+            "time": "11:45:00",
+            "amount": 919.90,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-09-15",
+            "time": "13:30:20",
+            "amount": 629.70,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-09-18",
+            "time": "15:45:10",
+            "amount": 1469.40,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-09-21",
+            "time": "12:20:35",
+            "amount": 599.90,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-09-24",
+            "time": "17:15:25",
+            "amount": 989.90,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-09-27",
+            "time": "14:40:15",
+            "amount": 539.60,
+            "category": "Fashion",
+            "merchant": "Michael Kors"
+          },
+          {
+            "date": "2024-09-30",
+            "time": "18:25:00",
+            "amount": 1359.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          
+          {
+            "date": "2024-10-03",
+            "time": "09:45:00",
+            "amount": 1499.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-10-06",
+            "time": "13:20:15",
+            "amount": 689.60,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-10-09",
+            "time": "15:35:30",
+            "amount": 1069.90,
+            "category": "Home Appliances",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-10-12",
+            "time": "11:25:45",
+            "amount": 939.70,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-10-15",
+            "time": "14:40:20",
+            "amount": 639.80,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-10-18",
+            "time": "16:55:10",
+            "amount": 1489.30,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-10-21",
+            "time": "12:15:40",
+            "amount": 609.60,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-10-24",
+            "time": "17:30:25",
+            "amount": 1009.90,
+            "category": "Home Appliances",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-10-27",
+            "time": "14:45:15",
+            "amount": 549.40,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-10-30",
+            "time": "19:20:00",
+            "amount": 1399.50,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-11-03",
+            "time": "10:15:30",
+            "amount": 1549.90,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-11-06",
+            "time": "14:30:00",
+            "amount": 699.90,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-11-09",
+            "time": "16:45:20",
+            "amount": 1089.00,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-11-12",
+            "time": "11:20:10",
+            "amount": 959.50,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-11-15",
+            "time": "13:15:45",
+            "amount": 649.00,
+            "category": "Fashion",
+            "merchant": "Michael Kors"
+          },
+          {
+            "date": "2024-11-18",
+            "time": "15:30:00",
+            "amount": 1529.00,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-11-21",
+            "time": "12:45:30",
+            "amount": 619.90,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-11-24",
+            "time": "17:20:15",
+            "amount": 1029.00,
+            "category": "Home Appliances",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-11-27",
+            "time": "14:10:25",
+            "amount": 559.90,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-11-30",
+            "time": "19:05:00",
+            "amount": 1449.00,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          
+          {
+            "date": "2024-12-03",
+            "time": "09:45:00",
+            "amount": 1599.90,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-12-06",
+            "time": "13:20:15",
+            "amount": 729.60,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-12-09",
+            "time": "15:35:30",
+            "amount": 1129.90,
+            "category": "Home Appliances",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-12-12",
+            "time": "11:25:45",
+            "amount": 979.70,
+            "category": "Furniture",
+            "merchant": "IKEA"
+          },
+          {
+            "date": "2024-12-15",
+            "time": "14:40:20",
+            "amount": 669.80,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-12-18",
+            "time": "16:55:10",
+            "amount": 1569.30,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-12-21",
+            "time": "12:15:40",
+            "amount": 639.60,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-12-24",
+            "time": "17:30:25",
+            "amount": 1049.90,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-12-27",
+            "time": "14:45:15",
+            "amount": 579.40,
+            "category": "Fashion",
+            "merchant": "Michael Kors"
+          },
+          {
+            "date": "2024-12-30",
+            "time": "19:20:00",
+            "amount": 1499.50,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          }
+        ]
+      },
+      {
+        "card_number": "2134 3534 2323 6123",
+        "bank": "Hong Leong Bank",
+        "card_image": "https://placeholder.com/card_image4.jpg",
+        "expiry_date": "03/27",
+        "credit_limit": 8000,
+        "usages": [
+          {
+            "date": "2024-01-03",
+            "time": "09:30:15",
+            "amount": 789.90,
+            "category": "Travel",
+            "merchant": "AirAsia"
+          },
+          {
+            "date": "2024-01-06",
+            "time": "13:45:30",
+            "amount": 445.60,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          },
+          {
+            "date": "2024-01-09",
+            "time": "15:20:45",
+            "amount": 899.70,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-01-12",
+            "time": "11:15:00",
+            "amount": 578.90,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-01-15",
+            "time": "14:30:20",
+            "amount": 767.80,
+            "category": "Home Appliances",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-01-18",
+            "time": "16:45:10",
+            "amount": 534.30,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-01-21",
+            "time": "12:20:35",
+            "amount": 889.40,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-01-24",
+            "time": "17:15:25",
+            "amount": 456.90,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-01-27",
+            "time": "13:40:15",
+            "amount": 678.60,
+            "category": "Travel",
+            "merchant": "Booking.com"
+          },
+          {
+            "date": "2024-01-30",
+            "time": "18:25:00",
+            "amount": 567.50,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-02-03",
+            "time": "10:15:30",
+            "amount": 856.90,
+            "category": "Travel",
+            "merchant": "Malaysia Airlines"
+          },
+          {
+            "date": "2024-02-06",
+            "time": "14:30:00",
+            "amount": 467.70,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-02-09",
+            "time": "16:45:20",
+            "amount": 923.50,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-02-12",
+            "time": "11:20:10",
+            "amount": 598.80,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-02-15",
+            "time": "13:15:45",
+            "amount": 798.60,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-02-18",
+            "time": "15:30:00",
+            "amount": 556.40,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-02-21",
+            "time": "12:45:30",
+            "amount": 912.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-02-24",
+            "time": "17:20:15",
+            "amount": 478.90,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-02-27",
+            "time": "14:10:25",
+            "amount": 723.60,
+            "category": "Travel",
+            "merchant": "Agoda"
+          },
+          {
+            "date": "2024-02-29",
+            "time": "19:05:00",
+            "amount": 489.50,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          },
+          
+          {
+            "date": "2024-03-03",
+            "time": "09:45:00",
+            "amount": 934.90,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-03-06",
+            "time": "13:20:15",
+            "amount": 612.60,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-03-09",
+            "time": "15:35:30",
+            "amount": 845.90,
+            "category": "Travel",
+            "merchant": "AirAsia"
+          },
+          {
+            "date": "2024-03-12",
+            "time": "11:25:45",
+            "amount": 512.70,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-03-15",
+            "time": "14:40:20",
+            "amount": 867.80,
+            "category": "Home Appliances",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-03-18",
+            "time": "16:55:10",
+            "amount": 578.30,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-03-21",
+            "time": "12:15:40",
+            "amount": 945.60,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-03-24",
+            "time": "17:30:25",
+            "amount": 534.90,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-03-27",
+            "time": "14:45:15",
+            "amount": 789.40,
+            "category": "Travel",
+            "merchant": "Booking.com"
+          },
+          {
+            "date": "2024-03-30",
+            "time": "19:20:00",
+            "amount": 445.50,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          },
+          
+          {
+            "date": "2024-04-03",
+            "time": "10:30:15",
+            "amount": 967.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-04-06",
+            "time": "14:15:30",
+            "amount": 589.50,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-04-09",
+            "time": "16:20:45",
+            "amount": 878.80,
+            "category": "Travel",
+            "merchant": "Malaysia Airlines"
+          },
+          {
+            "date": "2024-04-12",
+            "time": "11:45:00",
+            "amount": 534.90,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-04-15",
+            "time": "13:30:20",
+            "amount": 889.70,
+            "category": "Home Appliances",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-04-18",
+            "time": "15:45:10",
+            "amount": 567.40,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-04-21",
+            "time": "12:20:35",
+            "amount": 923.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-04-24",
+            "time": "17:15:25",
+            "amount": 545.90,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-04-27",
+            "time": "14:40:15",
+            "amount": 756.60,
+            "category": "Travel",
+            "merchant": "Agoda"
+          },
+          {
+            "date": "2024-04-30",
+            "time": "18:25:00",
+            "amount": 478.90,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          },
+          {
+            "date": "2024-05-03",
+            "time": "09:45:00",
+            "amount": 989.90,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-05-06",
+            "time": "13:20:15",
+            "amount": 567.60,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-05-09",
+            "time": "15:35:30",
+            "amount": 899.90,
+            "category": "Travel",
+            "merchant": "AirAsia"
+          },
+          {
+            "date": "2024-05-12",
+            "time": "11:25:45",
+            "amount": 489.70,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-05-15",
+            "time": "14:40:20",
+            "amount": 856.80,
+            "category": "Home Appliances",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-05-18",
+            "time": "16:55:10",
+            "amount": 589.30,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-05-21",
+            "time": "12:15:40",
+            "amount": 934.60,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-05-24",
+            "time": "17:30:25",
+            "amount": 523.90,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-05-27",
+            "time": "14:45:15",
+            "amount": 767.40,
+            "category": "Travel",
+            "merchant": "Booking.com"
+          },
+          {
+            "date": "2024-05-30",
+            "time": "19:20:00",
+            "amount": 456.50,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          },
+          
+          {
+            "date": "2024-06-03",
+            "time": "10:30:15",
+            "amount": 978.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-06-06",
+            "time": "14:15:30",
+            "amount": 578.50,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-06-09",
+            "time": "16:20:45",
+            "amount": 923.80,
+            "category": "Travel",
+            "merchant": "Malaysia Airlines"
+          },
+          {
+            "date": "2024-06-12",
+            "time": "11:45:00",
+            "amount": 512.90,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-06-15",
+            "time": "13:30:20",
+            "amount": 878.70,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-06-18",
+            "time": "15:45:10",
+            "amount": 567.40,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-06-21",
+            "time": "12:20:35",
+            "amount": 945.90,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-06-24",
+            "time": "17:15:25",
+            "amount": 534.90,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-06-27",
+            "time": "14:40:15",
+            "amount": 789.60,
+            "category": "Travel",
+            "merchant": "Agoda"
+          },
+          {
+            "date": "2024-06-30",
+            "time": "18:25:00",
+            "amount": 467.90,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          },
+          
+          {
+            "date": "2024-07-03",
+            "time": "09:45:00",
+            "amount": 956.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-07-06",
+            "time": "13:20:15",
+            "amount": 589.60,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-07-09",
+            "time": "15:35:30",
+            "amount": 934.90,
+            "category": "Travel",
+            "merchant": "AirAsia"
+          },
+          {
+            "date": "2024-07-12",
+            "time": "11:25:45",
+            "amount": 478.70,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-07-15",
+            "time": "14:40:20",
+            "amount": 867.80,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-07-18",
+            "time": "16:55:10",
+            "amount": 578.30,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-07-21",
+            "time": "12:15:40",
+            "amount": 967.60,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-07-24",
+            "time": "17:30:25",
+            "amount": 545.90,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-07-27",
+            "time": "14:45:15",
+            "amount": 812.40,
+            "category": "Travel",
+            "merchant": "Booking.com"
+          },
+          {
+            "date": "2024-07-30",
+            "time": "19:20:00",
+            "amount": 489.50,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          },
+          {
+            "date": "2024-08-03",
+            "time": "10:15:30",
+            "amount": 979.90,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-08-06",
+            "time": "14:30:00",
+            "amount": 599.90,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-08-09",
+            "time": "16:45:20",
+            "amount": 945.00,
+            "category": "Travel",
+            "merchant": "Malaysia Airlines"
+          },
+          {
+            "date": "2024-08-12",
+            "time": "11:20:10",
+            "amount": 499.50,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-08-15",
+            "time": "13:15:45",
+            "amount": 889.00,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-08-18",
+            "time": "15:30:00",
+            "amount": 589.00,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-08-21",
+            "time": "12:45:30",
+            "amount": 999.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-08-24",
+            "time": "17:20:15",
+            "amount": 567.90,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-08-27",
+            "time": "14:10:25",
+            "amount": 834.60,
+            "category": "Travel",
+            "merchant": "Agoda"
+          },
+          {
+            "date": "2024-08-30",
+            "time": "19:05:00",
+            "amount": 478.50,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          },
+          
+          {
+            "date": "2024-09-03",
+            "time": "09:45:00",
+            "amount": 989.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-09-06",
+            "time": "13:20:15",
+            "amount": 578.60,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-09-09",
+            "time": "15:35:30",
+            "amount": 967.90,
+            "category": "Travel",
+            "merchant": "AirAsia"
+          },
+          {
+            "date": "2024-09-12",
+            "time": "11:25:45",
+            "amount": 512.70,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-09-15",
+            "time": "14:40:20",
+            "amount": 899.80,
+            "category": "Home Appliances",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-09-18",
+            "time": "16:55:10",
+            "amount": 599.30,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-09-21",
+            "time": "12:15:40",
+            "amount": 1023.60,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-09-24",
+            "time": "17:30:25",
+            "amount": 545.90,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-09-27",
+            "time": "14:45:15",
+            "amount": 856.40,
+            "category": "Travel",
+            "merchant": "Booking.com"
+          },
+          {
+            "date": "2024-09-30",
+            "time": "19:20:00",
+            "amount": 489.50,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          },
+          
+          {
+            "date": "2024-10-03",
+            "time": "10:30:15",
+            "amount": 1012.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-10-06",
+            "time": "14:15:30",
+            "amount": 589.50,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-10-09",
+            "time": "16:20:45",
+            "amount": 989.80,
+            "category": "Travel",
+            "merchant": "Malaysia Airlines"
+          },
+          {
+            "date": "2024-10-12",
+            "time": "11:45:00",
+            "amount": 523.90,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-10-15",
+            "time": "13:30:20",
+            "amount": 912.70,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-10-18",
+            "time": "15:45:10",
+            "amount": 612.40,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-10-21",
+            "time": "12:20:35",
+            "amount": 1045.90,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-10-24",
+            "time": "17:15:25",
+            "amount": 567.90,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-10-27",
+            "time": "14:40:15",
+            "amount": 878.60,
+            "category": "Travel",
+            "merchant": "Agoda"
+          },
+          {
+            "date": "2024-10-30",
+            "time": "18:25:00",
+            "amount": 499.90,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          },
+          {
+            "date": "2024-11-03",
+            "time": "09:45:00",
+            "amount": 1034.90,
+            "category": "Electronics",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-11-06",
+            "time": "13:20:15",
+            "amount": 599.60,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-11-09",
+            "time": "15:35:30",
+            "amount": 1012.90,
+            "category": "Travel",
+            "merchant": "AirAsia"
+          },
+          {
+            "date": "2024-11-12",
+            "time": "11:25:45",
+            "amount": 534.70,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-11-15",
+            "time": "14:40:20",
+            "amount": 923.80,
+            "category": "Home Appliances",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-11-18",
+            "time": "16:55:10",
+            "amount": 623.30,
+            "category": "Sports",
+            "merchant": "Adidas"
+          },
+          {
+            "date": "2024-11-21",
+            "time": "12:15:40",
+            "amount": 1067.60,
+            "category": "Electronics",
+            "merchant": "Senheng"
+          },
+          {
+            "date": "2024-11-24",
+            "time": "17:30:25",
+            "amount": 578.90,
+            "category": "Fashion",
+            "merchant": "H&M"
+          },
+          {
+            "date": "2024-11-27",
+            "time": "14:45:15",
+            "amount": 889.40,
+            "category": "Travel",
+            "merchant": "Malaysia Airlines"
+          },
+          {
+            "date": "2024-11-30",
+            "time": "19:20:00",
+            "amount": 512.50,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          },
+          
+          {
+            "date": "2024-12-03",
+            "time": "10:30:15",
+            "amount": 1089.90,
+            "category": "Electronics",
+            "merchant": "All IT Hypermarket"
+          },
+          {
+            "date": "2024-12-06",
+            "time": "14:15:30",
+            "amount": 612.50,
+            "category": "Fashion",
+            "merchant": "Zara"
+          },
+          {
+            "date": "2024-12-09",
+            "time": "16:20:45",
+            "amount": 1045.80,
+            "category": "Travel",
+            "merchant": "Booking.com"
+          },
+          {
+            "date": "2024-12-12",
+            "time": "11:45:00",
+            "amount": 545.90,
+            "category": "Healthcare",
+            "merchant": "Watson's"
+          },
+          {
+            "date": "2024-12-15",
+            "time": "13:30:20",
+            "amount": 956.70,
+            "category": "Home Appliances",
+            "merchant": "Courts"
+          },
+          {
+            "date": "2024-12-18",
+            "time": "15:45:10",
+            "amount": 634.40,
+            "category": "Sports",
+            "merchant": "Nike"
+          },
+          {
+            "date": "2024-12-21",
+            "time": "12:20:35",
+            "amount": 1099.90,
+            "category": "Electronics",
+            "merchant": "Harvey Norman"
+          },
+          {
+            "date": "2024-12-24",
+            "time": "17:15:25",
+            "amount": 589.90,
+            "category": "Fashion",
+            "merchant": "Uniqlo"
+          },
+          {
+            "date": "2024-12-27",
+            "time": "14:40:15",
+            "amount": 923.60,
+            "category": "Travel",
+            "merchant": "Agoda"
+          },
+          {
+            "date": "2024-12-30",
+            "time": "18:25:00",
+            "amount": 523.90,
+            "category": "Healthcare",
+            "merchant": "Guardian Pharmacy"
+          }
+        ]
+      }
+    ],
+    "bank_accounts": [
+      {
+        "bank_name": "Maybank",
+        "account_number": "1234567890",
+        "bank_image": "https://placeholder.com/bank_image1.jpg",
+        "account_type": "Savings",
+        "usages": [
+          {
+            "date": "2024-01-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-01-07",
+            "time": "11:45:20",
+            "amount": 850.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-01-10",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-01-15",
+            "time": "10:15:30",
+            "amount": 1500.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-01-18",
+            "time": "16:30:00",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-01-22",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-01-25",
+            "time": "15:20:30",
+            "amount": 1000.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-01-28",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-01-30",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-01-31",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          },
+          {
+            "date": "2024-02-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-02-06",
+            "time": "11:45:20",
+            "amount": 870.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-02-09",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-02-12",
+            "time": "10:15:30",
+            "amount": 1200.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-02-15",
+            "time": "16:30:00",
+            "amount": 210.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-02-19",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-02-22",
+            "time": "15:20:30",
+            "amount": 800.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-02-25",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-02-28",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-02-29",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          },
+          
+          {
+            "date": "2024-03-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-03-07",
+            "time": "11:45:20",
+            "amount": 890.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-03-10",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-03-13",
+            "time": "10:15:30",
+            "amount": 1300.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-03-16",
+            "time": "16:30:00",
+            "amount": 205.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-03-19",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-03-22",
+            "time": "15:20:30",
+            "amount": 900.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-03-25",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-03-28",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-03-31",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          },
+          
+          {
+            "date": "2024-04-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-04-07",
+            "time": "11:45:20",
+            "amount": 910.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-04-10",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-04-13",
+            "time": "10:15:30",
+            "amount": 1400.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-04-16",
+            "time": "16:30:00",
+            "amount": 215.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-04-19",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-04-22",
+            "time": "15:20:30",
+            "amount": 850.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-04-25",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-04-28",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-04-30",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          },
+          {
+            "date": "2024-05-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-05-07",
+            "time": "11:45:20",
+            "amount": 925.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-05-10",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-05-13",
+            "time": "10:15:30",
+            "amount": 1250.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-05-16",
+            "time": "16:30:00",
+            "amount": 220.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-05-19",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-05-22",
+            "time": "15:20:30",
+            "amount": 950.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-05-25",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-05-28",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-05-31",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          },
+          
+          {
+            "date": "2024-06-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-06-07",
+            "time": "11:45:20",
+            "amount": 940.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-06-10",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-06-13",
+            "time": "10:15:30",
+            "amount": 1350.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-06-16",
+            "time": "16:30:00",
+            "amount": 225.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-06-19",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-06-22",
+            "time": "15:20:30",
+            "amount": 880.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-06-25",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-06-28",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-06-30",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          },
+          
+          {
+            "date": "2024-07-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-07-07",
+            "time": "11:45:20",
+            "amount": 955.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-07-10",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-07-13",
+            "time": "10:15:30",
+            "amount": 1450.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-07-16",
+            "time": "16:30:00",
+            "amount": 230.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-07-19",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-07-22",
+            "time": "15:20:30",
+            "amount": 920.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-07-25",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-07-28",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-07-31",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          },
+          {
+            "date": "2024-08-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-08-07",
+            "time": "11:45:20",
+            "amount": 970.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-08-10",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-08-13",
+            "time": "10:15:30",
+            "amount": 1400.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-08-16",
+            "time": "16:30:00",
+            "amount": 235.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-08-19",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-08-22",
+            "time": "15:20:30",
+            "amount": 950.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-08-25",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-08-28",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-08-31",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          },
+          
+          {
+            "date": "2024-09-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-09-07",
+            "time": "11:45:20",
+            "amount": 985.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-09-10",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-09-13",
+            "time": "10:15:30",
+            "amount": 1350.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-09-16",
+            "time": "16:30:00",
+            "amount": 240.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-09-19",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-09-22",
+            "time": "15:20:30",
+            "amount": 980.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-09-25",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-09-28",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-09-30",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          },
+          
+          {
+            "date": "2024-10-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-10-07",
+            "time": "11:45:20",
+            "amount": 1000.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-10-10",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-10-13",
+            "time": "10:15:30",
+            "amount": 1450.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-10-16",
+            "time": "16:30:00",
+            "amount": 245.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-10-19",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-10-22",
+            "time": "15:20:30",
+            "amount": 1000.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-10-25",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-10-28",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-10-31",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          },
+          {
+            "date": "2024-11-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-11-07",
+            "time": "11:45:20",
+            "amount": 1015.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-11-10",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-11-13",
+            "time": "10:15:30",
+            "amount": 1500.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-11-16",
+            "time": "16:30:00",
+            "amount": 250.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-11-19",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-11-22",
+            "time": "15:20:30",
+            "amount": 1050.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-11-25",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-11-28",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-11-30",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          },
+          
+          {
+            "date": "2024-12-03",
+            "time": "09:30:00",
+            "amount": 2500.00,
+            "category": "Rental",
+            "recipient": "ABC Company"
+          },
+          {
+            "date": "2024-12-07",
+            "time": "11:45:20",
+            "amount": 1030.00,
+            "category": "Bills",
+            "recipient": "Tenaga Nasional"
+          },
+          {
+            "date": "2024-12-10",
+            "time": "14:20:15",
+            "amount": 120.00,
+            "category": "Bills",
+            "recipient": "Indah Water"
+          },
+          {
+            "date": "2024-12-13",
+            "time": "10:15:30",
+            "amount": 1550.00,
+            "category": "Transfer",
+            "recipient": "John Doe"
+          },
+          {
+            "date": "2024-12-16",
+            "time": "16:30:00",
+            "amount": 255.00,
+            "category": "Bills",
+            "recipient": "Air Selangor"
+          },
+          {
+            "date": "2024-12-19",
+            "time": "13:45:10",
+            "amount": 89.90,
+            "category": "Bills",
+            "recipient": "Maxis Internet"
+          },
+          {
+            "date": "2024-12-22",
+            "time": "15:20:30",
+            "amount": 1100.00,
+            "category": "Transfer",
+            "recipient": "Sarah Lee"
+          },
+          {
+            "date": "2024-12-25",
+            "time": "11:10:45",
+            "amount": 300.00,
+            "category": "Bills",
+            "recipient": "Insurance Premium"
+          },
+          {
+            "date": "2024-12-28",
+            "time": "17:40:20",
+            "amount": 500.00,
+            "category": "Transfer",
+            "recipient": "Mom"
+          },
+          {
+            "date": "2024-12-31",
+            "time": "09:15:00",
+            "amount": 150.00,
+            "category": "Bills",
+            "recipient": "Astro"
+          }
+        ]
+      },
+      {
+        "bank_name": "RHB Bank",
+        "account_number": "9876543210",
+        "bank_image": "https://placeholder.com/bank_image2.jpg",
+        "account_type": "Current",
+        "usages": [
+          {
+            "date": "2024-01-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-01-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-01-12",
+            "time": "14:20:15",
+            "amount": 800.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-01-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-01-20",
+            "time": "16:30:00",
+            "amount": 600.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-01-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-01-30",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          },
+          {
+            "date": "2024-02-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-02-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-02-12",
+            "time": "14:20:15",
+            "amount": 750.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-02-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-02-20",
+            "time": "16:30:00",
+            "amount": 650.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-02-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-02-28",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          },
+          
+          {
+            "date": "2024-03-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-03-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-03-12",
+            "time": "14:20:15",
+            "amount": 800.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-03-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-03-20",
+            "time": "16:30:00",
+            "amount": 600.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-03-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-03-30",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          },
+          
+          {
+            "date": "2024-04-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-04-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-04-12",
+            "time": "14:20:15",
+            "amount": 850.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-04-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-04-20",
+            "time": "16:30:00",
+            "amount": 625.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-04-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-04-30",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          },
+          {
+            "date": "2024-05-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-05-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-05-12",
+            "time": "14:20:15",
+            "amount": 825.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-05-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-05-20",
+            "time": "16:30:00",
+            "amount": 640.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-05-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-05-30",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          },
+          
+          {
+            "date": "2024-06-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-06-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-06-12",
+            "time": "14:20:15",
+            "amount": 775.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-06-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-06-20",
+            "time": "16:30:00",
+            "amount": 615.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-06-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-06-30",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          },
+          
+          {
+            "date": "2024-07-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-07-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-07-12",
+            "time": "14:20:15",
+            "amount": 850.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-07-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-07-20",
+            "time": "16:30:00",
+            "amount": 630.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-07-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-07-30",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          },
+          {
+            "date": "2024-08-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-08-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-08-12",
+            "time": "14:20:15",
+            "amount": 825.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-08-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-08-20",
+            "time": "16:30:00",
+            "amount": 645.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-08-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-08-30",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          },
+          
+          {
+            "date": "2024-09-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-09-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-09-12",
+            "time": "14:20:15",
+            "amount": 800.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-09-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-09-20",
+            "time": "16:30:00",
+            "amount": 660.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-09-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-09-30",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          },
+          
+          {
+            "date": "2024-10-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-10-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-10-12",
+            "time": "14:20:15",
+            "amount": 875.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-10-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-10-20",
+            "time": "16:30:00",
+            "amount": 675.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-10-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-10-30",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          },
+          {
+            "date": "2024-11-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-11-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-11-12",
+            "time": "14:20:15",
+            "amount": 900.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-11-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-11-20",
+            "time": "16:30:00",
+            "amount": 690.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-11-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-11-30",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          },
+          
+          {
+            "date": "2024-12-03",
+            "time": "09:30:00",
+            "amount": 2000.00,
+            "category": "Rental",
+            "recipient": "XYZ Enterprise"
+          },
+          {
+            "date": "2024-12-08",
+            "time": "11:45:20",
+            "amount": 450.00,
+            "category": "Bills",
+            "recipient": "Telekom Malaysia"
+          },
+          {
+            "date": "2024-12-12",
+            "time": "14:20:15",
+            "amount": 925.00,
+            "category": "Transfer",
+            "recipient": "Jane Smith"
+          },
+          {
+            "date": "2024-12-15",
+            "time": "10:15:30",
+            "amount": 200.00,
+            "category": "Bills",
+            "recipient": "Celcom"
+          },
+          {
+            "date": "2024-12-20",
+            "time": "16:30:00",
+            "amount": 700.00,
+            "category": "Transfer",
+            "recipient": "David Chen"
+          },
+          {
+            "date": "2024-12-25",
+            "time": "13:45:10",
+            "amount": 350.00,
+            "category": "Bills",
+            "recipient": "Car Insurance"
+          },
+          {
+            "date": "2024-12-30",
+            "time": "15:20:30",
+            "amount": 250.00,
+            "category": "Transfer",
+            "recipient": "Sister"
+          }
+        ]
+      }
+    ]
+  }
+}

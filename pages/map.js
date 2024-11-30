@@ -7,7 +7,6 @@ import { MenuPopup } from './furniture'
 import DailyGoals from '../components/DailyGoals'
 import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
-import WeeklyChallenge from '../components/WeeklyChallenge'
 import { getFurniture, saveFurniture, subscribeFurniture } from '../utils/furnitureStorage'
 import LeaderboardModal from '../components/LeaderboardModal'
 
@@ -141,17 +140,16 @@ export default function Map() {
 
     // Subscribe to real-time updates
     const unsubscribe = subscribeFurniture((furnitureData) => {
-      setPlacedFurniture(furnitureData);
-      setIsLoading(false);
-    });
+      setPlacedFurniture(furnitureData)
+      setIsLoading(false)
+    })
 
-    // Cleanup subscription on component unmount
     return () => {
       if (unsubscribe) {
-        unsubscribe();
+        unsubscribe()
       }
-    };
-  }, []);
+    }
+  }, [])
 
   const handleAddFurniture = async (newItem) => {
     // Format current time in 12-hour format with AM/PM
@@ -192,17 +190,17 @@ export default function Map() {
 
   const handleFeedCat = (value = 5) => {
     setProgress(prev => {
-      const newProgress = prev + value;
-      return Math.min(Math.max(newProgress, 0), 100); // Keeps progress between 0 and 100
-    });
-  };
+      const newProgress = prev + value
+      return Math.min(Math.max(newProgress, 0), 100)
+    })
+  }
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-xl">Loading...</div>
       </div>
-    );
+    )
   }
 
   return (
