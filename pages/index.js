@@ -80,7 +80,7 @@ const Screen = () => {
     >
       {/* Title and Cat Container */}
       <div className="flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <h1 className="text-center text-xl font-bold text-gray-800 mb-2">
+        <h1 className="text-center text-5xl font-bold text-gray-800 mb-2">
           FinPet
         </h1>
         <img
@@ -91,7 +91,7 @@ const Screen = () => {
       </div>
       <button 
         onClick={onOpen}
-        className="absolute bottom-4 left-4 right-4 z-10 rounded-lg border-[1px] bg-white py-2 text-xs sm:text-sm font-medium text-gray-700 backdrop-blur"
+        className="absolute bottom-4 left-4 right-4 z-10 rounded-lg border-[1px] bg-white py-2 text-xl font-medium text-gray-700 backdrop-blur"
       >
         Get Started
       </button>
