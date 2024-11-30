@@ -295,7 +295,7 @@ export default function Map() {
           />
 
           {/* Map and DroppableMap */}
-          <div className="relative w-[80%] h-[70vh]" style={{ marginTop: "20px" }}>
+          <div className="relative w-[80%] h-[40vh]" style={{ marginTop: "20px" }}>
             <img
               src="/map.png"
               alt="Map"
@@ -335,7 +335,7 @@ export default function Map() {
 
           {/* Inventory Button (previously Shop) */}
           <button
-            className="fixed bottom-4 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center"
+            className="fixed bottom-4 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center z-[1005]"
             onClick={() => setShowFurnitureMenu(true)}
           >
             <img

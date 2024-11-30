@@ -134,11 +134,11 @@ const MenuPopup = ({ onClose, onSelect }) => {
   const inventory = loadFromInventory();
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
-      <div className="bg-white p-6 rounded-lg shadow-xl w-[90%] max-w-[500px]">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10006] ">
+      <div className="bg-white p-6 rounded-lg shadow-xl w-[90%] max-w-[500px] ">
         {/* Header */}
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-4xl font-bold pixel-text-blue">Inventory</h2>
+          <h2 className="text-4xl font-bold pixel-text-blue ">Inventory</h2>
         </div>
 
         {/* Scrollable Content */}
