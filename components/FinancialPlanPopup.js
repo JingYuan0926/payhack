@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { analyzeFinances } from '../pages/api/financial-analysis';
+import { getFurniture, saveFurniture } from '../utils/furnitureStorage';
 
 export default function FinancialPlanPopup({ onClose, username, openApiData, incomeData }) {
   const [step, setStep] = useState(1);
@@ -117,6 +118,49 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
       });
 
       if (response.ok) {
+        const mapElement = document.getElementById('game-map');
+        const mapRect = mapElement.getBoundingClientRect();
+        
+        // Get existing furniture and filter out any previous celebration/background pieces
+        const existingFurniture = (await getFurniture() || [])
+          .filter(item => !item.isCelebration && !item.isBackground);
+        
+        // Background furniture (without celebration properties)
+        const backgroundFurniture = {
+          id: `background-${Date.now()}`,
+          src: '/house.png',
+          position: {
+            x: 100,
+            y: 100
+          },
+          name: 'Background House',
+          originalWidth: 100,
+          originalHeight: 100,
+          placedWidth: 250,
+          placedHeight: 250,
+          isBackground: true
+        };
+
+        // Celebration furniture (with progress bar)
+        const celebrationFurniture = {
+          id: `celebration-${Date.now()}`,
+          src: '/gray_house.png',
+          position: {
+            x: 100,
+            y: 100
+          },
+          name: 'New House Goal!',
+          originalWidth: 100,
+          originalHeight: 100,
+          placedWidth: 250,
+          placedHeight: 250,
+          progress: 0,
+          isCelebration: true
+        };
+
+        // Add only the new pieces
+        await saveFurniture([...existingFurniture, backgroundFurniture, celebrationFurniture]);
+
         onClose();
       } else {
         alert('Failed to save plan');
