@@ -58,10 +58,10 @@ const DroppableMap = ({ children, onDrop }) => {
       const mapRect = document.getElementById('game-map').getBoundingClientRect()
       const x = offset.x - mapRect.left
       const y = offset.y - mapRect.top
-      
+
       const boundedX = Math.max(0, Math.min(x, mapRect.width - 100))
       const boundedY = Math.max(0, Math.min(y, mapRect.height - 100))
-      
+
       return {
         x: boundedX,
         y: boundedY,
@@ -70,9 +70,9 @@ const DroppableMap = ({ children, onDrop }) => {
   }))
   //gamegame
   return (
-    <div 
-      id="game-map" 
-      ref={drop} 
+    <div
+      id="game-map"
+      ref={drop}
       className="absolute inset-0 w-[80%] h-[70vh] mx-auto"
     >
       {children}
@@ -136,7 +136,7 @@ export default function Map() {
   // Load furniture data
   useEffect(() => {
     setIsLoading(true);
-    
+
     // Subscribe to real-time updates
     const unsubscribe = subscribeFurniture((furnitureData) => {
       setPlacedFurniture(furnitureData);
@@ -154,10 +154,10 @@ export default function Map() {
   const handleAddFurniture = async (newItem) => {
     // Format current time in 12-hour format with AM/PM
     const now = new Date();
-    const timeString = now.toLocaleTimeString('en-US', { 
+    const timeString = now.toLocaleTimeString('en-US', {
       hour: 'numeric',
       minute: 'numeric',
-      hour12: true 
+      hour12: true
     }).replace(/\s/g, ''); // Remove spaces between time and AM/PM
 
     const updatedFurniture = [
@@ -168,7 +168,7 @@ export default function Map() {
         id: `${newItem.id}-${timeString}`, // Use formatted time in ID
       },
     ];
-    
+
     await saveFurniture(updatedFurniture);
     setPlacedFurniture(updatedFurniture);
   };
@@ -177,7 +177,7 @@ export default function Map() {
     const updatedFurniture = placedFurniture.map((item) =>
       item.id === id ? { ...item, position: newPosition } : item
     );
-    
+
     await saveFurniture(updatedFurniture);
     setPlacedFurniture(updatedFurniture);
   };
@@ -206,8 +206,8 @@ export default function Map() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div>
-        <LevelBar username="Jack" progress={progress} dangerProgress={loveLevel} onFeedCat={handleFeedCat} />
-        
+        <LevelBar username="Tom The Cat" progress={progress} dangerProgress={loveLevel} onFeedCat={handleFeedCat} />
+
         <div
           style={{
             position: "absolute",
@@ -220,7 +220,7 @@ export default function Map() {
           {/* Removing Weekly Challenge component
           <WeeklyChallenge onChallengeComplete={handleChallengeComplete} onFeedCat={handleFeedCat} />
           */}
-        </div>        
+        </div>
         <div className="flex-1 flex items-center justify-center relative">
           {/* Daily Goals Button */}
           <button
@@ -234,11 +234,11 @@ export default function Map() {
             />
           </button>
 
-          <DailyGoals 
+          <DailyGoals
             showPopup={showDailyGoals}
             onClose={() => setShowDailyGoals(false)}
           />
-          
+
           {/* Map and DroppableMap */}
           <div className="relative w-[80%] h-[70vh]" style={{ marginTop: "20px" }}>
             <img
@@ -247,7 +247,7 @@ export default function Map() {
               className="absolute inset-0 w-full h-full border-2 border-black object-cover"
             />
           </div>
-          
+
           <DroppableMap>
             <WalkingCat emotion={catEmotion} message={catMessage} />
             {placedFurniture.map((item) => (
@@ -268,7 +268,7 @@ export default function Map() {
             <img
               src="/shop.png"
               alt="Inventory"
-              className="w-8 h-8 mr-1"
+              className="w-10 h-10 mr-2"
             />
             Inventory
           </button>
@@ -280,9 +280,9 @@ export default function Map() {
             />
           )}
         </div>
-        
-        <CatModal 
-          isOpen={showCatModal} 
+
+        <CatModal
+          isOpen={showCatModal}
           onOpenChange={setShowCatModal}
           initialMessage={catModalMessage}
           isCase5={true}
