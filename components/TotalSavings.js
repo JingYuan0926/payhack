@@ -1,13 +1,25 @@
 import { useState, useEffect } from 'react';
+import savingsData from '../data/savings.json';
 
 export default function TotalSavings({ onClose, showPopup }) {
   const [isVisible, setIsVisible] = useState(false);
-  const [savingsData] = useState([
-    { date: '28/11', amount: 57.50 },
-    { date: '29/11', amount: 55.80 },
-    { date: '30/11', amount: 58.20 },
-    { date: '1/12', amount: 60.00 },
-  ]);
+  const [savings] = useState(getWeeklySavings(savingsData.savings_data.daily_savings));
+
+  function getWeeklySavings(dailyData) {
+    const weeks = [];
+    for (let i = 0; i < dailyData.length; i += 7) {
+      const weekData = dailyData.slice(i, i + 7);
+      // Calculate total for the week instead of average
+      const weekTotal = weekData.reduce((sum, day) => sum + day.amount, 0);
+      const weekStart = weekData[0].date;
+      weeks.push({
+        date: `Week ${Math.floor(i/7) + 1}`,
+        amount: weekTotal, // Use total instead of average
+        tooltip: `${weekStart} - ${weekData[weekData.length-1]?.date}`
+      });
+    }
+    return weeks;
+  }
 
   useEffect(() => {
     if (showPopup) {
@@ -22,80 +34,95 @@ export default function TotalSavings({ onClose, showPopup }) {
     setTimeout(onClose, 300);
   };
 
-  const getBarHeight = (amount) => {
-    const maxAmount = 100;
-    return (amount / maxAmount) * 100;
+  const handleInvest = () => {
+    console.log('Invest clicked');
   };
+
+  const getBarHeight = (amount) => {
+    const maxAmount = Math.max(...savings.map(week => week.amount));
+    return (amount / maxAmount) * 70;
+  };
+
+  const totalSavings = savingsData.savings_data.daily_savings.reduce((acc, curr) => acc + curr.amount, 0);
+  const avgSavings = totalSavings / savingsData.savings_data.daily_savings.length;
+  const highestSaving = Math.max(...savingsData.savings_data.daily_savings.map(d => d.amount));
+  const lowestSaving = Math.min(...savingsData.savings_data.daily_savings.map(d => d.amount));
 
   if (!showPopup) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
       <div className="bg-white p-6 rounded-lg shadow-xl w-[500px]">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-5xl font-bold pixel-text-blue">
+        {/* Total Savings Header */}
+        <div className="bg-blue-50 p-4 rounded-lg mb-6">
+          <h3 className="text-3xl font-bold text-center text-blue-800 mb-2">
             TOTAL SAVINGS
           </h3>
+          <p className="text-6xl font-bold text-blue-600 text-center">
+            RM {totalSavings.toFixed(2)}
+          </p>
         </div>
 
-        <div className="space-y-4">
-          {/* Summary Card */}
-          <div className="bg-blue-50 p-3 rounded-lg mb-4">
-            <div className="text-center">
-              <p className="font-bold text-blue-800 text-3xl">DAILY AVERAGE SAVINGS</p>
-              <p className="text-6xl font-bold text-blue-600 mt-2">
-                RM {(savingsData.reduce((acc, curr) => acc + curr.amount, 0) / savingsData.length).toFixed(2)}
-              </p>
-            </div>
-          </div>
-
-          {/* Bar Chart */}
-          <div className="bg-white p-4 rounded-lg">
-            <h4 className="text-2xl font-bold mb-4">DAILY SAVINGS TREND (RM)</h4>
-            <div className="flex items-end justify-between h-48 gap-4">
-              {savingsData.map((day, index) => (
-                <div key={index} className="flex flex-col items-center flex-1">
-                  <div className="w-full relative" style={{ height: '160px' }}>
-                    <div 
-                      className={`w-full absolute bottom-0 rounded-t-lg transition-all duration-500 ${
-                        day.date === '1/12' ? 'bg-green-500' : 'bg-blue-500'
-                      }`}
-                      style={{ 
-                        height: `${getBarHeight(day.amount)}%`,
-                        animation: 'growUp 1s ease-out'
-                      }}
-                    >
-                      <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-xl font-bold">
-                         {day.amount.toFixed(2)}
-                      </div>
+        {/* Bar Chart */}
+        <div className="bg-white p-4 rounded-lg mb-6">
+          <h4 className="text-2xl font-bold mb-4">WEEKLY SAVINGS TREND (RM)</h4>
+          <div className="flex items-end justify-between h-64 gap-4">
+            {savings.map((week, index) => (
+              <div key={index} className="flex flex-col items-center flex-1">
+                <div className="w-full relative" style={{ height: '200px' }}>
+                  <div 
+                    className={`w-full absolute bottom-0 rounded-t-lg transition-all duration-500 ${
+                      index === savings.length - 1 ? 'bg-green-500' : 'bg-blue-500'
+                    }`}
+                    style={{ 
+                      height: `${getBarHeight(week.amount)}%`,
+                      animation: 'growUp 1s ease-out'
+                    }}
+                  >
+                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-xl font-bold">
+                      {week.amount.toFixed(2)}
                     </div>
                   </div>
-                  <div className="mt-4 text-2xl font-bold">
-                    {day.date}
-                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Additional Stats */}
-          <div className="grid grid-cols-2 gap-4 mt-4">
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-gray-600 text-xl font-bold">HIGHEST SAVING</p>
-              <p className="text-3xl font-bold text-gray-800">
-                RM {Math.max(...savingsData.map(d => d.amount)).toFixed(2)}
-              </p>
-            </div>
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-gray-600 text-xl font-bold">LOWEST SAVING</p>
-              <p className="text-3xl font-bold text-gray-800">
-                RM {Math.min(...savingsData.map(d => d.amount)).toFixed(2)}
-              </p>
-            </div>
+                <div className="mt-4 text-lg font-bold text-center">
+                  {week.date}
+                  <div className="text-xs text-gray-500">{week.tooltip}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 mt-6">
+        {/* Statistics Grid */}
+        <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="bg-gray-50 p-4 rounded-lg text-center">
+            <p className="text-gray-600 text-lg font-bold">AVERAGE</p>
+            <p className="text-3xl font-bold text-gray-800">
+              RM {avgSavings.toFixed(2)}
+            </p>
+          </div>
+          <div className="bg-gray-50 p-4 rounded-lg text-center">
+            <p className="text-gray-600 text-lg font-bold">HIGHEST</p>
+            <p className="text-3xl font-bold text-green-600">
+              RM {highestSaving.toFixed(2)}
+            </p>
+          </div>
+          <div className="bg-gray-50 p-4 rounded-lg text-center">
+            <p className="text-gray-600 text-lg font-bold">LOWEST</p>
+            <p className="text-3xl font-bold text-red-600">
+              RM {lowestSaving.toFixed(2)}
+            </p>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex justify-end space-x-3">
+          <button
+            onClick={handleInvest}
+            className="text-2xl px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-600 font-bold"
+          >
+            INVEST
+          </button>
           <button
             onClick={handleClose}
             className="text-2xl px-6 py-3 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 font-bold"

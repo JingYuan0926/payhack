@@ -1,0 +1,37 @@
+{
+  "savings_data": {
+    "daily_savings": [
+      { "date": "1/11", "amount": 52.30 },
+      { "date": "2/11", "amount": 53.40 },
+      { "date": "3/11", "amount": 51.90 },
+      { "date": "4/11", "amount": 54.20 },
+      { "date": "5/11", "amount": 53.80 },
+      { "date": "6/11", "amount": 52.60 },
+      { "date": "7/11", "amount": 54.90 },
+      { "date": "8/11", "amount": 53.70 },
+      { "date": "9/11", "amount": 55.30 },
+      { "date": "10/11", "amount": 54.80 },
+      { "date": "11/11", "amount": 56.20 },
+      { "date": "12/11", "amount": 55.40 },
+      { "date": "13/11", "amount": 54.60 },
+      { "date": "14/11", "amount": 56.80 },
+      { "date": "15/11", "amount": 55.90 },
+      { "date": "16/11", "amount": 57.20 },
+      { "date": "17/11", "amount": 56.40 },
+      { "date": "18/11", "amount": 55.70 },
+      { "date": "19/11", "amount": 56.90 },
+      { "date": "20/11", "amount": 57.30 },
+      { "date": "21/11", "amount": 56.50 },
+      { "date": "22/11", "amount": 57.80 },
+      { "date": "23/11", "amount": 56.70 },
+      { "date": "24/11", "amount": 57.90 },
+      { "date": "25/11", "amount": 56.30 },
+      { "date": "26/11", "amount": 57.10 },
+      { "date": "27/11", "amount": 56.80 },
+      { "date": "28/11", "amount": 57.50 },
+      { "date": "29/11", "amount": 55.80 },
+      { "date": "30/11", "amount": 58.20 },
+      { "date": "1/12", "amount": 60.00 }
+    ]
+  }
+} 
