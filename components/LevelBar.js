@@ -8,8 +8,6 @@ export default function LevelBar({
   username = "Username", 
   progress = 60, 
   dangerProgress = 90, 
-  onFeedCat,
-
   level = 1,
   streak = 0
 }) {
@@ -50,6 +48,10 @@ export default function LevelBar({
     { description: "Buy food", amount: 100 },
     { description: "Buy furniture", amount: 20 },
   ];
+
+  const handleProgressClick = () => {
+    router.push('/Progress');
+  };
 
   return (
     <div className="p-4 flex justify-between items-start">
@@ -99,7 +101,7 @@ export default function LevelBar({
       <div className="flex flex-col space-y-2 mt-4">
         {/* Progress Button */}
         <button
-          onClick={onProgressClick}
+          onClick={handleProgressClick}
           className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg 
                    shadow-lg transition-colors duration-200 flex items-center space-x-2"
         >

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/swc-darwin-arm64": "^15.0.3",
     "@nextui-org/react": "^2.4.8",
     "@radix-ui/react-slot": "^1.1.0",
     "bootstrap": "^5.3.3",
