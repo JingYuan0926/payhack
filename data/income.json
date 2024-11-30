@@ -13,7 +13,7 @@
             "September": {"total_income": 10900.0, "total_savings": 3700.0, "total_debt": 2450.0},
             "October": {"total_income": 10850.0, "total_savings": 3900.0, "total_debt": 2400.0},
             "November": {"total_income": 11000.0, "total_savings": 2000.0, "total_debt": 2350.0},
-            "December": {"total_income": 19950.0, "total_savings": 4300.0, "total_debt": 2300.0}
+            "December": {"total_income": 20950.0, "total_savings": 4300.0, "total_debt": 2300.0}
         },
         "annual_summary": {
             "total_income": 128700.0,

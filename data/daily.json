@@ -1,12 +1,17 @@
 {
   "Tom The Cat": {
     "username": "Tom The Cat",
-    "goal": "new car",
-    "targetAmount": 1000,
-    "targetDate": "2026-02-10",
+    "goal": "new car downpayment",
+    "targetAmount": 40000,
+    "targetDate": "2026-01-01",
     "planType": "strict",
-    "dailySavings": 2.288329519450801,
-    "daysToGoal": 437,
-    "createdAt": "2024-11-30T16:09:44.555Z"
+    "dailySavings": 100.75566750629723,
+    "daysToGoal": 397,
+    "dailyLimit": 113.65,
+    "monthlyDebt": 681.9000000000001,
+    "dailyDisposableIncome": 113.65,
+    "monthlyDisposableIncome": 3409.5,
+    "remainingDaily": 12.894332493702777,
+    "createdAt": "2024-11-30T16:35:21.037Z"
   }
 }

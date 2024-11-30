@@ -75,6 +75,7 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
   };
 
   const handleSavePlan = async () => {
+    // Use the same values from feasibility check instead of recalculating
     const planData = {
       username,
       goal: financialData.goal,
@@ -92,6 +93,17 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
         : {
             min: feasibility.flexiPlan.minDays,
             max: feasibility.flexiPlan.maxDays
+          },
+      // Use the values directly from feasibility check
+      dailyLimit: feasibility.dailyDisposableIncome,
+      monthlyDebt: feasibility.monthlyDisposableIncome * 0.2, // Keep 20% for monthly debt
+      dailyDisposableIncome: feasibility.dailyDisposableIncome,
+      monthlyDisposableIncome: feasibility.monthlyDisposableIncome,
+      remainingDaily: financialData.planType === 'strict'
+        ? feasibility.remainingDaily
+        : {
+            min: feasibility.dailyDisposableIncome - feasibility.flexiPlan.maxDailySavings,
+            max: feasibility.dailyDisposableIncome - feasibility.flexiPlan.minDailySavings
           }
     };
 
@@ -118,6 +130,13 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
       <div className="bg-white p-6 rounded-lg shadow-xl w-[600px] max-h-[90vh] overflow-y-auto">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-4xl font-bold pixel-text-blue">
+            Financial Plans
+          </h3>
+          
+        </div>
+
         {step === 1 && (
           <div className="space-y-4">
             <h2 className="text-2xl font-bold">What's Your Savings Goal?</h2>

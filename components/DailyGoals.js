@@ -51,41 +51,25 @@ export default function DailyGoals({ onClose, showPopup }) {
       }
 
       const plan = data.plan;
-      const dailySavingsAmount = typeof plan.dailySavings === 'object' 
-        ? plan.dailySavings.max 
-        : plan.dailySavings;
-
-      // Assume daily disposable income is 20% more than required savings for demo
-      const estimatedDailyDisposable = dailySavingsAmount * 1.2;
-      const estimatedMonthlyDebt = dailySavingsAmount * 30 * 0.3; // 30% of monthly savings as debt
-
-      // Generate recommendations
-      const recommendations = [
-        `Total daily savings needed: RM ${dailySavingsAmount.toFixed(2)}`,
-        `Available daily spending: RM ${estimatedDailyDisposable.toFixed(2)}`,
-        `Monthly debt payment: RM ${estimatedMonthlyDebt.toFixed(2)}`,
-        `Goal: ${plan.goal} - RM ${plan.targetAmount.toFixed(2)}`,
-      ];
-
-      // Add feasibility check
-      if (dailySavingsAmount > estimatedDailyDisposable) {
-        recommendations.push(
-          "⚠️ Warning: Your savings target exceeds your estimated daily disposable income. " +
-          "Consider adjusting your goal or timeline."
-        );
-      } else {
-        const remainingDaily = estimatedDailyDisposable - dailySavingsAmount;
-        recommendations.push(
-          `✅ Your goal is achievable! You'll have RM ${remainingDaily.toFixed(2)} remaining daily after savings.`
-        );
-      }
-
+      
+      // Use the values directly from the plan instead of calculating
       setAggregatedGoals({
-        dailySavingsTarget: dailySavingsAmount.toFixed(2),
-        daysToGoal: typeof plan.daysToGoal === 'object' ? plan.daysToGoal.max : plan.daysToGoal,
-        dailyDisposableIncome: estimatedDailyDisposable.toFixed(2),
-        monthlyDebtPayment: estimatedMonthlyDebt.toFixed(2),
-        recommendations,
+        dailySavingsTarget: typeof plan.dailySavings === 'object' 
+          ? `${plan.dailySavings.min.toFixed(2)} - ${plan.dailySavings.max.toFixed(2)}`
+          : plan.dailySavings.toFixed(2),
+        daysToGoal: typeof plan.daysToGoal === 'object' 
+          ? `${plan.daysToGoal.min} - ${plan.daysToGoal.max}`
+          : plan.daysToGoal,
+        dailyDisposableIncome: plan.dailyDisposableIncome.toFixed(2),
+        monthlyDebtPayment: plan.monthlyDebt.toFixed(2),
+        recommendations: [
+          `Goal: ${plan.goal} - RM ${plan.targetAmount.toFixed(2)}`,
+          `Daily spending limit: RM ${plan.dailyLimit.toFixed(2)}`,
+          `Monthly debt payment: RM ${plan.monthlyDebt.toFixed(2)}`,
+          typeof plan.remainingDaily === 'object'
+            ? `✅ Your goal is achievable! You'll have RM ${plan.remainingDaily.min.toFixed(2)} - RM ${plan.remainingDaily.max.toFixed(2)} remaining daily after savings.`
+            : `✅ Your goal is achievable! You'll have RM ${plan.remainingDaily.toFixed(2)} remaining daily after savings.`
+        ],
         numberOfGoals: 1,
         goals: [plan]
       });
@@ -123,40 +107,47 @@ export default function DailyGoals({ onClose, showPopup }) {
         <div className="space-y-4 overflow-y-auto">
           {/* Daily Savings Target */}
           <div className="bg-blue-50 p-3 rounded-lg">
-            <p className="font-semibold text-blue-800 text-2xl">Daily Savings Required</p>
-            <p className="text-5xl font-bold text-blue-600">
-              RM {dailyPlan?.dailySavings.toFixed(2) || "0.00"}
-            </p>
-          </div>
+            <div className="text-center">
+              <p className="font-semibold text-blue-800 text-2xl">Daily Savings Required</p>
+              <p className="text-5xl font-bold text-blue-600">
+                {dailyPlan ? (
+                  typeof dailyPlan.dailySavings === 'object' ? (
+                    `RM ${dailyPlan.dailySavings.min.toFixed(2)} - ${dailyPlan.dailySavings.max.toFixed(2)}`
+                  ) : (
+                    `RM ${Number(dailyPlan.dailySavings).toFixed(2)}`
+                  )
+                ) : (
+                  'RM 0.00'
+                )}
+              </p>
+            </div>
 
-          {/* Goal Details */}
-          <div className="space-y-2">
-            <p className="text-xl text-gray-600">Goal: {dailyPlan?.goal}</p>
-            <p className="text-xl text-gray-600">Target Amount: RM {dailyPlan?.targetAmount.toFixed(2)}</p>
-            <p className="text-xl text-gray-600">Timeline: {dailyPlan?.daysToGoal} days</p>
-            <p className="text-xl text-gray-600">Plan Type: {dailyPlan?.planType === 'strict' ? 'Strict' : 'Flexible'}</p>
-          </div>
-
-          {/* Financial Summary */}
-          <div className="space-y-2">
-            <p className="text-xl text-gray-600">Daily spending limit: RM {aggregatedGoals.dailyDisposableIncome}</p>
-            <p className="text-xl text-gray-600">Monthly debt payment: RM {aggregatedGoals.monthlyDebtPayment}</p>
-          </div>
-
-          {/* Feasibility Check */}
-          <div className={`p-4 rounded-lg ${
-            parseFloat(aggregatedGoals.dailyDisposableIncome) >= 
-            (typeof dailyPlan?.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan?.dailySavings)
-              ? 'bg-green-100 text-green-800'
-              : 'bg-red-100 text-red-800'
-          }`}>
-            {parseFloat(aggregatedGoals.dailyDisposableIncome) >= 
-             (typeof dailyPlan?.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan?.dailySavings)
-              ? `✅ Your goal is achievable! You'll have RM ${(parseFloat(aggregatedGoals.dailyDisposableIncome) - 
-                  (typeof dailyPlan?.dailySavings === 'object' ? dailyPlan.dailySavings.max : dailyPlan?.dailySavings)
-                ).toFixed(2)} remaining daily after savings.`
-              : "⚠️ Your savings goal might be challenging. Consider adjusting your target or timeline."
-            }
+            {/* Display other plan details */}
+            <div className="mt-4">
+              <p className="text-lg">Goal: {dailyPlan?.goal || 'No goal set'}</p>
+              <p className="text-lg">Target Amount: RM {Number(dailyPlan?.targetAmount || 0).toFixed(2)}</p>
+              <p className="text-lg">
+                Timeline: {
+                  typeof dailyPlan?.daysToGoal === 'object' 
+                    ? `${dailyPlan.daysToGoal.min} - ${dailyPlan.daysToGoal.max} days`
+                    : `${dailyPlan?.daysToGoal || 0} days`
+                }
+              </p>
+              <p className="text-lg">Plan Type: {dailyPlan?.planType === 'strict' ? 'Strict' : 'Flexible'}</p>
+              <p className="text-lg">Daily spending limit: RM {dailyPlan?.dailyLimit?.toFixed(2) || '0.00'}</p>
+              <p className="text-lg">Monthly debt payment: RM {dailyPlan?.monthlyDebt?.toFixed(2) || '0.00'}</p>
+              
+              {/* Use the remainingDaily value directly from the plan */}
+              {dailyPlan && (
+                <p className="text-lg mt-2">
+                  {typeof dailyPlan.remainingDaily === 'object' ? (
+                    `✅ Your goal is achievable! You'll have RM ${dailyPlan.remainingDaily.min.toFixed(2)} - RM ${dailyPlan.remainingDaily.max.toFixed(2)} remaining daily after savings.`
+                  ) : (
+                    `✅ Your goal is achievable! You'll have RM ${dailyPlan.remainingDaily.toFixed(2)} remaining daily after savings.`
+                  )}
+                </p>
+              )}
+            </div>
           </div>
         </div>
 
