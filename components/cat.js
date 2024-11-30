@@ -13,6 +13,7 @@ const WalkingCat = ({ emotion: parentEmotion, message }) => {
   });
   const [emotion, setEmotion] = useState('love');
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const [currentAction, setCurrentAction] = useState('walk');
 
   const SPRITE_WIDTH = 32;
   const SPRITE_HEIGHT = 32;
@@ -23,7 +24,14 @@ const WalkingCat = ({ emotion: parentEmotion, message }) => {
   const SPRITE_ROW = 4;
   const SCALE_FACTOR = 5;
 
-  
+  const ACTIONS = {
+    walk: { frames: 8, row: 4 },
+    action1: { frames: 8, row: 9},
+    action2: { frames: 4, row: 2 },
+    action3: { frames: 7, row: 8 },
+    action4: { frames: 4, row: 6 },
+  };
+
   useEffect(() => {
     const handleResize = () => {
       const container = document.querySelector('[class*="w-[80%]"]');
@@ -40,17 +48,40 @@ const WalkingCat = ({ emotion: parentEmotion, message }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Animation frame update
   useEffect(() => {
     const animationInterval = setInterval(() => {
-      setCurrentFrame((prevFrame) => (prevFrame + 1) % TOTAL_FRAMES);
+      setCurrentFrame((prevFrame) => {
+        const maxFrames = ACTIONS[currentAction].frames;
+        return (prevFrame + 1) % maxFrames;
+      });
     }, ANIMATION_SPEED);
 
     return () => clearInterval(animationInterval);
+  }, [currentAction]);
+
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      switch(e.key) {
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+          const action = `action${e.key}`;
+          setCurrentAction(action);
+          break;
+        case '0':
+          setCurrentAction('walk');
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
   }, []);
 
-  // Movement update
   useEffect(() => {
+    if (currentAction !== 'walk') return;
+
     const moveInterval = setInterval(() => {
       setPosition((prev) => {
         const newX = prev.x + (direction.x * MOVEMENT_SPEED);
@@ -81,10 +112,11 @@ const WalkingCat = ({ emotion: parentEmotion, message }) => {
     }, 16);
 
     return () => clearInterval(moveInterval);
-  }, [direction, windowSize]);
+  }, [direction, windowSize, currentAction]);
 
-  // Random direction change
   useEffect(() => {
+    if (currentAction !== 'walk') return;
+
     const directionInterval = setInterval(() => {
       setDirection(prev => {
         const newDir = {
@@ -97,24 +129,21 @@ const WalkingCat = ({ emotion: parentEmotion, message }) => {
     }, DIRECTION_CHANGE_INTERVAL);
 
     return () => clearInterval(directionInterval);
-  }, []);
+  }, [currentAction]);
 
-  // Update emotion when parent emotion changes
   useEffect(() => {
     if (parentEmotion) {
       setEmotion(parentEmotion);
     }
   }, [parentEmotion]);
 
-  // Add input field and handler
   const handleEmotionChange = (e) => {
     const input = e.target.value.toLowerCase();
-    if (['happy', 'angry', 'love', 'sad', 'surprise'].includes(input)) {
+    if (['happy', 'angry', 'love', 'sad', 'surprise', 'neutral'].includes(input)) {
       setEmotion(input);
     }
   };
 
-  // Add click handler with position check
   const handleContainerClick = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
@@ -148,7 +177,7 @@ const WalkingCat = ({ emotion: parentEmotion, message }) => {
     height: `${SPRITE_HEIGHT}px`,
     backgroundImage: 'url("/cat-sprite.png")',
     imageRendering: 'pixelated',
-    backgroundPosition: `-${currentFrame * SPRITE_WIDTH}px -${SPRITE_ROW * SPRITE_HEIGHT}px`,
+    backgroundPosition: `-${currentFrame * SPRITE_WIDTH}px -${ACTIONS[currentAction].row * SPRITE_HEIGHT}px`,
     position: 'absolute',
     left: `${position.x}px`,
     top: `${position.y}px`,
@@ -179,6 +208,7 @@ const WalkingCat = ({ emotion: parentEmotion, message }) => {
 
   const getEmotionEmoji = () => {
     switch(emotion) {
+      case 'neutral': return '😐';
       case 'happy': return '😊';
       case 'angry': return '😠';
       case 'love': return '❤️';

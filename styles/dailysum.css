@@ -1,0 +1,43 @@
+.perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  
+  .pixel-card {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  
+  .pixel-card.flipped {
+    transform: rotateY(180deg);
+  }
+  
+  .card-flip-enter {
+    transform: rotateY(0deg);
+  }
+  
+  .card-flip-enter-active {
+    transform: rotateY(180deg);
+    transition: transform 500ms;
+  }
+  
+  .card-flip-exit {
+    transform: rotateY(180deg);
+  }
+  
+  .card-flip-exit-active {
+    transform: rotateY(0deg);
+    transition: transform 500ms;
+  }

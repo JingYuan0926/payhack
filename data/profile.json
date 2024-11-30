@@ -1,0 +1,189 @@
+{
+  "personalInfo": {
+    "name": "John Smith",
+    "age": 32,
+    "maritalStatus": "Married",
+    "employmentStatus": "Employed"
+  },
+  "income": [
+    {
+      "type": "Salary",
+      "amount": 85000
+    },
+    {
+      "type": "Freelance",
+      "amount": 12000
+    }
+  ],
+  "debtsAndLoans": [
+    {
+      "type": "Car Loan",
+      "amount": 25000
+    },
+    {
+      "type": "Credit Card Debt",
+      "amount": 3500
+    },
+    {
+      "type": "Personal Loan",
+      "amount": 600
+    },
+    {
+      "type": "Mortgage",
+      "amount": 2000
+    }
+  ],
+  "subscriptions": [
+    {
+      "name": "Netflix Premium",
+      "category": "Entertainment",
+      "company": "Netflix",
+      "brandImage": "https://placeholder.com/150x150",
+      "price": 19.99,
+      "monthSubscribed": "2023-01"
+    },
+    {
+      "name": "Spotify Family",
+      "category": "Music",
+      "company": "Spotify",
+      "brandImage": "https://placeholder.com/150x150",
+      "price": 14.99,
+      "monthSubscribed": "2022-08"
+    },
+    {
+      "name": "Gym Membership",
+      "category": "Fitness",
+      "company": "Local Gym",
+      "brandImage": "https://placeholder.com/150x150",
+      "price": 50.00,
+      "monthSubscribed": "2024-04"
+    },
+    {
+      "name": "Movie Streaming",
+      "category": "Entertainment",
+      "company": "Various",
+      "brandImage": "https://placeholder.com/150x150",
+      "price": 100.00,
+      "monthSubscribed": "2024-05"
+    }
+  ],
+  "investments": [
+    {
+      "type": "Stocks",
+      "amountInvested": 25000,
+      "amountEarned": 28500
+    },
+    {
+      "type": "Mutual Funds",
+      "amountInvested": 15000,
+      "amountEarned": 16200
+    },
+    {
+      "type": "Fixed Deposit",
+      "amountInvested": 1000,
+      "amountEarned": 1000
+    }
+  ],
+  "paymentChannels": {
+    "banks": [
+      {
+        "bankName": "Chase Bank",
+        "balance": 12500.50,
+        "bankLogo": "https://placeholder.com/100x100"
+      },
+      {
+        "bankName": "Bank of America",
+        "balance": 8750.25,
+        "bankLogo": "https://placeholder.com/100x100"
+      }
+    ],
+    "creditCards": [
+      {
+        "cardNumber": "**** **** **** 4521",
+        "type": "Visa",
+        "issuer": "Chase",
+        "limit": 10000,
+        "usage": 2500,
+        "cardCover": "https://placeholder.com/300x200"
+      },
+      {
+        "cardNumber": "**** **** **** 7890",
+        "type": "Mastercard",
+        "issuer": "Bank of America",
+        "limit": 15000,
+        "usage": 4500,
+        "cardCover": "https://placeholder.com/300x200"
+      }
+    ],
+    "ewallets": [
+      {
+        "company": "PayPal",
+        "balance": 750.25,
+        "ewalletImage": "https://placeholder.com/100x100"
+      },
+      {
+        "company": "Venmo",
+        "balance": 250.75,
+        "ewalletImage": "https://placeholder.com/100x100"
+      }
+    ]
+  },
+  "transactions": [
+    {
+      "transactionId": "TRX001",
+      "amount": 1500.00,
+      "paymentChannel": "Bank Transfer",
+      "description": "Monthly apartment rent",
+      "category": "Rent",
+      "date": "2024-04-01"
+    },
+    {
+      "transactionId": "TRX002",
+      "amount": 350.00,
+      "paymentChannel": "Credit Card",
+      "description": "Weekly groceries shopping",
+      "category": "Groceries",
+      "date": "2024-04-05"
+    },
+    {
+      "transactionId": "TRX003",
+      "amount": 200.00,
+      "paymentChannel": "Bank Transfer",
+      "description": "Electricity & water bill",
+      "category": "Utilities",
+      "date": "2024-04-10"
+    },
+    {
+      "transactionId": "TRX004",
+      "amount": 120.00,
+      "paymentChannel": "Cash",
+      "description": "Dinner with friends",
+      "category": "Dining Out",
+      "date": "2024-04-20"
+    },
+    {
+      "transactionId": "TRX005",
+      "amount": 400.00,
+      "paymentChannel": "Bank Transfer",
+      "description": "Daycare expenses for children",
+      "category": "Childcare",
+      "date": "2024-04-05"
+    },
+    {
+      "transactionId": "TRX006",
+      "amount": 80.00,
+      "paymentChannel": "Credit Card",
+      "description": "Petrol refill",
+      "category": "Transportation",
+      "date": "2024-11-26"
+    },
+    {
+      "transactionId": "TRX007",
+      "amount": 1000.00,
+      "paymentChannel": "Bank Transfer",
+      "description": "Fixed deposit investment",
+      "category": "Investment",
+      "date": "2024-11-26"
+    }
+  ]
+}

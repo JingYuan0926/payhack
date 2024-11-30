@@ -7,11 +7,11 @@ export default function Coins({ balance = 1500 }) {
       px-4 py-2 rounded-full
     ">
       <img 
-        src="/coin.png" 
+        src="/coins.png" 
         alt="Coin" 
         className="w-8 h-8 object-contain"
       />
-      <span className="font-mono text-xl font-bold">
+      <span className="pixel-text-yellow text-4xl">
         {balance.toLocaleString()}
       </span>
     </div>

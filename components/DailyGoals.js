@@ -2,9 +2,16 @@ import { useState, useEffect } from 'react';
 
 export default function DailyGoals({ onClose, showPopup }) {
   const [aggregatedGoals, setAggregatedGoals] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    fetchAndAggregateGoals();
+    if (showPopup) {
+      fetchAndAggregateGoals();
+      // Delay setting visibility to true to allow fade in
+      setTimeout(() => setIsVisible(true), 50);
+    } else {
+      setIsVisible(false);
+    }
   }, [showPopup]);
 
   const formatGoalType = (goalType) => {
@@ -91,12 +98,18 @@ export default function DailyGoals({ onClose, showPopup }) {
     }
   };
 
+  const handleClose = () => {
+    setIsVisible(false);
+    // Wait for fade out animation to complete before calling onClose
+    setTimeout(onClose, 300);
+  };
+
   if (!aggregatedGoals || !showPopup) return null;
 
   return (
-    <div className="absolute left-4 top-20 bg-white rounded-lg shadow-xl p-6 w-96 z-[9999]">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-bold">Combined Financial Goals ({aggregatedGoals.numberOfGoals})</h3>
+    <div className="absolute left-4 top-20 bg-white rounded-lg shadow-xl p-6 w-96 max-h-[60vh] z-[99999] flex flex-col">
+      <div className="flex justify-between items-center mb-4 sticky top-0 bg-white">
+        <h3 className="text-2xl font-bold">Combined Financial Goals ({aggregatedGoals.numberOfGoals})</h3>
         <button 
           onClick={onClose}
           className="text-gray-500 hover:text-gray-700"
@@ -105,25 +118,25 @@ export default function DailyGoals({ onClose, showPopup }) {
         </button>
       </div>
       
-      <div className="space-y-4">
+      <div className="space-y-4 overflow-y-auto">
         <div className="bg-blue-50 p-3 rounded-lg">
-          <p className="font-semibold text-blue-800">Total Daily Savings Target</p>
-          <p className="text-2xl font-bold text-blue-600">${aggregatedGoals.dailySavingsTarget}</p>
+          <p className="font-semibold text-blue-800 text-lg">Total Daily Savings Target</p>
+          <p className="text-3xl font-bold text-blue-600">${aggregatedGoals.dailySavingsTarget}</p>
         </div>
 
         <div className="space-y-2">
-          <p className="text-sm text-gray-600">Longest goal timeline: {aggregatedGoals.daysToGoal} days</p>
-          <p className="text-sm text-gray-600">Daily spending limit: ${aggregatedGoals.dailyDisposableIncome}</p>
-          <p className="text-sm text-gray-600">Monthly debt payment: ${aggregatedGoals.monthlyDebtPayment}</p>
+          <p className="text-lg text-gray-600">Longest goal timeline: {aggregatedGoals.daysToGoal} days</p>
+          <p className="text-lg text-gray-600">Daily spending limit: ${aggregatedGoals.dailyDisposableIncome}</p>
+          <p className="text-lg text-gray-600">Monthly debt payment: ${aggregatedGoals.monthlyDebtPayment}</p>
         </div>
 
         <div className="mt-4 space-y-2">
-          <h4 className="font-semibold text-gray-700">Goal Breakdown & Recommendations:</h4>
+          <h4 className="font-semibold text-gray-700 text-lg">Goal Breakdown & Recommendations:</h4>
           <ul className="list-disc pl-5 space-y-1">
             {aggregatedGoals.recommendations.map((rec, index) => (
               <li 
                 key={index} 
-                className={`text-sm ${
+                className={`text-lg ${
                   rec.includes('⚠️') ? 'text-red-600 font-medium' : 
                   rec.includes('achievable') ? 'text-green-600 font-medium' : 
                   'text-gray-600'

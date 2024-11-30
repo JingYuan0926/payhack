@@ -1,0 +1,46 @@
+/* 3D Transform Styles */
+.perspective1000 {
+    perspective: 1000px;
+}
+  
+.transformStyle3d {
+    transform-style: preserve-3d;
+}
+  
+.backfaceHidden {
+    backface-visibility: hidden;
+}
+  
+.rotateY180 {
+    transform: rotateY(180deg);
+}
+
+/* Additional Card Styles */
+.pixelCard {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Animation Styles */
+.cardFlipEnter {
+    transform: rotateY(0deg);
+}
+
+.cardFlipEnterActive {
+    transform: rotateY(180deg);
+    transition: transform 500ms;
+}
+
+.cardFlipExit {
+    transform: rotateY(180deg);
+}
+
+.cardFlipExitActive {
+    transform: rotateY(0deg);
+    transition: transform 500ms;
+} 
