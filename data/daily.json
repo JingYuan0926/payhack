@@ -6,8 +6,8 @@
     "targetDate": "2027-01-01",
     "planType": "flexi",
     "dailySavings": {
-      "min": 41.99475065616798,
-      "max": 62.99212598425197
+      "min": 44.09704360838544,
+      "max": 65.6199921745238
     },
     "daysToGoal": {
       "min": 635,
@@ -18,8 +18,8 @@
     "dailyDisposableIncome": 113.65,
     "monthlyDisposableIncome": 3409.5,
     "remainingDaily": {
-      "min": 50.657874015748035,
-      "max": 71.65524934383203
+      "min": 48.030007825476204,
+      "max": 69.55295639161457
     },
     "createdAt": "2024-11-30T19:37:49.291Z"
   }

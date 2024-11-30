@@ -14,6 +14,7 @@ import DailySummaryButton from '../components/DailySummaryButton'
 import ProgressButton from '../components/ProgressButton'
 import DailySum from '../components/DailySum'
 import Deposit from '../components/Deposit'
+import DailySum2 from '../components/DailySum2'
 import { createPortal } from 'react-dom';
 
 
@@ -193,6 +194,7 @@ export default function Map() {
   const [emailSent, setEmailSent] = useState(false);
   const [showTotalSavings, setShowTotalSavings] = useState(false);
   const [showDailySum, setShowDailySum] = useState(false);
+  const [showDailySum2, setShowDailySum2] = useState(false);
   const [showDeposit, setShowDeposit] = useState(false);
   const [streak, setStreak] = useState(0);
   const [level, setLevel] = useState(1);
@@ -247,6 +249,10 @@ export default function Map() {
       switch (event.key) {
         case '+':
           sendEmail();
+          break;
+        case '-':
+          setShowDailySum(false);
+          setShowDailySum2(true);
           break;
         case '1':
           setCatEmotion('angry')
@@ -525,6 +531,14 @@ export default function Map() {
           <DailySum
             showPopup={showDailySum}
             onClose={() => setShowDailySum(false)}
+            onStreakUpdate={() => setStreak(prev => prev + 1)}
+          />
+        )}
+
+        {showDailySum2 && (
+          <DailySum2
+            showPopup={showDailySum2}
+            onClose={() => setShowDailySum2(false)}
             onStreakUpdate={() => setStreak(prev => prev + 1)}
           />
         )}
