@@ -11,6 +11,7 @@ import { getFurniture, saveFurniture, subscribeFurniture } from '../utils/furnit
 import LeaderboardModal from '../components/LeaderboardModal'
 import DailySummaryButton from '../components/DailySummaryButton'
 import ProgressButton from '../components/ProgressButton'
+import DailySum from '../components/DailySum'
 
 
 
@@ -187,6 +188,7 @@ export default function Map() {
   const [isLoading, setIsLoading] = useState(true);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const [showDailySum, setShowDailySum] = useState(false);
 
   const sendEmail = async () => {
     try {
@@ -330,6 +332,14 @@ export default function Map() {
     })
   }
 
+  const handleProgressClick = () => {
+    router.push('/progress');
+  };
+
+  const handleDailySummaryClick = () => {
+    setShowDailySum(true);
+  };
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -346,7 +356,9 @@ export default function Map() {
             username="Tom The Cat" 
             progress={progress} 
             dangerProgress={loveLevel} 
-            onFeedCat={handleFeedCat} 
+            onFeedCat={handleFeedCat}
+            onProgressClick={handleProgressClick}
+            onDailySummaryClick={handleDailySummaryClick}
           />
         </div>
 
@@ -404,14 +416,14 @@ export default function Map() {
             <div 
               className="absolute top-16 right-4 cursor-pointer"
             >
-              <DailySummaryButton onClick={() => {/* Add your handler here */}} />
+              <DailySummaryButton onClick={() => setShowDailySum(true)} />
             </div>
 
             {/* Progress Button */}
             <div 
               className="absolute top-32 right-4 cursor-pointer"
             >
-              <ProgressButton onClick={() => {/* Add your handler here */}} />
+              <ProgressButton onClick={handleProgressClick} />
             </div>
 
             {/* Leaderboard Modal */}
@@ -448,6 +460,13 @@ export default function Map() {
           initialMessage={catModalMessage}
           isCase5={true}
         />
+
+        {showDailySum && (
+          <DailySum
+            showPopup={showDailySum}
+            onClose={() => setShowDailySum(false)}
+          />
+        )}
       </div>
     </DndProvider>
   )
