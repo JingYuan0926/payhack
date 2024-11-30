@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import SpinWheel from '../components/SpinWheel';
 
 // Add these scale factors at the top of the file
 export const PREVIEW_SCALE = 1.5; // Scale for furniture in the menu
@@ -8,6 +9,7 @@ export const PLACED_SCALE = 2.5;  // Scale for furniture on the map
 
 // Add this helper function at the top of the file
 const STORAGE_KEY = 'placedFurniture';
+const STORAGE_KEY_INVENTORY = 'furnitureInventory';
 
 const saveToStorage = (furniture) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(furniture));
@@ -18,20 +20,36 @@ const loadFromStorage = () => {
   return saved ? JSON.parse(saved) : [];
 };
 
+const saveToInventory = (furniture) => {
+  localStorage.setItem(STORAGE_KEY_INVENTORY, JSON.stringify(furniture));
+};
+
+const loadFromInventory = () => {
+  const saved = localStorage.getItem(STORAGE_KEY_INVENTORY);
+  return saved ? JSON.parse(saved) : [];
+};
+
 // DraggableFurniture Component
 const DraggableFurniture = ({ furniture, position, onRemove }) => {
-  const [dimensions, setDimensions] = useState({ width: 100, height: 100 });
+  const [dimensions, setDimensions] = useState({
+    // Use placedWidth/Height if available, otherwise calculate using PLACED_SCALE
+    width: furniture.placedWidth || (furniture.originalWidth ? furniture.originalWidth * PLACED_SCALE : 0),
+    height: furniture.placedHeight || (furniture.originalHeight ? furniture.originalHeight * PLACED_SCALE : 0)
+  });
   
   useEffect(() => {
-    const img = new Image();
-    img.src = furniture.src;
-    img.onload = () => {
-      setDimensions({
-        width: img.width * PLACED_SCALE,
-        height: img.height * PLACED_SCALE
-      });
-    };
-  }, [furniture.src]);
+    // Only calculate dimensions if we don't have originalWidth/Height
+    if (!furniture.originalWidth || !furniture.originalHeight) {
+      const img = new Image();
+      img.src = furniture.src;
+      img.onload = () => {
+        setDimensions({
+          width: img.width * PLACED_SCALE,
+          height: img.height * PLACED_SCALE
+        });
+      };
+    }
+  }, [furniture]);
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'furniture',
@@ -39,7 +57,7 @@ const DraggableFurniture = ({ furniture, position, onRemove }) => {
     end: (item, monitor) => {
       const didDrop = monitor.didDrop();
       if (!didDrop) {
-        onRemove(furniture.id); // Remove if dropped outside
+        onRemove(furniture.id);
       }
     },
     collect: (monitor) => ({
@@ -56,8 +74,8 @@ const DraggableFurniture = ({ furniture, position, onRemove }) => {
         position: 'absolute',
         top: position.y,
         left: position.x,
-        width: dimensions.width,
-        height: dimensions.height,
+        width: dimensions.width || 0,
+        height: dimensions.height || 0,
         opacity: isDragging ? 0.5 : 1,
         cursor: 'move',
       }}
@@ -113,31 +131,14 @@ const Map = ({ furniture, onDrop, onRemove }) => {
 
 // Popup Menu Component
 const MenuPopup = ({ onClose, onSelect }) => {
-    const [furnitureData, setFurnitureData] = useState([]);
-    const [dimensions, setDimensions] = useState({});  // Store dimensions for all furniture items
-  
+    const [furnitureData, setFurnitureData] = useState(() => loadFromInventory());
+    const [dimensions, setDimensions] = useState({});
+    
+    // Add this useEffect to reload inventory when MenuPopup is opened
     useEffect(() => {
-      setFurnitureData([
-        { id: 1, name: 'Double Sofa', src: '/furniture/doubleSofa.png', price: '$200' },
-        { id: 2, name: 'Left Sofa', src: '/furniture/leftSofa.png', price: '$150' },
-        { id: 3, name: 'Right Sofa', src: '/furniture/rightSofa.png', price: '$150' },
-        { id: 4, name: 'Table', src: '/furniture/table.png', price: '$100' },
-        { id: 5, name: 'Bookshelf', src: '/furniture/bookShelf.png', price: '$120' },
-        { id: 6, name: 'Double Bed', src: '/furniture/doubleBed.png', price: '$300' },
-        { id: 7, name: 'Single Bed', src: '/furniture/singleBed.png', price: '$250' },
-        { id: 8, name: 'Wooden Chair', src: '/furniture/woodenChair.png', price: '$80' },
-        { id: 9, name: 'Small Chair', src: '/furniture/smallChair.png', price: '$60' },
-        { id: 10, name: 'Big Bonsai', src: '/furniture/bigBonsai.png', price: '$150' },
-        { id: 11, name: 'Small Bonsai', src: '/furniture/smallBonsai.png', price: '$90' },
-        { id: 12, name: 'Flower Pot', src: '/furniture/flowerPot.png', price: '$40' },
-        { id: 13, name: 'Small Cabinet', src: '/furniture/smallCabinet.png', price: '$120' },
-        { id: 14, name: 'Big Mattress', src: '/furniture/bigMattress.png', price: '$280' },
-        { id: 15, name: 'Small Mattress', src: '/furniture/smallMattress.png', price: '$200' },
-        { id: 16, name: 'Window', src: '/furniture/window.png', price: '$150' },
-        { id: 17, name: 'Curtain', src: '/furniture/curtain.png', price: '$80' }
-      ]);
+      setFurnitureData(loadFromInventory());
     }, []);
-
+  
     // Load dimensions for all furniture items
     useEffect(() => {
       furnitureData.forEach(furniture => {
@@ -193,8 +194,8 @@ const MenuPopup = ({ onClose, onSelect }) => {
               src={furniture.src}
               alt={furniture.name}
               style={{
-                width: dimensions[furniture.id]?.width || 50,
-                height: dimensions[furniture.id]?.height || 50
+                width: furniture.previewWidth || dimensions[furniture.id]?.width || 50,
+                height: furniture.previewHeight || dimensions[furniture.id]?.height || 50
               }}
             />
             <span style={{ fontSize: '20px'}}>{furniture.name}</span>
@@ -223,6 +224,7 @@ const MenuPopup = ({ onClose, onSelect }) => {
 const FurnitureMap = () => {
   const [furniture, setFurniture] = useState(() => loadFromStorage());
   const [showMenu, setShowMenu] = useState(false);
+  const [menuKey, setMenuKey] = useState(0);
 
   const handleDrop = (id, position) => {
     setFurniture((prev) => {
@@ -250,10 +252,24 @@ const FurnitureMap = () => {
     });
   };
 
+  const handleRewardClaimed = (reward) => {
+    const inventory = loadFromInventory();
+    const updatedInventory = [...inventory, {
+      id: `${reward.id}-${Date.now()}`, // Add timestamp to make ID unique
+      name: reward.name,
+      src: reward.src,
+      price: reward.rarity.toUpperCase() // Optional: you can add price based on rarity
+    }];
+    saveToInventory(updatedInventory);
+    setMenuKey(prev => prev + 1);
+    setShowMenu(true);
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
         <h1>Furniture Placement Map</h1>
+        <SpinWheel onRewardClaimed={handleRewardClaimed} />
         <button
           onClick={() => setShowMenu(true)}
           style={{
