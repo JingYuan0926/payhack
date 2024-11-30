@@ -106,6 +106,8 @@ export default function LevelBar({
             ></div>
           </div>
         </div>
+      </div>
+
       {/* Progress and Daily Sum Buttons Container */}
       <div className="flex flex-col space-y-2 mt-4">
         {/* Progress Button */}
@@ -139,15 +141,6 @@ export default function LevelBar({
           />
           <span>Daily Summary</span>
         </button>
-      </div>
-
-      {/* Date and Time Area */}
-      <div
-        className="pixel-text-blue text-3xl mr-8 text-right cursor-pointer hover:text-blue-600"
-        onClick={() => setShowSpendHistory(true)}
-      >
-        <div>{formattedDate}</div>
-        <div>{formattedTime}</div>
       </div>
 
       {/* Popups */}
