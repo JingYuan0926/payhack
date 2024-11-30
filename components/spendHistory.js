@@ -23,9 +23,19 @@ const SpendHistory = ({ onClose }) => {
           .filter(expense => expense.date === today)
           .reduce((acc, expense) => {
             if (!acc[expense.category]) {
-              acc[expense.category] = 0;
+              acc[expense.category] = {
+                total: 0,
+                transactions: []
+              };
             }
-            acc[expense.category] += expense.amount;
+            acc[expense.category].total += expense.amount;
+            // Add time info to transactions
+            const time = new Date(expense.timestamp || expense.date).toLocaleTimeString('en-US', {
+              hour: 'numeric',
+              minute: '2-digit',
+              hour12: true
+            });
+            acc[expense.category].transactions.push({ amount: expense.amount, time });
             return acc;
           }, {});
 
@@ -77,25 +87,35 @@ const SpendHistory = ({ onClose }) => {
             {Object.entries(todayExpenses).length === 0 ? (
               <p className="text-2xl text-center text-gray-500">No expenses recorded today</p>
             ) : (
-              Object.entries(todayExpenses).map(([category, amount]) => (
+              Object.entries(todayExpenses).map(([category, data]) => (
                 <div 
                   key={category} 
-                  className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors flex justify-between items-center"
+                  className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                 >
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl font-medium text-gray-900">{category}</span>
-                    {category === 'Transportation' && (
-                      <div className="relative group">
-                        <span className="text-yellow-500 cursor-help">⚠</span>
-                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 ml-8 px-3 py-1 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-[2000]">
-                          Use card ending in 9932 instead of 6428 for cashbacks
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl font-medium text-gray-900">{category}</span>
+                      {category === 'Transportation' && (
+                        <div className="relative group">
+                          <span className="text-yellow-500 cursor-help">⚠</span>
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 ml-8 px-3 py-1 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-[2000]">
+                            Use card ending in 9932 instead of 6428 for cashbacks
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
+                    <span className="text-xl text-green-600">
+                      ${data.total}
+                    </span>
                   </div>
-                  <span className="text-xl text-green-600">
-                    ${amount}
-                  </span>
+                  <div className="mt-2 text-sm text-gray-600">
+                    {data.transactions.map((t, i) => (
+                      <div key={i} className="flex justify-between items-center">
+                        <span>{t.time}</span>
+                        <span>${t.amount}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))
             )}

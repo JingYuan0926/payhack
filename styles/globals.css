@@ -43,6 +43,23 @@
   font-smooth: never;
 }
 
+.pixel-text-golden {
+  font-family: 'ThaleahFat', sans-serif;
+  position: relative;
+  color: #FFD700; /* Fallback color */
+  background: linear-gradient(to bottom, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(1px 1px 0px #000)
+         drop-shadow(-1px -1px 0px #000)
+         drop-shadow(1px -1px 0px #000)
+         drop-shadow(-1px 1px 0px #000);
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -1,5 +1,4 @@
 import LevelBar from '../components/LevelBar'
-import Coins from '../components/Coins'
 import WalkingCat from '../components/cat'
 import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -56,10 +55,10 @@ const DroppableMap = ({ children, onDrop }) => {
       const mapRect = document.getElementById('game-map').getBoundingClientRect()
       const x = offset.x - mapRect.left
       const y = offset.y - mapRect.top
-      
+
       const boundedX = Math.max(0, Math.min(x, mapRect.width - 100))
       const boundedY = Math.max(0, Math.min(y, mapRect.height - 100))
-      
+
       return {
         x: boundedX,
         y: boundedY,
@@ -68,9 +67,9 @@ const DroppableMap = ({ children, onDrop }) => {
   }))
   //gamegame
   return (
-    <div 
-      id="game-map" 
-      ref={drop} 
+    <div
+      id="game-map"
+      ref={drop}
       className="absolute inset-0 w-[80%] h-[70vh] mx-auto"
     >
       {children}
@@ -87,14 +86,17 @@ export default function Map() {
   const [catMessage, setCatMessage] = useState('')
   const [showCatModal, setShowCatModal] = useState(false)
   const [catModalMessage, setCatModalMessage] = useState('')
-  const [progress, setProgress] = useState(60)
-  const [isLoading, setIsLoading] = useState(true)
-  const [showDailySum, setShowDailySum] = useState(false)
+  const [loveLevel, setLoveLevel] = useState(90);
+  const [progress, setProgress] = useState(60);
+  const [showSpendingHistory, setShowSpendingHistory] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
-      if (event.key === '6') {
-        router.push('/dashboard')
+      // Check if any modal/popup is open
+      const financialPlanPopup = document.querySelector('[role="dialog"]');
+      if (financialPlanPopup) {
+        return; // Don't handle keyboard events if popup is open
       }
 
       switch (event.key) {
@@ -130,8 +132,9 @@ export default function Map() {
 
   // Load furniture data
   useEffect(() => {
-    setIsLoading(true)
-    
+    setIsLoading(true);
+
+    // Subscribe to real-time updates
     const unsubscribe = subscribeFurniture((furnitureData) => {
       setPlacedFurniture(furnitureData)
       setIsLoading(false)
@@ -145,43 +148,47 @@ export default function Map() {
   }, [])
 
   const handleAddFurniture = async (newItem) => {
+    // Format current time in 12-hour format with AM/PM
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    }).replace(/\s/g, ''); // Remove spaces between time and AM/PM
+
     const updatedFurniture = [
       ...placedFurniture,
       {
         ...newItem,
         position: { x: 100, y: 100 },
-        id: `${newItem.id}-${Date.now()}`,
+        id: `${newItem.id}-${timeString}`, // Use formatted time in ID
       },
-    ]
-    
-    await saveFurniture(updatedFurniture)
-    setPlacedFurniture(updatedFurniture)
-  }
+    ];
+
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
+  };
 
   const handleMoveFurniture = async (id, newPosition) => {
     const updatedFurniture = placedFurniture.map((item) =>
       item.id === id ? { ...item, position: newPosition } : item
-    )
-    
-    await saveFurniture(updatedFurniture)
-    setPlacedFurniture(updatedFurniture)
-  }
+    );
+
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
+  };
 
   const handleRemoveFurniture = async (id) => {
-    const updatedFurniture = placedFurniture.filter((item) => item.id !== id)
-    await saveFurniture(updatedFurniture)
-    setPlacedFurniture(updatedFurniture)
-  }
+    const updatedFurniture = placedFurniture.filter((item) => item.id !== id);
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
+  };
 
   const handleFeedCat = (value = 5) => {
     setProgress(prev => {
       const newProgress = prev + value
       return Math.min(Math.max(newProgress, 0), 100)
     })
-  }
-
-  const handleProgressClick = () => {
-    router.push('/progress')
   }
 
   if (isLoading) {
@@ -195,13 +202,21 @@ export default function Map() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div>
-        <LevelBar 
-          username="Jack" 
-          progress={progress} 
-          onFeedCat={handleFeedCat}
-          onProgressClick={handleProgressClick}
-        />
-        
+        <LevelBar username="Tom The Cat" progress={progress} dangerProgress={loveLevel} onFeedCat={handleFeedCat} />
+
+        <div
+          style={{
+            position: "absolute",
+            top: "2%",
+            left: "37%",
+            zIndex: 9999,
+            display: showSpendingHistory ? "none" : "block",
+          }}
+        >
+          {/* Removing Weekly Challenge component
+          <WeeklyChallenge onChallengeComplete={handleChallengeComplete} onFeedCat={handleFeedCat} />
+          */}
+        </div>
         <div className="flex-1 flex items-center justify-center relative">
           {/* Daily Goals Button */}
           <button
@@ -215,7 +230,7 @@ export default function Map() {
             />
           </button>
 
-          <DailyGoals 
+          <DailyGoals
             showPopup={showDailyGoals}
             onClose={() => setShowDailyGoals(false)}
           />
@@ -228,7 +243,7 @@ export default function Map() {
               className="absolute inset-0 w-full h-full border-2 border-black object-cover"
             />
           </div>
-          
+
           <DroppableMap>
             <WalkingCat emotion={catEmotion} message={catMessage} />
             {placedFurniture.map((item) => (
@@ -241,17 +256,17 @@ export default function Map() {
             ))}
           </DroppableMap>
 
-          {/* Shop Button */}
+          {/* Inventory Button (previously Shop) */}
           <button
             className="fixed bottom-4 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center"
             onClick={() => setShowFurnitureMenu(true)}
           >
             <img
               src="/shop.png"
-              alt="Shop"
-              className="w-8 h-8 mr-1"
+              alt="Inventory"
+              className="w-10 h-10 mr-2"
             />
-            Shop
+            Inventory
           </button>
 
           {showFurnitureMenu && (
@@ -261,11 +276,9 @@ export default function Map() {
             />
           )}
         </div>
-        
-        <Coins balance={1500} />
-        
-        <CatModal 
-          isOpen={showCatModal} 
+
+        <CatModal
+          isOpen={showCatModal}
           onOpenChange={setShowCatModal}
           initialMessage={catModalMessage}
           isCase5={true}
