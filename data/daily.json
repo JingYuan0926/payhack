@@ -1,17 +1,26 @@
 {
   "Tom The Cat": {
     "username": "Tom The Cat",
-    "goal": "New house downpayment",
-    "targetAmount": 40000,
-    "targetDate": "2027-01-01",
-    "planType": "strict",
-    "dailySavings": 52.493438320209975,
-    "daysToGoal": 762,
+    "goal": "1",
+    "targetAmount": 1,
+    "targetDate": "2026-01-01",
+    "planType": "flexi",
+    "dailySavings": {
+      "min": 0.0020151133501259445,
+      "max": 0.003022670025188917
+    },
+    "daysToGoal": {
+      "min": 331,
+      "max": 497
+    },
     "dailyLimit": 113.65,
     "monthlyDebt": 681.9000000000001,
     "dailyDisposableIncome": 113.65,
     "monthlyDisposableIncome": 3409.5,
-    "remainingDaily": 61.15656167979003,
-    "createdAt": "2024-11-30T17:25:17.223Z"
+    "remainingDaily": {
+      "min": 113.64697732997482,
+      "max": 113.64798488664988
+    },
+    "createdAt": "2024-11-30T18:01:02.788Z"
   }
 }

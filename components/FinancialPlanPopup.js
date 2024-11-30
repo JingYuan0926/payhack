@@ -130,14 +130,14 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
           id: `background-${Date.now()}`,
           src: '/house.png',
           position: {
-            x: 100,
-            y: 100
+            x: 40,
+            y: 200
           },
           name: 'Background House',
           originalWidth: 100,
           originalHeight: 100,
-          placedWidth: 200,
-          placedHeight: 200,
+          placedWidth: 100,
+          placedHeight: 100,
           isBackground: true
         };
 
@@ -146,14 +146,14 @@ export default function FinancialPlanPopup({ onClose, username, openApiData, inc
           id: `celebration-${Date.now()}`,
           src: '/gray_house.png',
           position: {
-            x: 100,
-            y: 100
+            x: 40,
+            y: 200
           },
           name: 'New House Goal!',
           originalWidth: 100,
           originalHeight: 100,
-          placedWidth: 200,
-          placedHeight: 200,
+          placedWidth: 100,
+          placedHeight: 100,
           progress: 0,
           isCelebration: true
         };
