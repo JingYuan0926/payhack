@@ -3,6 +3,8 @@ import FinancialPlanPopup from "./FinancialPlanPopup";
 import SpendHistory from "./spendHistory";
 import DailySum from "./DailySum";
 import { useRouter } from 'next/router';
+import ProgressButton from './ProgressButton';
+import DailySummaryButton from './DailySummaryButton';
 
 export default function LevelBar({ 
   username = "Username", 
@@ -126,41 +128,6 @@ export default function LevelBar({
             ></div>
           </div>
         </div>
-      </div>
-
-      {/* Progress and Daily Sum Buttons Container */}
-      <div className="flex flex-col space-y-2 mt-4">
-        {/* Progress Button */}
-        <button
-          onClick={handleProgressClick}
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg 
-                   shadow-lg transition-colors duration-200 flex items-center space-x-2"
-        >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            className="h-5 w-5" 
-            viewBox="0 0 20 20" 
-            fill="currentColor"
-          >
-            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-          </svg>
-          <span>Progress</span>
-        </button>
-
-        {/* Daily Summarization Button */}
-        <button
-          onClick={() => setShowDailySum(true)}
-          className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg 
-                   shadow-lg transition-colors duration-200 flex items-center space-x-2"
-        >
-          <img
-            src="/summary.png"
-            alt="Daily Summary"
-            className="w-5 h-5"
-          />
-          <span>Daily Summary</span>
-        </button>
       </div>
 
       {/* Popups */}
