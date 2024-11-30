@@ -105,8 +105,8 @@ export default function DailyGoals({ onClose, showPopup }) {
         </div>
 
         <div className="space-y-4 overflow-y-auto">
-          {/* Daily Savings Target */}
-          <div className="bg-blue-50 p-3 rounded-lg">
+          {/* Daily Savings Required - with blue background */}
+          <div className="bg-blue-50 p-3 rounded-lg mb-4">
             <div className="text-center">
               <p className="font-semibold text-blue-800 text-2xl">Daily Savings Required</p>
               <p className="text-5xl font-bold text-blue-600">
@@ -121,33 +121,35 @@ export default function DailyGoals({ onClose, showPopup }) {
                 )}
               </p>
             </div>
+          </div>
 
-            {/* Display other plan details */}
-            <div className="mt-4">
-              <p className="text-lg">Goal: {dailyPlan?.goal || 'No goal set'}</p>
-              <p className="text-lg">Target Amount: RM {Number(dailyPlan?.targetAmount || 0).toFixed(2)}</p>
-              <p className="text-lg">
-                Timeline: {
-                  typeof dailyPlan?.daysToGoal === 'object' 
-                    ? `${dailyPlan.daysToGoal.min} - ${dailyPlan.daysToGoal.max} days`
-                    : `${dailyPlan?.daysToGoal || 0} days`
-                }
-              </p>
-              <p className="text-lg">Plan Type: {dailyPlan?.planType === 'strict' ? 'Strict' : 'Flexible'}</p>
-              <p className="text-lg">Daily spending limit: RM {dailyPlan?.dailyLimit?.toFixed(2) || '0.00'}</p>
-              <p className="text-lg">Monthly debt payment: RM {dailyPlan?.monthlyDebt?.toFixed(2) || '0.00'}</p>
-              
-              {/* Use the remainingDaily value directly from the plan */}
-              {dailyPlan && (
-                <p className="text-lg mt-2">
+          {/* Other plan details - without blue background */}
+          <div className="space-y-2">
+            <p className="text-lg">Goal: {dailyPlan?.goal || 'No goal set'}</p>
+            <p className="text-lg">Target Amount: RM {Number(dailyPlan?.targetAmount || 0).toFixed(2)}</p>
+            <p className="text-lg">
+              Timeline: {
+                typeof dailyPlan?.daysToGoal === 'object' 
+                  ? `${dailyPlan.daysToGoal.min} - ${dailyPlan.daysToGoal.max} days`
+                  : `${dailyPlan?.daysToGoal || 0} days`
+              }
+            </p>
+            <p className="text-lg">Plan Type: {dailyPlan?.planType === 'strict' ? 'Strict' : 'Flexible'}</p>
+            <p className="text-lg">Daily spending limit: RM {dailyPlan?.dailyLimit?.toFixed(2) || '0.00'}</p>
+            <p className="text-lg">Monthly debt payment: RM {dailyPlan?.monthlyDebt?.toFixed(2) || '0.00'}</p>
+            
+            {/* Remaining daily message with green background */}
+            {dailyPlan && (
+              <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-500 mt-4">
+                <p className="text-lg text-green-700">
                   {typeof dailyPlan.remainingDaily === 'object' ? (
                     `✅ Your goal is achievable! You'll have RM ${dailyPlan.remainingDaily.min.toFixed(2)} - RM ${dailyPlan.remainingDaily.max.toFixed(2)} remaining daily after savings.`
                   ) : (
                     `✅ Your goal is achievable! You'll have RM ${dailyPlan.remainingDaily.toFixed(2)} remaining daily after savings.`
                   )}
                 </p>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
 
