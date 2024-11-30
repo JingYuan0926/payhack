@@ -9,10 +9,11 @@ import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
 import { getFurniture, saveFurniture, subscribeFurniture } from '../utils/furnitureStorage'
 import LeaderboardModal from '../components/LeaderboardModal'
+import TotalSavings from '../components/TotalSavings'
 import DailySummaryButton from '../components/DailySummaryButton'
 import ProgressButton from '../components/ProgressButton'
 import DailySum from '../components/DailySum'
-import TotalSavings from '../components/TotalSavings'
+import Deposit from '../components/Deposit'
 
 
 
@@ -189,8 +190,9 @@ export default function Map() {
   const [isLoading, setIsLoading] = useState(true);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
-  const [showDailySum, setShowDailySum] = useState(false);
   const [showTotalSavings, setShowTotalSavings] = useState(false);
+  const [showDailySum, setShowDailySum] = useState(false);
+  const [showDeposit, setShowDeposit] = useState(false);
 
   const sendEmail = async () => {
     try {
@@ -388,6 +390,36 @@ export default function Map() {
               className="w-21 h-21"
             />
           </button>
+
+          {/* Add Deposit Button after Total Savings Button */}
+          <button
+            className="absolute left-4 top-36 w-12 h-12 rounded-full bg-purple-500 hover:bg-purple-600 flex items-center justify-center shadow-lg z-[9998]"
+            onClick={() => setShowDeposit(true)}
+          >
+            <img
+              src="/deposit.png"
+              alt="Deposit"
+              className="w-7 h-7"
+            />
+          </button>
+
+          {/* Add Deposit Modal */}
+          {showDeposit && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]">
+              <div className="bg-white rounded-lg p-4 w-[90%] max-w-2xl">
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-xl font-bold">Deposit Money</h2>
+                  <button
+                    onClick={() => setShowDeposit(false)}
+                    className="text-gray-500 hover:text-gray-700"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <Deposit />
+              </div>
+            </div>
+          )}
 
           <DailyGoals
             showPopup={showDailyGoals}

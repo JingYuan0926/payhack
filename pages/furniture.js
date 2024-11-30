@@ -4,7 +4,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import SpinWheel from '../components/SpinWheel';
 
 export const PREVIEW_SCALE = 1.5; // Scale for furniture in the menu
-export const PLACED_SCALE = 2.5;  // Scale for furniture on the map
+export const PLACED_SCALE = 1;  // Scale for furniture on the map
 
 // Add this helper function at the top of the file
 const STORAGE_KEY = 'placedFurniture';
