@@ -9,6 +9,7 @@ import DailyGoals from '../components/DailyGoals'
 import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
 import WeeklyChallenge from '../components/WeeklyChallenge'
+import { getFurniture, saveFurniture } from '../utils/furnitureStorage'
 
 
 
@@ -97,6 +98,7 @@ export default function Map() {
   });
   const [showRewardsModal, setShowRewardsModal] = useState(false);
   const [showSpendingHistory, setShowSpendingHistory] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -135,30 +137,51 @@ export default function Map() {
     }
   }, [router])
 
-  
+  // Load furniture data
+  useEffect(() => {
+    const loadInitialFurniture = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getFurniture();
+        setPlacedFurniture(data);
+      } catch (error) {
+        console.error('Error loading furniture:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const handleAddFurniture = (newItem) => {
-    setPlacedFurniture((prev) => [
-      ...prev,
+    loadInitialFurniture();
+  }, []);
+
+  const handleAddFurniture = async (newItem) => {
+    const updatedFurniture = [
+      ...placedFurniture,
       {
         ...newItem,
-        position: { x: 100, y: 100 }, // Initial position
-        id: `${newItem.id}-${Date.now()}`, // Unique ID
+        position: { x: 100, y: 100 },
+        id: `${newItem.id}-${Date.now()}`,
       },
-    ])
-  }
+    ];
+    
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
+  };
 
-  const handleMoveFurniture = (id, newPosition) => {
-    setPlacedFurniture((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, position: newPosition } : item
-      )
-    )
-  }
+  const handleMoveFurniture = async (id, newPosition) => {
+    const updatedFurniture = placedFurniture.map((item) =>
+      item.id === id ? { ...item, position: newPosition } : item
+    );
+    
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
+  };
 
-  const handleRemoveFurniture = (id) => {
-    setPlacedFurniture((prev) => prev.filter((item) => item.id !== id))
-  }
+  const handleRemoveFurniture = async (id) => {
+    const updatedFurniture = placedFurniture.filter((item) => item.id !== id);
+    await saveFurniture(updatedFurniture);
+    setPlacedFurniture(updatedFurniture);
+  };
 
   const handleChallengeComplete = (isCompleting) => {
     setLoveLevel(prev => {
@@ -206,6 +229,14 @@ export default function Map() {
       setLoveLevel(newLoveLevel);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-xl">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
