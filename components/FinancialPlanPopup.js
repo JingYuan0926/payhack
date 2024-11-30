@@ -1,211 +1,237 @@
 import { useState, useEffect } from 'react';
+import { analyzeFinances } from '../pages/api/financial-analysis';
 
-export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate }) {
+export default function FinancialPlanPopup({ onClose, username, openApiData, incomeData }) {
+  const [step, setStep] = useState(1);
   const [financialData, setFinancialData] = useState({
-    financialGoal: '',
+    goal: '',
     targetAmount: '',
     targetDate: '',
-    salary: '5000',
-    loansAndDebts: '15000',
+    planType: ''
   });
+  const [analysis, setAnalysis] = useState(null);
+  const [feasibility, setFeasibility] = useState(null);
 
   useEffect(() => {
-    setFinancialData(prev => ({
-      ...prev,
-      salary: '5000',
-      loansAndDebts: '1500'
-    }));
-  }, []);
+    const analysis = analyzeFinances(openApiData, incomeData);
+    setAnalysis(analysis);
+  }, [openApiData, incomeData]);
 
-  const calculateDailyGoals = (data) => {
+  const calculateFeasibility = () => {
+    if (!analysis || !financialData.targetAmount || !financialData.targetDate) return null;
+
+    const targetDate = new Date(financialData.targetDate);
     const today = new Date();
-    const targetDate = new Date(data.targetDate);
-    const daysRemaining = Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24));
-    const monthlySalary = parseFloat(data.salary);
-    const totalDebts = parseFloat(data.loansAndDebts);
-    const targetAmount = parseFloat(data.targetAmount);
-
-    // Calculate daily savings needed
-    const dailySavingsNeeded = targetAmount / daysRemaining;
+    const daysToGoal = Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24));
+    const monthlyDisposableIncome = analysis.disposableIncome;
+    const dailyDisposableIncome = monthlyDisposableIncome / 30;
     
-    // Calculate monthly disposable income (after debt payments)
-    const monthlyDebtPayment = totalDebts * 0.1; // Assuming 10% of debt as monthly payment
-    const disposableIncome = monthlySalary - monthlyDebtPayment;
+    const requiredDailySavings = financialData.targetAmount / daysToGoal;
     
-    // Calculate daily disposable income
-    const dailyDisposableIncome = disposableIncome / 30;
+    // Calculate flexible range (±20% of required daily savings)
+    const flexibleMin = requiredDailySavings * 0.8;
+    const flexibleMax = requiredDailySavings * 1.2;
+    const flexiDaysMin = financialData.targetAmount / flexibleMax;
+    const flexiDaysMax = financialData.targetAmount / flexibleMin;
 
     return {
-      financialGoal: data.financialGoal,
-      dailySavingsTarget: dailySavingsNeeded.toFixed(2),
-      daysToGoal: daysRemaining,
-      dailyDisposableIncome: dailyDisposableIncome.toFixed(2),
-      monthlyDebtPayment: monthlyDebtPayment.toFixed(2),
-      recommendations: [
-        `Save RM${dailySavingsNeeded.toFixed(2)} daily to reach your goal`,
-        `Available daily spending: RM ${dailyDisposableIncome.toFixed(2)}`,
-        `Monthly debt payment: RM ${monthlyDebtPayment.toFixed(2)}`,
-        dailySavingsNeeded > dailyDisposableIncome 
-          ? "Warning: Your target savings exceed your disposable income. Consider extending your target date or adjusting your goal amount."
-          : "Your goal appears achievable with your current income!"
-      ]
+      isAchievable: requiredDailySavings <= dailyDisposableIncome,
+      strictPlan: {
+        dailySavings: requiredDailySavings,
+        daysToGoal: daysToGoal
+      },
+      flexiPlan: {
+        minDailySavings: flexibleMin,
+        maxDailySavings: flexibleMax,
+        minDays: Math.ceil(flexiDaysMin),
+        maxDays: Math.ceil(flexiDaysMax)
+      }
     };
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    try {
-      const dailyGoals = calculateDailyGoals(financialData);
-      
-      const data = {
-        financialPlan: {
-          username,
-          ...financialData,
-          timestamp: new Date().toISOString(),
-        },
-        dailyGoals: {
-          username,
-          ...dailyGoals,
-          timestamp: new Date().toISOString(),
-        }
-      };
+  const handleNext = () => {
+    if (step === 2) {
+      const feasibilityResult = calculateFeasibility();
+      setFeasibility(feasibilityResult);
+    }
+    setStep(step + 1);
+  };
 
-      const response = await fetch('/api/saveFinancialPlan', {
+  const handleSavePlan = async () => {
+    const planData = {
+      username,
+      goal: financialData.goal,
+      targetAmount: parseFloat(financialData.targetAmount),
+      targetDate: financialData.targetDate,
+      planType: financialData.planType,
+      dailySavings: financialData.planType === 'strict' 
+        ? feasibility.strictPlan.dailySavings
+        : {
+            min: feasibility.flexiPlan.minDailySavings,
+            max: feasibility.flexiPlan.maxDailySavings
+          },
+      daysToGoal: financialData.planType === 'strict'
+        ? feasibility.strictPlan.daysToGoal
+        : {
+            min: feasibility.flexiPlan.minDays,
+            max: feasibility.flexiPlan.maxDays
+          }
+    };
+
+    try {
+      const response = await fetch('/api/saveDailyPlan', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(planData),
       });
 
       if (response.ok) {
-        if (onGoalsUpdate) {
-          onGoalsUpdate();
-        }
-        alert(`Financial plan saved successfully!\n\nDaily Goals Summary:\n${dailyGoals.recommendations.join('\n')}`);
         onClose();
       } else {
-        alert('Failed to save financial plan');
+        alert('Failed to save plan');
       }
     } catch (error) {
-      console.error('Error saving financial plan:', error);
-      alert('Error saving financial plan');
+      console.error('Error saving plan:', error);
+      alert('Error saving plan');
     }
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
-      <div className="bg-white p-6 rounded-lg shadow-xl w-[500px]">
-        <h2 className="text-4xl font-bold mb-4 pixel-text-blue">Financial Plan</h2>
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="text-xl block text-sm font-medium text-gray-700">
-              What is your financial goal?
-            </label>
-            <select
-              value={financialData.financialGoal}
-              onChange={(e) => setFinancialData(prev => ({
-                ...prev,
-                financialGoal: e.target.value
-              }))}
-              onFocus={(e) => e.stopPropagation()}
-              onClick={(e) => e.stopPropagation()}
-              className="text-xl mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
-              required
-            >
-              <option value="">Select a goal</option>
-              <option value="house">Buy a House</option>
-              <option value="car">Buy a Car</option>
-              <option value="education">Education</option>
-              <option value="retirement">Retirement Savings</option>
-              <option value="emergency">Emergency Fund</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="text-xl block text-sm font-medium text-gray-700">
-              How much money do you need to achieve this goal?
-            </label>
+      <div className="bg-white p-6 rounded-lg shadow-xl w-[600px] max-h-[90vh] overflow-y-auto">
+        {step === 1 && (
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold">What's Your Savings Goal?</h2>
             <input
-              type="number"
-              value={financialData.targetAmount}
-              onChange={(e) => setFinancialData(prev => ({
-                ...prev,
-                targetAmount: e.target.value
-              }))}
-              className="text-xl mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
-              placeholder="Enter target amount"
-              required
+              type="text"
+              placeholder="e.g., New Car, Holiday, Emergency Fund"
+              className="w-full p-2 border rounded"
+              value={financialData.goal}
+              onChange={(e) => setFinancialData({...financialData, goal: e.target.value})}
             />
-          </div>
-
-          <div>
-            <label className="text-xl block text-sm font-medium text-gray-700">
-              By what date do you want to reach this goal?
-            </label>
-            <input
-              type="date"
-              value={financialData.targetDate}
-              onChange={(e) => setFinancialData(prev => ({
-                ...prev,
-                targetDate: e.target.value
-              }))}
-              className="text-xl mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
-              required
-              min={new Date().toISOString().split('T')[0]}
-            />
-          </div>
-
-          <div className="bg-gray-50 p-1 rounded-lg">
-            <h3 className="text-2xl font-medium text-gray-900 mb-3">Current Financial Status</h3>
-            
-            <div className="space-y-3">
-              <div>
-                <label className="text-xl block text-sm font-medium text-gray-700">
-                  Current Monthly Salary
-                </label>
-                <input
-                  type="text"
-                  value={`RM ${financialData.salary}`}
-                  className="text-xl mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
-                  readOnly
-                />
-              </div>
-
-              <div>
-                <label className="text-xl block text-sm font-medium text-gray-700">
-                  Current Loans & Debts
-                </label>
-                <input
-                  type="text"
-                  value={`RM ${financialData.loansAndDebts}`}
-                  className="text-xl mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 p-2"
-                  readOnly
-                />
-              </div>
+            <div className="flex justify-end space-x-3 mt-6">
+              <button
+                onClick={onClose}
+                className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleNext}
+                disabled={!financialData.goal}
+                className="text-xl px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:hover:bg-gray-300"
+              >
+                Next
+              </button>
             </div>
           </div>
+        )}
 
-          <div className="flex justify-end space-x-3 mt-6">
-            <button
-              type="button"
-              onClick={onClose}
-              className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="text-xl px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-            >
-              Save Plan
-            </button>
+        {step === 2 && (
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold">Set Your Target</h2>
+            <div>
+              <label className="block text-sm font-medium">Target Amount (RM)</label>
+              <input
+                type="number"
+                className="w-full p-2 border rounded"
+                value={financialData.targetAmount}
+                onChange={(e) => setFinancialData({...financialData, targetAmount: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Target Date</label>
+              <input
+                type="date"
+                className="w-full p-2 border rounded"
+                min={new Date().toISOString().split('T')[0]}
+                value={financialData.targetDate}
+                onChange={(e) => setFinancialData({...financialData, targetDate: e.target.value})}
+              />
+            </div>
+            <div className="flex justify-end space-x-3 mt-6">
+              <button
+                onClick={onClose}
+                className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleNext}
+                disabled={!financialData.targetAmount || !financialData.targetDate}
+                className="text-xl px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:hover:bg-gray-300"
+              >
+                Calculate Plan
+              </button>
+            </div>
           </div>
-        </form>
+        )}
+
+        {step === 3 && feasibility && (
+          <div>
+            <h2 className="text-2xl font-bold mb-4">Choose Your Savings Plan</h2>
+            
+            {!feasibility.isAchievable && (
+              <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+                Warning: This goal might be challenging with your current disposable income.
+                Consider extending your target date or adjusting the target amount.
+              </div>
+            )}
+
+            <div className="grid grid-cols-2 gap-4">
+              {/* Flexible Plan */}
+              <div 
+                className={`p-4 border rounded cursor-pointer ${
+                  financialData.planType === 'flexi' ? 'border-blue-500 bg-blue-50' : ''
+                }`}
+                onClick={() => setFinancialData({...financialData, planType: 'flexi'})}
+              >
+                <h3 className="font-bold mb-2">Flexible Plan</h3>
+                <ul className="space-y-2 text-sm">
+                  <li>Daily Savings: RM {feasibility.flexiPlan.minDailySavings.toFixed(2)} - {feasibility.flexiPlan.maxDailySavings.toFixed(2)}</li>
+                  <li>Timeline: {feasibility.flexiPlan.minDays} - {feasibility.flexiPlan.maxDays} days</li>
+                  <li>Adjustable daily savings</li>
+                  <li>More flexibility</li>
+                </ul>
+              </div>
+
+              {/* Strict Plan */}
+              <div 
+                className={`p-4 border rounded cursor-pointer ${
+                  financialData.planType === 'strict' ? 'border-blue-500 bg-blue-50' : ''
+                }`}
+                onClick={() => setFinancialData({...financialData, planType: 'strict'})}
+              >
+                <h3 className="font-bold mb-2">Strict Plan</h3>
+                <ul className="space-y-2 text-sm">
+                  <li>Daily Savings: RM {feasibility.strictPlan.dailySavings.toFixed(2)}</li>
+                  <li>Timeline: {feasibility.strictPlan.daysToGoal} days</li>
+                  <li>Fixed daily savings</li>
+                  <li>Consistent routine</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="flex justify-end space-x-3 mt-6">
+              <button
+                onClick={onClose}
+                className="text-xl px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSavePlan}
+                disabled={!financialData.planType}
+                className="text-xl px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:hover:bg-gray-300"
+              >
+                Save Plan
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
-} 
+}
