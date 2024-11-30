@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import FinancialPlanPopup from "./FinancialPlanPopup";
 import SpendHistory from "./spendHistory";
+import { useRouter } from 'next/router';
 
 export default function LevelBar({ 
   username = "Username", 
@@ -8,6 +9,7 @@ export default function LevelBar({
   dangerProgress = 90, 
   onFeedCat 
 }) {
+  const router = useRouter();
   const [currentProgress, setCurrentProgress] = useState(progress);
   const [showFinancialPlan, setShowFinancialPlan] = useState(false);
   const [showSpendHistory, setShowSpendHistory] = useState(false);
@@ -38,7 +40,12 @@ export default function LevelBar({
     <div className="p-4 flex justify-between items-start">
       <div className="w-[30%] ml-8">
         <div className="text-lg font-bold mb-2 flex items-center">
-          <span className="pixel-text-blue text-3xl">{username}</span>
+          <span 
+            className="pixel-text-blue text-3xl cursor-pointer hover:text-blue-600"
+            onClick={() => router.push('/dashboard')}
+          >
+            {username}
+          </span>
           <button
             onClick={() => setShowFinancialPlan(true)}
             className="ml-2 px-2 py-0.5 text-sm bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none"

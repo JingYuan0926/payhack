@@ -102,8 +102,10 @@ export default function Map() {
 
   useEffect(() => {
     const handleKeyPress = (event) => {
-      if (event.key === '6') {
-        router.push('/dashboard')
+      // Check if any modal/popup is open
+      const financialPlanPopup = document.querySelector('[role="dialog"]');
+      if (financialPlanPopup) {
+        return; // Don't handle keyboard events if popup is open
       }
 
       switch (event.key) {
