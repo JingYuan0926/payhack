@@ -110,6 +110,8 @@ export default function FinancialPlanPopup({ onClose, username, onGoalsUpdate })
                 ...prev,
                 financialGoal: e.target.value
               }))}
+              onFocus={(e) => e.stopPropagation()}
+              onClick={(e) => e.stopPropagation()}
               className="text-xl mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
               required
             >
