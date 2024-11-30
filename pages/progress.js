@@ -17,6 +17,7 @@ const Progress = () => {
     const [animationFrame, setAnimationFrame] = useState(0);
     const [showCategories, setShowCategories] = useState(false);
     const [compareMonth, setCompareMonth] = useState(null);
+    const [showYearlySummary, setShowYearlySummary] = useState(false);
 
     useEffect(() => {
         try {
