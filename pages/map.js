@@ -8,11 +8,8 @@ import { MenuPopup } from './furniture'
 import DailyGoals from '../components/DailyGoals'
 import { useRouter } from 'next/router'
 import CatModal from '../components/CatModal'
-import WeeklyChallenge from '../components/WeeklyChallenge'
 import { getFurniture, saveFurniture, subscribeFurniture } from '../utils/furnitureStorage'
-
-
-
+import DailySum from '../components/DailySum'
 
 // New DraggableFurniture component
 const DraggableFurniture = ({ item, onMove, onRemove }) => {
@@ -90,15 +87,9 @@ export default function Map() {
   const [catMessage, setCatMessage] = useState('')
   const [showCatModal, setShowCatModal] = useState(false)
   const [catModalMessage, setCatModalMessage] = useState('')
-  const [loveLevel, setLoveLevel] = useState(90);
-  const [progress, setProgress] = useState(60);
-  const [rewards, setRewards] = useState({
-    food: [{ name: "Premium Cat Food", quantity: 1 }],
-    vouchers: [{ name: "TNG Cashback RM5 Voucher", code: "TNGRM5-484861", id: 1 }]
-  });
-  const [showRewardsModal, setShowRewardsModal] = useState(false);
-  const [showSpendingHistory, setShowSpendingHistory] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [progress, setProgress] = useState(60)
+  const [isLoading, setIsLoading] = useState(true)
+  const [showDailySum, setShowDailySum] = useState(false)
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -139,21 +130,19 @@ export default function Map() {
 
   // Load furniture data
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(true)
     
-    // Subscribe to real-time updates
     const unsubscribe = subscribeFurniture((furnitureData) => {
-      setPlacedFurniture(furnitureData);
-      setIsLoading(false);
-    });
+      setPlacedFurniture(furnitureData)
+      setIsLoading(false)
+    })
 
-    // Cleanup subscription on component unmount
     return () => {
       if (unsubscribe) {
-        unsubscribe();
+        unsubscribe()
       }
-    };
-  }, []);
+    }
+  }, [])
 
   const handleAddFurniture = async (newItem) => {
     const updatedFurniture = [
@@ -163,98 +152,56 @@ export default function Map() {
         position: { x: 100, y: 100 },
         id: `${newItem.id}-${Date.now()}`,
       },
-    ];
+    ]
     
-    await saveFurniture(updatedFurniture);
-    setPlacedFurniture(updatedFurniture);
-  };
+    await saveFurniture(updatedFurniture)
+    setPlacedFurniture(updatedFurniture)
+  }
 
   const handleMoveFurniture = async (id, newPosition) => {
     const updatedFurniture = placedFurniture.map((item) =>
       item.id === id ? { ...item, position: newPosition } : item
-    );
+    )
     
-    await saveFurniture(updatedFurniture);
-    setPlacedFurniture(updatedFurniture);
-  };
+    await saveFurniture(updatedFurniture)
+    setPlacedFurniture(updatedFurniture)
+  }
 
   const handleRemoveFurniture = async (id) => {
-    const updatedFurniture = placedFurniture.filter((item) => item.id !== id);
-    await saveFurniture(updatedFurniture);
-    setPlacedFurniture(updatedFurniture);
-  };
-
-  const handleChallengeComplete = (isCompleting) => {
-    setLoveLevel(prev => {
-      const newLevel = isCompleting ? prev + 5 : prev - 5;
-      
-      // If new level would exceed 100%, reset to 30%
-      if (newLevel >= 100) {
-        return 30;
-      }
-      
-      // Otherwise, keep within 0-100 range
-      return Math.min(Math.max(newLevel, 0), 100);
-    });
-    
-    // Return the current level for the WeeklyChallenge component
-    return loveLevel;
-  };
+    const updatedFurniture = placedFurniture.filter((item) => item.id !== id)
+    await saveFurniture(updatedFurniture)
+    setPlacedFurniture(updatedFurniture)
+  }
 
   const handleFeedCat = (value = 5) => {
     setProgress(prev => {
-      const newProgress = prev + value;
-      return Math.min(Math.max(newProgress, 0), 100); // Keeps progress between 0 and 100
-    });
-  };
+      const newProgress = prev + value
+      return Math.min(Math.max(newProgress, 0), 100)
+    })
+  }
 
-  // Function to check and add rewards when love bar reaches 100%
-  const checkAndAddRewards = (newLoveLevel) => {
-    if (newLoveLevel >= 100) {
-      // Reset love level
-      setLoveLevel(0);
-      
-      // Add new rewards
-      setRewards(prev => ({
-        food: [...prev.food, { name: "Premium Cat Food", quantity: 1 }],
-        vouchers: [
-          ...prev.vouchers, 
-          { 
-            name: "TNG Cashback RM5 Voucher", 
-            code: `TNGRM5-${Math.random().toString(36).substr(2, 6)}`,
-            id: Date.now()
-          }
-        ]
-      }));
-    } else {
-      setLoveLevel(newLoveLevel);
-    }
-  };
+  const handleProgressClick = () => {
+    router.push('/progress')
+  }
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-xl">Loading...</div>
       </div>
-    );
+    )
   }
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div>
-        <LevelBar username="Jack" progress={progress} dangerProgress={loveLevel} onFeedCat={handleFeedCat} />
+        <LevelBar 
+          username="Jack" 
+          progress={progress} 
+          onFeedCat={handleFeedCat}
+          onProgressClick={handleProgressClick}
+        />
         
-        <div
-          style={{
-            position: "absolute",
-            top: "2%",
-            left: "37%",
-            zIndex: 9999,
-            display: showSpendingHistory ? "none" : "block",
-          }}
-        >
-          <WeeklyChallenge onChallengeComplete={handleChallengeComplete} onFeedCat={handleFeedCat} />
-        </div>        
         <div className="flex-1 flex items-center justify-center relative">
           {/* Daily Goals Button */}
           <button
@@ -272,7 +219,7 @@ export default function Map() {
             showPopup={showDailyGoals}
             onClose={() => setShowDailyGoals(false)}
           />
-          
+
           {/* Map and DroppableMap */}
           <div className="relative w-[80%] h-[70vh]" style={{ marginTop: "20px" }}>
             <img

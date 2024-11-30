@@ -2,9 +2,16 @@ import { useState, useEffect } from 'react';
 
 export default function DailyGoals({ onClose, showPopup }) {
   const [aggregatedGoals, setAggregatedGoals] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    fetchAndAggregateGoals();
+    if (showPopup) {
+      fetchAndAggregateGoals();
+      // Delay setting visibility to true to allow fade in
+      setTimeout(() => setIsVisible(true), 50);
+    } else {
+      setIsVisible(false);
+    }
   }, [showPopup]);
 
   const formatGoalType = (goalType) => {
@@ -91,48 +98,73 @@ export default function DailyGoals({ onClose, showPopup }) {
     }
   };
 
+  const handleClose = () => {
+    setIsVisible(false);
+    // Wait for fade out animation to complete before calling onClose
+    setTimeout(onClose, 300);
+  };
+
   if (!aggregatedGoals || !showPopup) return null;
 
   return (
-    <div className="absolute left-4 top-20 bg-white rounded-lg shadow-xl p-6 w-96 z-[9999]">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-bold">Combined Financial Goals ({aggregatedGoals.numberOfGoals})</h3>
-        <button 
-          onClick={onClose}
-          className="text-gray-500 hover:text-gray-700"
-        >
-          ×
-        </button>
-      </div>
-      
-      <div className="space-y-4">
-        <div className="bg-blue-50 p-3 rounded-lg">
-          <p className="font-semibold text-blue-800">Total Daily Savings Target</p>
-          <p className="text-2xl font-bold text-blue-600">${aggregatedGoals.dailySavingsTarget}</p>
-        </div>
+    <div 
+      className={`fixed inset-0 flex items-start justify-start p-4 z-[9999] transition-opacity duration-300 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
+      {/* Dark overlay */}
+      <div 
+        className={`fixed inset-0 bg-black transition-opacity duration-300 ${
+          isVisible ? 'opacity-40' : 'opacity-0'
+        }`}
+        onClick={handleClose}
+      />
 
-        <div className="space-y-2">
-          <p className="text-sm text-gray-600">Longest goal timeline: {aggregatedGoals.daysToGoal} days</p>
-          <p className="text-sm text-gray-600">Daily spending limit: ${aggregatedGoals.dailyDisposableIncome}</p>
-          <p className="text-sm text-gray-600">Monthly debt payment: ${aggregatedGoals.monthlyDebtPayment}</p>
+      {/* Content */}
+      <div 
+        className={`relative bg-white rounded-lg shadow-xl p-6 w-96 ml-4 mt-20 transform transition-all duration-300 ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+        }`}
+      >
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-bold">Combined Financial Goals ({aggregatedGoals.numberOfGoals})</h3>
+          <button 
+            onClick={handleClose}
+            className="text-gray-500 hover:text-gray-700 transition-colors"
+          >
+            ×
+          </button>
         </div>
+        
+        <div className="space-y-4">
+          <div className="bg-blue-50 p-3 rounded-lg">
+            <p className="font-semibold text-blue-800">Total Daily Savings Target</p>
+            <p className="text-2xl font-bold text-blue-600">${aggregatedGoals.dailySavingsTarget}</p>
+          </div>
 
-        <div className="mt-4 space-y-2">
-          <h4 className="font-semibold text-gray-700">Goal Breakdown & Recommendations:</h4>
-          <ul className="list-disc pl-5 space-y-1">
-            {aggregatedGoals.recommendations.map((rec, index) => (
-              <li 
-                key={index} 
-                className={`text-sm ${
-                  rec.includes('⚠️') ? 'text-red-600 font-medium' : 
-                  rec.includes('achievable') ? 'text-green-600 font-medium' : 
-                  'text-gray-600'
-                }`}
-              >
-                {rec}
-              </li>
-            ))}
-          </ul>
+          <div className="space-y-2">
+            <p className="text-sm text-gray-600">Longest goal timeline: {aggregatedGoals.daysToGoal} days</p>
+            <p className="text-sm text-gray-600">Daily spending limit: ${aggregatedGoals.dailyDisposableIncome}</p>
+            <p className="text-sm text-gray-600">Monthly debt payment: ${aggregatedGoals.monthlyDebtPayment}</p>
+          </div>
+
+          <div className="mt-4 space-y-2">
+            <h4 className="font-semibold text-gray-700">Goal Breakdown & Recommendations:</h4>
+            <ul className="list-disc pl-5 space-y-1">
+              {aggregatedGoals.recommendations.map((rec, index) => (
+                <li 
+                  key={index} 
+                  className={`text-sm ${
+                    rec.includes('⚠️') ? 'text-red-600 font-medium' : 
+                    rec.includes('achievable') ? 'text-green-600 font-medium' : 
+                    'text-gray-600'
+                  }`}
+                >
+                  {rec}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
