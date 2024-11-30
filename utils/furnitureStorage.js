@@ -1,5 +1,5 @@
 import { db } from './firebase';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
 
 const FURNITURE_DOC_ID = 'furniture_data';
 
@@ -11,7 +11,6 @@ export const getFurniture = async () => {
     if (docSnap.exists()) {
       return docSnap.data().placedFurniture;
     } else {
-      // Initialize with empty array if document doesn't exist
       await setDoc(docRef, { placedFurniture: [] });
       return [];
     }
@@ -19,6 +18,20 @@ export const getFurniture = async () => {
     console.error('Error reading furniture data:', error);
     return [];
   }
+};
+
+export const subscribeFurniture = (callback) => {
+  const docRef = doc(db, 'furniture', FURNITURE_DOC_ID);
+  
+  return onSnapshot(docRef, (doc) => {
+    if (doc.exists()) {
+      callback(doc.data().placedFurniture);
+    } else {
+      callback([]);
+    }
+  }, (error) => {
+    console.error('Error subscribing to furniture updates:', error);
+  });
 };
 
 export const saveFurniture = async (furniture) => {
