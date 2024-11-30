@@ -50,7 +50,7 @@ export default function LevelBar({
   ];
 
   const handleProgressClick = () => {
-    router.push('/Progress');
+    router.push('/progress');
   };
 
   return (

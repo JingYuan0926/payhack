@@ -15,6 +15,24 @@ import LeaderboardModal from '../components/LeaderboardModal'
 
 // New DraggableFurniture component
 const DraggableFurniture = ({ item, onMove, onRemove }) => {
+  const [dimensions, setDimensions] = useState({
+    width: item.placedWidth || (item.originalWidth ? item.originalWidth * 2.5 : 100),
+    height: item.placedHeight || (item.originalHeight ? item.originalHeight * 2.5 : 100)
+  });
+
+  useEffect(() => {
+    if (!item.originalWidth || !item.originalHeight) {
+      const img = new Image();
+      img.src = item.src;
+      img.onload = () => {
+        setDimensions({
+          width: img.width * 2.5,
+          height: img.height * 2.5
+        });
+      };
+    }
+  }, [item]);
+
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'furniture',
     item: { id: item.id, ...item },
@@ -40,8 +58,8 @@ const DraggableFurniture = ({ item, onMove, onRemove }) => {
         position: 'absolute',
         top: item.position.y,
         left: item.position.x,
-        width: '100px',
-        height: '100px',
+        width: dimensions.width,
+        height: dimensions.height,
         opacity: isDragging ? 0.5 : 1,
         cursor: 'move',
       }}
