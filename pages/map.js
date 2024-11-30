@@ -12,6 +12,7 @@ import LeaderboardModal from '../components/LeaderboardModal'
 import DailySummaryButton from '../components/DailySummaryButton'
 import ProgressButton from '../components/ProgressButton'
 import DailySum from '../components/DailySum'
+import TotalSavings from '../components/TotalSavings'
 
 
 
@@ -189,6 +190,7 @@ export default function Map() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [showDailySum, setShowDailySum] = useState(false);
+  const [showTotalSavings, setShowTotalSavings] = useState(false);
 
   const sendEmail = async () => {
     try {
@@ -375,9 +377,26 @@ export default function Map() {
             />
           </button>
 
+          {/* Total Savings Button */}
+          <button
+            className="absolute left-4 top-20 w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-lg z-[9998]"
+            onClick={() => setShowTotalSavings(!showTotalSavings)}
+          >
+            <img
+              src="/wallet.png"
+              alt="Total Savings"
+              className="w-7 h-7"
+            />
+          </button>
+
           <DailyGoals
             showPopup={showDailyGoals}
             onClose={() => setShowDailyGoals(false)}
+          />
+
+          <TotalSavings
+            showPopup={showTotalSavings}
+            onClose={() => setShowTotalSavings(false)}
           />
 
           {/* Map and DroppableMap */}
