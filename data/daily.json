@@ -5,13 +5,13 @@
     "targetAmount": 40000,
     "targetDate": "2027-01-01",
     "planType": "strict",
-    "dailySavings": 53.85520132960193,
-    "daysToGoal": 762,
+    "dailySavings": 52.562417871222074,
+    "daysToGoal": 761,
     "dailyLimit": 113.65,
     "monthlyDebt": 681.9000000000001,
     "dailyDisposableIncome": 113.65,
     "monthlyDisposableIncome": 3409.5,
-    "remainingDaily": 59.79479867039807,
-    "createdAt": "2024-11-30T23:07:45.510Z"
+    "remainingDaily": 61.08758212877793,
+    "createdAt": "2024-12-01T00:00:14.380Z"
   }
 }

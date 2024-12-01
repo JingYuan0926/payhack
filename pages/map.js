@@ -443,7 +443,7 @@ export default function Map() {
           />
 
           {/* Map and DroppableMap */}
-          <div className="relative w-[80%] h-[40vh]" style={{ marginTop: "-180px" }}>
+          <div className="relative w-[80%] h-[50vh]" style={{ marginTop: "-70px" }}>
             <img
               src="/map.png"
               alt="Map"

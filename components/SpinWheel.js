@@ -151,7 +151,7 @@ const SpinWheel = ({ onRewardClaimed, onStreakUpdate }) => {
       setReward(furniture);
       setShowReward(true);
       triggerRewardAnimation(rarity);
-    }, 3000);
+    }, 1000);
   };
 
   const claimReward = () => {
@@ -207,7 +207,7 @@ const SpinWheel = ({ onRewardClaimed, onStreakUpdate }) => {
             style={{
               transform: `rotate(${rotation}deg)`,
               transition: isSpinning 
-                ? 'transform 3s cubic-bezier(0.2, 0.8, 0.2, 0.99)'
+                ? 'transform 2s cubic-bezier(0.2, 0.8, 0.2, 0.99)'
                 : 'none',
               boxShadow: `
                 0 0 0 4px white,
